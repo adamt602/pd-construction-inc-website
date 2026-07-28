@@ -823,7 +823,7 @@
           <div style="{{ svcIncludedTextCol }}">
             <span style="{{ svcEyebrowInk }}">Credentials</span>
             <h3 style="{{ svcIncludedTitle }}">Licensed, insured, and documented.</h3>
-            <p style="{{ svcIncludedBody }}">Certificates and policy numbers available on request. All figures below are placeholders.</p>
+            <p style="{{ svcIncludedBody }}">CSLB Lic. #972699. Certificates of insurance and policy numbers available on request.</p>
           </div>
           <div style="{{ svcIncludedGrid }}">
             <sc-for list="{{ credentials }}" as="c" hint-placeholder-count="6">
@@ -957,9 +957,9 @@
       <section style="{{ contactSection }}">
         <div style="{{ contactInfoCol }}">
           <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Email</span><p style="{{ metaValueStyle }}">info@pdconstruction.example <span style="{{ placeholderTag }}">placeholder</span></p></div>
-          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Phone</span><p style="{{ metaValueStyle }}">(000) 000-0000 <span style="{{ placeholderTag }}">placeholder</span></p></div>
-          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Service Area</span><p style="{{ metaValueStyle }}">Greater metro region <span style="{{ placeholderTag }}">placeholder</span></p></div>
-          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Contractor License</span><p style="{{ metaValueStyle }}">CSLB #000000 <span style="{{ placeholderTag }}">placeholder</span></p></div>
+          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Phone</span><p style="{{ metaValueStyle }}"><a href="tel:+16612691899" style="{{ contactLink }}">661-269-1899</a></p></div>
+          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Service Area</span><p style="{{ metaValueStyle }}">Southern California</p></div>
+          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Contractor License</span><p style="{{ metaValueStyle }}">CSLB Lic. #972699</p></div>
         </div>
         <form style="{{ contactFormCol }}" onSubmit="{{ handleSubmit }}" novalidate="{{ true }}">
           <sc-if value="{{ formSubmitted }}" hint-placeholder-val="{{ false }}">
@@ -1149,11 +1149,28 @@
       <button style="{{ subscribeBtn }}" style-hover="{{ subscribeBtnHover }}">Subscribe</button>
     </div>
     <div style="{{ footerBottom }}">
-      <img src="assets/pd-logo.svg" alt="PD Construction Inc." style="width: 98px; height: 43px">
-      <div style="{{ footerCenterCopy }}">
-        <span style="{{ footerFinePrint }}">© 2026 PD Construction Inc. <span style="{{ footerSep }}">|</span> All Rights Reserved <span style="{{ footerSep }}">|</span> <a href="#" onClick="{{ goPrivacy }}" style="{{ footerFinePrintLink }}">Privacy Policy</a> <span style="{{ footerSep }}">|</span> LinkedIn &nbsp;Instagram</span>
+      <div style="{{ footerIdCol }}">
+        <img src="assets/pd-logo.svg" alt="PD Construction Inc." style="{{ footerLogoStyle }}">
+        <div style="{{ footerFactRow }}">
+          <span style="{{ footerFact }}">CSLB Lic. #972699</span>
+          <a href="tel:+16612691899" style="{{ footerFactLink }}" style-hover="{{ footerFactLinkHover }}">661-269-1899</a>
+          <span style="{{ footerFact }}">Southern California</span>
+        </div>
       </div>
-      <span style="{{ footerFinePrint }}">General Contractor License No. #000000 — placeholder</span>
+      <div style="{{ footerSocialRow }}">
+        <a href="https://www.instagram.com/" target="_blank" rel="noreferrer noopener" aria-label="PD Construction on Instagram" style="{{ footerSocialBtn }}" style-hover="{{ footerSocialBtnHover }}">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+          <span style="{{ footerSocialLabel }}">Instagram</span>
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer noopener" aria-label="PD Construction on LinkedIn" style="{{ footerSocialBtn }}" style-hover="{{ footerSocialBtnHover }}">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-11h4v1.5"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          <span style="{{ footerSocialLabel }}">LinkedIn</span>
+        </a>
+      </div>
+    </div>
+    <div style="{{ footerLegalRow }}">
+      <span style="{{ footerFinePrint }}">&copy; 2026 PD Construction Inc. &mdash; All rights reserved</span>
+      <a href="#" onClick="{{ goPrivacy }}" style="{{ footerFinePrintLink }}" style-hover="{{ footerFinePrintLinkHover }}">Privacy Policy</a>
     </div>
   </footer>
 
@@ -1162,6 +1179,35 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const PROJECTS_RAW = [
+  { id: 'wild-beast-calarts', name: 'The Wild Beast, CalArts', location: 'Valencia, CA', category: 'Commercial', scope: 'Performance Pavilion', year: '2009',
+    architect: 'Hodgetts + Fung',
+    img: 'assets/wildbeast-01-open-shell.jpg', imgAlt: 'The Wild Beast at dusk with its retracting panels fully open, lit acoustic ceiling above a piano on the stage floor',
+    gallery: [
+      ['assets/wildbeast-04-exterior-day.jpg', 'Copper-shingled drum and curving roof set into the berm along the entry drive', 'wide'],
+      ['assets/wildbeast-02-interior.jpg', 'Interior looking up the curved acoustic soundboard wall to the clerestory', 'tall'],
+      ['assets/wildbeast-03-ceiling.jpg', 'Acoustic ceiling detail: shaped panels with integrated point and linear sources', 'tall'],
+      ['assets/wildbeast-05-model.jpg', 'Study model of the shell, clerestory and amphitheater seating'],
+      ['assets/wildbeast-06-model-aerial.jpg', 'Aerial study model showing the pavilion nested into the contoured berm']
+    ],
+    summary: 'A recital hall at CalArts that opens into an outdoor performance shell \u2014 a copper-shingled acoustic volume with a curved soundboard structure, servo-operated clerestory panes, and monumental retracting panels the full width of the room.',
+    story: 'The Wild Beast was built the way an instrument is built. The main volume is a curving, three-dimensional form that serves as both primary structure and acoustic cavity \u2014 the soundboard of the building \u2014 so the geometry that carries the loads is the same geometry that carries the sound. There is no forgiving layer between the two.',
+    story2: 'Above it, a rank of regulating window panes forms a clerestory on computer-controlled servos, tuning the room\u2019s resonance as a performance calls for it. Below the clerestory, monumental panels retract across the full width of the room and turn the hall into an open-air shell facing the lawn and the amphitheater steps. Both systems had to be framed, aligned and commissioned to tolerances where a few millimeters of drift is audible, not just visible.',
+    story3: 'The exterior is clad in copper-hued shingles and set into the berm flanking the entry drive, so the pavilion reads as part of the landform rather than an object dropped on it. Inside, shaped acoustic panels carry point and linear sources within the ceiling assembly, lighting the stage without breaking the surface that shapes the sound.',
+    challenge: 'Structure, acoustics, and moving parts were one problem, not three. The curved soundboard volume doubles as the primary structure, so acoustic geometry drove steel fabrication and erection tolerances; the servo-operated clerestory and the full-width retracting panels required precise framing, alignment and commissioning against acoustic performance criteria; and the whole pavilion had to be set into an existing berm alongside a live campus entry drive, keeping the drive and adjacent buildings in service.',
+    materials: 'Copper-hued shingle cladding, curved structural steel and glue-laminated framing, shaped plywood acoustic panels with integrated lighting, servo-operated glazed clerestory panes, monumental retracting panel assemblies, and poured concrete stage and amphitheater steps.' },
+  { id: 'lhuillier-flagship', name: 'Monique Lhuillier Flagship', location: 'Los Angeles, CA', category: 'Commercial', scope: 'Retail Buildout', year: '2006',
+    architect: 'Montalba Architects',
+    img: 'assets/lhuillier-01-showroom.jpg', imgAlt: 'Main showroom with a raised oak display plinth, limestone floor, bronzed millwork bays and a crystal pendant',
+    gallery: [
+      ['assets/lhuillier-03-vitrine.jpg', 'Entry vitrine in glass and bronzed steel, looking through to the gallery and a gown on its plinth'],
+      ['assets/lhuillier-02-lounge.jpg', 'VIP lounge and fitting area with full-height mirrors, integrated light slots and bridal racks beyond']
+    ],
+    summary: 'A flagship bridal and evening-wear boutique in the La Cienega Design Quarter, built as a lighting project first: concealed perimeter downlights, two large skylights, and mirror-integrated light slots in every fitting room.',
+    story: 'The Monique Lhuillier flagship sits in the middle of the La Cienega Design Quarter, where the street is loud and the product is not. The build had one governing requirement: the architecture had to disappear behind the gowns, and every source of light had to be invisible while doing precise work.',
+    story2: 'The plan reads as a sequence rather than a sales floor \u2014 a public entry and a discreet VIP entry, the main showroom, a dress gallery, a run of oversized fitting rooms, and back-of-house offices concealed behind flush millwork. Perimeter frame bays carry downlights buried in their heads so the gowns on the racks below sit in soft, even wash with no visible fixture and no hot spots. Two large rectangular skylights drop daylight into the gallery and the VIP entry, which meant coordinating new roof openings, curbs and waterproofing against a finish ceiling that had to stay a single unbroken plane.',
+    story3: 'In the fitting rooms, linear sources are set into the wall above full-height mirrors so a client sees the dress and not the lamp. Materials stay quiet and warm \u2014 limestone floors, bronzed and stained oak millwork, plaster, glass and steel vitrines \u2014 with every reveal, shadow gap and mirror joint held tight enough to read as one continuous surface.',
+    challenge: 'A retail interior where the lighting is the design: dozens of concealed fixture pockets had to be framed, plastered and finished with no visible edge or hot spot; two new skylights had to be cut, curbed and waterproofed while the finish ceiling stayed a single plane; and mirror-integrated linear sources needed exact blocking and wiring behind glass. All of it delivered on a retail schedule, on an occupied commercial block with restricted access and staging.',
+    materials: 'Limestone flooring, bronzed and stained oak millwork, integrated plaster light coves and reveals, frameless glass and steel vitrines, full-height mirrors with concealed linear sources, and skylight assemblies with concealed curbs.' },
   { id: 'malibu-ranch-house', name: 'Malibu Ranch House', location: 'Malibu, CA', category: 'Residential', scope: 'Interior Reconstruction', year: '2024',
     architect: 'Jorge Pardo (artist)',
     img: 'assets/pardo-01-exterior.jpg', imgAlt: 'Shingled ranch house on a Malibu hillside with three CNC-cut, brightly lacquered perforated door panels',
@@ -1335,7 +1381,7 @@ const TEAM = [
 ];
 
 const CREDENTIALS = [
-  'CSLB License #000000 \u2014 placeholder',
+  'CSLB Lic. #972699 \u2014 active',
   'General liability \u2014 policy placeholder',
   "Workers' compensation coverage",
   'Bonded for contracts to [amount]',
@@ -1562,6 +1608,7 @@ class Component extends DCLogic {
   }
   componentWillUnmount() {
     window.removeEventListener('keydown', this._onKey);
+    document.body.style.overflow = '';
     document.removeEventListener('visibilitychange', this._onVis);
     clearTimeout(this._statT);
     clearTimeout(this._heroT);
@@ -1575,7 +1622,7 @@ class Component extends DCLogic {
   revealRef(key) {
     if (!this._revealFns[key]) {
       this._revealFns[key] = (el) => {
-        if (el && !el.__revealObserved) {
+        if (el && el.__revealKey !== key) {
           el.__revealKey = key;
           el.__revealObserved = true;
           if (this._io) this._io.observe(el); else this._pendingReveal.push(el);
@@ -1693,7 +1740,8 @@ class Component extends DCLogic {
 
   navigate(view, id) {
     if (view === this.state.view && !id) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
-    this.setState({ mobileMenuOpen: false, pageIn: false });
+    document.body.style.overflow = '';
+    this.setState({ mobileMenuOpen: false, pageIn: false, lightbox: null });
     clearTimeout(this._navT);
     this._navT = setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'auto' });
@@ -1714,8 +1762,8 @@ class Component extends DCLogic {
   goProcess() { this.navigate('process'); }
   goContact() { this.navigate('contact'); }
   goGallery() { this.navigate('gallery'); }
-  lbOpen(i) { this.setState({ lightbox: i }); }
-  lbClose() { this.setState({ lightbox: null }); }
+  lbOpen(i) { document.body.style.overflow = 'hidden'; this.setState({ lightbox: i }); }
+  lbClose() { document.body.style.overflow = ''; this.setState({ lightbox: null }); }
   lbStep(d) {
     const list = this.galleryList();
     if (!list.length) return;
@@ -1941,7 +1989,7 @@ class Component extends DCLogic {
         const raw = cycle[i % cycle.length];
         const span = s.isNarrow ? 4 : raw;
         const ratio = raw === 12 ? '21/9' : raw === 8 ? '3/2' : raw === 6 ? '4/3' : '1/1';
-        const key = 'galp_' + i + '_' + (s.galFilter || 'All');
+        const key = 'galp_' + g.url;
         return {
           alt: g.alt, project: g.project, num: String(i + 1).padStart(2, '0'),
           open: () => this.lbOpen(i),
@@ -2257,7 +2305,7 @@ class Component extends DCLogic {
       homeAreaTextCol: 'flex:1 1 340px;min-width:280px;display:flex;flex-direction:column;gap:12px;align-items:flex-start',
       homeAreaGrid: 'flex:1 1 460px;min-width:300px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start',
       homeAreaChip: `font-family:${SANS};font-size:12px;letter-spacing:0.05em;color:${INK};border:1px solid #e6e1d8;padding:11px 16px;background:#faf8f4`,
-      serviceAreas: ['Beverly Hills', 'Santa Monica', 'Manhattan Beach', 'Pasadena', 'Culver City', 'Studio City', 'Brentwood', 'Silver Lake', 'Malibu', 'Greater metro \u2014 placeholder'],
+      serviceAreas: ['Beverly Hills', 'Santa Monica', 'Manhattan Beach', 'Malibu', 'Pasadena', 'Culver City', 'Studio City', 'Brentwood', 'Venice', 'Valencia', 'Orange County', 'Southern California'],
 
       eyebrowLightStyle: `font-family:${SANS};font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:${TAN};display:block;margin-bottom:14px`,
       tmSection: 'padding:130px 0',
@@ -2414,6 +2462,7 @@ class Component extends DCLogic {
       detailMetaGrid: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px;border-top:1px solid #e6e1d8;padding-top:28px',
       metaLabelStyle: `font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${MUTED};display:block`,
       metaValueStyle: `font-family:${SERIF};font-size:15px;color:${INK};margin:6px 0 0`,
+      contactLink: `color:${INK};text-decoration:none;border-bottom:1px solid ${TAN}`,
       detailStorySection: 'padding:24px 56px 72px;max-width:960px',
       detailParaStyle: `font-family:${SERIF};font-size:17px;line-height:1.62;color:${BODY_C};margin:0 0 20px;text-wrap:pretty`,
       gallerySection: 'padding:0 56px 72px',
@@ -2540,7 +2589,7 @@ class Component extends DCLogic {
       backToTopWrap: 'display:flex;justify-content:center;margin-bottom:28px',
       backToTop: `display:inline-flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;color:${TAN_DARK};font-family:${SANS};font-size:10px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;padding:0`,
       scrollTop: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
-      footerSubscribeRow: 'display:flex;gap:8px;flex-wrap:wrap;max-width:420px;margin:0 auto 32px;justify-content:center',
+      footerSubscribeRow: 'display:flex;gap:8px;flex-wrap:wrap;max-width:1100px;margin:0 auto 36px',
       subscribeInput: `flex:1;min-width:200px;min-height:36px;padding:6px 10px;font-family:${SANS};font-size:12px;background:#ffffff;border:1px solid #d8d2c4;color:${INK}`,
       subscribeBtn: `padding:6px 14px;font-family:${SANS};font-size:10px;letter-spacing:0.06em;text-transform:uppercase;background:transparent;border:1px solid ${TAN_DARK};color:${INK};cursor:pointer;transition:background 0.15s,color 0.15s`,
       subscribeBtnHover: `padding:6px 14px;font-family:${SANS};font-size:10px;letter-spacing:0.06em;text-transform:uppercase;background:${TAN_DARK};border:1px solid ${TAN_DARK};color:${INK};cursor:pointer`,
@@ -2548,9 +2597,20 @@ class Component extends DCLogic {
       footerBrand: `font-family:${SERIF};font-weight:700;font-size:14px;letter-spacing:0.04em;line-height:1.2;color:${INK};text-align:left`,
       footerCenterCopy: 'flex:1;text-align:center',
       footerSep: `color:${MUTED};margin:0 4px`,
-      footerBottom: 'max-width:1100px;margin:0 auto;padding-top:20px;border-top:1px solid #e6e1d8;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap',
-      footerFinePrint: `font-size:11px;color:${MUTED};text-transform:uppercase;letter-spacing:0.03em`,
-      footerFinePrintLink: `font-size:11px;color:${MUTED};text-decoration:underline`,
+      footerBottom: 'max-width:1100px;margin:0 auto;padding-top:26px;border-top:1px solid #e6e1d8;display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap',
+      footerIdCol: 'display:flex;flex-direction:column;align-items:flex-start;gap:14px',
+      footerFactRow: 'display:flex;align-items:center;gap:18px;flex-wrap:wrap',
+      footerFact: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${MUTED}`,
+      footerFactLink: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${INK};text-decoration:none;border-bottom:1px solid ${TAN};transition:color 0.25s ease,border-color 0.25s ease`,
+      footerFactLinkHover: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${TAN};text-decoration:none;border-bottom:1px solid ${INK}`,
+      footerSocialRow: 'display:flex;align-items:center;gap:8px;flex-wrap:wrap',
+      footerSocialBtn: `display:inline-flex;align-items:center;gap:9px;padding:11px 15px;border:1px solid #ddd7cc;color:${INK};text-decoration:none;background:transparent;transition:background 0.3s ease,color 0.3s ease,border-color 0.3s ease`,
+      footerSocialBtnHover: `display:inline-flex;align-items:center;gap:9px;padding:11px 15px;border:1px solid ${INK};color:#ffffff;background:${INK};text-decoration:none`,
+      footerSocialLabel: `font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase`,
+      footerLegalRow: 'max-width:1100px;margin:26px auto 0;padding-top:18px;border-top:1px solid #f0ece3;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap',
+      footerFinePrint: `font-family:${SANS};font-size:11px;color:${MUTED};text-transform:uppercase;letter-spacing:0.06em`,
+      footerFinePrintLink: `font-family:${SANS};font-size:11px;color:${MUTED};text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;border-bottom:1px solid #ddd7cc;transition:color 0.25s ease,border-color 0.25s ease`,
+      footerFinePrintLinkHover: `font-family:${SANS};font-size:11px;color:${INK};text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;border-bottom:1px solid ${TAN}`,
 
       form: s.form, errors: s.errors, formSubmitted: s.formSubmitted, formNotSubmitted: !s.formSubmitted,
       setName: e => this.setState(x => ({ form: { ...x.form, name: e.target.value } })),
