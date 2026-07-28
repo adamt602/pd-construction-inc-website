@@ -1,0 +1,2568 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/modernist-1dc79ff0-96a6-4917-b50f-6d16c4e53c00/styles.css">
+  <script src="_ds/modernist-1dc79ff0-96a6-4917-b50f-6d16c4e53c00/_ds_bundle.js"></script>
+  <script src="./image-slot.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&amp;display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #ffffff; }
+    a { color: #8a6f43; text-decoration: none; }
+    a:hover { color: #c9a877; }
+    ::selection { background: #f1e6d2; }
+    html { scroll-behavior: smooth; }
+    :focus-visible { outline: 2px solid #c9a877; outline-offset: 3px; }
+    input::placeholder, textarea::placeholder { color: #9a958c; }
+    input:focus, textarea:focus, select:focus { border-color: #a8875a; }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+    @keyframes pd-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .pd-marquee-track { animation: pd-marquee 34s linear infinite; }
+    .pd-marquee:hover .pd-marquee-track { animation-play-state: paused; }
+    .pd-gal-cell { position: relative; overflow: hidden; cursor: zoom-in; }
+    .pd-gal-cell img { transition: transform 1s cubic-bezier(.16,.8,.3,1), filter .6s ease; }
+    .pd-gal-cell:hover img { transform: scale(1.055); }
+    .pd-gal-cell figcaption { transform: translateY(102%); transition: transform .55s cubic-bezier(.2,.7,.3,1); }
+    .pd-gal-cell:hover figcaption { transform: translateY(0); }
+    .pd-gal-num { opacity: 0; transform: translateY(-6px); transition: opacity .4s ease, transform .5s cubic-bezier(.2,.7,.3,1); }
+    .pd-gal-cell:hover .pd-gal-num { opacity: 1; transform: translateY(0); }
+    @keyframes pd-lb-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pd-lb-img { from { opacity: 0; transform: scale(.965); } to { opacity: 1; transform: none; } }
+    @keyframes pd-lb-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    @keyframes pd-belt { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .pd-belt-track { animation: pd-belt 56s linear infinite; }
+    .pd-belt:hover .pd-belt-track { animation-play-state: paused; }
+    @keyframes pd-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .pd-marquee-track { animation: pd-marquee 38s linear infinite; }
+    .pd-marquee-wrap:hover .pd-marquee-track { animation-play-state: paused; }
+    .pd-media:hover .pd-badge { opacity: 1 !important; transform: translateY(0) !important; }
+    .pd-media img { transition: transform 0.9s cubic-bezier(.2,.7,.3,1), opacity 0.9s cubic-bezier(.2,.7,.3,1); }
+    .pd-media:hover img { transform: scale(1.045) !important; }
+    img, image-slot { max-width: 100%; }
+    h1, h2, h3, h4, h5, p, span, a, li, button { overflow-wrap: break-word; }
+    @media (max-width: 760px) {
+      main section, footer, nav { padding-left: 22px !important; padding-right: 22px !important; }
+      main section > section, main section section { padding-left: 0 !important; padding-right: 0 !important; }
+      [data-wm] { font-size: clamp(30px, 12vw, 54px) !important; margin-bottom: -18px !important; -webkit-text-stroke-width: 1px !important; }
+      main [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+      main [style*="gap:72px"], main [style*="gap:64px"] { gap: 34px !important; }
+      main [style*="margin-bottom:90px"], main [style*="margin-bottom:80px"] { margin-bottom: 46px !important; }
+      main section { padding-bottom: 62px !important; }
+      nav { padding-top: 14px !important; padding-bottom: 14px !important; }
+    }
+    @media (max-width: 700px) {
+      main > section, footer, nav { padding-left: 22px !important; padding-right: 22px !important; }
+      main h1, main h2, main h3, main h4 { overflow-wrap: break-word; }
+    }
+  </style>
+</helmet>
+
+<div style="{{ rootStyle }}">
+
+  <nav style="{{ navStyle }}">
+    <div style="{{ scrollProgressStyle }}"></div>
+    <button aria-label="PD Construction Inc. — home" style="{{ brandBtnStyle }}" onClick="{{ goHome }}"><img src="assets/pd-logo.svg" alt="PD Construction Inc." style="width: 128px; height: 61px"></button>
+    <sc-if value="{{ showDesktopNav }}" hint-placeholder-val="{{ true }}">
+      <div style="{{ navLinksWrapStyle }}">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="6">
+          <a href="#" style="{{ link.style }}" style-hover="{{ link.styleHover }}" onClick="{{ link.onClick }}">{{ link.label }}</a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ showMobileToggle }}" hint-placeholder-val="{{ false }}">
+      <button aria-label="Open menu" style="{{ hamburgerStyle }}" onClick="{{ toggleMenu }}">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><line x1="3" y1="7" x2="21" y2="7"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="17" x2="21" y2="17"></line></svg>
+      </button>
+    </sc-if>
+  </nav>
+
+  <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ mobileMenuStyle }}">
+      <button aria-label="Close menu" style="{{ mobileCloseStyle }}" onClick="{{ toggleMenu }}">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>
+      </button>
+      <sc-for list="{{ navLinksMobile }}" as="link" hint-placeholder-count="6">
+        <a href="#" style="{{ link.style }}" onClick="{{ link.onClick }}">{{ link.label }}</a>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showDotNav }}" hint-placeholder-val="{{ false }}">
+    <nav aria-label="Section navigation" style="{{ dotNavStyle }}">
+      <sc-for list="{{ dotNav }}" as="d" hint-placeholder-count="0">
+        <button style="{{ d.style }}" style-hover="{{ d.hover }}" onClick="{{ d.onClick }}" aria-label="{{ d.label }}">
+          <span style="{{ d.labelStyle }}">{{ d.label }}</span>
+          <span style="{{ d.dotStyle }}"></span>
+        </button>
+      </sc-for>
+    </nav>
+  </sc-if>
+
+  <main style="{{ mainStyle }}">
+
+    <!-- ============ HOME ============ -->
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+      <section aria-label="Hero" data-screen-label="Home / Hero" style="{{ heroStyle }}">
+        <img src="assets/photo-atrium.jpg" alt="Full-height glass atrium with dark steel framing, custom seating and layered garden views" style="{{ heroImgStyle }}">
+        <div style="{{ heroScrimStyle }}"></div>
+        <div style="{{ heroContentStyle }}">
+          <h1 style="{{ heroHeadlineStyle }}">
+            <span style="{{ heroLineMask }}"><span style="{{ heroLine1 }}">Building Modern Spaces</span></span>
+            <span style="{{ heroLineMask }}"><span style="{{ heroLine2 }}">Without Compromise</span></span>
+          </h1>
+          <div style="{{ heroRule }}"></div>
+          <p style="{{ heroSubStyle }}">PD Construction Inc. delivers exceptional residential and commercial environments through precision, craftsmanship, and uncompromising attention to detail.</p>
+          <button style="{{ heroBtnStyle }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goProjects }}">Explore Our Work &nbsp;→</button>
+        </div>
+        <div style="{{ scrollCueStyle }}">
+          <span style="{{ scrollCueLabelStyle }}">Scroll</span>
+          <div style="{{ scrollCueLineStyle }}"></div>
+        </div>
+      </section>
+
+      <section aria-label="Introduction" style="{{ introSectionStyle }}">
+        <div style="{{ introTextColStyle }}">
+          <h2 style="{{ introHeadlineStyle }}">A general contractor built for architecture that refuses to compromise.</h2>
+          <div style="{{ tanRule }}"></div>
+          <p style="{{ bodyLgStyle }}">PD Construction Inc. builds high-end residential and commercial environments defined by ultra-modern architecture and exacting craftsmanship. We work in close partnership with architects, designers, and owners — translating ambitious drawings into precise, livable buildings.</p>
+          <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goAbout }}">Read About the Firm &nbsp;→</button>
+        </div>
+        <div style="{{ introImgColStyle }}">
+          <img ref="{{ introImgRef }}" src="assets/photo-living.jpg" alt="Double-height living room with a suspended steel stair, built-in library and gas fireplace" style="{{ introImgStyle }}">
+        </div>
+      </section>
+
+      <section aria-label="Stats" ref="{{ statsRowRef }}" style="{{ statsSection }}">
+        <sc-for list="{{ stats }}" as="stat" hint-placeholder-count="4">
+          <div style="{{ stat.cardStyle }}">
+            <span style="{{ statNumStyle }}">{{ stat.shown }}</span>
+            <span style="{{ statLabelStyle }}">{{ stat.label }}</span>
+          </div>
+        </sc-for>
+      </section>
+
+      <div class="pd-marquee-wrap" style="{{ marqueeWrap }}">
+        <div class="pd-marquee-track" style="{{ marqueeTrack }}">
+          <sc-for list="{{ marqueeItems }}" as="m" hint-placeholder-count="0">
+            <span style="{{ marqueeItem }}">{{ m.label }}</span>
+          </sc-for>
+        </div>
+      </div>
+
+      <section aria-label="Capabilities" style="{{ homeCapSection }}">
+        <div style="{{ homeCapHead }}">
+          <div>
+            <span style="{{ eyebrowStyle }}">Capabilities</span>
+            <h3 style="{{ sectionHeadlineStyle }}">Three ways clients engage us.</h3>
+          </div>
+          <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goServices }}">All Services &nbsp;→</button>
+        </div>
+        <div style="{{ homeCapGrid }}">
+          <sc-for list="{{ capabilities }}" as="c" hint-placeholder-count="3">
+            <div ref="{{ c.ref }}" style="{{ c.cardStyleR }}" style-hover="{{ c.cardHoverR }}">
+              <span style="{{ svcCapNum }}">{{ c.num }}</span>
+              <h4 style="{{ svcCapTitle }}">{{ c.title }}</h4>
+              <div style="{{ tanRuleThin }}"></div>
+              <p style="{{ bodyStyle }}">{{ c.body }}</p>
+              <ul style="{{ svcCapList }}">
+                <sc-for list="{{ c.points }}" as="pt" hint-placeholder-count="3">
+                  <li style="{{ svcCapListItem }}">{{ pt }}</li>
+                </sc-for>
+              </ul>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="Services teaser" style="{{ teaserSection }}">
+        <h2 ref="{{ refFor_services_teaser }}" data-wm="" style="{{ watermarkServicesTeaser }}">SERVICES</h2>
+        <div style="{{ teaserRow }}">
+          <div style="{{ teaserImgCol }}"><img ref="{{ teaserServicesImgRef }}" src="assets/photo-hallway.jpg" alt="Sunlit steel-framed corridor with floor-to-ceiling glazing" style="{{ teaserServicesImg }}"></div>
+          <div style="{{ teaserTextCol }}">
+            <h3 style="{{ subHeadStyle }}">Full-Scope General Contracting, Start to Finish.</h3>
+            <div style="{{ tanRule }}"></div>
+            <p style="{{ bodyStyle }}">From preconstruction through closeout, PD Construction manages every trade, deadline, and detail against a single schedule and budget.</p>
+            <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goServices }}">View All Services &nbsp;→</button>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Featured projects" style="{{ teaserSection }}">
+        <h2 ref="{{ refFor_projects_teaser }}" data-wm="" style="{{ watermarkProjectsTeaser }}">PROJECTS</h2>
+        <sc-for list="{{ featuredProjects }}" as="p" hint-placeholder-count="0">
+          <div style="{{ p.rowStyle }}">
+            <div class="pd-media" style="{{ p.mediaColStyle }}" onClick="{{ p.view }}">
+              <span class="pd-badge" style="{{ p.viewBadge }}">View Project &nbsp;→</span>
+              <sc-if value="{{ p.hasPhoto }}" hint-placeholder-val="{{ false }}">
+                <img ref="{{ p.imgRef }}" alt="{{ p.imgAlt }}" style="{{ p.mediaStyle }}">
+              </sc-if>
+              <sc-if value="{{ p.needsPlaceholder }}" hint-placeholder-val="{{ false }}">
+                <image-slot id="{{ p.slotId }}" placeholder="Project photography placeholder" style="{{ p.mediaSlotStyle }}"></image-slot>
+              </sc-if>
+            </div>
+            <div style="{{ p.textColStyle }}">
+              <span style="{{ metaLineStyle }}">{{ p.location }}</span>
+              <h3 style="{{ projectTitleStyle }}">{{ p.name }}</h3>
+              <div style="{{ tanRuleThin }}"></div>
+              <p style="{{ bodyStyle }}">{{ p.summary }}</p>
+              <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ p.view }}">View Project &nbsp;→</button>
+            </div>
+          </div>
+        </sc-for>
+      </section>
+
+      <section aria-label="Before and after" style="{{ baSection }}">
+        <div style="{{ svcSectionHead }}">
+          <div>
+            <span style="{{ eyebrowStyle }}">Before &amp; after</span>
+            <h3 style="{{ sectionHeadlineTight }}">Drag to see the change.</h3>
+          </div>
+          <p style="{{ svcSectionHeadNote }}">Canyon House — a compartmentalized 1970s plan opened into one continuous volume.</p>
+        </div>
+        <div style="{{ baFrame }}" onPointerDown="{{ baDown }}" onPointerMove="{{ baMove }}" onPointerUp="{{ baUp }}" onPointerLeave="{{ baUp }}">
+          <img src="assets/photo-living.jpg" alt="Canyon House after renovation" style="{{ baAfterImg }}" draggable="{{ false }}">
+          <img src="assets/photo-hallway.jpg" alt="Canyon House before renovation" style="{{ baBeforeImg }}" draggable="{{ false }}">
+          <span style="{{ baLabelBefore }}">Before</span>
+          <span style="{{ baLabelAfter }}">After</span>
+          <div style="{{ baDivider }}">
+            <div style="{{ baHandle }}">
+              <span style="{{ baHandleArrow }}">←</span>
+              <span style="{{ baHandleArrow }}">→</span>
+            </div>
+          </div>
+        </div>
+        <span style="{{ baCaption }}">Comparison photography — <span style="{{ placeholderTag }}">placeholder images</span></span>
+      </section>
+
+      <section aria-label="How we compare" style="{{ cmpSection }}">
+        <div style="{{ svcSectionHead }}">
+          <div>
+            <span style="{{ eyebrowStyle }}">The difference</span>
+            <h3 style="{{ sectionHeadlineTight }}">What changes when the builder is accountable.</h3>
+          </div>
+          <p style="{{ svcSectionHeadNote }}">Not every contractor works this way. Ask any of them these six questions.</p>
+        </div>
+        <div style="{{ cmpTable }}">
+          <div style="{{ cmpHeadRow }}">
+            <span style="{{ cmpHeadCell }}">&nbsp;</span>
+            <span style="{{ cmpHeadUs }}">PD Construction</span>
+            <span style="{{ cmpHeadThem }}">Typical GC</span>
+          </div>
+          <sc-for list="{{ comparisons }}" as="c" hint-placeholder-count="6">
+            <div style="{{ c.rowStyle }}" style-hover="{{ c.rowHover }}">
+              <span style="{{ cmpLabel }}">{{ c.label }}</span>
+              <span style="{{ cmpUs }}"><span style="{{ cmpTick }}">✓</span> {{ c.us }}</span>
+              <span style="{{ cmpThem }}">{{ c.them }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="Why PD Construction" style="{{ whySection }}">
+        <h3 style="{{ sectionHeadlineStyle }}">Four principles, held on every job.</h3>
+        <div style="{{ whyGrid }}">
+          <sc-for list="{{ whyPrinciples }}" as="w" hint-placeholder-count="4">
+            <div ref="{{ w.ref }}" style="{{ w.cardR }}" style-hover="{{ w.cardHoverR }}">
+              <span style="{{ whyNumStyle }}">{{ w.num }}</span>
+              <h3 style="{{ whyTitleStyle }}">{{ w.title }}</h3>
+              <div style="{{ tanRuleThin }}"></div>
+              <p style="{{ bodyStyle }}">{{ w.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="Residential and commercial" style="{{ splitSection }}">
+        <div style="{{ splitCol }}">
+          <div style="{{ splitImgWrap }}"><img ref="{{ splitResidentialRef }}" src="assets/photo-hallway.jpg" alt="Sunlit steel-framed corridor with floor-to-ceiling glazing" style="{{ splitResidentialImg }}" style-hover="{{ splitResidentialImgHover }}"></div>
+          <span style="{{ metaLineStyle }}">Residential</span>
+          <h3 style="{{ splitTitle }}">Homes built as architecture, not product.</h3>
+          <p style="{{ bodyStyle }}">Custom homes, luxury renovations, architectural estates, additions, and modern interiors — built to the tolerances the design deserves.</p>
+        </div>
+        <div style="{{ splitCol }}">
+          <div style="{{ splitImgWrap }}"><img ref="{{ splitCommercialRef }}" src="assets/photo-atrium.jpg" alt="Glazed atrium separating a private residence's living spaces" style="{{ splitCommercialImg }}" style-hover="{{ splitCommercialImgHover }}"></div>
+          <span style="{{ metaLineStyle }}">Commercial</span>
+          <h3 style="{{ splitTitle }}">Commercial space that performs under daily use.</h3>
+          <p style="{{ bodyStyle }}">Offices, hospitality, retail, mixed-use environments, tenant improvements, and modern commercial buildings, delivered on operating timelines.</p>
+        </div>
+      </section>
+
+      <section aria-label="Trades" style="{{ mqSection }}">
+        <div style="{{ mqViewport }}">
+          <div class="pd-marquee" style="{{ mqTrack }}">
+            <sc-for list="{{ mqItems }}" as="m" hint-placeholder-count="0">
+              <span style="{{ m.style }}">{{ m.label }}</span>
+            </sc-for>
+          </div>
+          <div style="{{ mqFadeL }}"></div>
+          <div style="{{ mqFadeR }}"></div>
+        </div>
+      </section>
+
+      <section aria-label="Disciplines" class="pd-marquee" style="{{ marqueeSection }}">
+        <div class="pd-marquee-track" style="{{ marqueeTrack }}">
+          <sc-for list="{{ marqueeItems }}" as="m" hint-placeholder-count="0">
+            <span style="{{ m.style }}">{{ m.label }}</span>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="Process preview" style="{{ processPreviewSection }}">
+        <div style="{{ processPreviewHead }}">
+          <div>
+            <span style="{{ eyebrowStyle }}">How it works</span>
+            <h3 style="{{ sectionHeadlineStyle }}">Six steps, start to handover.</h3>
+          </div>
+          <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goProcess }}">Full Process &nbsp;→</button>
+        </div>
+        <div style="{{ processTrackWrap }}">
+          <div style="{{ processTrackLine }}"></div>
+          <div style="{{ processTrackGrid }}">
+            <sc-for list="{{ homeProcessCells }}" as="step" hint-placeholder-count="6">
+              <div ref="{{ step.ref }}" style="{{ step.cardR }}">
+                <div style="{{ processDot }}"></div>
+                <span style="{{ processDotNum }}">{{ step.num }}</span>
+                <h4 style="{{ processDotTitle }}">{{ step.title }}</h4>
+                <span style="{{ homeProcessDur }}">{{ step.duration }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Service area" style="{{ homeAreaSection }}">
+        <div style="{{ homeAreaInner }}">
+          <div style="{{ homeAreaTextCol }}">
+            <span style="{{ eyebrowStyle }}">Where we build</span>
+            <h3 style="{{ sectionHeadlineTight }}">Concentrated coverage, not thin reach.</h3>
+            <p style="{{ bodyStyle }}">We keep the service radius tight so supervision stays daily and trade relationships stay local. Outside these areas, ask — we take select projects on merit.</p>
+            <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goContact }}">Check Your Address &nbsp;→</button>
+          </div>
+          <div style="{{ homeAreaGrid }}">
+            <sc-for list="{{ serviceAreas }}" as="a" hint-placeholder-count="8">
+              <span style="{{ homeAreaChip }}">{{ a }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Client testimonials" style="{{ tmSection }}">
+        <div style="{{ tmHeadRow }}">
+          <div style="{{ tmHeadCol }}">
+            <span style="{{ eyebrowStyle }}">What clients say</span>
+            <h3 style="{{ sectionHeadlineTight }}">Held to the drawing, held to the date.</h3>
+          </div>
+        </div>
+        <div class="pd-belt" style="{{ tmBeltMask }}">
+          <div class="pd-belt-track" style="{{ tmBeltTrack }}">
+            <sc-for list="{{ quoteBelt }}" as="q" hint-placeholder-count="6">
+              <article style="{{ tmCardStyle }}">
+                <p style="{{ tmText }}">“{{ q.text }}”</p>
+                <div style="{{ tmCardFoot }}">
+                  <img ref="{{ q.avatarRef }}" alt="" style="{{ tmAvatar }}">
+                  <div style="{{ tmAttrCol }}">
+                    <span style="{{ tmAttrName }}">{{ q.name }}</span>
+                    <span style="{{ tmAttrRole }}">{{ q.role }}</span>
+                  </div>
+                </div>
+              </article>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Common questions" style="{{ faqSection }}">
+        <div style="{{ faqInner }}">
+          <div style="{{ faqTextCol }}">
+            <span style="{{ eyebrowStyle }}">Before you call</span>
+            <h3 style="{{ sectionHeadlineStyle }}">Questions we answer first.</h3>
+            <p style="{{ bodyStyle }}">If your question isn’t here, ask it directly — we answer within one business day.</p>
+            <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goContact }}">Ask a Question &nbsp;→</button>
+          </div>
+          <div style="{{ faqListCol }}">
+            <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="4">
+              <div style="{{ q.rowStyle }}">
+                <button style="{{ q.headStyle }}" style-hover="{{ q.headHover }}" onClick="{{ q.toggle }}">
+                  <span style="{{ q.titleStyle }}">{{ q.question }}</span>
+                  <span style="{{ q.iconStyle }}">+</span>
+                </button>
+                <div style="{{ q.panelStyle }}">
+                  <p style="{{ faqAnswer }}">{{ q.answer }}</p>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Closing call to action" style="{{ ctaSection }}">
+        <img ref="{{ ctaImgRef }}" src="assets/photo-hallway.jpg" alt="Sunlit steel-framed corridor with floor-to-ceiling glazing" style="{{ ctaImgStyle }}">
+        <div style="{{ ctaScrimStyle }}"></div>
+        <div style="{{ ctaContentStyle }}">
+          <h2 style="{{ ctaHeadline }}">Let’s Build Something Exceptional.</h2>
+          <p style="{{ ctaBody }}">Tell us about your project — we’ll follow up within one business day.</p>
+          <div style="{{ ctaBtnRow }}">
+            <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goContact }}">Start a Project</button>
+            <a href="mailto:info@pdconstruction.example" style="{{ ctaLink }}">info@pdconstruction.example <span style="{{ placeholderTag }}">placeholder</span></a>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============ PROJECTS ============ -->
+    <sc-if value="{{ isProjects }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="Projects" style="{{ pageHeaderWrap }}">
+        <h1 ref="{{ refFor_page_projects }}" data-wm="" style="{{ watermarkPageProjects }}">OUR PROJECTS</h1>
+      </section>
+      <section style="{{ prjIntroSection }}">
+        <div style="{{ prjIntroCol }}">
+          <span style="{{ svcEyebrow }}">Selected work</span>
+          <h2 style="{{ introHeadlineStyle }}">Ground-up builds, gut renovations, and commercial buildouts.</h2>
+          <div style="{{ tanRule }}"></div>
+          <p style="{{ bodyLgStyle }}">Each project below was delivered under a single point of accountability — one schedule, one budget, one team answering for the result.</p>
+        </div>
+        <div style="{{ prjStatCol }}">
+          <sc-for list="{{ stats }}" as="stat" hint-placeholder-count="4">
+            <div style="{{ prjStatCell }}">
+              <span style="{{ prjStatNum }}">{{ stat.num }}</span>
+              <span style="{{ statLabelStyle }}">{{ stat.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="Featured project" style="{{ prjFeatureSection }}">
+        <div style="{{ prjFeatureFrame }}">
+          <sc-if value="{{ featureProject.hasPhoto }}" hint-placeholder-val="{{ false }}">
+            <img ref="{{ prjFeatureImgSrcRef }}" alt="{{ featureProject.imgAlt }}" style="{{ prjFeatureImg }}">
+          </sc-if>
+          <sc-if value="{{ featureProject.needsPlaceholder }}" hint-placeholder-val="{{ false }}">
+            <image-slot id="{{ featureProject.slotHeroId }}" placeholder="Featured project photography placeholder" style="{{ prjFeatureImg }}"></image-slot>
+          </sc-if>
+          <div style="{{ prjFeatureScrim }}"></div>
+          <div style="{{ prjFeatureOverlay }}">
+            <span style="{{ prjFeatureTag }}">Featured</span>
+            <h3 style="{{ prjFeatureTitle }}">{{ featureProject.name }}</h3>
+            <p style="{{ prjFeatureMeta }}">{{ featureProject.location }} &nbsp;·&nbsp; {{ featureProject.scope }} &nbsp;·&nbsp; {{ featureProject.year }}</p>
+            <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ featureProject.view }}">View Project &nbsp;→</button>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Filter projects" style="{{ prjFilterBar }}">
+        <span style="{{ prjFilterLabel }}">Filter</span>
+        <div style="{{ prjFilterRow }}">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="3">
+            <button style="{{ f.style }}" style-hover="{{ f.styleHover }}" onClick="{{ f.onClick }}">{{ f.label }} <span style="{{ f.countStyle }}">{{ f.count }}</span></button>
+          </sc-for>
+        </div>
+        <span style="{{ prjResultCount }}">{{ visibleCount }} shown</span>
+      </section>
+
+      <section style="{{ prjListSection }}">
+        <sc-for list="{{ visibleProjects }}" as="p" hint-placeholder-count="0">
+          <div style="{{ p.rowStyle }}">
+            <div ref="{{ p.magRef }}" style="{{ p.frameStyle }}" onClick="{{ p.view }}">
+              <sc-if value="{{ p.hasPhoto }}" hint-placeholder-val="{{ false }}">
+                <img ref="{{ p.imgRef }}" alt="{{ p.imgAlt }}" style="{{ p.mediaStyle }}">
+              </sc-if>
+              <sc-if value="{{ p.needsPlaceholder }}" hint-placeholder-val="{{ false }}">
+                <image-slot id="{{ p.slotId }}" placeholder="Project photography placeholder" style="{{ p.mediaSlotStyle }}"></image-slot>
+              </sc-if>
+              <span style="{{ p.indexBadge }}">{{ p.indexLabel }}</span>
+              <span data-mag-cap="" style="{{ p.capStyle }}">View<br>Project</span>
+            </div>
+            <div style="{{ p.textColStyle }}">
+              <span style="{{ metaLineStyle }}">{{ p.location }}</span>
+              <h3 style="{{ prjRowTitle }}">{{ p.name }}</h3>
+              <div style="{{ tanRuleThin }}"></div>
+              <div style="{{ prjSpecRow }}">
+                <div style="{{ prjSpecCell }}"><span style="{{ metaLabelStyle }}">Type</span><span style="{{ prjSpecVal }}">{{ p.category }}</span></div>
+                <div style="{{ prjSpecCell }}"><span style="{{ metaLabelStyle }}">Scope</span><span style="{{ prjSpecVal }}">{{ p.scope }}</span></div>
+                <div style="{{ prjSpecCell }}"><span style="{{ metaLabelStyle }}">Year</span><span style="{{ prjSpecVal }}">{{ p.year }}</span></div>
+              </div>
+              <p style="{{ bodyStyle }}">{{ p.summary }}</p>
+              <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ p.view }}">View Project &nbsp;→</button>
+            </div>
+          </div>
+        </sc-for>
+      </section>
+
+      <section aria-label="Client testimonial" style="{{ prjQuoteBand }}">
+        <div style="{{ prjQuoteInner }}">
+          <span style="{{ svcEyebrowInk }}">From the design team</span>
+          <span style="{{ prjQuoteMark }}">&ldquo;</span>
+          <blockquote style="{{ prjQuoteText }}">“They held the drawings to the millimeter and the schedule to the day.”</blockquote>
+          <p style="{{ prjQuoteAttr }}">Architect of Record <span style="{{ placeholderTag }}">attribution placeholder</span></p>
+        </div>
+      </section>
+
+      <section aria-label="Projects call to action" style="{{ ctaSection }}">
+        <img ref="{{ prjCtaImgRef }}" src="assets/photo-living.jpg" alt="Double-height living room with a suspended steel stair and built-in library" style="{{ prjCtaImg }}">
+        <div style="{{ ctaScrimStyle }}"></div>
+        <div style="{{ ctaContentStyle }}">
+          <h2 style="{{ ctaHeadline }}">Your Project Could Be Next.</h2>
+          <p style="{{ ctaBody }}">Send drawings or a site address and we’ll tell you what it takes to build it.</p>
+          <div style="{{ ctaBtnRow }}">
+            <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goContact }}">Start a Project</button>
+            <a href="mailto:info@pdconstruction.example" style="{{ ctaLink }}">info@pdconstruction.example <span style="{{ placeholderTag }}">placeholder</span></a>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============ PROJECT DETAIL ============ -->
+    <sc-if value="{{ isProjectDetail }}" hint-placeholder-val="{{ false }}">
+      <section aria-label="Project hero" data-screen-label="Project Detail" style="{{ detailHeroStyle }}">
+        <sc-if value="{{ selectedProject.hasPhoto }}" hint-placeholder-val="{{ false }}">
+          <img ref="{{ selectedProject.heroImgRef }}" alt="{{ selectedProject.imgAlt }}" style="{{ heroImgStyle }}">
+        </sc-if>
+        <sc-if value="{{ selectedProject.needsPlaceholder }}" hint-placeholder-val="{{ false }}">
+          <image-slot id="{{ selectedProject.slotHeroId }}" placeholder="Cinematic project photography placeholder" style="{{ heroImgStyle }}"></image-slot>
+        </sc-if>
+        <div style="{{ detailScrimStyle }}"></div>
+        <div style="{{ detailHeroContent }}">
+          <span style="{{ smallMetaLightStyle }}">{{ selectedProject.category }} &nbsp;·&nbsp; {{ selectedProject.scope }}</span>
+          <h1 style="{{ detailTitleStyle }}">{{ selectedProject.name }}</h1>
+          <p style="{{ detailLocationStyle }}">{{ selectedProject.location }}</p>
+        </div>
+      </section>
+
+      <section style="{{ detailMetaSection }}">
+        <div style="{{ detailMetaGrid }}">
+          <div><span style="{{ metaLabelStyle }}">Category</span><p style="{{ metaValueStyle }}">{{ selectedProject.category }}</p></div>
+          <div><span style="{{ metaLabelStyle }}">Scope</span><p style="{{ metaValueStyle }}">{{ selectedProject.scope }}</p></div>
+          <div><span style="{{ metaLabelStyle }}">Architect</span><p style="{{ metaValueStyle }}">{{ selectedProject.architectLabel }}</p></div>
+          <div><span style="{{ metaLabelStyle }}">Completion</span><p style="{{ metaValueStyle }}">{{ selectedProject.year }} <span style="{{ placeholderTag }}">exact date placeholder</span></p></div>
+        </div>
+      </section>
+
+      <section style="{{ detailStorySection }}">
+        <h2 style="{{ sectionHeadlineStyle }}">The Project</h2>
+        <div style="{{ tanRule }}"></div>
+        <sc-for list="{{ selectedProject.paragraphs }}" as="para" hint-placeholder-count="1">
+          <p style="{{ detailParaStyle }}">{{ para.text }}</p>
+        </sc-for>
+      </section>
+
+      <section aria-label="Gallery" style="{{ gallerySection }}">
+        <sc-if value="{{ selectedProject.hasGallery }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ galleryGrid }}">
+            <sc-for list="{{ selectedProject.galleryItems }}" as="g" hint-placeholder-count="0">
+              <img ref="{{ g.ref }}" alt="{{ g.alt }}" style="{{ g.style }}">
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ selectedProject.noGallery }}" hint-placeholder-val="{{ true }}">
+          <div style="{{ galleryGrid }}">
+            <sc-if value="{{ selectedProject.hasPhoto }}" hint-placeholder-val="{{ false }}">
+              <img ref="{{ selectedProject.galleryImgRef }}" alt="{{ selectedProject.imgAlt }}" style="{{ galleryImgWide }}">
+            </sc-if>
+            <sc-if value="{{ selectedProject.needsPlaceholder }}" hint-placeholder-val="{{ false }}">
+              <image-slot id="{{ selectedProject.slotGalleryId }}" placeholder="Detail photography placeholder" style="{{ galleryImgWide }}"></image-slot>
+            </sc-if>
+            <image-slot id="{{ selectedProject.slotDetailAId }}" placeholder="Detail photography placeholder" style="{{ galleryImgHalf }}"></image-slot>
+            <image-slot id="{{ selectedProject.slotDetailBId }}" placeholder="Detail photography placeholder" style="{{ galleryImgHalf }}"></image-slot>
+          </div>
+        </sc-if>
+      </section>
+
+      <section style="{{ detailTwoColSection }}">
+        <div style="{{ detailTwoCol }}">
+          <h3 style="{{ subHeadStyle }}">Challenges &amp; Solutions</h3>
+          <div style="{{ tanRuleThin }}"></div>
+          <p style="{{ bodyStyle }}">{{ selectedProject.challenge }}</p>
+        </div>
+        <div style="{{ detailTwoCol }}">
+          <h3 style="{{ subHeadStyle }}">Materials &amp; Key Features</h3>
+          <div style="{{ tanRuleThin }}"></div>
+          <p style="{{ bodyStyle }}">{{ selectedProject.materials }}</p>
+        </div>
+      </section>
+
+      <section aria-label="Before and after" style="{{ selectedProject.beforeAfterSection }}">
+        <h3 style="{{ subHeadStyle }}">Before &amp; After</h3>
+        <div style="{{ tanRule }}"></div>
+        <div style="{{ beforeAfterGrid }}">
+          <div><span style="{{ metaLabelStyle }}">Before</span><image-slot id="{{ selectedProject.slotBeforeId }}" placeholder="Before photo placeholder" style="{{ beforeAfterImg }}"></image-slot></div>
+          <div><span style="{{ metaLabelStyle }}">After</span><image-slot id="{{ selectedProject.slotAfterId }}" placeholder="After photo placeholder" style="{{ beforeAfterImg }}"></image-slot></div>
+        </div>
+      </section>
+
+      <section style="{{ detailNavSection }}">
+        <button style="{{ prevNextBtn }}" onClick="{{ selectedProject.goPrev }}">← &nbsp;{{ selectedProject.prevName }}</button>
+        <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goContact }}">Inquire About This Project</button>
+        <button style="{{ prevNextBtnRight }}" onClick="{{ selectedProject.goNext }}">{{ selectedProject.nextName }}&nbsp; →</button>
+      </section>
+    </sc-if>
+
+    <!-- ============ SERVICES ============ -->
+    <sc-if value="{{ isServices }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="Services" style="{{ pageHeaderWrap }}">
+        <h1 ref="{{ refFor_page_services }}" data-wm="" style="{{ watermarkPageServices }}">SERVICES</h1>
+      </section>
+      <section style="{{ pageHeaderRow }}">
+        <div style="{{ teaserImgCol }}"><img ref="{{ servicesHeroImgRef }}" src="assets/photo-hallway.jpg" alt="Sunlit steel-framed corridor with floor-to-ceiling glazing" style="{{ servicesHeroImg }}"></div>
+        <div style="{{ teaserTextCol }}">
+          <h2 style="{{ introHeadlineStyle }}">We Are a Detail-Oriented, Full-Service Contractor.</h2>
+          <div style="{{ tanRule }}"></div>
+          <p style="{{ bodyLgStyle }}">From preconstruction through management, delivery, and beyond, PD Construction oversees every element of your building experience — so design intent survives contact with the field.</p>
+          <div style="{{ svcHeroMetaRow }}">
+            <sc-for list="{{ servicesHeroMeta }}" as="m" hint-placeholder-count="3">
+              <div style="{{ svcHeroMetaCell }}">
+                <span style="{{ svcHeroMetaNum }}">{{ m.num }}</span>
+                <span style="{{ statLabelStyle }}">{{ m.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Capabilities" style="{{ svcCapSection }}">
+        <div style="{{ svcSectionHead }}">
+          <div>
+            <span style="{{ svcEyebrow }}">Capabilities</span>
+            <h3 style="{{ sectionHeadlineTight }}">Three ways clients engage us.</h3>
+          </div>
+          <p style="{{ svcSectionHeadNote }}">Every engagement carries the same single point of accountability, regardless of scope.</p>
+        </div>
+        <div style="{{ svcCapGrid }}">
+          <sc-for list="{{ capabilities }}" as="c" hint-placeholder-count="3">
+            <div ref="{{ c.ref }}" style="{{ c.cardStyleR }}" style-hover="{{ c.cardHoverR }}">
+              <span style="{{ svcCapNum }}">{{ c.num }}</span>
+              <h4 style="{{ svcCapTitle }}">{{ c.title }}</h4>
+              <div style="{{ tanRuleThin }}"></div>
+              <p style="{{ bodyStyle }}">{{ c.body }}</p>
+              <ul style="{{ svcCapList }}">
+                <sc-for list="{{ c.points }}" as="pt" hint-placeholder-count="3">
+                  <li style="{{ svcCapListItem }}">{{ pt }}</li>
+                </sc-for>
+              </ul>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="Full service list" style="{{ svcAccordionSection }}">
+        <div style="{{ svcSectionHead }}">
+          <div>
+            <span style="{{ svcEyebrow }}">Full scope</span>
+            <h3 style="{{ sectionHeadlineTight }}">Nine services, one standard.</h3>
+          </div>
+          <p style="{{ svcSectionHeadNote }}">Select a service to read how we run it.</p>
+        </div>
+        <div style="{{ svcAccordionWrap }}">
+          <sc-for list="{{ serviceItems }}" as="s" hint-placeholder-count="9">
+            <div style="{{ s.rowStyle }}">
+              <button style="{{ s.headStyle }}" style-hover="{{ s.headHover }}" onClick="{{ s.toggle }}">
+                <span style="{{ s.numStyle }}">{{ s.num }}</span>
+                <span style="{{ s.titleStyle }}">{{ s.title }}</span>
+                <span style="{{ s.iconStyle }}">+</span>
+              </button>
+              <div style="{{ s.panelStyle }}">
+                <p style="{{ svcPanelBody }}">{{ s.body }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="What's included" style="{{ svcIncludedSection }}">
+        <div style="{{ svcIncludedInner }}">
+          <div style="{{ svcIncludedTextCol }}">
+            <span style="{{ svcEyebrowInk }}">Included on every contract</span>
+            <h3 style="{{ svcIncludedTitle }}">The parts most contractors treat as extras.</h3>
+            <p style="{{ svcIncludedBody }}">Documentation, coordination, and closeout are not line items we negotiate away. They are how the schedule holds.</p>
+          </div>
+          <div style="{{ svcIncludedGrid }}">
+            <sc-for list="{{ includedItems }}" as="inc" hint-placeholder-count="6">
+              <div style="{{ svcIncludedItem }}">
+                <span style="{{ svcCheck }}">✓</span>
+                <span style="{{ svcIncludedItemText }}">{{ inc }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Sectors" style="{{ svcSectorSection }}">
+        <div style="{{ svcSectorCol }}">
+          <div style="{{ splitImgWrap }}"><img ref="{{ svcSectorResRef }}" src="assets/photo-living.jpg" alt="Double-height living room with a suspended steel stair and built-in library" style="{{ svcSectorResImg }}"></div>
+          <span style="{{ metaLineStyle }}">Residential</span>
+          <h4 style="{{ splitTitle }}">Custom homes, estates &amp; renovations</h4>
+          <p style="{{ bodyStyle }}">Detail-intensive residential work where exposed structure, long glazing runs, and tight tolerances leave nowhere to hide.</p>
+          <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goProjects }}">Residential Work &nbsp;→</button>
+        </div>
+        <div style="{{ svcSectorCol }}">
+          <div style="{{ splitImgWrap }}"><img ref="{{ svcSectorComRef }}" src="assets/photo-atrium.jpg" alt="Glazed atrium separating a private residence's living spaces" style="{{ svcSectorComImg }}"></div>
+          <span style="{{ metaLineStyle }}">Commercial</span>
+          <h4 style="{{ splitTitle }}">Offices, hospitality, retail &amp; TI</h4>
+          <p style="{{ bodyStyle }}">Buildouts and ground-up commercial work delivered against lease commencement and occupancy deadlines.</p>
+          <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goProjects }}">Commercial Work &nbsp;→</button>
+        </div>
+      </section>
+
+      <section aria-label="Process strip" style="{{ svcProcessStrip }}">
+        <div style="{{ svcSectionHead }}">
+          <div>
+            <span style="{{ svcEyebrow }}">How it runs</span>
+            <h3 style="{{ sectionHeadlineTight }}">Six phases, start to handover.</h3>
+          </div>
+          <a href="#" onClick="{{ goProcess }}" style="{{ svcInlineLink }}">Full process &nbsp;→</a>
+        </div>
+        <div style="{{ svcProcessGrid }}">
+          <sc-for list="{{ processSteps }}" as="step" hint-placeholder-count="6">
+            <div style="{{ svcProcessCell }}">
+              <span style="{{ svcProcessNum }}">{{ step.num }}</span>
+              <h5 style="{{ svcProcessTitle }}">{{ step.title }}</h5>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="Services call to action" style="{{ ctaSection }}">
+        <img ref="{{ svcCtaImgRef }}" src="assets/photo-atrium.jpg" alt="Full-height glass atrium with dark steel framing" style="{{ svcCtaImg }}">
+        <div style="{{ ctaScrimStyle }}"></div>
+        <div style="{{ ctaContentStyle }}">
+          <h2 style="{{ ctaHeadline }}">Tell Us What You’re Building.</h2>
+          <p style="{{ ctaBody }}">Send drawings, a site address, or just an idea — we’ll tell you what it takes to build it.</p>
+          <div style="{{ ctaBtnRow }}">
+            <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goContact }}">Start a Project</button>
+            <a href="mailto:info@pdconstruction.example" style="{{ ctaLink }}">info@pdconstruction.example <span style="{{ placeholderTag }}">placeholder</span></a>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============ ABOUT ============ -->
+    <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="About" style="{{ pageHeaderWrap }}">
+        <h1 ref="{{ refFor_page_about }}" data-wm="" style="{{ watermarkPageAbout }}">ABOUT US</h1>
+      </section>
+      <section style="{{ pageHeaderRow }}">
+        <div style="{{ teaserImgCol }}"><img ref="{{ aboutHeroImgRef }}" src="assets/photo-living.jpg" alt="Family room with layered lighting, custom shelving and a linear fireplace" style="{{ aboutHeroImg }}"></div>
+        <div style="{{ teaserTextCol }}">
+          <h2 style="{{ introHeadlineStyle }}">Built on Family Values. Defined by Modern Craftsmanship.</h2>
+          <div style="{{ tanRule }}"></div>
+          <p style="{{ bodyLgStyle }}">PD Construction Inc. is a family-owned general contractor combining personal accountability with professional construction management. Every project carries a name and a direct point of contact — not a call center.</p>
+          <div style="{{ svcHeroMetaRow }}">
+            <sc-for list="{{ aboutHeroMeta }}" as="m" hint-placeholder-count="3">
+              <div style="{{ svcHeroMetaCell }}">
+                <span style="{{ svcHeroMetaNum }}">{{ m.num }}</span>
+                <span style="{{ statLabelStyle }}">{{ m.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Company history" style="{{ aboutTimelineSection }}">
+        <div style="{{ svcSectionHead }}">
+          <div>
+            <span style="{{ eyebrowStyle }}">History</span>
+            <h3 style="{{ sectionHeadlineTight }}">How the firm got here.</h3>
+          </div>
+          <p style="{{ svcSectionHeadNote }}">Dates and milestones are placeholders pending your records.</p>
+        </div>
+        <div style="{{ aboutTimelineTrack }}">
+          <sc-for list="{{ milestones }}" as="m" hint-placeholder-count="4">
+            <div style="{{ aboutMilestone }}">
+              <span style="{{ aboutMilestoneYear }}">{{ m.year }}</span>
+              <div style="{{ aboutMilestoneDot }}"></div>
+              <h4 style="{{ aboutMilestoneTitle }}">{{ m.title }}</h4>
+              <p style="{{ bodyStyle }}">{{ m.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="Leadership" style="{{ aboutTeamSection }}">
+        <div style="{{ svcSectionHead }}">
+          <div>
+            <span style="{{ eyebrowStyle }}">Leadership</span>
+            <h3 style="{{ sectionHeadlineTight }}">Who runs your project.</h3>
+          </div>
+          <p style="{{ svcSectionHeadNote }}">Names, titles, and portraits to be supplied.</p>
+        </div>
+        <div style="{{ aboutTeamGrid }}">
+          <sc-for list="{{ team }}" as="t" hint-placeholder-count="3">
+            <div style="{{ aboutTeamCard }}">
+              <image-slot id="{{ t.slotId }}" placeholder="Portrait placeholder" style="{{ aboutTeamPhoto }}"></image-slot>
+              <span style="{{ metaLineStyle }}">{{ t.role }}</span>
+              <h4 style="{{ aboutTeamName }}">{{ t.name }}</h4>
+              <div style="{{ tanRuleThin }}"></div>
+              <p style="{{ bodyStyle }}">{{ t.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="{{ whySection }}">
+        <span style="{{ eyebrowStyle }}">Principles</span>
+        <h3 style="{{ sectionHeadlineStyle }}">Four principles, held on every job.</h3>
+        <div style="{{ whyGrid }}">
+          <sc-for list="{{ whyPrinciples }}" as="w" hint-placeholder-count="4">
+            <div ref="{{ w.ref }}" style="{{ w.cardR }}">
+              <span style="{{ whyNumStyle }}">{{ w.num }}</span>
+              <h3 style="{{ whyTitleStyle }}">{{ w.title }}</h3>
+              <p style="{{ bodyStyle }}">{{ w.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="Credentials" style="{{ svcIncludedSection }}">
+        <div style="{{ svcIncludedInner }}">
+          <div style="{{ svcIncludedTextCol }}">
+            <span style="{{ svcEyebrowInk }}">Credentials</span>
+            <h3 style="{{ svcIncludedTitle }}">Licensed, insured, and documented.</h3>
+            <p style="{{ svcIncludedBody }}">Certificates and policy numbers available on request. All figures below are placeholders.</p>
+          </div>
+          <div style="{{ svcIncludedGrid }}">
+            <sc-for list="{{ credentials }}" as="c" hint-placeholder-count="6">
+              <div style="{{ svcIncludedItem }}">
+                <span style="{{ svcCheck }}">✓</span>
+                <span style="{{ svcIncludedItemText }}">{{ c }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="About call to action" style="{{ ctaSection }}">
+        <img ref="{{ aboutCtaImgRef }}" src="assets/photo-hallway.jpg" alt="Sunlit steel-framed corridor with floor-to-ceiling glazing" style="{{ aboutCtaImg }}">
+        <div style="{{ ctaScrimStyle }}"></div>
+        <div style="{{ ctaContentStyle }}">
+          <h2 style="{{ ctaHeadline }}">Work With the People Who Build It.</h2>
+          <p style="{{ ctaBody }}">No account managers between you and the field.</p>
+          <div style="{{ ctaBtnRow }}">
+            <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goContact }}">Start a Project</button>
+            <a href="#" onClick="{{ goProjects }}" style="{{ ctaLink }}">See our work</a>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============ PROCESS ============ -->
+    <sc-if value="{{ isProcess }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="Process" style="{{ pageHeaderWrap }}">
+        <h1 ref="{{ refFor_page_process }}" data-wm="" style="{{ watermarkPageProcess }}">PROCESS</h1>
+      </section>
+      <section style="{{ pageHeaderRow }}">
+        <div style="{{ teaserImgCol }}"><img ref="{{ processHeroImgRef }}" src="assets/photo-atrium.jpg" alt="Full-height glass atrium with dark steel framing" style="{{ processHeroImg }}"></div>
+        <div style="{{ teaserTextCol }}">
+          <h2 style="{{ introHeadlineStyle }}">A Transparent Path From First Call to Handover.</h2>
+          <div style="{{ tanRule }}"></div>
+          <p style="{{ bodyLgStyle }}">Six phases, each with defined deliverables and a decision point. You always know what phase you’re in, what’s owed, and what it costs.</p>
+        </div>
+      </section>
+
+      <section aria-label="Phase tracker" style="{{ prcTrackerWrap }}">
+        <div style="{{ prcTrackerInner }}">
+          <div style="{{ prcTrackerTop }}">
+            <span style="{{ prcTrackerLabel }}">Phase {{ prcActiveLabel }} of 06</span>
+            <span style="{{ prcTrackerName }}">{{ prcActiveName }}</span>
+            <span style="{{ prcTrackerPct }}">{{ prcFillLabel }}</span>
+          </div>
+          <div style="{{ prcTrackerBarBg }}">
+            <div style="{{ prcTrackerBarFill }}"></div>
+          </div>
+          <div style="{{ prcTrackerSegs }}">
+            <sc-for list="{{ prcSegments }}" as="seg" hint-placeholder-count="6">
+              <button style="{{ seg.style }}" style-hover="{{ seg.hover }}" onClick="{{ seg.onClick }}">
+                <span style="{{ seg.numStyle }}">{{ seg.num }}</span>
+                <span style="{{ seg.nameStyle }}">{{ seg.title }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Process phases" style="{{ processSection }}">
+        <div ref="{{ prcRailRef }}" style="{{ prcFlowWrap }}">
+          <div style="{{ prcRailTrack }}"></div>
+          <div style="{{ prcRailFill }}"></div>
+          <sc-for list="{{ processDetail }}" as="step" hint-placeholder-count="6">
+            <div ref="{{ step.ref }}" style="{{ step.rowStyle }}">
+              <div style="{{ prcRailCol }}">
+                <div style="{{ step.dotOuter }}">
+                  <div style="{{ step.dotInner }}"></div>
+                </div>
+                <span style="{{ step.numStyle }}">{{ step.num }}</span>
+              </div>
+              <div style="{{ step.bodyColStyle }}">
+                <div style="{{ step.headRow }}">
+                  <h3 style="{{ step.titleStyle }}">{{ step.title }}</h3>
+                  <span style="{{ step.durPill }}">{{ step.duration }}</span>
+                </div>
+                <p style="{{ bodyStyle }}">{{ step.body }}</p>
+                <div style="{{ prcDeliverRow }}">
+                  <span style="{{ prcDeliverLabel }}">Deliverables</span>
+                  <div style="{{ prcChipRow }}">
+                    <sc-for list="{{ step.chips }}" as="d" hint-placeholder-count="3">
+                      <span style="{{ d.style }}">{{ d.label }}</span>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="Communication cadence" style="{{ svcIncludedSection }}">
+        <div style="{{ svcIncludedInner }}">
+          <div style="{{ svcIncludedTextCol }}">
+            <span style="{{ svcEyebrowInk }}">Every week, without asking</span>
+            <h3 style="{{ svcIncludedTitle }}">You should never wonder where it stands.</h3>
+            <p style="{{ svcIncludedBody }}">The same package goes to owner and architect on the same day, every week, for the life of the job.</p>
+          </div>
+          <div style="{{ svcIncludedGrid }}">
+            <sc-for list="{{ cadenceItems }}" as="c" hint-placeholder-count="6">
+              <div style="{{ svcIncludedItem }}">
+                <span style="{{ svcCheck }}">✓</span>
+                <span style="{{ svcIncludedItemText }}">{{ c }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Process call to action" style="{{ ctaSection }}">
+        <img ref="{{ prcCtaImgRef }}" src="assets/photo-living.jpg" alt="Double-height living room with a suspended steel stair" style="{{ prcCtaImg }}">
+        <div style="{{ ctaScrimStyle }}"></div>
+        <div style="{{ ctaContentStyle }}">
+          <h2 style="{{ ctaHeadline }}">Start at Phase One.</h2>
+          <p style="{{ ctaBody }}">Discovery is a conversation, not a commitment.</p>
+          <div style="{{ ctaBtnRow }}">
+            <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goContact }}">Book a Discovery Call</button>
+            <a href="#" onClick="{{ goServices }}" style="{{ ctaLink }}">View services</a>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============ CONTACT ============ -->
+    <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="Contact" style="{{ pageHeaderWrap }}">
+        <h1 ref="{{ refFor_page_contact }}" data-wm="" style="{{ watermarkPageContact }}">CONTACT</h1>
+      </section>
+      <section style="{{ contactSection }}">
+        <div style="{{ contactInfoCol }}">
+          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Email</span><p style="{{ metaValueStyle }}">info@pdconstruction.example <span style="{{ placeholderTag }}">placeholder</span></p></div>
+          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Phone</span><p style="{{ metaValueStyle }}">(000) 000-0000 <span style="{{ placeholderTag }}">placeholder</span></p></div>
+          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Service Area</span><p style="{{ metaValueStyle }}">Greater metro region <span style="{{ placeholderTag }}">placeholder</span></p></div>
+          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Contractor License</span><p style="{{ metaValueStyle }}">CSLB #000000 <span style="{{ placeholderTag }}">placeholder</span></p></div>
+        </div>
+        <form style="{{ contactFormCol }}" onSubmit="{{ handleSubmit }}" novalidate="{{ true }}">
+          <sc-if value="{{ formSubmitted }}" hint-placeholder-val="{{ false }}">
+            <div style="{{ thankYouBox }}">
+              <h3 style="{{ subHeadStyle }}">Thank you.</h3>
+              <p style="{{ bodyStyle }}">Your inquiry has been received. We’ll be in touch within one business day.</p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ formNotSubmitted }}" hint-placeholder-val="{{ true }}">
+            <div style="{{ fieldStyle }}">
+              <label style="{{ labelStyle }}" for="pd-name">Name</label>
+              <input style="{{ inputStyle }}" id="pd-name" type="text" value="{{ form.name }}" onChange="{{ setName }}">
+              <sc-if value="{{ errors.name }}" hint-placeholder-val="{{ false }}"><span style="{{ errorStyle }}">Please enter your name.</span></sc-if>
+            </div>
+            <div style="{{ fieldPairRow }}">
+              <div style="{{ fieldStyle }}">
+                <label style="{{ labelStyle }}" for="pd-email">Email</label>
+                <input style="{{ inputStyle }}" id="pd-email" type="email" value="{{ form.email }}" onChange="{{ setEmail }}">
+                <sc-if value="{{ errors.email }}" hint-placeholder-val="{{ false }}"><span style="{{ errorStyle }}">Please enter a valid email.</span></sc-if>
+              </div>
+              <div style="{{ fieldStyle }}">
+                <label style="{{ labelStyle }}" for="pd-phone">Phone</label>
+                <input style="{{ inputStyle }}" id="pd-phone" type="tel" value="{{ form.phone }}" onChange="{{ setPhone }}">
+              </div>
+            </div>
+            <div style="{{ fieldStyle }}">
+              <label style="{{ labelStyle }}" for="pd-type">Project Type</label>
+              <select style="{{ inputStyle }}" id="pd-type" value="{{ form.projectType }}" onChange="{{ setProjectType }}">
+                <option value="">Select one</option>
+                <option value="residential">Residential</option>
+                <option value="commercial">Commercial</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div style="{{ fieldStyle }}">
+              <label style="{{ labelStyle }}" for="pd-message">Project Details</label>
+              <textarea style="{{ inputStyle }}" id="pd-message" rows="5" value="{{ form.message }}" onChange="{{ setMessage }}"></textarea>
+              <sc-if value="{{ errors.message }}" hint-placeholder-val="{{ false }}"><span style="{{ errorStyle }}">Please share a few details about your project.</span></sc-if>
+            </div>
+            <button type="submit" style="{{ outlineBtnDarkBlock }}" style-hover="{{ outlineBtnDarkBlockHover }}">Send Inquiry</button>
+          </sc-if>
+        </form>
+      </section>
+
+      <section aria-label="What happens next" style="{{ ctcNextSection }}">
+        <div style="{{ svcSectionHead }}">
+          <div>
+            <span style="{{ eyebrowStyle }}">After you send</span>
+            <h3 style="{{ sectionHeadlineTight }}">What happens next.</h3>
+          </div>
+          <p style="{{ svcSectionHeadNote }}">No sales sequence, no drip campaign — three steps and a real answer.</p>
+        </div>
+        <div style="{{ ctcNextGrid }}">
+          <sc-for list="{{ nextSteps }}" as="n" hint-placeholder-count="3">
+            <div style="{{ ctcNextCell }}">
+              <span style="{{ svcCapNum }}">{{ n.num }}</span>
+              <h4 style="{{ svcCapTitle }}">{{ n.title }}</h4>
+              <div style="{{ tanRuleThin }}"></div>
+              <p style="{{ bodyStyle }}">{{ n.body }}</p>
+              <span style="{{ ctcNextWhen }}">{{ n.when }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="Office and hours" style="{{ ctcOfficeSection }}">
+        <div style="{{ ctcOfficeInner }}">
+          <div style="{{ ctcOfficeCol }}">
+            <span style="{{ eyebrowStyle }}">Office</span>
+            <h3 style="{{ sectionHeadlineTight }}">Come by, or we’ll come to the site.</h3>
+            <p style="{{ bodyStyle }}">Most first conversations happen on site. If you’d rather meet at the office, book ahead — the team is usually in the field.</p>
+            <div style="{{ ctcHoursList }}">
+              <sc-for list="{{ officeHours }}" as="h" hint-placeholder-count="3">
+                <div style="{{ ctcHoursRow }}">
+                  <span style="{{ ctcHoursDay }}">{{ h.day }}</span>
+                  <span style="{{ ctcHoursVal }}">{{ h.hours }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <span style="{{ placeholderTag }}">Address &amp; hours placeholder</span>
+          </div>
+          <div style="{{ ctcMapCol }}">
+            <image-slot id="slot-contact-map" placeholder="Map or office photo placeholder" style="{{ ctcMapSlot }}"></image-slot>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Service area" style="{{ homeAreaSection }}">
+        <div style="{{ homeAreaInner }}">
+          <div style="{{ homeAreaTextCol }}">
+            <span style="{{ eyebrowStyle }}">Where we build</span>
+            <h3 style="{{ sectionHeadlineTight }}">Concentrated coverage, not thin reach.</h3>
+            <p style="{{ bodyStyle }}">We keep the service radius tight so supervision stays daily and trade relationships stay local. Outside these areas, ask — we take select projects on merit.</p>
+          </div>
+          <div style="{{ homeAreaGrid }}">
+            <sc-for list="{{ serviceAreas }}" as="a" hint-placeholder-count="8">
+              <span style="{{ homeAreaChip }}">{{ a }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============ GALLERY ============ -->
+    <sc-if value="{{ isGallery }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="Gallery" style="{{ pageHeaderWrap }}">
+        <h1 ref="{{ refFor_page_gallery }}" data-wm="" style="{{ watermarkPageGallery }}">GALLERY</h1>
+      </section>
+      <section aria-label="Gallery intro" style="{{ galIntroSection }}">
+        <p style="{{ pageLede }}">Every photograph from our built work, in one place. Filter by project, or open any frame full screen.</p>
+        <div style="{{ galFilterRow }}">
+          <sc-for list="{{ galFilters }}" as="gf" hint-placeholder-count="4">
+            <button style="{{ gf.style }}" style-hover="{{ gf.styleHover }}" onClick="{{ gf.onClick }}">{{ gf.label }}<span style="{{ gf.countStyle }}">{{ gf.count }}</span></button>
+          </sc-for>
+        </div>
+      </section>
+      <section aria-label="Photographs" style="{{ galGridSection }}">
+        <div style="{{ galGrid }}">
+          <sc-for list="{{ galleryPhotos }}" as="gp" hint-placeholder-count="9">
+            <figure class="pd-gal-cell" style="{{ gp.cellStyle }}" onClick="{{ gp.open }}">
+              <img ref="{{ gp.ref }}" alt="{{ gp.alt }}" style="{{ gp.imgStyle }}">
+              <span class="pd-gal-num" style="{{ galNumStyle }}">{{ gp.num }}</span>
+              <figcaption style="{{ galCapStyle }}"><span style="{{ galCapProject }}">{{ gp.project }}</span><span style="{{ galCapZoom }}">View &#8599;</span></figcaption>
+            </figure>
+          </sc-for>
+        </div>
+      </section>
+      <section aria-label="Gallery call to action" style="{{ galCtaSection }}">
+        <h3 style="{{ sectionHeadlineTight }}">Want this level of finish on your project?</h3>
+        <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goContact }}">Start a Conversation &nbsp;&#8594;</button>
+      </section>
+    </sc-if>
+
+    <!-- ============ PRIVACY ============ -->
+    <sc-if value="{{ isPrivacy }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="Privacy Policy" style="{{ pageHeaderWrap }}">
+        <h1 ref="{{ refFor_page_privacy }}" data-wm="" style="{{ watermarkPagePrivacy }}">PRIVACY</h1>
+      </section>
+      <section style="{{ legalSection }}">
+        <p style="{{ bodyStyle }}">This policy explains how PD Construction Inc. collects and uses information submitted through this website, including project inquiries and contact form submissions. <span style="{{ placeholderTag }}">Full legal copy placeholder — to be supplied by counsel.</span></p>
+        <h3 style="{{ subHeadStyle }}">Information We Collect</h3>
+        <p style="{{ bodyStyle }}">[Placeholder: categories of information collected via forms, cookies, and analytics.]</p>
+        <h3 style="{{ subHeadStyle }}">How We Use Information</h3>
+        <p style="{{ bodyStyle }}">[Placeholder: use of information for project follow-up and internal records.]</p>
+        <h3 style="{{ subHeadStyle }}">Contact</h3>
+        <p style="{{ bodyStyle }}">Questions about this policy can be directed to info@pdconstruction.example <span style="{{ placeholderTag }}">placeholder</span>.</p>
+      </section>
+    </sc-if>
+
+    <!-- ============ 404 ============ -->
+    <sc-if value="{{ is404 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="404" style="{{ notFoundSection }}">
+        <h1 ref="{{ refFor_page_404 }}" data-wm="" style="{{ watermarkPage404 }}">404</h1>
+        <p style="{{ pageLede }}">This page hasn’t been built yet, or has moved.</p>
+        <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goHome }}">Return Home</button>
+      </section>
+    </sc-if>
+
+  </main>
+
+  <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-label="Photograph viewer" style="{{ lbWrap }}" onClick="{{ lbClose }}">
+      <div style="{{ lbBar }}">
+        <span style="{{ lbCount }}">{{ lbCountText }}</span>
+        <span style="{{ lbTitle }}">{{ lbProject }}</span>
+        <button aria-label="Close viewer" style="{{ lbCloseBtn }}" style-hover="{{ lbCloseBtnHover }}" onClick="{{ lbClose }}">Close &nbsp;&#10005;</button>
+      </div>
+      <img ref="{{ lbImgRef }}" alt="{{ lbAlt }}" style="{{ lbImg }}" onClick="{{ lbStop }}">
+      <div style="{{ lbFoot }}" onClick="{{ lbStop }}">
+        <button aria-label="Previous photograph" style="{{ lbArrow }}" style-hover="{{ lbArrowHover }}" onClick="{{ lbPrev }}">&#8592;</button>
+        <span style="{{ lbCaption }}">{{ lbAlt }}</span>
+        <button aria-label="Next photograph" style="{{ lbArrow }}" style-hover="{{ lbArrowHover }}" onClick="{{ lbNext }}">&#8594;</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <footer style="{{ footerStyle }}">
+    <div ref="{{ footerWmRef }}" style="{{ footerWordmark }}">PD CONSTRUCTION</div>
+    <div style="{{ backToTopWrap }}">
+      <button style="{{ backToTop }}" onClick="{{ scrollTop }}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+        <span>Back to top</span>
+      </button>
+    </div>
+    <div style="{{ footerSubscribeRow }}">
+      <input style="{{ subscribeInput }}" type="email" placeholder="Sign up for quarterly updates">
+      <button style="{{ subscribeBtn }}" style-hover="{{ subscribeBtnHover }}">Subscribe</button>
+    </div>
+    <div style="{{ footerBottom }}">
+      <img src="assets/pd-logo.svg" alt="PD Construction Inc." style="width: 98px; height: 43px">
+      <div style="{{ footerCenterCopy }}">
+        <span style="{{ footerFinePrint }}">© 2026 PD Construction Inc. <span style="{{ footerSep }}">|</span> All Rights Reserved <span style="{{ footerSep }}">|</span> <a href="#" onClick="{{ goPrivacy }}" style="{{ footerFinePrintLink }}">Privacy Policy</a> <span style="{{ footerSep }}">|</span> LinkedIn &nbsp;Instagram</span>
+      </div>
+      <span style="{{ footerFinePrint }}">General Contractor License No. #000000 — placeholder</span>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const PROJECTS_RAW = [
+  { id: 'malibu-ranch-house', name: 'Malibu Ranch House', location: 'Malibu, CA', category: 'Residential', scope: 'Interior Reconstruction', year: '2024',
+    architect: 'Jorge Pardo (artist)',
+    img: 'assets/pardo-01-exterior.jpg', imgAlt: 'Shingled ranch house on a Malibu hillside with three CNC-cut, brightly lacquered perforated door panels',
+    gallery: [
+      ['assets/pardo-04-living.jpg', 'Sunken living room under a patterned CNC-engraved ceiling, anchored by a shingle-clad storage volume', 'wide'],
+      ['assets/pardo-02-kitchen-dining.jpg', 'Kitchen and dining zone in lacquered orange millwork over a hand-laid ceramic tile floor'],
+      ['assets/pardo-07-dining-pendants.jpg', 'Dining room beneath a cluster of laser-cut pendant lights'],
+      ['assets/pardo-05-valley.jpg', 'The ranch house in its 200-acre setting, live oaks and mountains beyond', 'wide'],
+      ['assets/pardo-03-hallway.jpg', 'Corridor lined with engraved wall panels and backlit perforated doors', 'tall'],
+      ['assets/pardo-06-detail.jpg', 'Detail: engraved panel, perforated lacquered door and a CNC-inlaid table on tile', 'tall']
+    ],
+    summary: 'An interior reconstruction of a surviving Malibu ranch house, executed as a total work of art: CNC-engraved wall, ceiling and door assemblies, hand-laid ceramic floors and custom lighting, all built inside the original footprint and envelope.',
+    story: 'This project began with a constraint that shaped every decision: keep the original footprint and the existing envelope of a ranch house that had survived decades of wildfire seasons on a remote 200-acre stretch of non-coastal Malibu. Everything new had to happen inside that shell.',
+    story2: 'What went inside is a single continuous artwork by Jorge Pardo \u2014 floors, walls, ceilings, doors and furniture engraved, perforated and machined into one system. Our scope was making it buildable: coordinating hundreds of CNC-machined plywood panels so patterns register across walls and ceilings, setting hand-laid ceramic tile floors that read as one field from the sunken living room through to the bedrooms, and building the shingle-clad storage volume that divides the kitchen from the living room as the one quiet, orthogonal object in the plan.',
+    story3: 'The plan holds a primary suite at one end, two guest rooms at the other, a kitchen and dining zone, and the sunken living room. Perforated door and window panels with glass inserts do the work of both light fixtures and walls \u2014 they had to hang dead flat and stay flat, since any twist shows immediately in the pattern and in the light they cast. Late afternoon is when the house pays that off.',
+    challenge: 'Fabrication tolerance was the whole job. Hundreds of CNC-machined panels had to align pattern-to-pattern across planes that were never square in the original structure, backlit perforated doors had to stay perfectly flat, and a continuous hand-laid tile field had to run through a sunken floor level \u2014 all delivered on a remote ranch site with a long haul road, no margin for on-site refabrication, and the existing envelope and footprint held exactly as found.',
+    materials: 'CNC-engraved and perforated plywood wall, ceiling, door and shutter panels with glass inserts; hand-laid glazed ceramic tile floors and bath surfaces; lacquered millwork; prefab wood shingle cladding; laser-cut wood, plastic and aluminum pendant fixtures; CNC-inlaid custom furniture.' },
+  { id: 'preston-residence', name: 'Preston Residence', location: 'Venice, CA', category: 'Residential', scope: 'Ground-Up Custom Residence', year: '2020',
+    architect: 'Montalba Architects',
+    img: 'assets/preston-01-pool.jpg', imgAlt: 'Preston Residence from the pool deck: deep steel-edged roof planes over ipe decking, lawn and full-height sliding glass',
+    gallery: [
+      ['assets/preston-02-rear-elevation.jpg', 'Rear elevation at dusk: cantilevered roof plane over the terrace, concrete-block base and planted upper ledges', 'wide'],
+      ['assets/preston-03-deck-pergola.jpg', 'Ipe deck and slatted pergola looking back across the pool to the main volume'],
+      ['assets/preston-04-dining.jpg', 'Dining room under a wood-clad ceiling, polished concrete floor and a glass wall to the garden'],
+      ['assets/preston-05-kitchen.jpg', 'Kitchen in walnut with a marble island and a slot window onto the side garden', 'wide'],
+      ['assets/preston-06-bath.jpg', 'Primary bath in white stone with louvered glazing and a freestanding tub', 'tall'],
+      ['assets/preston-07-stair-court.jpg', 'Stair landing glazed on two sides onto the courtyard tree', 'tall'],
+      ['assets/preston-08-bedroom.jpg', 'Primary bedroom opening through a full-height slider to a terrace above the pool'],
+      ['assets/preston-09-study.jpg', 'Study with built-in walnut desk and shelving between two glazed walls']
+    ],
+    summary: 'A two-story Venice residence built outward from its gardens \u2014 three outdoor rooms at different scales, a concrete-block base anchoring the upper volume, and nearly every interior room opening directly to air.',
+    story: 'The Preston Residence was built from the outside in. Three gardens \u2014 each a different size and doing a different job \u2014 set the plan, and nearly every interior room opens onto one of them, so the house is used outdoors as much as in for most of the year.',
+    story2: 'Concrete-block walls anchor those gardens and carry the visual weight between floors, letting the long horizontal roof planes above read as light. Getting that to hold in construction meant treating the block, the steel roof edges, and the glazing as one assembly: the fascia lines had to stay dead straight across cantilevers, and the sliders had to disappear fully into the walls so the opening reads as absence rather than a door.',
+    story3: 'Inside, the material palette stays short and warm \u2014 wood-clad ceilings, walnut millwork, polished concrete floors, stone in the wet rooms. Upstairs the primary suite opens through a full-height slider onto a terrace over the pool, and the stair landing is glazed on two sides around an existing courtyard tree that was protected in place through the entire build.',
+    challenge: 'Deep cantilevered roof planes with no visible sag, concrete-block walls that read as a single monolithic mass, and pocketing sliders that had to vanish into finished walls \u2014 all coordinated with pool, deck, and three garden levels on a tight Venice lot, with the existing courtyard tree protected in place throughout.',
+    materials: 'Concrete block, steel-edged roof planes with wood soffits, thermally broken steel-framed sliders, ipe decking and pergola, walnut millwork, polished concrete floors, and marble counters and bath surfaces.' },
+  { id: 'wasatch-residence', name: 'Wasatch Residence', location: 'Los Angeles, CA', category: 'Residential', scope: 'Ground-Up Custom Residence', year: '2023',
+    architect: 'Minarc',
+    img: 'assets/wasatch-01-facade.jpg', imgAlt: 'Street elevation of the Wasatch Residence: slatted wood volume cantilevered over glass, with the exterior stair crossing the facade',
+    gallery: [
+      ['assets/wasatch-02-pool-dusk.jpg', 'Rear elevation at dusk, living spaces open to the pool deck and entertaining terraces', 'wide'],
+      ['assets/wasatch-03-living-pingpong.jpg', 'Main living volume with slatted wood ceiling, freestanding art wall and glass walls open to the courtyard'],
+      ['assets/wasatch-04-living-fireplace.jpg', 'Double-height living room with full-height library, linear fireplace and the floating oak stair'],
+      ['assets/wasatch-05-kitchen.jpg', 'Kitchen in white oak and honed dark stone, with a window wall onto the bamboo court', 'wide'],
+      ['assets/wasatch-07-courtyard-swing.jpg', 'Interior court glazed on all sides, planted with bamboo and open to the kitchen beyond', 'tall'],
+      ['assets/wasatch-09-shower.jpg', 'Guest bath: plaster walls, frameless glass shower and a honed stone trough sink', 'tall'],
+      ['assets/wasatch-06-stair-dog.jpg', 'Floating white oak treads on blackened steel stringers with a glass balustrade'],
+      ['assets/wasatch-10-entry-path.jpg', 'Entry approach: concrete pavers through lava rock and grasses to the slatted wood gate'],
+      ['assets/wasatch-08-master-bath.jpg', 'Master bath with troweled plaster walls, freestanding tub and a glass shower room', 'wide']
+    ],
+    summary: 'A three-level Los Angeles residence built around an exterior stair that crosses the facade \u2014 a stairway to the stars \u2014 with a glazed interior court, a 3\u2032 \u00d7 16\u2032 wood entry door, and a below-grade theatre, club room and guest apartment.',
+    story: 'The Wasatch Residence was designed by Minarc around the light and color of its Los Angeles street. The view runs clear from the moment you pass the 3\u2032 \u00d7 16\u2032 wood entry door straight through to the backyard \u2014 the house reads as entirely transparent while staying completely private from the street.',
+    story2: 'A front courtyard buys that privacy and holds a descending stair down to the private movie theatre, club room, and a separate guest apartment. On the main level the plan stays deliberately open: everything is reachable, nothing is corridor. The powder room sits in the middle of the volume under a glass ceiling, so even the most enclosed room in the house takes daylight. Bedrooms and the master bath are upstairs by way of the Minarc-designed floating stair \u2014 white oak treads on blackened steel \u2014 with a glass shower room, a freestanding tub, and matched stone sinks in neutral tones.',
+    story3: 'The exterior is where the design shows its hand. The stair carried across the facade is the project\u2019s idea in one move \u2014 a stairway to the stars \u2014 and the cantilevered slatted wood volume above the glass makes the upper floor read as floating. Out back, a full-length pool anchors the entertaining terraces, an outdoor kitchen and a gym.',
+    challenge: 'A house whose whole premise is transparency leaves nowhere to hide the build. The cantilevered upper volume, the exterior stair crossing the facade, the 3\u2032 \u00d7 16\u2032 pivoting entry door, and the glazed-on-four-sides interior court each had to be framed, waterproofed and finished to tolerances that stay invisible \u2014 all while excavating a full lower level for the theatre, club room and guest apartment on a tight urban lot.',
+    materials: 'Slatted ipe rainscreen and soffits, board-formed and troweled plaster concrete, thermally broken steel window walls and full-height sliders, white oak flooring and millwork, blackened steel stair stringers with glass balustrades, honed stone counters and trough sinks.' },
+  { id: 'alma-switch-house', name: 'Alma Switch House', location: 'Manhattan Beach, CA', category: 'Residential', scope: 'Ground-Up Custom Residence', year: '2024',
+    architect: 'BSH Architects',
+    img: 'assets/alma-01-exterior.jpg', imgAlt: 'Three-story house on a hillside walk street with a vertical anodized aluminum screen wall and street garden',
+    gallery: [
+      ['assets/alma-05-court-glazing.jpg', 'Central courtyard ringed by two levels of steel-framed glazing and open walkways'],
+      ['assets/alma-02-dining.jpg', 'Dining room with sliding glass walls open to a balcony and the courtyard beyond'],
+      ['assets/alma-04-terrace.jpg', 'Courtyard seating terrace with an olive tree, open to the living room through sliding glass'],
+      ['assets/alma-03-courtyard.jpg', 'Lower garden terrace at dusk with the living space open to the outdoor dining area']
+    ],
+    summary: 'A three-story house on a 30\u2032 \u00d7 90\u2032 hillside walk-street lot, organized around a central courtyard that pushes living space to the outer edges for light, air, and ocean views.',
+    story: 'Designed for a couple with three young children, this three-story compact house sits on a small 30\u2032 \u00d7 90\u2032 lot on a hillside walk street, with direct access to the beach a couple of blocks away. Strict local ordinances dictate maximum lot coverage, maximum height, minimum open exterior area, and a host of other restrictions that have produced repeated housing typologies across the neighborhood \u2014 large balconies pushed to the extreme outer edges to satisfy required open space, with the remaining interior lot filled solid, resulting in bulky block-like structures ringed by perimeter balconies.',
+    story2: 'The Alma house takes the opposite approach. A multi-purpose central courtyard in the middle of the site lets every room carry large amounts of glazing with operable windows, drawing daylight and nearby ocean breezes through the home. The strategy also pushes occupied space to the extreme outer edges of the property, taking better advantage of ocean and sunset views while breaking the massing into smaller, more appropriately scaled forms.',
+    story3: 'From the central entry courtyard, the entire space from the small walk-street garden to the living spaces above can be seen \u2014 the first clue to the home\u2019s connection between inside and out. Sliding glass doors throughout tie the main rooms together for entertaining, letting the owners host without feeling overburdened, and children can play outdoors under supervision from the rooms surrounding the courtyard. A custom anodized aluminum three-dimensional screen wall on the east side gives the courtyard privacy from the busy street while making the facade shimmer as people pass; in bright light it goes soft and silver in seconds, bending light and casting shadow as the day moves. These passive strategies alone make the building more than 40% more efficient than California Title 24 and a conventionally designed structure of the same size.',
+    challenge: 'A 30\u2032 \u00d7 90\u2032 lot on a hillside walk street \u2014 no vehicle frontage, strict coverage, height and open-space limits \u2014 with a courtyard plan that put structure, glazing, and waterproofing in constant contact. Three stories of steel-framed window walls around an open court demanded exact tolerances and a sequencing plan that kept the courtyard accessible as the primary work path.',
+    materials: 'Custom anodized aluminum three-dimensional screen wall, thermally broken steel-framed glazing and full-height sliding glass walls, board-formed and site-cast concrete, white oak flooring, and patterned tile courtyard paving.' },
+  { id: 'pacific-modern', name: 'Pacific Modern', location: 'Manhattan Beach, CA', category: 'Residential', scope: 'Ground-Up Construction', year: '2024',
+    img: 'assets/photo-hallway.jpg', imgAlt: 'Sunlit steel-framed corridor with floor-to-ceiling glazing',
+    summary: 'A narrow-lot ground-up build using a glazed central corridor to bring light and air through a deep floor plate.',
+    story: 'On a narrow coastal lot, Pacific Modern uses a full-length glazed corridor as its organizing spine, connecting bedrooms and living spaces while pulling ocean light deep into the plan. The build required exacting window-wall installation across an unusually long run of glazing, coordinated tightly with structural steel to keep the corridor free of visual interruption.',
+    challenge: 'A continuous glazed corridor across a narrow lot demanded precise steel-to-glass tolerances and sequencing to avoid deflection over the span.',
+    materials: 'Thermally broken steel glazing systems, polished concrete flooring, and integrated linear lighting.' },
+  { id: 'atelier-offices', name: 'Atelier Offices', location: 'Culver City, CA', category: 'Commercial', scope: 'Commercial Buildout', year: '2023',
+    img: null,
+    summary: 'A full interior buildout for a design studio, built around exposed structure and flexible open-plan work areas.',
+    story: 'Atelier Offices converted a raw industrial shell into a working studio for a design practice. The buildout kept structure and ductwork exposed, layering in acoustic treatment, daylight-responsive lighting, and modular work zones that can be reconfigured as the studio grows.',
+    challenge: 'Coordinating new MEP systems within an exposed-ceiling design required close sequencing with the architect to keep runs visually intentional rather than incidental.',
+    materials: 'Exposed structural steel, acoustic ceiling baffles, polished concrete, and powder-coated steel partitions.' },
+  { id: 'westside-commercial', name: 'Westside Commercial', location: 'Santa Monica, CA', category: 'Commercial', scope: 'Tenant Improvement', year: '2022',
+    img: null,
+    summary: 'A ground-floor retail and office tenant improvement completed on an accelerated schedule ahead of a lease deadline.',
+    story: 'Westside Commercial required a full tenant improvement \u2014 new storefront glazing, MEP upgrades, and finish-out \u2014 completed against a fixed lease commencement date. Preconstruction planning and long-lead procurement were front-loaded to protect the schedule once permits released.',
+    challenge: 'A fixed lease start date left no schedule float; long-lead materials were procured during permitting to protect the construction window.',
+    materials: 'Aluminum storefront glazing, epoxy flooring, and exposed lighting track.' },
+  { id: 'courtyard-residence', name: 'The Courtyard Residence', location: 'Pasadena, CA', category: 'Residential', scope: 'Architectural Estate', year: '2025',
+    img: null,
+    summary: 'A large-scale estate build organized around a central courtyard, currently in construction.',
+    story: 'The Courtyard Residence is an architectural estate built around a central courtyard that anchors the main house, guest quarters, and pool pavilion. The project is being delivered in coordinated phases to manage the scale of sitework, structure, and landscape construction concurrently.',
+    challenge: 'Coordinating structure, landscape, and pool construction concurrently around a shared courtyard required a carefully sequenced phasing plan across trades.',
+    materials: 'Cast stone cladding, steel-framed pocket doors, and site-cast concrete water features.' }
+];
+
+const SERVICES = [
+  ['Preconstruction', 'Early budgeting, constructability review, and schedule planning alongside the design team, before drawings are final.'],
+  ['Ground-Up Construction', 'Full-scope construction of new residential and commercial buildings, from foundation through final finishes.'],
+  ['High-End Residential Construction', 'Custom homes and architectural estates built to the tolerances demanded by exposed, detail-intensive design.'],
+  ['Commercial Construction', 'Offices, hospitality, retail, and mixed-use buildings delivered on operating and lease-driven timelines.'],
+  ['Major Renovations', 'Structural, systems, and finish renovations that reshape existing buildings without compromising what\u2019s retained.'],
+  ['Construction Management', 'Trade coordination, scheduling, and budget oversight carried by a single point of accountability.'],
+  ['Design-Build Coordination', 'Close collaboration with architects and designers to keep design intent intact through construction.'],
+  ['Tenant Improvements', 'Interior buildouts for commercial tenants, sequenced against lease and occupancy deadlines.'],
+  ['Project Planning & Cost Control', 'Ongoing budget tracking and value engineering to keep projects on schedule and on target.']
+];
+
+const WHY = [
+  ['Precision', 'Drawings are followed to the tolerance they were drawn at \u2014 not approximated in the field.'],
+  ['Craftsmanship', 'Trade partners are selected for finish-level work, not just speed.'],
+  ['Communication', 'Clients and architects get direct, regular updates \u2014 not filtered through layers of management.'],
+  ['Accountability', 'One point of contact owns the project from preconstruction through handover.']
+];
+
+const PROCESS = [
+  ['Discovery', 'An initial conversation to understand the project, site, and goals before any scope is defined.'],
+  ['Preconstruction', 'Budgeting, constructability review, and scheduling alongside the design team.'],
+  ['Planning and Coordination', 'Permitting, trade coordination, and procurement of long-lead materials.'],
+  ['Construction', 'Day-to-day building, with regular client and architect updates through every phase.'],
+  ['Quality Control', 'Systematic inspection against drawings and specifications before any phase is closed out.'],
+  ['Completion and Handover', 'Final walkthrough, punch list resolution, and a complete project handover package.']
+];
+
+const CAPABILITIES = [
+  ['Preconstruction', 'Engaged during design, before drawings are final, to protect budget and buildability.',
+    ['Early budgeting & estimating', 'Constructability review', 'Schedule & phasing plans']],
+  ['General Contracting', 'Full-scope delivery of ground-up and renovation work under one contract.',
+    ['Trade procurement & buyout', 'Site supervision', 'Quality control & closeout']],
+  ['Construction Management', 'Owner-side oversight when the work is already contracted elsewhere.',
+    ['Budget & change tracking', 'Consultant coordination', 'Reporting & documentation']]
+];
+
+const INCLUDED = [
+  'Weekly owner & architect updates',
+  'Full RFI and submittal logs',
+  'Photographic progress records',
+  'Line-item budget tracking',
+  'Punch list to zero before handover',
+  'As-built drawings & warranty package'
+];
+
+const STATS = [
+  { value: 12, suffix: '+', label: 'Years in Business' },
+  { value: 150, suffix: '+', label: 'Projects Delivered' },
+  { value: 50, suffix: '+', label: 'Trade Partners' },
+  { value: 100, suffix: '%', label: 'On-Time Completion' }
+];
+
+const COMPARISONS = [
+  ['Who answers your call', 'The person accountable for the contract', 'Whoever is free at the office'],
+  ['Budget visibility', 'Line-item tracking sent weekly', 'Reconciled at closeout'],
+  ['Change orders', 'Priced and approved before work proceeds', 'Discovered on the next invoice'],
+  ['Design intent', 'Held to drawn tolerance, challenged in writing if unbuildable', 'Value-engineered in the field'],
+  ['Schedule', 'Three-week look-ahead, updated weekly', 'A single bar chart at award'],
+  ['Handover', 'Punch to zero, as-builts and warranties bound', 'Keys and a box of manuals']
+];
+
+const MILESTONES = [
+  ['[Year]', 'Founded', 'PD Construction Inc. is established as a family-run general contractor taking on residential renovations. [Placeholder \u2014 founding details to be supplied.]'],
+  ['[Year]', 'First ground-up build', 'The firm delivers its first ground-up custom residence, setting the detail standard the practice still runs on.'],
+  ['[Year]', 'Commercial license', 'Scope expands into commercial buildouts and tenant improvements alongside the residential work.'],
+  ['[Year]', 'Today', 'A full-service general contractor delivering architectural residential and commercial work across the region.']
+];
+
+const TEAM = [
+  ['[Name placeholder]', 'Principal / General Contractor', 'Owns preconstruction strategy and carries final accountability on every contract the firm signs.'],
+  ['[Name placeholder]', 'Project Executive', 'Runs budget, buyout, and trade coordination from award through closeout.'],
+  ['[Name placeholder]', 'Field Superintendent', 'On site daily \u2014 sequencing, quality control, and the person your architect calls first.']
+];
+
+const CREDENTIALS = [
+  'CSLB License #000000 \u2014 placeholder',
+  'General liability \u2014 policy placeholder',
+  "Workers' compensation coverage",
+  'Bonded for contracts to [amount]',
+  'OSHA-compliant site safety program',
+  'Certificates furnished on request'
+];
+
+const PROCESS_DETAIL = [
+  ['Discovery', 'An initial conversation to understand the project, site, and goals before any scope is defined. No cost, no obligation.',
+    ['Site walk', 'Goals & budget range', 'Fit assessment'], '1\u20132 weeks'],
+  ['Preconstruction', 'Budgeting, constructability review, and scheduling alongside the design team while drawings are still moving.',
+    ['Line-item estimate', 'Constructability notes', 'Draft schedule'], '4\u20138 weeks'],
+  ['Planning and Coordination', 'Permitting, trade buyout, and procurement of long-lead materials so the schedule survives first contact.',
+    ['Permit set filed', 'Trade contracts', 'Procurement log'], '6\u201312 weeks'],
+  ['Construction', 'Day-to-day building with weekly owner and architect updates through every phase of the work.',
+    ['Weekly reports', 'Change order log', 'Progress photos'], 'Project dependent'],
+  ['Quality Control', 'Systematic inspection against drawings and specifications before any phase is closed out.',
+    ['Phase inspections', 'Deficiency log', 'Third-party testing'], 'Ongoing'],
+  ['Completion and Handover', 'Final walkthrough, punch list to zero, and a complete handover package with warranties and as-builts.',
+    ['Punch list closeout', 'As-built drawings', 'Warranty package'], '2\u20134 weeks']
+];
+
+const CADENCE = [
+  'Written progress report',
+  'Updated three-week look-ahead',
+  'Running budget vs. contract',
+  'Open RFI and submittal status',
+  'Dated site photography',
+  'Decisions needed from you'
+];
+
+const HOME_SECTIONS = ['Top', 'About', 'Numbers', 'Capabilities', 'Services', 'Projects', 'Before / After', 'Compare', 'Principles', 'Sectors', 'Process', 'Coverage', 'Clients', 'Questions', 'Contact'];
+
+const QUOTES = [
+  { text: 'They held the detail we drew. On a house this exposed, that is the entire job \u2014 and it is rarer than it should be.', name: 'Architect of record', role: 'Client name placeholder', avatar: 'https://i.pravatar.cc/160?img=13' },
+  { text: 'Every change order came priced and approved before the work happened. We closed out within one percent of the original budget.', name: 'Owner', role: 'Commercial buildout \u2014 name placeholder', avatar: 'https://i.pravatar.cc/160?img=32' },
+  { text: 'One phone number for eighteen months. Nothing got filtered, nothing got lost between the office and the field.', name: 'Homeowner', role: 'Hillside residence \u2014 name placeholder', avatar: 'https://i.pravatar.cc/160?img=68' },
+  { text: 'The courtyard glazing was the whole design idea, and they built it to the sixteenth. No compromises came back to us as “field conditions.”', name: 'Project architect', role: 'Manhattan Beach \u2014 name placeholder', avatar: 'https://i.pravatar.cc/160?img=45' },
+  { text: 'They started pricing during schematic design, so the budget conversation happened once instead of four times.', name: 'Owner’s representative', role: 'Client name placeholder', avatar: 'https://i.pravatar.cc/160?img=52' },
+  { text: 'Weekly updates with real numbers in them. I always knew where the job stood without having to ask.', name: 'Homeowner', role: 'Renovation \u2014 name placeholder', avatar: 'https://i.pravatar.cc/160?img=26' }
+];
+
+const FAQS = [
+  ['Do you work from an architect\u2019s drawings, or design-build?', 'Both. Most of our work comes in as a completed architectural set, and we join during design development to price and pressure-test constructability. When there is no architect yet, we coordinate design-build with a partner practice.'],
+  ['How early should we bring you in?', 'As early as schematic design. Budget decisions made before drawings are final are the cheapest ones on the project \u2014 and the only chance to protect design intent from later value engineering.'],
+  ['What size projects do you take?', 'Ground-up residential and commercial work, gut renovations, and tenant improvements. Scope matters more than square footage: detail-intensive work is where we are worth hiring.'],
+  ['How do you handle budget changes mid-project?', 'Every change order is priced and approved before work proceeds, and running totals go out with the weekly owner update. No surprises at closeout.']
+];
+
+const NAV_ITEMS = [
+  ['Projects', 'goProjects'],
+  ['Gallery', 'goGallery'],
+  ['Services', 'goServices'],
+  ['About', 'goAbout'],
+  ['Process', 'goProcess'],
+  ['Contact', 'goContact']
+];
+
+const INK = '#1F2428';
+const BODY_C = '#4D4945';
+const MUTED = '#737373';
+const TAN = '#9F9B86';
+const TAN_DARK = '#D2C3A7';
+const FOOTER_BG = '#42454A';
+const IVORY = '#F0EDE2';
+const SERIF = "'Source Serif 4', Georgia, serif";
+const SANS = 'var(--font-body)';
+
+class Component extends DCLogic {
+  state = {
+    view: 'home',
+    selectedProjectId: 'ridge-residence',
+    mobileMenuOpen: false,
+    isMobile: false,
+    form: { name: '', email: '', phone: '', projectType: '', message: '' },
+    errors: {},
+    formSubmitted: false,
+    offsets: {},
+    revealed: {},
+    openService: 0,
+    projectFilter: 'All',
+    openFaq: 0,
+    scrollPct: 0,
+    navCompact: false,
+    activeQuote: 0,
+    baPct: 50,
+    baDragging: false,
+    pageIn: true,
+    isNarrow: false,
+    statProgress: 0,
+    prcFill: 0,
+    prcActive: 0,
+    heroIn: typeof document === 'undefined' || document.visibilityState !== 'visible' ? true : false,
+    galFilter: 'All',
+    lightbox: null,
+    homeActive: 0
+  };
+  _refs = {};
+  _revealFns = {};
+  _pendingReveal = [];
+
+  magRef(key) {
+    this._magFns = this._magFns || {};
+    if (!this._magFns[key]) {
+      this._magFns[key] = (el) => {
+        if (!el || el.__mag) return;
+        el.__mag = true;
+        const img = el.querySelector('img');
+        el.addEventListener('pointermove', (e) => {
+          const r = el.getBoundingClientRect();
+          const dx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+          const dy = ((e.clientY - r.top) / r.height - 0.5) * 2;
+          if (img) img.style.transform = `scale(1.07) translate(${(-dx * 12).toFixed(1)}px, ${(-dy * 12).toFixed(1)}px)`;
+          const cap = el.querySelector('[data-mag-cap]');
+          if (cap) { cap.style.opacity = '1'; cap.style.left = (e.clientX - r.left) + 'px'; cap.style.top = (e.clientY - r.top) + 'px'; }
+        });
+        el.addEventListener('pointerleave', () => {
+          if (img) img.style.transform = '';
+          const cap = el.querySelector('[data-mag-cap]');
+          if (cap) cap.style.opacity = '0';
+        });
+      };
+    }
+    return this._magFns[key];
+  }
+
+  componentDidMount() {
+    this.updateIsMobile();
+    this._resize = () => this.updateIsMobile();
+    window.addEventListener('resize', this._resize);
+    this._ticking = false;
+    this._onScroll = () => {
+      if (this._ticking) return;
+      this._ticking = true;
+      requestAnimationFrame(() => {
+        this.revealSweep();
+        const vh = window.innerHeight;
+        const offsets = {};
+        let offsetsChanged = false;
+        const prev = this.state.offsets || {};
+        Object.keys(this._refs).forEach(k => {
+          const el = this._refs[k];
+          if (!el || k.indexOf('prcphase_') === 0 || k === 'prc_rail') return;
+          const rect = el.getBoundingClientRect();
+          if (rect.bottom < -200 || rect.top > vh + 200) {
+            if (k in prev) { offsets[k] = prev[k]; }
+            return;
+          }
+          const progress = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height)));
+          const v = Math.round(-progress * 90);
+          offsets[k] = v;
+          if (prev[k] !== v) offsetsChanged = true;
+        });
+
+        const doc = document.documentElement;
+        const contentH = Math.max(doc.scrollHeight, document.body ? document.body.scrollHeight : 0);
+        const max = Math.max(1, contentH - vh);
+        const y = window.scrollY || doc.scrollTop || (document.body ? document.body.scrollTop : 0) || 0;
+        let prcFill = 0, prcActive = -1;
+        const railRef = this._refs['prc_rail'];
+        const rail = railRef && railRef.isConnected ? railRef : null;
+        if (rail) {
+          const r = rail.getBoundingClientRect();
+          const anchor = vh * 0.44;
+          prcFill = Math.min(100, Math.max(0, ((anchor - r.top) / Math.max(1, r.height)) * 100));
+          prcActive = -1;
+          for (let i = 0; i < 6; i++) {
+            const el = this._refs['prcphase_' + i];
+            if (el && el.getBoundingClientRect().top <= anchor) prcActive = i;
+          }
+        }
+        let homeActive = this.state.homeActive;
+        if (this.state.view === 'home') {
+          const secs = document.querySelectorAll('main section[aria-label]');
+          let idx = 0;
+          for (let i = 0; i < secs.length; i++) {
+            if (secs[i].getBoundingClientRect().top <= 140) idx = i;
+          }
+          homeActive = idx;
+        }
+        const scrollPct = Math.round(Math.min(100, (y / max) * 100) * 10) / 10;
+        const navCompact = y > 40;
+        prcFill = Math.round(prcFill * 10) / 10;
+        if (offsetsChanged || scrollPct !== this.state.scrollPct || navCompact !== this.state.navCompact ||
+            prcFill !== this.state.prcFill || prcActive !== this.state.prcActive ||
+            homeActive !== this.state.homeActive) {
+          this.setState({ offsets, scrollPct, navCompact, prcFill, prcActive, homeActive });
+        }
+        this._ticking = false;
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('load', () => { this.revealSweep(); this._onScroll(); }, { once: true });
+    this._onKey = (e) => {
+      if (this.state.lightbox === null) return;
+      if (e.key === 'Escape') this.lbClose();
+      else if (e.key === 'ArrowRight') this.lbStep(1);
+      else if (e.key === 'ArrowLeft') this.lbStep(-1);
+    };
+    window.addEventListener('keydown', this._onKey);
+    this._onScroll();
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const key = entry.target.__revealKey;
+          this._io.unobserve(entry.target);
+          this.setState(s => ({ revealed: { ...s.revealed, [key]: true } }));
+          if (key === 'stats_row') this.startCount('stats');
+          if (key === 'svc_hero') this.startCount('svcmeta');
+          if (key === 'about_hero') this.startCount('aboutmeta');
+          if (key === 'prj_stats') this.startCount('prjstats');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    (this._pendingReveal || []).forEach(el => this._io.observe(el));
+    this._pendingReveal = [];
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setState({ heroIn: true })));
+    this._heroT = setTimeout(() => { if (!this.state.heroIn) this.setState({ heroIn: true }); }, 400);
+    this._heroT2 = setTimeout(() => { if (!this.state.heroIn) this.setState({ heroIn: true }); }, 1600);
+    this._onVis = () => { if (!this.state.heroIn) this.setState({ heroIn: true }); };
+    document.addEventListener('visibilitychange', this._onVis);
+    this._quoteT = null;
+    this._statT = null;
+  }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this._onKey);
+    document.removeEventListener('visibilitychange', this._onVis);
+    clearTimeout(this._statT);
+    clearTimeout(this._heroT);
+    clearTimeout(this._heroT2);
+    window.removeEventListener('resize', this._resize);
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._io) this._io.disconnect();
+    clearTimeout(this._navT);
+    clearInterval(this._quoteT);
+  }
+  revealRef(key) {
+    if (!this._revealFns[key]) {
+      this._revealFns[key] = (el) => {
+        if (el && !el.__revealObserved) {
+          el.__revealKey = key;
+          el.__revealObserved = true;
+          if (this._io) this._io.observe(el); else this._pendingReveal.push(el);
+          this.revealIfVisible(el, key);
+        }
+      };
+    }
+    return this._revealFns[key];
+  }
+  revealIfVisible(el, key) {
+    this._revealEls = this._revealEls || {};
+    this._revealEls[key] = el;
+    const check = () => {
+      if (!el || !el.isConnected || this.state.revealed[key]) return;
+      const r = el.getBoundingClientRect();
+      if (r.height > 0 && r.top < window.innerHeight && r.bottom > 0) {
+        if (this._io) this._io.unobserve(el);
+        this.setState(s => ({ revealed: { ...s.revealed, [key]: true } }));
+        this.onRevealed(key);
+      }
+    };
+    if (document.readyState === 'complete') {
+      requestAnimationFrame(check);
+      setTimeout(check, 260);
+      setTimeout(check, 900);
+    } else {
+      window.addEventListener('load', () => { requestAnimationFrame(check); setTimeout(check, 240); }, { once: true });
+    }
+  }
+  revealSweep() {
+    const els = this._revealEls || {};
+    Object.keys(els).forEach(key => {
+      const el = els[key];
+      if (!el || !el.isConnected || this.state.revealed[key]) return;
+      const r = el.getBoundingClientRect();
+      if (r.height > 0 && r.top < window.innerHeight - 40 && r.bottom > 0) {
+        if (this._io) this._io.unobserve(el);
+        this.setState(s => ({ revealed: { ...s.revealed, [key]: true } }));
+        this.onRevealed(key);
+      }
+    });
+  }
+  srcRef(key, url, alsoReveal) {
+    this._srcFns = this._srcFns || {};
+    const id = key + '|' + (url || '');
+    if (!this._srcFns[id]) {
+      this._srcFns[id] = (el) => {
+        if (el && url && el.getAttribute('src') !== url) el.setAttribute('src', url);
+        if (alsoReveal) this.revealRef(alsoReveal)(el);
+      };
+    }
+    return this._srcFns[id];
+  }
+  revealStyle(key, extra) {
+    const on = !!this.state.revealed[key];
+    return `${extra || ''};opacity:${on ? 1 : 0};transform:${on ? 'translateY(0) scale(1)' : 'translateY(36px) scale(1.03)'};transition:opacity 0.9s cubic-bezier(.2,.7,.3,1),transform 1.1s cubic-bezier(.2,.7,.3,1)`;
+  }
+  cardReveal(key, i, extra) {
+    const on = !!this.state.revealed[key];
+    const d = Math.min(i || 0, 6) * 90;
+    return `${extra || ''};opacity:${on ? 1 : 0};transform:translateY(${on ? '0' : '28px'});transition:opacity 0.7s cubic-bezier(.2,.7,.3,1) ${d}ms,transform 0.8s cubic-bezier(.2,.7,.3,1) ${d}ms,background 0.35s ease,border-color 0.35s ease,box-shadow 0.35s ease`;
+  }
+  countUp(key, raw) {
+    const p = this.state.counts[key];
+    if (p === undefined || p >= 1) return raw;
+    const m = String(raw).match(/^([\d.]+)(.*)$/);
+    if (!m) return raw;
+    const target = parseFloat(m[1]);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const val = target % 1 === 0 ? Math.round(target * eased) : (target * eased).toFixed(1);
+    return val + m[2];
+  }
+  onRevealed(key) {
+    if (key === 'stats_row') { this.startCount('stats'); this.animateStats(); }
+    if (key === 'svc_hero') this.startCount('svcmeta');
+    if (key === 'about_hero') this.startCount('aboutmeta');
+    if (key === 'prj_stats') { this.startCount('prjstats'); this.animateStats(); }
+  }
+  startCount(key) {
+    if (this._counting && this._counting[key]) return;
+    this._counting = this._counting || {};
+    this._counting[key] = true;
+    const t0 = performance.now();
+    const tick = () => {
+      const p = Math.min(1, (performance.now() - t0) / 1500);
+      this.setState(s => ({ counts: { ...s.counts, [key]: p } }));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+  updateIsMobile() {
+    const isMobile = window.innerWidth < 900;
+    const isNarrow = window.innerWidth < 640;
+    if (isMobile !== this.state.isMobile || isNarrow !== this.state.isNarrow) this.setState({ isMobile, isNarrow });
+  }
+
+  animateStats() {
+    if (this._statsRun) return;
+    this._statsRun = true;
+    const t0 = performance.now();
+    const dur = 850;
+    const tick = (now) => {
+      const p = Math.min(1, (now - t0) / dur);
+      const eased = 1 - Math.pow(1 - p, 2);
+      this.setState({ statProgress: eased });
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+  refFor(key) {
+    if (!this._refFns) this._refFns = {};
+    if (!this._refFns[key]) this._refFns[key] = (el) => { this._refs[key] = el; };
+    return this._refFns[key];
+  }
+
+  navigate(view, id) {
+    if (view === this.state.view && !id) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    this.setState({ mobileMenuOpen: false, pageIn: false });
+    clearTimeout(this._navT);
+    this._navT = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      this.setState(s => ({
+        view, pageIn: true,
+        selectedProjectId: id || s.selectedProjectId,
+        formSubmitted: view === 'contact' ? false : s.formSubmitted,
+        openFaq: 0, openService: 0
+      }));
+      setTimeout(() => this._onScroll && this._onScroll(), 40);
+    }, 190);
+  }
+
+  goHome() { this.navigate('home'); }
+  goProjects() { this.navigate('projects'); }
+  goServices() { this.navigate('services'); }
+  goAbout() { this.navigate('about'); }
+  goProcess() { this.navigate('process'); }
+  goContact() { this.navigate('contact'); }
+  goGallery() { this.navigate('gallery'); }
+  lbOpen(i) { this.setState({ lightbox: i }); }
+  lbClose() { this.setState({ lightbox: null }); }
+  lbStep(d) {
+    const list = this.galleryList();
+    if (!list.length) return;
+    this.setState(s => ({ lightbox: ((s.lightbox + d) % list.length + list.length) % list.length }));
+  }
+  galleryList() {
+    const filter = this.state.galFilter || 'All';
+    const all = [];
+    PROJECTS_RAW.forEach(p => {
+      if (p.img) all.push({ url: p.img, alt: p.imgAlt, project: p.name });
+      (p.gallery || []).forEach(([url, alt]) => all.push({ url, alt, project: p.name }));
+    });
+    const seen = {};
+    const unique = all.filter(x => (seen[x.url] ? false : (seen[x.url] = true)));
+    return filter === 'All' ? unique : unique.filter(x => x.project === filter);
+  }
+  goPrivacy() { this.navigate('privacy'); }
+
+  baSet(e) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const pct = Math.min(98, Math.max(2, ((e.clientX - rect.left) / rect.width) * 100));
+    this.setState({ baPct: pct });
+  }
+  baDown(e) { this.setState({ baDragging: true }); this.baSet(e); }
+  baMove(e) { if (this.state.baDragging) this.baSet(e); }
+  baUp() { if (this.state.baDragging) this.setState({ baDragging: false }); }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const f = this.state.form;
+    const errors = {};
+    if (!f.name.trim()) errors.name = true;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) errors.email = true;
+    if (!f.message.trim()) errors.message = true;
+    if (Object.keys(errors).length) { this.setState({ errors }); return; }
+    this.setState({ errors: {}, formSubmitted: true });
+  }
+
+  watermark(label, key) {
+    const offset = (this.state.offsets && this.state.offsets[key]) || 0;
+    void label;
+    const mob = this.state.isMobile;
+    return `font-family:${SANS};font-weight:600;text-transform:uppercase;color:transparent;-webkit-text-stroke:1.5px ${TAN};text-stroke:1.5px ${TAN};font-size:clamp(32px,8.5vw,124px);line-height:1.02;letter-spacing:0.01em;margin:0 0 ${mob ? '18px' : '-18px'};padding-bottom:0.12em;position:relative;z-index:1;transform:translateY(${offset}px);will-change:transform;transition:transform 0.05s linear;max-width:100%;overflow-wrap:break-word`;
+  }
+
+  renderVals() {
+    const s = this.state;
+    const isMobile = s.isMobile;
+    const mob = s.isMobile;
+
+    const rowStyle = (i) => `display:flex;flex-direction:${i % 2 === 1 ? 'row-reverse' : 'row'};gap:56px;align-items:stretch;margin-bottom:80px;flex-wrap:wrap`;
+    const projects = PROJECTS_RAW.map((p, i) => ({
+      ...p,
+      hasPhoto: !!p.img,
+      needsPlaceholder: !p.img,
+      slotId: 'slot-' + p.id,
+      slotHeroId: 'slot-hero-' + p.id,
+      slotGalleryId: 'slot-gallery-' + p.id,
+      slotDetailAId: 'slot-detail-a-' + p.id,
+      slotDetailBId: 'slot-detail-b-' + p.id,
+      slotBeforeId: 'slot-before-' + p.id,
+      slotAfterId: 'slot-after-' + p.id,
+      view: () => this.navigate('project', p.id),
+      rowStyle: rowStyle(i),
+      mediaColStyle: 'flex:1 1 480px;min-width:280px;position:relative;z-index:2;background:#fff;overflow:hidden;cursor:pointer',
+      mediaColHover: 'flex:1 1 480px;min-width:280px;position:relative;z-index:2;background:#fff;overflow:hidden;cursor:pointer',
+      viewBadge: `position:absolute;left:0;bottom:0;z-index:3;font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${INK};background:${TAN};padding:13px 20px;pointer-events:none;opacity:0;transform:translateY(100%);transition:opacity 0.4s ease,transform 0.5s cubic-bezier(.2,.7,.3,1)`,
+      textColStyle: 'flex:1 1 380px;min-width:280px;display:flex;flex-direction:column;justify-content:center;gap:8px;position:relative;z-index:2;background:#fff',
+      mediaRef: this.revealRef('proj_' + p.id),
+      imgRef: this.srcRef('proj_' + p.id, p.img, 'proj_' + p.id),
+      mediaStyle: this.revealStyle('proj_' + p.id, 'width:100%;aspect-ratio:4/3;object-fit:cover;display:block'),
+      mediaSlotStyle: 'width:100%;aspect-ratio:4/3'
+    }));
+
+    const featureProject = projects[0];
+    const activeFilter = s.projectFilter || 'All';
+    const filterDefs = ['All', 'Residential', 'Commercial'];
+    const filters = filterDefs.map(label => {
+      const on = activeFilter === label;
+      const count = label === 'All' ? projects.length : projects.filter(p => p.category === label).length;
+      const base = `display:inline-flex;align-items:center;gap:8px;font-family:${SANS};font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:10px 16px;cursor:pointer;transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease`;
+      return {
+        label, count,
+        onClick: () => this.setState({ projectFilter: label }),
+        style: `${base};background:${on ? INK : 'transparent'};color:${on ? '#fff' : INK};border:1px solid ${on ? INK : '#d8d2c4'}`,
+        styleHover: `${base};background:${on ? INK : '#faf8f4'};color:${on ? '#fff' : TAN_DARK};border:1px solid ${TAN}`,
+        countStyle: `font-size:10px;opacity:0.65;letter-spacing:0.04em`
+      };
+    });
+    const filtered = activeFilter === 'All' ? projects : projects.filter(p => p.category === activeFilter);
+    const visibleProjects = filtered.map((p, i) => ({
+      ...p,
+      rowStyle: `display:flex;flex-direction:${i % 2 === 1 ? 'row-reverse' : 'row'};gap:56px;align-items:stretch;margin-bottom:90px;flex-wrap:wrap`,
+      frameStyle: 'flex:1 1 500px;min-width:280px;position:relative;overflow:hidden;background:#f2efe9;cursor:pointer',
+      indexBadge: `position:absolute;top:0;left:0;z-index:3;font-family:${SANS};font-weight:600;font-size:10px;letter-spacing:0.14em;color:#fff;background:rgba(20,20,20,0.55);padding:8px 12px`,
+      indexLabel: String(i + 1).padStart(2, '0'),
+      mediaRef: this.revealRef('prjlist_' + p.id),
+      imgRef: this.srcRef('prjlist_' + p.id, p.img, 'prjlist_' + p.id),
+      magRef: this.magRef('prjmag_' + p.id),
+      capStyle: `position:absolute;z-index:5;pointer-events:none;transform:translate(-50%,-50%);opacity:0;transition:opacity 0.3s ease;background:${TAN};color:${INK};font-family:${SANS};font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;padding:12px 14px;border-radius:50%;width:74px;height:74px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2`,
+      mediaStyle: this.revealStyle('prjlist_' + p.id, 'width:100%;aspect-ratio:4/3;object-fit:cover;display:block') + ';transition:transform 0.5s cubic-bezier(.2,.7,.3,1),opacity 0.9s cubic-bezier(.2,.7,.3,1)',
+      textColStyle: 'flex:1 1 380px;min-width:280px;display:flex;flex-direction:column;justify-content:center;gap:6px;align-items:flex-start'
+    }));
+
+    const selectedProject = projects.find(p => p.id === s.selectedProjectId) || projects[0];
+    const idx = projects.findIndex(p => p.id === selectedProject.id);
+    const prevP = projects[(idx - 1 + projects.length) % projects.length];
+    const nextP = projects[(idx + 1) % projects.length];
+    selectedProject.prevName = prevP.name;
+    selectedProject.nextName = nextP.name;
+    selectedProject.heroImgRef = this.srcRef('detail_hero_' + selectedProject.id, selectedProject.img);
+    selectedProject.galleryImgRef = this.srcRef('detail_gal_' + selectedProject.id, selectedProject.img);
+    selectedProject.architectLabel = selectedProject.architect || '[Architect of record \u2014 placeholder]';
+    selectedProject.paragraphs = [selectedProject.story, selectedProject.story2, selectedProject.story3]
+      .filter(Boolean).map(text => ({ text }));
+    const gal = selectedProject.gallery || [];
+    selectedProject.hasGallery = gal.length > 0;
+    selectedProject.noGallery = gal.length === 0;
+    selectedProject.beforeAfterSection = gal.length > 0 ? 'display:none' : 'padding:24px 56px 72px;max-width:960px';
+    selectedProject.galleryItems = gal.map(([url, alt, shape], i) => {
+      const key = 'gal_' + selectedProject.id + '_' + i;
+      const wide = !s.isNarrow && (shape === 'wide' || (!shape && (i === 0 || i === 3)));
+      const tall = shape === 'tall';
+      const box = wide ? 'grid-column:1/3;aspect-ratio:16/9' : (tall ? 'aspect-ratio:3/4' : 'aspect-ratio:4/3');
+      return {
+        alt,
+        ref: this.srcRef(key, url, key),
+        style: this.revealStyle(key, `${box};width:100%;object-fit:cover;display:block`)
+      };
+    });
+    selectedProject.goPrev = () => this.navigate('project', prevP.id);
+    selectedProject.goNext = () => this.navigate('project', nextP.id);
+
+    const allPhotos = (() => {
+      const out = [];
+      PROJECTS_RAW.forEach(p => {
+        if (p.img) out.push({ url: p.img, alt: p.imgAlt, project: p.name });
+        (p.gallery || []).forEach(([url, alt]) => out.push({ url, alt, project: p.name }));
+      });
+      const seen = {};
+      return out.filter(x => (seen[x.url] ? false : (seen[x.url] = true)));
+    })();
+    const galFilterActive = s.galFilter || 'All';
+    const galPhotos = galFilterActive === 'All' ? allPhotos : allPhotos.filter(x => x.project === galFilterActive);
+    const lbPhoto = s.lightbox === null ? null : galPhotos[s.lightbox];
+
+    const navLinks = NAV_ITEMS.map(([label, fn]) => {
+      const active = s.view === fn.replace('go', '').toLowerCase();
+      return {
+        label, onClick: (e) => { if (e) e.preventDefault(); this[fn](); },
+        style: `font-family:${SANS};font-weight:500;font-size:14px;color:${active ? TAN_DARK : MUTED};text-decoration:none;white-space:nowrap;padding-bottom:4px;border-bottom:2px solid ${active ? TAN_DARK : 'transparent'};transition:color 0.2s ease,border-color 0.2s ease`,
+        styleHover: `font-family:${SANS};font-weight:500;font-size:14px;color:${TAN_DARK};text-decoration:none;white-space:nowrap;padding-bottom:4px;border-bottom:2px solid ${TAN_DARK};transition:color 0.2s ease,border-color 0.2s ease`
+      };
+    });
+    const navLinksMobile = NAV_ITEMS.map(([label, fn]) => ({
+      label, onClick: () => this[fn](),
+      style: `font-family:${SERIF};font-size:30px;color:${INK};text-decoration:none;padding:12px 0`
+    }));
+
+    const outlineBtnBase = `display:inline-flex;align-items:center;gap:8px;border:2px solid ${TAN_DARK};padding:13px 22px;font-family:${SANS};font-weight:500;font-size:11px;letter-spacing:0.09em;text-transform:uppercase;background:transparent;cursor:pointer;white-space:nowrap;transition:background 0.15s,color 0.15s,border-color 0.15s`;
+    const outlineBtnHoverBase = `display:inline-flex;align-items:center;gap:8px;border:2px solid ${FOOTER_BG};padding:13px 22px;font-family:${SANS};font-weight:500;font-size:11px;letter-spacing:0.09em;text-transform:uppercase;background:${FOOTER_BG};color:#ffffff;cursor:pointer;white-space:nowrap`;
+
+    return {
+      rootStyle: `background:#ffffff;color:${BODY_C};font-family:${SANS};min-height:100vh`,
+      navStyle: `display:flex;align-items:center;padding:${s.navCompact ? '14px' : '24px'} 56px;background:rgba(255,255,255,${s.navCompact ? 0.94 : 1});backdrop-filter:blur(10px);position:sticky;top:0;z-index:50;border-bottom:1px solid ${s.navCompact ? '#e6e1d8' : 'transparent'};box-shadow:${s.navCompact ? '0 10px 30px -26px rgba(35,39,45,0.55)' : 'none'};transition:padding 0.35s cubic-bezier(.2,.7,.3,1),border-color 0.35s ease,box-shadow 0.35s ease,background 0.35s ease`,
+      scrollProgressStyle: `position:absolute;left:0;bottom:-1px;height:2px;width:${s.scrollPct}%;background:${TAN};z-index:2;transition:width 0.12s linear`,
+      navLinksWrapStyle: 'display:flex;align-items:center;justify-content:center;gap:36px;flex:1',
+      brandBtnStyle: 'display:flex;align-items:center;background:none;border:0;padding:0;cursor:pointer;line-height:0',
+      brandLogoStyle: `height:${isMobile ? 34 : 46}px;width:auto;display:block`,
+      showDesktopNav: !isMobile,
+      showMobileToggle: isMobile,
+      navLinks, navLinksMobile,
+      hamburgerStyle: `margin-left:auto;background:none;border:0;color:${INK};cursor:pointer;padding:4px`,
+      mobileMenuOpen: s.mobileMenuOpen,
+      mobileMenuStyle: 'position:fixed;inset:0;background:#ffffff;z-index:100;display:flex;flex-direction:column;padding:28px 32px;overflow-y:auto',
+      mobileCloseStyle: `align-self:flex-end;background:none;border:0;color:${INK};cursor:pointer;margin-bottom:24px`,
+      toggleMenu: () => this.setState(x => ({ mobileMenuOpen: !x.mobileMenuOpen })),
+      goHome: (e) => { if (e && e.preventDefault) e.preventDefault(); this.navigate('home'); },
+      goProjects: (e) => { if (e && e.preventDefault) e.preventDefault(); this.navigate('projects'); },
+      goServices: (e) => { if (e && e.preventDefault) e.preventDefault(); this.navigate('services'); },
+      goAbout: (e) => { if (e && e.preventDefault) e.preventDefault(); this.navigate('about'); },
+      goProcess: (e) => { if (e && e.preventDefault) e.preventDefault(); this.navigate('process'); },
+      goContact: (e) => { if (e && e.preventDefault) e.preventDefault(); this.navigate('contact'); },
+      goGallery: (e) => { if (e && e.preventDefault) e.preventDefault(); this.navigate('gallery'); },
+      goPrivacy: (e) => { if (e && e.preventDefault) e.preventDefault(); this.navigate('privacy'); },
+      mainStyle: `max-width:1440px;margin:0 auto;opacity:${s.pageIn === false ? 0 : 1};transform:translateY(${s.pageIn === false ? '14px' : '0'});transition:opacity 0.34s cubic-bezier(.2,.7,.3,1),transform 0.42s cubic-bezier(.2,.7,.3,1)`,
+
+      isHome: s.view === 'home', isProjects: s.view === 'projects', isProjectDetail: s.view === 'project',
+      isServices: s.view === 'services', isAbout: s.view === 'about', isProcess: s.view === 'process',
+      isContact: s.view === 'contact', isPrivacy: s.view === 'privacy', is404: s.view === '404',
+      isGallery: s.view === 'gallery',
+
+      watermarkServicesTeaser: this.watermark('SERVICES', 'services_teaser'),
+      watermarkProjectsTeaser: this.watermark('PROJECTS', 'projects_teaser'),
+      watermarkPageProjects: this.watermark('OUR PROJECTS', 'page_projects'),
+      watermarkPageServices: this.watermark('SERVICES', 'page_services'),
+      watermarkPageAbout: this.watermark('ABOUT US', 'page_about'),
+      watermarkPageProcess: this.watermark('PROCESS', 'page_process'),
+      watermarkPageContact: this.watermark('CONTACT', 'page_contact'),
+      galIntroSection: 'display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;padding:0 56px 44px',
+      galFilterRow: 'display:flex;gap:8px;flex-wrap:wrap',
+      galFilters: (() => {
+        const names = PROJECTS_RAW.filter(p => p.img || (p.gallery || []).length).map(p => p.name);
+        const defs = ['All'].concat(names);
+        const active = s.galFilter || 'All';
+        const base = `display:inline-flex;align-items:center;gap:8px;font-family:${SANS};font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:11px 17px;cursor:pointer;transition:background 0.3s ease,color 0.3s ease,border-color 0.3s ease`;
+        return defs.map(label => {
+          const on = active === label;
+          const count = label === 'All' ? allPhotos.length : allPhotos.filter(x => x.project === label).length;
+          return {
+            label, count,
+            onClick: () => this.setState({ galFilter: label, lightbox: null }),
+            style: `${base};background:${on ? INK : 'transparent'};color:${on ? '#fff' : INK};border:1px solid ${on ? INK : '#ddd7cc'}`,
+            styleHover: `${base};background:${on ? INK : '#faf8f4'};color:${on ? '#fff' : INK};border:1px solid ${TAN}`,
+            countStyle: `font-size:10px;opacity:0.6;letter-spacing:0.04em`
+          };
+        });
+      })(),
+      galGridSection: 'padding:0 56px 110px',
+      galGrid: `display:grid;grid-template-columns:repeat(${s.isNarrow ? 4 : 12},1fr);gap:${mob ? 6 : 10}px;grid-auto-flow:dense`,
+      galleryPhotos: galPhotos.map((g, i) => {
+        const cycle = [6, 6, 4, 4, 4, 8, 4, 4, 8, 12];
+        const raw = cycle[i % cycle.length];
+        const span = s.isNarrow ? 4 : raw;
+        const ratio = raw === 12 ? '21/9' : raw === 8 ? '3/2' : raw === 6 ? '4/3' : '1/1';
+        const key = 'galp_' + i + '_' + (s.galFilter || 'All');
+        return {
+          alt: g.alt, project: g.project, num: String(i + 1).padStart(2, '0'),
+          open: () => this.lbOpen(i),
+          ref: this.srcRef(key, g.url, key),
+          cellStyle: `grid-column:span ${span};aspect-ratio:${s.isNarrow ? '4/3' : ratio};margin:0;background:#f0ede2`,
+          imgStyle: this.revealStyle(key, 'width:100%;height:100%;object-fit:cover;display:block')
+        };
+      }),
+      galNumStyle: `position:absolute;top:16px;left:18px;z-index:2;font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.16em;color:#fff;text-shadow:0 1px 12px rgba(0,0,0,0.45)`,
+      galCapStyle: `position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 18px;background:rgba(20,20,20,0.72);backdrop-filter:blur(6px)`,
+      galCapProject: `font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#fff`,
+      galCapZoom: `font-family:${SANS};font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:${TAN_DARK}`,
+      galCtaSection: 'display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;padding:0 56px 130px',
+
+      lightboxOpen: s.lightbox !== null,
+      lbCountText: `${String((s.lightbox || 0) + 1).padStart(2, '0')} / ${String(galPhotos.length).padStart(2, '0')}`,
+      lbProject: lbPhoto ? lbPhoto.project : '',
+      lbAlt: lbPhoto ? lbPhoto.alt : '',
+      lbImgRef: this.srcRef('lb_' + (s.lightbox || 0), lbPhoto ? lbPhoto.url : ''),
+      lbWrap: 'position:fixed;inset:0;z-index:400;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:26px;background:rgba(18,18,18,0.94);backdrop-filter:blur(10px);animation:pd-lb-in 0.32s ease both',
+      lbBar: 'position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 26px',
+      lbCount: `font-family:${SANS};font-size:11px;letter-spacing:0.14em;color:rgba(255,255,255,0.6)`,
+      lbTitle: `font-family:${SANS};font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#fff`,
+      lbCloseBtn: `font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#fff;background:transparent;border:1px solid rgba(255,255,255,0.35);padding:10px 14px;cursor:pointer;transition:background 0.3s ease,color 0.3s ease`,
+      lbCloseBtnHover: `font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:${INK};background:#fff;border:1px solid #fff;padding:10px 14px;cursor:pointer`,
+      lbImg: `max-width:min(1280px, 92vw);max-height:74vh;object-fit:contain;display:block;animation:pd-lb-img 0.5s cubic-bezier(.16,.85,.3,1) both`,
+      lbFoot: 'display:flex;align-items:center;gap:20px;max-width:min(1280px, 92vw);animation:pd-lb-rise 0.5s cubic-bezier(.16,.85,.3,1) 0.08s both',
+      lbCaption: `flex:1;font-family:${SERIF};font-size:14px;line-height:1.5;color:rgba(255,255,255,0.78);text-align:center`,
+      lbArrow: `width:46px;height:46px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(255,255,255,0.35);color:#fff;font-size:15px;cursor:pointer;transition:background 0.3s ease,color 0.3s ease,border-color 0.3s ease`,
+      lbArrowHover: `width:46px;height:46px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;background:#fff;border:1px solid #fff;color:${INK};font-size:15px;cursor:pointer`,
+      lbClose: () => this.lbClose(),
+      lbPrev: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.lbStep(-1); },
+      lbNext: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.lbStep(1); },
+      lbStop: (e) => { if (e && e.stopPropagation) e.stopPropagation(); },
+
+      watermarkPageGallery: this.watermark('GALLERY', 'page_gallery'),
+      watermarkPagePrivacy: this.watermark('PRIVACY', 'page_privacy'),
+      watermarkPage404: this.watermark('404', 'page_404'),
+      refFor_services_teaser: this.refFor('services_teaser'),
+      refFor_projects_teaser: this.refFor('projects_teaser'),
+      refFor_page_projects: this.refFor('page_projects'),
+      refFor_page_services: this.refFor('page_services'),
+      refFor_page_about: this.refFor('page_about'),
+      refFor_page_process: this.refFor('page_process'),
+      refFor_page_contact: this.refFor('page_contact'),
+      refFor_page_gallery: this.refFor('page_gallery'),
+      refFor_page_privacy: this.refFor('page_privacy'),
+      refFor_page_404: this.refFor('page_404'),
+
+      showDotNav: s.view === 'home' && !mob,
+      dotNavStyle: 'position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:45;display:flex;flex-direction:column;gap:2px;align-items:flex-end',
+      dotNav: HOME_SECTIONS.map((label, i) => {
+        const on = s.homeActive === i;
+        return {
+          label,
+          onClick: () => {
+            const secs = document.querySelectorAll('main section[aria-label]');
+            const el = secs[i];
+            if (el) window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 90, behavior: 'smooth' });
+          },
+          style: 'display:flex;align-items:center;justify-content:flex-end;gap:10px;background:none;border:0;padding:7px 0;cursor:pointer;width:auto',
+          hover: 'display:flex;align-items:center;justify-content:flex-end;gap:10px;background:none;border:0;padding:7px 0;cursor:pointer;width:auto;opacity:1',
+          labelStyle: `font-family:${SANS};font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:${on ? TAN_DARK : MUTED};opacity:${on ? 1 : 0};transform:translateX(${on ? '0' : '8px'});transition:opacity 0.35s ease,transform 0.35s cubic-bezier(.2,.7,.3,1),color 0.3s ease;white-space:nowrap`,
+          dotStyle: `display:block;width:${on ? 22 : 8}px;height:2px;background:${on ? TAN_DARK : '#cdc7bb'};transition:width 0.4s cubic-bezier(.2,.7,.3,1),background 0.3s ease;flex:0 0 auto`
+        };
+      }),
+
+      heroStyle: 'position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center',
+      heroImgStyle: `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(${s.heroIn ? 1 : 1.09});transition:transform 2.4s cubic-bezier(.16,.8,.3,1)`,
+      heroScrimStyle: 'position:absolute;inset:0;background:linear-gradient(0deg, rgba(20,20,20,0.32) 0%, rgba(20,20,20,0.08) 40%, rgba(20,20,20,0.22) 100%)',
+      heroContentStyle: 'position:relative;width:100%;padding:0 56px;box-sizing:border-box',
+      heroHeadlineStyle: `font-family:${SANS};font-weight:700;font-size:clamp(30px,5vw,82px);line-height:1.05;text-transform:uppercase;color:#ffffff;margin:0;display:flex;flex-direction:column`,
+      heroLineMask: 'display:block;overflow:hidden;white-space:nowrap',
+      heroLine1: `display:block;transform:translateY(${s.heroIn ? '0' : '105%'});transition:transform 1s cubic-bezier(.16,.85,.3,1) 120ms`,
+      heroLine2: `display:block;transform:translateY(${s.heroIn ? '0' : '105%'});transition:transform 1s cubic-bezier(.16,.85,.3,1) 260ms`,
+      heroRule: `width:100%;height:1px;background:rgba(255,255,255,0.75);margin:26px 0;transform:scaleX(${s.heroIn ? 1 : 0});transform-origin:left center;transition:transform 1.1s cubic-bezier(.16,.85,.3,1) 420ms`,
+      heroSubStyle: `font-size:17px;line-height:1.55;color:rgba(255,255,255,0.92);max-width:520px;margin:0 0 28px;opacity:${s.heroIn ? 1 : 0};transform:translateY(${s.heroIn ? '0' : '14px'});transition:opacity 0.8s ease 560ms,transform 0.8s cubic-bezier(.16,.85,.3,1) 560ms`,
+      outlineBtnLight: `${outlineBtnBase};color:#ffffff;border-color:rgba(255,255,255,0.65)`,
+      heroBtnStyle: `${outlineBtnBase};color:#ffffff;border-color:rgba(255,255,255,0.65);opacity:${s.heroIn ? 1 : 0};transform:translateY(${s.heroIn ? '0' : '14px'});transition:opacity 0.8s ease 700ms,transform 0.8s cubic-bezier(.16,.85,.3,1) 700ms,background 0.3s ease,color 0.3s ease,border-color 0.3s ease`,
+      outlineBtnLightHover: outlineBtnHoverBase,
+      outlineBtnDark: `${outlineBtnBase};color:${INK}`,
+      outlineBtnDarkHover: outlineBtnHoverBase,
+      outlineBtnDarkBlock: `${outlineBtnBase};color:${INK};width:100%;justify-content:center;margin-top:8px`,
+      outlineBtnDarkBlockHover: `${outlineBtnHoverBase};width:100%;justify-content:center;margin-top:8px`,
+      scrollCueStyle: 'position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px',
+      scrollCueLabelStyle: 'font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.85)',
+      scrollCueLineStyle: 'width:1px;height:40px;background:rgba(255,255,255,0.6)',
+
+      introSectionStyle: 'display:flex;gap:80px;padding:150px 56px;flex-wrap:wrap;align-items:center',
+      introTextColStyle: 'flex:1 1 460px;min-width:280px;display:flex;flex-direction:column;gap:14px',
+      introHeadlineStyle: `font-family:${SERIF};font-weight:600;font-size:clamp(26px,3.2vw,38px);line-height:1.2;color:${INK};margin:0`,
+      introImgColStyle: 'flex:1 1 460px;min-width:280px;overflow:hidden',
+      introImgRef: this.revealRef('intro_img'),
+      introImgStyle: this.revealStyle('intro_img', 'width:100%;height:100%;min-height:360px;object-fit:cover;display:block'),
+      bodyLgStyle: `font-family:${SERIF};font-size:17px;line-height:1.7;color:${BODY_C};margin:0;max-width:52ch`,
+      bodyStyle: `font-family:${SERIF};font-size:15px;line-height:1.7;color:${BODY_C};margin:0`,
+      tanRule: `width:100%;max-width:420px;height:1px;background:${TAN};margin:2px 0 10px`,
+      tanRuleThin: `width:64px;height:1px;background:${TAN};margin:2px 0 8px`,
+
+      sectionPad: 'padding:0 56px 130px',
+      sectionHeadlineStyle: `font-family:${SERIF};font-weight:600;font-size:clamp(24px,2.8vw,34px);color:${INK};margin:0 0 40px`,
+      metaLineStyle: `font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:${MUTED};margin:0`,
+      projectTitleStyle: `font-family:${SERIF};font-weight:600;font-size:26px;color:${INK};margin:6px 0 0`,
+
+      teaserSection: 'padding:0 56px 170px;position:relative',
+      teaserRow: 'display:flex;gap:56px;align-items:stretch;flex-wrap:wrap;position:relative;z-index:2;background:#fff',
+      teaserImgCol: 'flex:1 1 460px;min-width:280px;overflow:hidden',
+      teaserServicesImgRef: this.revealRef('teaser_services'),
+      teaserServicesImg: this.revealStyle('teaser_services', 'width:100%;height:100%;min-height:320px;object-fit:cover;display:block'),
+      teaserTextCol: 'flex:1 1 380px;min-width:280px;display:flex;flex-direction:column;justify-content:center;gap:8px',
+      subHeadStyle: `font-family:${SERIF};font-weight:600;font-size:22px;color:${INK};margin:0`,
+
+      featuredProjects: projects.slice(0, 4),
+      allProjects: projects,
+      selectedProject,
+
+      aboutHeroImgRef: this.revealRef('about_hero'),
+      aboutHeroImg: this.revealStyle('about_hero', 'width:100%;height:100%;min-height:340px;object-fit:cover;display:block'),
+      aboutHeroMeta: [
+        { num: 'Family', label: 'Owned & Operated' },
+        { num: '12+', label: 'Years Building' },
+        { num: '1', label: 'Point of Contact' }
+      ],
+      aboutTimelineSection: 'padding:110px 56px 0',
+      aboutTimelineTrack: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:#e6e1d8;border-top:1px solid #e6e1d8',
+      aboutMilestone: 'background:#fff;padding:28px 24px 32px;display:flex;flex-direction:column;gap:8px',
+      aboutMilestoneYear: `font-family:${SANS};font-weight:700;font-size:12px;letter-spacing:0.12em;color:${TAN_DARK}`,
+      aboutMilestoneDot: `width:9px;height:9px;background:${TAN};margin:2px 0 6px`,
+      aboutMilestoneTitle: `font-family:${SANS};font-weight:600;font-size:17px;color:${INK};margin:0;letter-spacing:-0.01em`,
+      milestones: MILESTONES.map(([year, title, body]) => ({ year, title, body })),
+
+      aboutTeamSection: 'padding:110px 56px 0',
+      aboutTeamGrid: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px',
+      aboutTeamCard: 'display:flex;flex-direction:column;gap:6px;align-items:flex-start',
+      aboutTeamPhoto: 'width:100%;aspect-ratio:3/4;margin-bottom:10px',
+      aboutTeamName: `font-family:${SANS};font-weight:600;font-size:19px;color:${INK};margin:2px 0 0;letter-spacing:-0.01em`,
+      team: TEAM.map(([name, role, body], i) => ({ name, role, body, slotId: 'slot-team-' + i })),
+
+      credentials: CREDENTIALS,
+      aboutCtaImgRef: this.revealRef('about_cta'),
+      aboutCtaImg: this.revealStyle('about_cta', 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover'),
+
+      processHeroImgRef: this.revealRef('prc_hero'),
+      processHeroImg: this.revealStyle('prc_hero', 'width:100%;height:100%;min-height:340px;object-fit:cover;display:block'),
+      prcRailRef: this.refFor('prc_rail'),
+      prcFlowWrap: `position:relative;padding-left:${mob ? 0 : '96px'}`,
+      prcRailTrack: `position:absolute;left:33px;top:14px;bottom:14px;width:2px;background:#eae5db;display:${mob ? 'none' : 'block'}`,
+      prcRailFill: `position:absolute;left:33px;top:14px;width:2px;height:calc((100% - 28px) * ${(s.prcFill / 100).toFixed(4)});background:linear-gradient(180deg, ${TAN} 0%, ${TAN_DARK} 100%);display:${mob ? 'none' : 'block'};transition:height 0.15s linear`,
+
+      prcTrackerWrap: `position:sticky;top:${s.navCompact ? 58 : 74}px;z-index:40;background:rgba(255,255,255,0.93);backdrop-filter:blur(10px);border-top:1px solid #e6e1d8;border-bottom:1px solid #e6e1d8;margin-bottom:8px;transition:top 0.35s cubic-bezier(.2,.7,.3,1)`,
+      prcTrackerInner: `padding:${mob ? '14px 22px' : '18px 56px'};display:flex;flex-direction:column;gap:12px;max-width:1440px;margin:0 auto`,
+      prcTrackerTop: 'display:flex;align-items:baseline;gap:14px;flex-wrap:wrap',
+      prcTrackerLabel: `font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${TAN_DARK}`,
+      prcTrackerName: `font-family:${SANS};font-weight:600;font-size:15px;color:${INK};letter-spacing:-0.01em`,
+      prcTrackerPct: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;color:${MUTED};margin-left:auto`,
+      prcTrackerBarBg: 'position:relative;width:100%;height:2px;background:#eae5db',
+      prcTrackerBarFill: `position:absolute;left:0;top:0;height:2px;width:${s.prcFill}%;background:${TAN_DARK};transition:width 0.15s linear`,
+      prcTrackerSegs: `display:${mob ? 'none' : 'grid'};grid-template-columns:repeat(6,1fr);gap:1px;background:#eae5db;border:1px solid #eae5db;margin-top:2px`,
+      prcActiveLabel: '0' + (Math.max(0, s.prcActive) + 1),
+      prcActiveName: PROCESS_DETAIL[Math.max(0, s.prcActive)][0],
+      prcFillLabel: Math.round(s.prcFill) + '% complete',
+      prcSegments: PROCESS_DETAIL.map(([title], i) => {
+        const done = i < s.prcActive, on = i === s.prcActive;
+        const base = 'padding:10px 12px;display:flex;flex-direction:column;gap:4px;border:0;cursor:pointer;text-align:left;min-width:0;transition:background 0.3s ease';
+        return {
+          num: '0' + (i + 1), title,
+          onClick: () => {
+            const el = this._refs['prcphase_' + i];
+            if (el) window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 200, behavior: 'smooth' });
+          },
+          style: `${base};background:${on ? '#faf6ee' : '#fff'}`,
+          hover: `${base};background:#faf6ee`,
+          numStyle: `font-family:${SANS};font-size:9px;font-weight:700;letter-spacing:0.14em;color:${on || done ? TAN_DARK : '#c2beb6'}`,
+          nameStyle: `font-family:${SANS};font-size:11px;font-weight:${on ? 600 : 500};color:${on ? INK : done ? BODY_C : MUTED};white-space:nowrap;overflow:hidden;text-overflow:ellipsis`
+        };
+      }),
+
+      processDetail: PROCESS_DETAIL.map(([title, body, deliverables, duration], i) => {
+        const done = i <= s.prcActive;
+        const key = 'prcstep_' + i;
+        const on = !!s.revealed[key];
+        return {
+          num: '0' + (i + 1), title, body, duration,
+          ref: (el) => {
+            this._refs['prcphase_' + i] = el;
+            this.revealRef(key)(el);
+          },
+          rowStyle: `position:relative;display:flex;gap:${mob ? '18px' : '28px'};padding:${mob ? '26px 0' : '40px 0'};opacity:${on ? 1 : 0};transform:translateY(${on ? '0' : '30px'});transition:opacity 0.7s cubic-bezier(.2,.7,.3,1),transform 0.8s cubic-bezier(.2,.7,.3,1)`,
+          dotOuter: `position:absolute;left:${mob ? -1 : -78}px;top:${mob ? -8 : 44}px;width:30px;height:30px;border-radius:50%;background:#fff;border:2px solid ${done ? TAN_DARK : '#e0dbd1'};display:${mob ? 'none' : 'flex'};align-items:center;justify-content:center;transition:border-color 0.4s ease,transform 0.4s cubic-bezier(.2,.7,.3,1);transform:scale(${i === s.prcActive ? 1.15 : 1})`,
+          dotInner: `width:${done ? 10 : 6}px;height:${done ? 10 : 6}px;border-radius:50%;background:${done ? TAN_DARK : '#e0dbd1'};transition:all 0.4s ease`,
+          numStyle: `font-family:${SANS};font-weight:700;font-size:${mob ? '22px' : '30px'};color:${done ? TAN_DARK : '#d6d1c7'};letter-spacing:-0.02em;line-height:1;flex:0 0 auto;transition:color 0.4s ease`,
+          bodyColStyle: 'display:flex;flex-direction:column;gap:10px;flex:1;min-width:0',
+          headRow: 'display:flex;align-items:center;gap:14px;flex-wrap:wrap',
+          titleStyle: `font-family:${SANS};font-weight:600;font-size:${mob ? '18px' : '22px'};color:${INK};margin:0;letter-spacing:-0.015em`,
+          durPill: `font-family:${SANS};font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:${TAN_DARK};border:1px solid ${TAN};padding:5px 10px;white-space:nowrap`,
+          chips: deliverables.map((label, j) => ({
+            label,
+            style: `font-family:${SANS};font-size:11px;letter-spacing:0.05em;color:${INK};border:1px solid #e6e1d8;padding:7px 12px;background:#faf8f4;opacity:${on ? 1 : 0};transform:translateY(${on ? '0' : '10px'});transition:opacity 0.5s ease ${180 + j * 90}ms,transform 0.5s cubic-bezier(.2,.7,.3,1) ${180 + j * 90}ms`
+          }))
+        };
+      }),
+      prcRailCol: `flex:0 0 ${mob ? 'auto' : '52px'};display:flex;flex-direction:column;align-items:flex-start;position:relative`,
+      prcBodyCol: 'display:flex;flex-direction:column;gap:10px;flex:1',
+      prcDeliverRow: 'display:flex;flex-direction:column;gap:8px;margin-top:6px',
+      prcDeliverLabel: `font-family:${SANS};font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:${MUTED}`,
+      prcChipRow: 'display:flex;gap:8px;flex-wrap:wrap',
+
+      cadenceItems: CADENCE,
+      prcCtaImgRef: this.revealRef('prc_cta'),
+      prcCtaImg: this.revealStyle('prc_cta', 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover'),
+
+      baSection: 'padding:0 56px 130px',
+      baFrame: `position:relative;width:100%;aspect-ratio:16/9;min-height:300px;overflow:hidden;background:#f2efe9;cursor:${s.baDragging ? 'grabbing' : 'ew-resize'};touch-action:none;user-select:none`,
+      baAfterImg: 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block',
+      baBeforeImg: `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;clip-path:inset(0 ${100 - s.baPct}% 0 0);filter:grayscale(0.85) contrast(0.95)`,
+      baLabelBefore: `position:absolute;top:18px;left:18px;z-index:3;font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#fff;background:rgba(20,20,20,0.6);padding:7px 12px;pointer-events:none;opacity:${s.baPct > 12 ? 1 : 0};transition:opacity 0.25s ease`,
+      baLabelAfter: `position:absolute;top:18px;right:18px;z-index:3;font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${INK};background:${TAN};padding:7px 12px;pointer-events:none;opacity:${s.baPct < 88 ? 1 : 0};transition:opacity 0.25s ease`,
+      baDivider: `position:absolute;top:0;bottom:0;left:${s.baPct}%;width:2px;background:${TAN};z-index:4;pointer-events:none;display:flex;align-items:center;justify-content:center`,
+      baHandle: `width:${s.baDragging ? 56 : 48}px;height:${s.baDragging ? 56 : 48}px;background:${TAN};display:flex;align-items:center;justify-content:center;gap:5px;flex:0 0 auto;transition:width 0.2s ease,height 0.2s ease;box-shadow:0 6px 20px -8px rgba(20,20,20,0.6)`,
+      baHandleArrow: `font-family:${SANS};font-size:13px;color:${INK};line-height:1`,
+      baCaption: `display:block;font-family:${SANS};font-size:11px;letter-spacing:0.04em;color:${MUTED};margin-top:14px`,
+      baDown: (e) => this.baDown(e),
+      baMove: (e) => this.baMove(e),
+      baUp: () => this.baUp(),
+
+      cmpSection: 'padding:0 56px 130px',
+      cmpTable: 'display:flex;flex-direction:column;border:1px solid #e6e1d8',
+      cmpHeadRow: `display:${s.isNarrow ? 'none' : 'grid'};grid-template-columns:1.1fr 1.3fr 1fr;gap:0;background:#faf8f4;border-bottom:1px solid #e6e1d8`,
+      cmpHeadCell: 'padding:16px 20px',
+      cmpHeadUs: `padding:16px 20px;font-family:${SANS};font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:${INK};border-left:1px solid #e6e1d8`,
+      cmpHeadThem: `padding:16px 20px;font-family:${SANS};font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:${MUTED};border-left:1px solid #e6e1d8`,
+      cmpLabel: `padding:20px;font-family:${SANS};font-weight:600;font-size:14px;color:${INK};line-height:1.4`,
+      cmpUs: `padding:20px;font-family:${SERIF};font-size:14px;line-height:1.6;color:${BODY_C};border-left:${s.isNarrow ? 'none' : '1px solid #e6e1d8'};display:flex;gap:9px;align-items:flex-start`,
+      cmpThem: `padding:${s.isNarrow ? '0 20px 20px' : '20px'};font-family:${SERIF};font-size:14px;line-height:1.6;color:${MUTED};border-left:${s.isNarrow ? 'none' : '1px solid #e6e1d8'}`,
+      cmpTick: `color:${TAN_DARK};font-family:${SANS};font-size:13px;flex:0 0 auto;line-height:1.5`,
+      comparisons: COMPARISONS.map(([label, us, them], i) => ({
+        label, us, them,
+        rowStyle: `display:grid;grid-template-columns:${s.isNarrow ? '1fr' : '1.1fr 1.3fr 1fr'};gap:0;${i === COMPARISONS.length - 1 ? '' : 'border-bottom:1px solid #e6e1d8;'}transition:background 0.25s ease`,
+        rowHover: `display:grid;grid-template-columns:${s.isNarrow ? '1fr' : '1.1fr 1.3fr 1fr'};gap:0;${i === COMPARISONS.length - 1 ? '' : 'border-bottom:1px solid #e6e1d8;'}background:#faf8f4`
+      })),
+
+      mqSection: 'padding:0 0 120px',
+      mqViewport: 'position:relative;overflow:hidden;border-top:1px solid #e6e1d8;border-bottom:1px solid #e6e1d8;padding:26px 0',
+      mqTrack: 'display:flex;gap:0;width:max-content;will-change:transform',
+      mqItems: (() => {
+        const words = ['Structural Steel', 'Board-Formed Concrete', 'Window Walls', 'White Oak', 'Blackened Steel', 'Polished Concrete', 'Plaster', 'Cast Stone', 'Linear Lighting', 'Thermal Glazing'];
+        const dup = words.concat(words);
+        return dup.map((label, i) => ({
+          label,
+          style: `font-family:${SANS};font-weight:600;font-size:${mob ? '17px' : '25px'};letter-spacing:-0.01em;text-transform:uppercase;color:${i % 3 === 1 ? TAN : 'transparent'};-webkit-text-stroke:${i % 3 === 1 ? '0' : '1px ' + TAN};padding:0 26px;white-space:nowrap`
+        }));
+      })(),
+      mqFadeL: 'position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,0) 100%);pointer-events:none',
+      mqFadeR: 'position:absolute;right:0;top:0;bottom:0;width:120px;background:linear-gradient(270deg,#fff 0%,rgba(255,255,255,0) 100%);pointer-events:none',
+
+      marqueeSection: `position:relative;overflow:hidden;border-top:1px solid #e6e1d8;border-bottom:1px solid #e6e1d8;padding:${mob ? '22px' : '30px'} 0;margin-bottom:130px;background:#faf8f4`,
+      marqueeTrack: 'display:flex;align-items:center;gap:0;width:max-content;will-change:transform',
+      marqueeItems: (() => {
+        const words = ['Preconstruction', 'Ground-Up Construction', 'Architectural Estates', 'Commercial Buildouts', 'Major Renovations', 'Construction Management', 'Design-Build', 'Tenant Improvements'];
+        const doubled = words.concat(words);
+        return doubled.map((label, i) => ({
+          label: i % 2 ? label : label,
+          style: `font-family:${SANS};font-weight:600;font-size:${mob ? '15px' : '21px'};letter-spacing:-0.01em;text-transform:uppercase;color:${i % 2 ? 'transparent' : INK};-webkit-text-stroke:${i % 2 ? `1px ${TAN}` : '0'};padding:0 ${mob ? '18px' : '30px'};white-space:nowrap;flex:0 0 auto`
+        }));
+      })(),
+
+      processPreviewSection: 'padding:0 56px 130px',
+      processPreviewHead: 'display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:56px',
+      processTrackWrap: 'position:relative;padding-top:8px',
+      processTrackLine: `position:absolute;left:0;right:0;top:14px;height:2px;background:linear-gradient(90deg,#eae5db 0%,#eae5db 100%);transform:scaleX(${s.revealed['hproc_0'] ? 1 : 0});transform-origin:left center;transition:transform 1.1s cubic-bezier(.2,.7,.3,1) 120ms;display:${mob ? 'none' : 'block'}`,
+      processTrackGrid: `display:grid;grid-template-columns:repeat(${mob ? 1 : 6},1fr);gap:${mob ? '26px' : '20px'}`,
+      processDot: `width:12px;height:12px;border-radius:50%;background:${TAN};position:relative;z-index:2;margin-bottom:16px;box-shadow:0 0 0 5px #fff`,
+      processDotNum: `font-family:${SANS};font-weight:700;font-size:11px;letter-spacing:0.14em;color:${TAN_DARK}`,
+      processDotTitle: `font-family:${SANS};font-weight:600;font-size:15px;color:${INK};margin:0;line-height:1.35;letter-spacing:-0.01em`,
+      homeProcessCells: PROCESS_DETAIL.map(([title, , , duration], i) => {
+        const on = !!s.revealed['hproc_' + i];
+        const d = 200 + i * 120;
+        return {
+          num: '0' + (i + 1), title, duration,
+          ref: this.revealRef('hproc_' + i),
+          cardR: `display:flex;flex-direction:column;gap:6px;position:relative;min-width:0;opacity:${on ? 1 : 0};transform:translateY(${on ? '0' : '-22px'});transition:opacity 0.5s ease ${d}ms,transform 0.72s cubic-bezier(.34,1.56,.5,1) ${d}ms`
+        };
+      }),
+      homeProcessDur: `font-family:${SANS};font-size:11px;letter-spacing:0.04em;color:${MUTED};margin-top:6px;display:block`,
+
+      ctcNextSection: 'padding:0 56px 130px',
+      ctcNextGrid: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:#e6e1d8;border:1px solid #e6e1d8',
+      ctcNextCell: 'background:#fff;padding:34px 30px 30px;display:flex;flex-direction:column;gap:10px',
+      ctcNextWhen: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${TAN_DARK};margin-top:6px`,
+      nextSteps: [
+        { num: '01', title: 'We read it properly', body: 'Your inquiry goes to the principal, not a queue. If it isn\u2019t a fit, we say so and point you somewhere better.', when: 'Within 1 business day' },
+        { num: '02', title: 'A short call', body: 'Twenty minutes on scope, site, timeline, and budget range \u2014 enough to know whether a site walk is worth both our time.', when: 'Within the first week' },
+        { num: '03', title: 'Site walk & rough range', body: 'We walk the property, review any drawings you have, and follow up with an order-of-magnitude range in writing.', when: '1\u20132 weeks' }
+      ],
+
+      ctcOfficeSection: 'padding:0 56px 130px',
+      ctcOfficeInner: 'display:flex;gap:72px;flex-wrap:wrap;align-items:flex-start;border-top:1px solid #e6e1d8;padding-top:56px',
+      ctcOfficeCol: 'flex:1 1 360px;min-width:280px;display:flex;flex-direction:column;gap:12px;align-items:flex-start',
+      ctcMapCol: 'flex:1 1 420px;min-width:300px',
+      ctcMapSlot: 'width:100%;aspect-ratio:4/3',
+      ctcHoursList: 'display:flex;flex-direction:column;width:100%;max-width:380px;margin-top:8px;border-top:1px solid #e6e1d8',
+      ctcHoursRow: 'display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid #e6e1d8',
+      ctcHoursDay: `font-family:${SANS};font-size:13px;color:${INK}`,
+      ctcHoursVal: `font-family:${SANS};font-size:13px;color:${MUTED}`,
+      officeHours: [
+        { day: 'Monday \u2013 Friday', hours: '7:00 AM \u2013 5:00 PM' },
+        { day: 'Saturday', hours: 'By appointment' },
+        { day: 'Sunday', hours: 'Closed' }
+      ],
+
+      homeAreaSection: 'padding:0 56px 140px',
+      homeAreaInner: 'display:flex;gap:64px;flex-wrap:wrap;align-items:flex-start;border-top:1px solid #e6e1d8;padding-top:56px',
+      homeAreaTextCol: 'flex:1 1 340px;min-width:280px;display:flex;flex-direction:column;gap:12px;align-items:flex-start',
+      homeAreaGrid: 'flex:1 1 460px;min-width:300px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start',
+      homeAreaChip: `font-family:${SANS};font-size:12px;letter-spacing:0.05em;color:${INK};border:1px solid #e6e1d8;padding:11px 16px;background:#faf8f4`,
+      serviceAreas: ['Beverly Hills', 'Santa Monica', 'Manhattan Beach', 'Pasadena', 'Culver City', 'Studio City', 'Brentwood', 'Silver Lake', 'Malibu', 'Greater metro \u2014 placeholder'],
+
+      eyebrowLightStyle: `font-family:${SANS};font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:${TAN};display:block;margin-bottom:14px`,
+      tmSection: 'padding:130px 0',
+      tmHeadRow: 'display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;padding:0 56px;margin-bottom:52px',
+      tmHeadCol: 'max-width:560px',
+      tmBeltMask: 'overflow:hidden;-webkit-mask-image:linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);mask-image:linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)',
+      tmBeltTrack: 'display:flex;gap:24px;width:max-content;padding:0 56px;will-change:transform',
+      tmCardStyle: `width:${mob ? 300 : 372}px;flex-shrink:0;box-sizing:border-box;display:flex;flex-direction:column;gap:26px;background:#ffffff;border:1px solid #e6e1d8;padding:38px 34px`,
+      tmText: `font-family:${SERIF};font-size:${mob ? 16 : 17}px;line-height:1.58;color:${INK};margin:0;text-wrap:pretty`,
+      tmCardFoot: 'display:flex;align-items:center;gap:14px;margin-top:auto;padding-top:22px;border-top:1px solid #ebe6dc',
+      tmAvatar: 'width:46px;height:46px;flex-shrink:0;object-fit:cover;display:block;filter:grayscale(1);background:#f0ede2',
+      tmAttrCol: 'display:flex;flex-direction:column;gap:3px;min-width:0',
+      tmAttrName: `font-family:${SANS};font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:${INK}`,
+      tmAttrRole: `font-family:${SANS};font-size:12px;letter-spacing:0.04em;color:${MUTED}`,
+      quoteBelt: QUOTES.concat(QUOTES).map((q, i) => ({ ...q, avatarRef: this.srcRef('tmav_' + i, q.avatar) })),
+      quotePause: () => { this._quotePaused = true; },
+      quoteResume: () => { this._quotePaused = false; },
+
+      marqueeWrap: 'position:relative;overflow:hidden;border-top:1px solid #e6e1d8;border-bottom:1px solid #e6e1d8;padding:18px 0;margin-bottom:110px;background:#faf8f4',
+      marqueeTrack: 'display:flex;width:max-content;gap:0;will-change:transform',
+      marqueeItem: `font-family:${SANS};font-weight:600;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:${MUTED};padding:0 34px;white-space:nowrap;display:inline-flex;align-items:center;gap:34px`,
+      marqueeItems: (() => {
+        const words = ['Preconstruction', 'Ground-Up Construction', 'Custom Residences', 'Commercial Buildouts', 'Major Renovations', 'Construction Management', 'Design-Build', 'Tenant Improvements'];
+        return words.concat(words).map((label, i) => ({ label: (i % 2 ? '\u2014 ' : '') + label }));
+      })(),
+
+      homeCapSection: 'padding:0 56px 130px',
+      homeCapHead: 'display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:40px',
+      homeCapGrid: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px',
+
+      faqSection: 'padding:0 56px 140px',
+      faqInner: 'display:flex;gap:64px;flex-wrap:wrap;align-items:flex-start',
+      faqTextCol: 'flex:1 1 320px;min-width:280px;display:flex;flex-direction:column;gap:12px;align-items:flex-start',
+      faqListCol: 'flex:1 1 520px;min-width:300px;border-top:1px solid #e6e1d8',
+      faqAnswer: `font-family:${SERIF};font-size:15px;line-height:1.75;color:${BODY_C};margin:0;padding:0 18px 24px 0;max-width:60ch`,
+      faqs: FAQS.map(([question, answer], i) => {
+        const open = s.openFaq === i;
+        return {
+          question, answer,
+          toggle: () => this.setState(x => ({ openFaq: x.openFaq === i ? -1 : i })),
+          rowStyle: `border-bottom:1px solid #e6e1d8;background:${open ? '#faf8f4' : 'transparent'};transition:background 0.3s ease`,
+          headStyle: 'width:100%;display:flex;align-items:center;gap:18px;padding:20px 18px 20px 0;background:none;border:0;cursor:pointer;text-align:left',
+          headHover: 'width:100%;display:flex;align-items:center;gap:18px;padding:20px 18px 20px 0;background:#faf8f4;border:0;cursor:pointer;text-align:left',
+          titleStyle: `font-family:${SANS};font-weight:600;font-size:15px;color:${open ? TAN_DARK : INK};flex:1;line-height:1.4;transition:color 0.25s ease`,
+          iconStyle: `font-family:${SANS};font-size:20px;color:${open ? TAN_DARK : MUTED};transform:rotate(${open ? 45 : 0}deg);transition:transform 0.35s cubic-bezier(.2,.7,.3,1),color 0.25s ease;line-height:1`,
+          panelStyle: `overflow:hidden;max-height:${open ? 260 : 0}px;opacity:${open ? 1 : 0};transition:max-height 0.45s cubic-bezier(.2,.7,.3,1),opacity 0.35s ease`
+        };
+      }),
+
+      prjIntroSection: 'display:flex;gap:72px;padding:24px 56px 100px;flex-wrap:wrap;position:relative;z-index:2;background:#fff;align-items:flex-end',
+      prjIntroCol: 'flex:1 1 480px;min-width:300px;display:flex;flex-direction:column;gap:12px',
+      prjStatCol: 'flex:1 1 320px;min-width:280px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e6e1d8;border:1px solid #e6e1d8',
+      prjStatCell: 'background:#fff;padding:24px 20px;display:flex;flex-direction:column;gap:4px',
+      prjStatNum: `font-family:${SANS};font-weight:700;font-size:clamp(24px,2.6vw,32px);color:${INK};line-height:1`,
+
+      featureProject: featureProject,
+      prjFeatureSection: 'padding:0 56px 100px',
+      prjFeatureFrame: 'position:relative;overflow:hidden;width:100%;aspect-ratio:21/9;min-height:320px;display:flex;align-items:flex-end',
+      prjFeatureImgRef: this.revealRef('prj_feature'),
+      prjFeatureImgSrcRef: this.srcRef('prj_feature', featureProject.img, 'prj_feature'),
+      prjFeatureImg: this.revealStyle('prj_feature', 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover'),
+      prjFeatureScrim: 'position:absolute;inset:0;background:linear-gradient(0deg, rgba(20,20,20,0.8) 0%, rgba(20,20,20,0.12) 65%)',
+      prjFeatureOverlay: 'position:relative;z-index:2;padding:40px 44px;display:flex;flex-direction:column;gap:8px;align-items:flex-start',
+      prjFeatureTag: `font-family:${SANS};font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:${TAN};border:1px solid ${TAN};padding:5px 10px`,
+      prjFeatureTitle: `font-family:${SANS};font-weight:600;overflow-wrap:break-word;font-size:clamp(23px,3.6vw,44px);color:#fff;margin:8px 0 0;letter-spacing:-0.015em`,
+      prjFeatureMeta: 'font-size:13px;letter-spacing:0.04em;text-transform:uppercase;color:rgba(255,255,255,0.82);margin:0 0 14px',
+
+      prjFilterBar: 'display:flex;align-items:center;gap:24px;padding:0 0 28px;flex-wrap:wrap;border-bottom:1px solid #e6e1d8;margin:0 56px 56px',
+      prjFilterLabel: `font-family:${SANS};font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:${MUTED}`,
+      prjFilterRow: 'display:flex;gap:8px;flex-wrap:wrap;flex:1',
+      prjResultCount: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${MUTED}`,
+      filters,
+      visibleCount: visibleProjects.length,
+      visibleProjects,
+      prjListSection: 'padding:0 56px 130px',
+      prjRowTitle: `font-family:${SANS};font-weight:600;font-size:clamp(22px,2.4vw,30px);color:${INK};margin:6px 0 0;letter-spacing:-0.015em`,
+      prjSpecRow: 'display:flex;gap:28px;flex-wrap:wrap;margin:6px 0 10px',
+      prjSpecCell: 'display:flex;flex-direction:column;gap:3px',
+      prjSpecVal: `font-family:${SANS};font-size:13px;color:${INK}`,
+
+      prjQuoteBand: 'padding:120px 56px;background:#faf8f4;border-top:1px solid #e6e1d8;border-bottom:1px solid #e6e1d8',
+      prjQuoteInner: 'max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:10px;align-items:flex-start',
+      prjQuoteText: `font-family:${SERIF};font-weight:400;overflow-wrap:break-word;font-size:clamp(20px,3vw,34px);line-height:1.4;color:${INK};margin:0;max-width:26ch;text-wrap:pretty`,
+      prjQuoteAttr: `font-family:${SANS};font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:${MUTED};margin:22px 0 0`,
+      prjQuoteMark: `font-family:${SERIF};font-size:64px;line-height:0.55;color:${TAN};display:block;margin-bottom:6px`,
+
+      prjCtaImgRef: this.revealRef('prj_cta'),
+      prjCtaImg: this.revealStyle('prj_cta', 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover'),
+
+      whySection: 'padding:0 56px 150px',
+      whyGrid: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:#e6e1d8;margin-top:44px;border:1px solid #e6e1d8',
+      whyCardStyle: 'background:#ffffff;padding:44px 32px;display:flex;flex-direction:column;gap:12px;transition:background 0.35s ease',
+      whyCardStyleHover: 'background:#faf8f3;padding:44px 32px;display:flex;flex-direction:column;gap:12px;transition:background 0.35s ease',
+      whyNumStyle: `font-family:${SERIF};font-size:13px;color:${TAN_DARK}`,
+      whyTitleStyle: `font-family:${SERIF};font-weight:600;font-size:19px;color:${INK};margin:0`,
+      whyPrinciples: WHY.map(([title, body], i) => ({
+        num: '0' + (i + 1), title, body,
+        ref: this.revealRef('why_' + i),
+        cardR: this.cardReveal('why_' + i, i, 'background:#ffffff;padding:44px 32px;display:flex;flex-direction:column;gap:12px;min-height:100%'),
+        cardHoverR: this.cardReveal('why_' + i, i, 'background:#faf8f3;padding:44px 32px;display:flex;flex-direction:column;gap:12px;min-height:100%')
+      })),
+
+      statsRowRef: this.revealRef('stats_row'),
+      stats: STATS.map(({ value, suffix, label }, i) => {
+        const raw = s.statProgress || 0;
+        const pi = Math.max(0, Math.min(1, (raw - i * 0.07) / 0.79));
+        let n = Math.round(value * pi);
+        if (pi > 0 && pi < 0.42) n = Math.max(1, Math.floor(value * (0.15 + Math.random() * 0.95)));
+        const on = !!s.revealed['stats_row'];
+        const d = Math.min(i, 4) * 80;
+        return {
+          num: n + (suffix || ''), shown: n + (suffix || ''), label,
+          cardStyle: `padding:44px 20px;text-align:center;border-left:1px solid #e6e1d8;display:flex;flex-direction:column;gap:6px;min-width:0;opacity:${on ? 1 : 0};transform:translateY(${on ? '0' : '18px'});transition:opacity 0.6s cubic-bezier(.2,.7,.3,1) ${d}ms,transform 0.7s cubic-bezier(.2,.7,.3,1) ${d}ms`
+        };
+      }),
+      statsSection: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));border-top:1px solid #e6e1d8;border-bottom:1px solid #e6e1d8;margin:0 0 150px',
+      statCard: 'padding:44px 20px;text-align:center;border-left:1px solid #e6e1d8;display:flex;flex-direction:column;gap:6px;min-width:0',
+      statNumStyle: `font-family:${SANS};font-weight:700;font-size:clamp(26px,3.6vw,46px);color:${INK};font-variant-numeric:tabular-nums;line-height:1`,
+      statLabelStyle: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${MUTED}`,
+      eyebrowStyle: `font-family:${SANS};font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:${TAN_DARK};display:block;margin-bottom:10px`,
+
+      splitSection: 'display:flex;gap:1px;background:#e6e1d8;flex-wrap:wrap;margin-bottom:0',
+      splitCol: 'flex:1 1 420px;min-width:300px;background:#ffffff;padding:64px 56px 72px;display:flex;flex-direction:column;gap:12px',
+      splitImgWrap: 'width:100%;aspect-ratio:16/10;overflow:hidden;margin-bottom:12px',
+      splitResidentialRef: this.revealRef('split_residential'),
+      splitResidentialImg: this.revealStyle('split_residential', 'width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease'),
+      splitResidentialImgHover: this.revealStyle('split_residential', 'width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;transform:scale(1.06)'),
+      splitCommercialRef: this.revealRef('split_commercial'),
+      splitCommercialImg: this.revealStyle('split_commercial', 'width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease'),
+      splitCommercialImgHover: this.revealStyle('split_commercial', 'width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;transform:scale(1.06)'),
+      splitTitle: `font-family:${SERIF};font-weight:600;font-size:23px;color:${INK};margin:0`,
+
+      ctaSection: 'position:relative;overflow:hidden;padding:170px 56px;text-align:left;color:#ffffff;display:flex;align-items:flex-end',
+      ctaImgRef: this.revealRef('cta_img'),
+      ctaImgStyle: this.revealStyle('cta_img', 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover'),
+      ctaScrimStyle: 'position:absolute;inset:0;background:linear-gradient(100deg, rgba(20,20,20,0.82) 0%, rgba(20,20,20,0.55) 55%, rgba(20,20,20,0.35) 100%)',
+      ctaContentStyle: 'position:relative;z-index:2',
+      ctaHeadline: `font-family:${SERIF};font-weight:600;overflow-wrap:break-word;font-size:clamp(26px,4.6vw,52px);margin:0 0 18px;max-width:820px`,
+      ctaBody: 'font-size:16px;margin:0 0 32px;opacity:0.9;max-width:520px',
+      ctaBtnRow: 'display:flex;align-items:center;gap:28px;flex-wrap:wrap',
+      ctaLink: 'color:#ffffff;font-size:14px;text-decoration:underline;display:flex;align-items:center;gap:8px',
+
+      pageHeaderWrap: 'padding:72px 56px 0',
+      pageHeaderRow: 'display:flex;gap:72px;align-items:stretch;flex-wrap:wrap;padding:0 56px 48px;position:relative;z-index:2;background:#fff',
+      pageLede: `font-family:${SERIF};font-size:16px;color:${MUTED};margin:14px 0 0;max-width:560px`,
+
+      detailHeroStyle: 'position:relative;height:70vh;min-height:440px;overflow:hidden;display:flex;align-items:flex-end',
+      detailScrimStyle: 'position:absolute;inset:0;background:linear-gradient(0deg, rgba(20,20,20,0.75) 0%, rgba(20,20,20,0.08) 60%)',
+      detailHeroContent: 'position:relative;padding:0 56px 64px',
+      smallMetaLightStyle: 'font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.85)',
+      detailTitleStyle: `font-family:${SERIF};font-weight:600;overflow-wrap:break-word;font-size:clamp(26px,5vw,54px);color:#ffffff;margin:10px 0 6px`,
+      detailLocationStyle: 'font-size:16px;color:rgba(255,255,255,0.85);margin:0',
+      detailMetaSection: 'padding:56px 56px 0',
+      detailMetaGrid: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px;border-top:1px solid #e6e1d8;padding-top:28px',
+      metaLabelStyle: `font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${MUTED};display:block`,
+      metaValueStyle: `font-family:${SERIF};font-size:15px;color:${INK};margin:6px 0 0`,
+      detailStorySection: 'padding:24px 56px 72px;max-width:960px',
+      detailParaStyle: `font-family:${SERIF};font-size:17px;line-height:1.62;color:${BODY_C};margin:0 0 20px;text-wrap:pretty`,
+      gallerySection: 'padding:0 56px 72px',
+      galleryGrid: `display:grid;grid-template-columns:${s.isNarrow ? '1fr' : '1fr 1fr'};gap:4px`,
+      galleryImgWide: `grid-column:${s.isNarrow ? 'auto' : '1/3'};width:100%;aspect-ratio:16/9;object-fit:cover;display:block`,
+      galleryImgHalf: 'width:100%;aspect-ratio:4/3',
+      detailTwoColSection: 'display:flex;gap:72px;padding:0 56px 80px;flex-wrap:wrap',
+      detailTwoCol: 'flex:1 1 360px;min-width:260px;display:flex;flex-direction:column;gap:8px',
+      beforeAfterGrid: `display:grid;grid-template-columns:${s.isNarrow ? '1fr' : '1fr 1fr'};gap:24px;margin-top:20px`,
+      beforeAfterImg: 'width:100%;aspect-ratio:4/3;margin-top:8px',
+      detailNavSection: 'display:flex;justify-content:space-between;align-items:center;padding:0 56px 110px;flex-wrap:wrap;gap:20px',
+      prevNextBtn: `background:none;border:0;font-family:${SANS};font-size:14px;color:${INK};cursor:pointer;padding:0`,
+      prevNextBtnRight: `background:none;border:0;font-family:${SANS};font-size:14px;color:${INK};cursor:pointer;padding:0;text-align:right`,
+
+      services: SERVICES.map(([title, body], i) => ({ num: '0' + (i + 1), title, body })),
+
+      servicesHeroImgRef: this.revealRef('svc_hero'),
+      servicesHeroImg: this.revealStyle('svc_hero', 'width:100%;height:100%;min-height:340px;object-fit:cover;display:block'),
+      servicesHeroMeta: [
+        { num: '12+', label: 'Years Building' },
+        { num: '9', label: 'Service Lines' },
+        { num: '1', label: 'Point of Contact' }
+      ],
+      svcHeroMetaRow: 'display:flex;gap:36px;margin-top:20px;flex-wrap:wrap',
+      svcHeroMetaCell: 'display:flex;flex-direction:column;gap:4px',
+      svcHeroMetaNum: `font-family:${SANS};font-weight:700;font-size:26px;color:${INK};line-height:1`,
+
+      svcEyebrow: `font-family:${SANS};font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:${TAN_DARK};display:block;margin-bottom:10px`,
+      svcEyebrowLight: `font-family:${SANS};font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:${TAN};display:block;margin-bottom:10px`,
+      svcEyebrowInk: `font-family:${SANS};font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:${MUTED};display:block;margin-bottom:10px`,
+      sectionHeadlineTight: `font-family:${SANS};font-weight:600;font-size:clamp(24px,2.8vw,34px);color:${INK};margin:0;letter-spacing:-0.01em`,
+      svcSectionHead: 'display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:44px',
+      svcSectionHeadNote: `font-family:${SERIF};font-size:15px;color:${MUTED};margin:0;max-width:320px;line-height:1.6`,
+      svcInlineLink: `font-family:${SANS};font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:${TAN_DARK};text-decoration:none;white-space:nowrap`,
+
+      svcCapSection: 'padding:110px 56px 0',
+      svcCapGrid: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px',
+      capabilities: CAPABILITIES.map(([title, body, points], i) => ({
+        num: '0' + (i + 1), title, body, points,
+        ref: this.revealRef('cap_' + i),
+        cardStyleR: this.cardReveal('cap_' + i, i, 'background:#fff;border:1px solid #e6e1d8;padding:34px 30px 30px;display:flex;flex-direction:column;gap:10px'),
+        cardHoverR: this.cardReveal('cap_' + i, i, `background:#fff;border:1px solid ${TAN};padding:34px 30px 30px;display:flex;flex-direction:column;gap:10px;box-shadow:0 18px 40px -24px rgba(35,39,45,0.35)`) + ';transform:translateY(-6px)'
+      })),
+      svcCapNum: `font-family:${SANS};font-weight:600;font-size:11px;letter-spacing:0.12em;color:${TAN_DARK}`,
+      svcCapTitle: `font-family:${SANS};font-weight:600;font-size:19px;color:${INK};margin:2px 0 0;letter-spacing:-0.01em`,
+      svcCapList: 'list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:6px',
+      svcCapListItem: `font-family:${SANS};font-size:12px;letter-spacing:0.03em;color:${MUTED};padding-left:14px;position:relative;border-left:1px solid #e6e1d8;line-height:1.5`,
+
+      svcAccordionSection: 'padding:110px 56px 0;max-width:1060px',
+      svcAccordionWrap: 'display:flex;flex-direction:column;border-top:1px solid #e6e1d8',
+      serviceItems: SERVICES.map(([title, body], i) => {
+        const open = s.openService === i;
+        return {
+          num: '0' + (i + 1), title, body,
+          toggle: () => this.setState(x => ({ openService: x.openService === i ? -1 : i })),
+          rowStyle: `border-bottom:1px solid #e6e1d8;background:${open ? '#faf8f4' : 'transparent'};transition:background 0.3s ease`,
+          headStyle: `width:100%;display:flex;align-items:center;gap:20px;padding:22px 18px;background:none;border:0;cursor:pointer;text-align:left`,
+          headHover: `width:100%;display:flex;align-items:center;gap:20px;padding:22px 18px;background:#faf8f4;border:0;cursor:pointer;text-align:left`,
+          numStyle: `font-family:${SANS};font-weight:600;font-size:11px;letter-spacing:0.1em;color:${TAN_DARK};flex:0 0 26px`,
+          titleStyle: `font-family:${SANS};font-weight:600;font-size:clamp(15px,1.5vw,18px);color:${open ? TAN_DARK : INK};flex:1;letter-spacing:-0.005em;transition:color 0.25s ease`,
+          iconStyle: `font-family:${SANS};font-size:20px;font-weight:400;color:${open ? TAN_DARK : MUTED};transform:rotate(${open ? 45 : 0}deg);transition:transform 0.35s cubic-bezier(.2,.7,.3,1),color 0.25s ease;line-height:1`,
+          panelStyle: `overflow:hidden;max-height:${open ? 220 : 0}px;opacity:${open ? 1 : 0};transition:max-height 0.45s cubic-bezier(.2,.7,.3,1),opacity 0.35s ease`
+        };
+      }),
+      svcPanelBody: `font-family:${SERIF};font-size:15px;line-height:1.75;color:${BODY_C};margin:0;padding:0 18px 26px 64px;max-width:62ch`,
+
+      svcIncludedSection: 'margin:110px 0 0;background:#faf8f4;border-top:1px solid #e6e1d8;border-bottom:1px solid #e6e1d8;padding:100px 56px',
+      svcIncludedInner: 'max-width:1160px;margin:0 auto;display:flex;gap:64px;flex-wrap:wrap;align-items:flex-start',
+      svcIncludedTextCol: 'flex:1 1 320px;min-width:280px',
+      svcIncludedTitle: `font-family:${SANS};font-weight:600;font-size:clamp(22px,2.4vw,30px);color:${INK};margin:0 0 14px;letter-spacing:-0.01em`,
+      svcIncludedBody: `font-family:${SERIF};font-size:15px;line-height:1.7;color:${BODY_C};margin:0;max-width:38ch`,
+      svcIncludedGrid: 'flex:1 1 420px;min-width:300px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:#e6e1d8',
+      svcIncludedItem: 'display:flex;align-items:flex-start;gap:12px;padding:22px 22px;background:#faf8f4',
+      svcCheck: `color:${TAN};font-size:12px;line-height:1.6;flex:0 0 auto`,
+      svcIncludedItemText: `font-size:13.5px;line-height:1.55;color:${INK}`,
+      includedItems: INCLUDED,
+
+      svcSectorSection: 'display:flex;gap:1px;background:#e6e1d8;flex-wrap:wrap;margin-top:110px',
+      svcSectorCol: 'flex:1 1 420px;min-width:300px;background:#ffffff;padding:56px 56px 64px;display:flex;flex-direction:column;gap:10px;align-items:flex-start',
+      svcSectorResRef: this.revealRef('svc_sector_res'),
+      svcSectorResImg: this.revealStyle('svc_sector_res', 'width:100%;height:100%;object-fit:cover;display:block'),
+      svcSectorComRef: this.revealRef('svc_sector_com'),
+      svcSectorComImg: this.revealStyle('svc_sector_com', 'width:100%;height:100%;object-fit:cover;display:block'),
+
+      svcProcessStrip: 'padding:110px 56px',
+      svcProcessGrid: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#e6e1d8;border:1px solid #e6e1d8',
+      svcProcessCell: 'background:#fff;padding:28px 20px;display:flex;flex-direction:column;gap:8px;min-height:120px',
+      svcProcessNum: `font-family:${SANS};font-weight:700;font-size:13px;letter-spacing:0.08em;color:${TAN_DARK}`,
+      svcProcessTitle: `font-family:${SANS};font-weight:600;font-size:14px;color:${INK};margin:0;line-height:1.35`,
+
+      svcCtaImgRef: this.revealRef('svc_cta'),
+      svcCtaImg: this.revealStyle('svc_cta', 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover'),
+
+      servicesSection: 'padding:80px 56px 120px;max-width:960px',
+      serviceRow: 'display:flex;gap:28px;padding:26px 0;border-top:1px solid #e6e1d8',
+      serviceNum: `font-family:${SERIF};font-size:13px;color:${TAN_DARK};flex:0 0 32px;padding-top:4px`,
+      serviceTitle: `font-family:${SERIF};font-weight:600;font-size:19px;color:${INK};margin:0 0 6px`,
+
+      processSteps: PROCESS.map(([title, body], i) => ({ num: '0' + (i + 1), title, body })),
+      processSection: 'padding:52px 56px 110px;max-width:1080px',
+      processRow: 'display:flex;gap:32px;padding:32px 0;border-top:1px solid #e6e1d8',
+      processNum: `font-family:${SANS};font-weight:700;font-size:30px;color:${TAN_DARK};letter-spacing:-0.02em;line-height:1`,
+      processTextCol: 'display:flex;flex-direction:column;gap:6px',
+
+      contactSection: 'display:flex;gap:72px;padding:80px 56px 140px;flex-wrap:wrap',
+      contactInfoCol: 'flex:1 1 300px;min-width:260px;display:flex;flex-direction:column;gap:24px',
+      contactInfoRow: 'border-top:1px solid #e6e1d8;padding-top:14px',
+      contactFormCol: 'flex:1 1 460px;min-width:280px;max-width:560px;display:flex;flex-direction:column;gap:4px',
+      fieldStyle: 'margin-bottom:18px;flex:1',
+      fieldPairRow: 'display:flex;gap:16px;flex-wrap:wrap',
+      labelStyle: `display:block;font-family:${SANS};font-size:12px;color:${MUTED};margin-bottom:6px`,
+      inputStyle: `width:100%;min-height:40px;padding:8px 12px;font-family:${SERIF};font-size:14px;color:${INK};background:#fff;border:1px solid #d8d2c4;border-radius:0`,
+      errorStyle: `display:block;font-size:12px;color:${TAN_DARK};margin-top:4px`,
+      thankYouBox: 'border:1px solid #e6e1d8;padding:32px;display:flex;flex-direction:column;gap:8px',
+      placeholderTag: `font-size:10px;letter-spacing:0.05em;text-transform:uppercase;color:${MUTED};margin-left:6px`,
+
+      legalSection: 'padding:80px 56px 130px;max-width:780px;display:flex;flex-direction:column;gap:20px',
+
+      notFoundSection: 'padding:120px 56px 150px;display:flex;flex-direction:column;align-items:flex-start;gap:18px',
+
+      footerStyle: `padding:36px 56px 28px;background:#ffffff;color:${INK};margin-top:0;border-top:1px solid #e6e1d8`,
+      footerWmRef: this.revealRef('footer_wm'),
+      footerWordmark: `font-family:${SANS};font-weight:700;font-size:clamp(38px,11vw,150px);line-height:0.9;letter-spacing:-0.02em;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px #ded8cc;text-align:center;margin:0 0 40px;user-select:none;opacity:${s.revealed['footer_wm'] ? 1 : 0};transform:translateY(${s.revealed['footer_wm'] ? '0' : '24px'});transition:opacity 1s ease,transform 1.1s cubic-bezier(.16,.85,.3,1)`,
+      backToTopWrap: 'display:flex;justify-content:center;margin-bottom:28px',
+      backToTop: `display:inline-flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;color:${TAN_DARK};font-family:${SANS};font-size:10px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;padding:0`,
+      scrollTop: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
+      footerSubscribeRow: 'display:flex;gap:8px;flex-wrap:wrap;max-width:420px;margin:0 auto 32px;justify-content:center',
+      subscribeInput: `flex:1;min-width:200px;min-height:36px;padding:6px 10px;font-family:${SANS};font-size:12px;background:#ffffff;border:1px solid #d8d2c4;color:${INK}`,
+      subscribeBtn: `padding:6px 14px;font-family:${SANS};font-size:10px;letter-spacing:0.06em;text-transform:uppercase;background:transparent;border:1px solid ${TAN_DARK};color:${INK};cursor:pointer;transition:background 0.15s,color 0.15s`,
+      subscribeBtnHover: `padding:6px 14px;font-family:${SANS};font-size:10px;letter-spacing:0.06em;text-transform:uppercase;background:${TAN_DARK};border:1px solid ${TAN_DARK};color:${INK};cursor:pointer`,
+      footerLogoStyle: 'height:38px;width:auto;display:block',
+      footerBrand: `font-family:${SERIF};font-weight:700;font-size:14px;letter-spacing:0.04em;line-height:1.2;color:${INK};text-align:left`,
+      footerCenterCopy: 'flex:1;text-align:center',
+      footerSep: `color:${MUTED};margin:0 4px`,
+      footerBottom: 'max-width:1100px;margin:0 auto;padding-top:20px;border-top:1px solid #e6e1d8;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap',
+      footerFinePrint: `font-size:11px;color:${MUTED};text-transform:uppercase;letter-spacing:0.03em`,
+      footerFinePrintLink: `font-size:11px;color:${MUTED};text-decoration:underline`,
+
+      form: s.form, errors: s.errors, formSubmitted: s.formSubmitted, formNotSubmitted: !s.formSubmitted,
+      setName: e => this.setState(x => ({ form: { ...x.form, name: e.target.value } })),
+      setEmail: e => this.setState(x => ({ form: { ...x.form, email: e.target.value } })),
+      setPhone: e => this.setState(x => ({ form: { ...x.form, phone: e.target.value } })),
+      setProjectType: e => this.setState(x => ({ form: { ...x.form, projectType: e.target.value } })),
+      setMessage: e => this.setState(x => ({ form: { ...x.form, message: e.target.value } })),
+      handleSubmit: e => this.handleSubmit(e)
+    };
+  }
+}
+
+</script>
+</body>
+</html>

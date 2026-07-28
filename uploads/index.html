@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="ext-resource-dependency" content="uploads/imgi_15_DavidZwirner-GeneralContractor-exterior-ReaumeRichardson-Wide_AdaptiveReuse.jpg" data-resource-id="p1photo">
+<meta name="ext-resource-dependency" content="uploads/imgi_19_Stairs2-ReaumeRichardson_AdaptiveReuse_740-1.jpg" data-resource-id="p2photo">
+<meta name="ext-resource-dependency" content="uploads/imgi_18_Stairs1-ReaumeRichardson_AdaptiveReuse_740-1.jpg" data-resource-id="p2after">
+<meta name="ext-resource-dependency" content="uploads/imgi_9_WARBY_PARKER_VENICE_05_Square.jpg" data-resource-id="p3photo">
+<meta name="ext-resource-dependency" content="uploads/imgi_8_WARBY_PARKER_VENICE_14.jpg" data-resource-id="p3after">
+<meta name="ext-resource-dependency" content="uploads/imgi_11_single_Beverly_laurel.jpg" data-resource-id="p4photo">
+<meta name="ext-resource-dependency" content="uploads/imgi_8_Roosevelt-Slider-Cabana-Suit-Reaume-Richardson-los-angeles-construction.jpg" data-resource-id="p5photo">
+<meta name="ext-resource-dependency" content="uploads/imgi_10_Roosevelt-Hotel-Cabana-Suite-Reaume-Richardson-los-angeles-construction.jpg" data-resource-id="p6photo">
+<meta name="ext-resource-dependency" content="uploads/imgi_9_Header.jpg" data-resource-id="gal1">
+<meta name="ext-resource-dependency" content="uploads/imgi_11_DavidZwirner-exteriorBlock5-ReaumeRichardson_AdaptiveReuse.jpg" data-resource-id="gal2">
+<meta name="ext-resource-dependency" content="uploads/imgi_14_Our-Projects-Lobby3-The-June-Hotel-Reaume-Richardson-los-angeles-construction.jpg" data-resource-id="gal4">
+<meta name="ext-resource-dependency" content="uploads/imgi_8_Framestore-Rooftop-adaptive-reuse-Reaume-Richardson-Los-Angeles-construction.jpg" data-resource-id="gal5">
+<meta name="ext-resource-dependency" content="uploads/imgi_16_Our-Projects-patio-bar-The-June-Hotel-Reaume-Richardson-los-angeles-construction.jpg" data-resource-id="gal6">
+<template id="__bundler_thumbnail" data-bg-color="#1a1e24">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#1a1e24"/>
+    <text x="600" y="420" font-family="Helvetica, Arial, sans-serif" font-size="140" fill="#f5f4f0" text-anchor="middle" font-weight="600">DMR</text>
+  </svg>
+</template>
+<style>
+@keyframes dmr-belt { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes dmr-scrollline { 0%,100% { transform:scaleY(0.3); opacity:0.4; } 50% { transform:scaleY(1); opacity:1; } }
+@keyframes dmr-fadeup { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+</style>
+<style>
+  @keyframes fadeUp { from { opacity:0; transform:translateY(24px);} to {opacity:1; transform:translateY(0);} }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:oklch(0.98 0.003 90); }
+  @media (min-width:881px) {
+    body { scrollbar-width:thin; scrollbar-color:oklch(0.7 0.005 250) transparent; }
+    body::-webkit-scrollbar { width:8px; }
+    body::-webkit-scrollbar-track { background:transparent; }
+    body::-webkit-scrollbar-thumb { background:oklch(0.7 0.005 250); border-radius:100px; }
+    body::-webkit-scrollbar-thumb:hover { background:oklch(0.55 0.005 250); }
+  }
+  ::selection { background:oklch(0.55 0.08 240 / 0.3); }
+</style>
+</helmet>
+
+<div style="font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif; background:oklch(0.98 0.003 90); color:oklch(0.18 0.005 250); overflow-x:hidden;">
+
+  <div ref="{{ cursorDotRef }}" style="position:fixed; top:0; left:0; width:8px; height:8px; border-radius:50%; background:oklch(0.18 0.005 250); pointer-events:none; z-index:9999; mix-blend-mode:difference; transform:translate3d(-100px,-100px,0); display:{{ cursorDisplay }};"></div>
+  <div ref="{{ cursorRingRef }}" style="position:fixed; top:0; left:0; width:0; height:0; pointer-events:none; z-index:9998; display:{{ cursorDisplay }};">
+    <div style="position:absolute; top:0; left:0; width:36px; height:36px; border-radius:50%; border:1.5px solid oklch(0.18 0.005 250); mix-blend-mode:difference; transition:transform 0.25s cubic-bezier(0.2,0.8,0.2,1), opacity 0.25s ease; transform:translate(-50%,-50%) scale({{ cursorRingScale }}); opacity:{{ cursorRingOpacity }};"></div>
+  </div>
+  <div style="position:fixed; inset:0; z-index:500; background:oklch(0.98 0.003 90); opacity:{{ transitionOpacity }}; pointer-events:{{ transitionPointer }}; transition:opacity 0.4s ease;"></div>
+
+  <template id="__bundler_thumbnail" data-bg-color="#1a1e24">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#1a1e24"/>
+      <text x="600" y="420" font-family="Helvetica, Arial, sans-serif" font-size="140" fill="#f5f4f0" text-anchor="middle" font-weight="600">DMR</text>
+    </svg>
+  </template>
+
+  <!-- NAV -->
+  <nav style="position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:{{ navPadding }}; background:{{ navBg }}; backdrop-filter:{{ navBlur }}; border-bottom:{{ navBorder }}; transition:all 0.35s ease;">
+    <img src="uploads/DMRlogo.png" alt="DMR" style="height: 77px; width: 108px; flex-shrink:0; filter: {{ navLogoFilter }}; transition: filter 0.35s ease">
+    <div ref="{{ navPillRef }}" onMouseLeave="{{ clearNavHover }}" style="position:relative; display:{{ navLinksDisplay }}; gap:4px; align-items:center; background:{{ navPillBg }}; border-radius:100px; padding:5px; transition:background 0.35s ease;">
+      <div style="position:absolute; top:5px; bottom:5px; left:{{ navIndicatorLeft }}; width:{{ navIndicatorWidth }}; background:{{ navLinkHoverBg }}; border-radius:100px; opacity:{{ navIndicatorOpacity }}; transition:left 0.35s cubic-bezier(0.2,0.8,0.2,1), width 0.35s cubic-bezier(0.2,0.8,0.2,1), opacity 0.25s ease; pointer-events:none;"></div>
+      <a href="#hero" onMouseEnter="{{ onNavHover }}" style="position:relative; color:{{ navText }}; text-decoration:none; font-size:13.5px; font-weight:500; padding:9px 18px; border-radius:100px; transition:color 0.3s ease;">Home</a>
+      <a href="#projects" onMouseEnter="{{ onNavHover }}" style="position:relative; color:{{ navText }}; text-decoration:none; font-size:13.5px; font-weight:500; padding:9px 18px; border-radius:100px; transition:color 0.3s ease;">Projects</a>
+      <a href="DMR Gallery.dc.html" onMouseEnter="{{ onNavHover }}" onClick="{{ goGallery }}" style="position:relative; color:{{ navText }}; text-decoration:none; font-size:13.5px; font-weight:500; padding:9px 18px; border-radius:100px; transition:color 0.3s ease;">Gallery</a>
+      <a href="#services" onMouseEnter="{{ onNavHover }}" style="position:relative; color:{{ navText }}; text-decoration:none; font-size:13.5px; font-weight:500; padding:9px 18px; border-radius:100px; transition:color 0.3s ease;">Services</a>
+      <a href="#about" onMouseEnter="{{ onNavHover }}" style="position:relative; color:{{ navText }}; text-decoration:none; font-size:13.5px; font-weight:500; padding:9px 18px; border-radius:100px; transition:color 0.3s ease;">About</a>
+      <a href="Get a Quote.dc.html" onMouseEnter="{{ onNavHover }}" onClick="{{ goGetQuote }}" style="position:relative; color:{{ navText }}; text-decoration:none; font-size:13.5px; font-weight:500; padding:9px 18px; border-radius:100px; transition:color 0.3s ease;">Get a Quote</a>
+    </div>
+    <button onClick="{{ toggleMobileMenu }}" style="display:{{ hamburgerDisplay }}; position:relative; z-index:102; background:none; border:none; padding:8px; cursor:pointer; flex-direction:column; gap:5px; align-items:flex-end;">
+      <span style="display:block; width:26px; height:2px; background:{{ hamburgerBarColor }}; transition:background 0.3s ease, transform 0.3s ease, opacity 0.3s ease; transform:{{ barTopTransform }};"></span>
+      <span style="display:block; width:26px; height:2px; background:{{ hamburgerBarColor }}; transition:background 0.3s ease, opacity 0.3s ease; opacity:{{ barMidOpacity }};"></span>
+      <span style="display:block; width:26px; height:2px; background:{{ hamburgerBarColor }}; transition:background 0.3s ease, transform 0.3s ease; transform:{{ barBotTransform }};"></span>
+    </button>
+    <sc-if value="{{ mobileMenuOpen }}">
+      <div style="position:fixed; inset:0; z-index:101; background:oklch(0.98 0.003 90 / 0.99); backdrop-filter:blur(16px); display:flex; flex-direction:column; justify-content:center; overflow-y:auto; padding:100px 32px 40px;">
+        <a href="#hero" onClick="{{ closeMobileMenu }}" style="color:oklch(0.18 0.005 250); text-decoration:none; font-size:clamp(24px,7vw,32px); font-weight:700; padding:16px 0; border-bottom:1px solid oklch(0.18 0.005 250 / 0.08); flex-shrink:0;">Home</a>
+        <a href="#projects" onClick="{{ closeMobileMenu }}" style="color:oklch(0.18 0.005 250); text-decoration:none; font-size:clamp(24px,7vw,32px); font-weight:700; padding:16px 0; border-bottom:1px solid oklch(0.18 0.005 250 / 0.08); flex-shrink:0;">Projects</a>
+        <a href="DMR Gallery.dc.html" onClick="{{ goGallery }}" style="color:oklch(0.18 0.005 250); text-decoration:none; font-size:clamp(24px,7vw,32px); font-weight:700; padding:16px 0; border-bottom:1px solid oklch(0.18 0.005 250 / 0.08); flex-shrink:0;">Gallery</a>
+        <a href="#services" onClick="{{ closeMobileMenu }}" style="color:oklch(0.18 0.005 250); text-decoration:none; font-size:clamp(24px,7vw,32px); font-weight:700; padding:16px 0; border-bottom:1px solid oklch(0.18 0.005 250 / 0.08); flex-shrink:0;">Services</a>
+        <a href="#about" onClick="{{ closeMobileMenu }}" style="color:oklch(0.18 0.005 250); text-decoration:none; font-size:clamp(24px,7vw,32px); font-weight:700; padding:16px 0; border-bottom:1px solid oklch(0.18 0.005 250 / 0.08); flex-shrink:0;">About</a>
+        <a href="Get a Quote.dc.html" onClick="{{ goGetQuote }}" style="color:oklch(0.18 0.005 250); text-decoration:none; font-size:clamp(24px,7vw,32px); font-weight:700; padding:16px 0; flex-shrink:0;">Get a Quote</a>
+      </div>
+    </sc-if>
+  </nav>
+
+  <!-- HERO (Canvas layout preview) -->
+  <section id="hero" style="position:relative; height:100vh; min-height:760px; overflow:hidden;">
+    <sc-for list="{{ heroPhotos }}" as="hp" hint-placeholder-count="3">
+      <div style="position:absolute; top:-12%; left:0; right:0; bottom:-12%; background:linear-gradient(180deg, oklch(0.06 0.005 250 / 0.55) 0%, oklch(0.08 0.005 250 / 0.35) 55%, oklch(0.05 0.005 250 / 0.8) 100%), url('{{ hp.url }}'); background-size:cover; background-position:center 60%; transform:translateY({{ heroParallax }}px); will-change:transform, opacity; opacity:{{ hp.opacity }}; transition:opacity 1.8s ease;"></div>
+    </sc-for>
+    <div style="position:relative; z-index:1; height:100%; display:flex; flex-direction:column;">
+      <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 48px; max-width:900px;">
+        <h1 style="font-size:clamp(40px,6.5vw,74px); line-height:1.05; letter-spacing:-0.02em; font-weight:600; color:oklch(0.98 0.003 90); margin:0 0 28px;">
+          <span style="display:inline-block; animation:dmr-fadeup 0.7s cubic-bezier(0.2,0.8,0.2,1) 0.05s both;">Precision</span>
+          <span style="display:inline-block; animation:dmr-fadeup 0.7s cubic-bezier(0.2,0.8,0.2,1) 0.12s both;">drywall</span>
+          <span style="display:inline-block; animation:dmr-fadeup 0.7s cubic-bezier(0.2,0.8,0.2,1) 0.19s both;">for</span>
+          <span style="display:inline-block; animation:dmr-fadeup 0.7s cubic-bezier(0.2,0.8,0.2,1) 0.26s both;">buildings</span>
+          <span style="display:inline-block; animation:dmr-fadeup 0.7s cubic-bezier(0.2,0.8,0.2,1) 0.33s both;">that</span>
+          <span style="display:inline-block; animation:dmr-fadeup 0.7s cubic-bezier(0.2,0.8,0.2,1) 0.40s both;">matter.</span>
+        </h1>
+        <p style="font-size:18px; line-height:1.55; color:oklch(0.92 0.006 80 / 0.9); max-width:560px; margin:0 0 36px; font-weight:400; animation:dmr-fadeup 0.9s ease 0.5s both;">DMR delivers framing, drywall, and finishing at commercial scale — for general contractors, developers, and institutions who can't afford delays.</p>
+        <a href="#projects" data-magnetic style="display:inline-flex; align-items:center; gap:10px; background:oklch(0.98 0.003 90); color:oklch(0.15 0.005 250); padding:16px 28px; border-radius:100px; text-decoration:none; font-size:13.5px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; width:fit-content; box-shadow:0 0 0 0 oklch(0.98 0.003 90 / 0.4); animation:dmr-fadeup 0.9s ease 0.6s both;" style-hover="box-shadow:0 0 0 8px oklch(0.98 0.003 90 / 0.12);">Explore Our Projects →</a>
+      </div>
+      <div style="padding:0 48px 32px; font-size:11.5px; letter-spacing:0.1em; color:oklch(0.92 0.006 80 / 0.7); text-transform:uppercase; display:flex; align-items:center; gap:10px;">
+        <span style="display:inline-block; width:1px; height:28px; background:oklch(0.92 0.006 80 / 0.5); animation:dmr-scrollline 2.2s ease-in-out infinite;"></span>
+        (Scroll Down)
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPANY OVERVIEW / ABOUT -->
+  <section id="about" style="padding:160px 48px; max-width:840px; margin:0 auto; text-align:center;">
+    <div style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.55 0.08 240); margin-bottom:20px;">Who We Are</div>
+    <h2 style="font-size:clamp(30px,4vw,46px); line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin:0 0 24px;">A commercial drywall specialist, built by a family that's done this for decades.</h2>
+    <p style="font-size:19px; line-height:1.65; color:oklch(0.4 0.005 250); font-weight:400; margin:0;">We work exclusively on commercial projects — offices, hospitals, schools, retail, and industrial facilities. No residential distractions. Just crews, systems, and quality control tuned for buildings at scale.</p>
+  </section>
+
+  <!-- STATS -->
+  <section style="padding:0 48px 160px; max-width:1200px; margin:0 auto;">
+    <div data-reveal="stats" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px;">
+      <sc-for list="{{ stats }}" as="stat" hint-placeholder-count="5">
+        <div style="background:oklch(1 0 0 / 0.6); backdrop-filter:blur(20px) saturate(1.6); border:1px solid oklch(1 0 0 / 0.8); border-radius:20px; box-shadow:0 8px 30px oklch(0.18 0.005 250 / 0.05); padding:44px 30px; display:flex; flex-direction:column; gap:8px; transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.35s ease;" style-hover="transform:translateY(-4px); box-shadow:0 16px 36px oklch(0.18 0.005 250 / 0.1);">
+          <div style="font-size:44px; font-weight:700; letter-spacing:-0.02em; color:oklch(0.18 0.005 250);">{{ stat.value }}</div>
+          <div style="font-size:14px; font-weight:500; color:oklch(0.5 0.005 250);">{{ stat.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECTS -->
+  <section id="projects" style="padding:0 48px 160px; max-width:1400px; margin:0 auto;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:56px; gap:24px; flex-wrap:wrap;">
+      <div>
+        <div style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.55 0.08 240); margin-bottom:16px;">Featured Work</div>
+        <h2 style="font-size:clamp(28px,3.5vw,42px); letter-spacing:-0.02em; font-weight:700; margin:0; max-width:600px;">Commercial projects at every scale.</h2>
+      </div>
+      <p style="font-size:16px; color:oklch(0.5 0.005 250); max-width:380px; margin:0;">From single-suite tenant improvements to multi-story ground-up builds.</p>
+    </div>
+    <div data-reveal="projects" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px,1fr)); gap:32px; perspective:1200px; opacity:{{ projectsOpacity }}; transform:{{ projectsTransform }}; transition:opacity 0.9s ease, transform 0.9s ease;">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
+        <div data-tilt style="border-radius:20px; overflow:hidden; background:oklch(1 0 0); box-shadow:0 1px 3px oklch(0.18 0.005 250 / 0.06); transition:box-shadow 0.3s ease; cursor:pointer;" style-hover="box-shadow:0 20px 40px oklch(0.18 0.005 250 / 0.12);" onMouseEnter="{{ p.onEnter }}" onMouseLeave="{{ p.onLeave }}">
+          <div style="height:240px; position:relative; background-image:url('{{ p.photo }}'); background-size:cover; background-position:center;">
+            <sc-if value="{{ p.hasAfter }}">
+              <div style="position:absolute; inset:0; background-image:url('{{ p.photoAfter }}'); background-size:cover; background-position:center; opacity:{{ p.overlayOpacity }}; transition:opacity 0.6s ease;"></div>
+            </sc-if>
+          </div>
+          <div style="padding:28px;">
+            <div style="font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:oklch(0.55 0.08 240); margin-bottom:10px;">{{ p.category }}</div>
+            <div style="font-size:20px; font-weight:700; letter-spacing:-0.01em; margin-bottom:4px;">{{ p.name }}</div>
+            <sc-if value="{{ p.address }}"><div style="font-size:13px; color:oklch(0.55 0.005 90); margin-bottom:8px;">{{ p.address }}</div></sc-if>
+            <div style="font-size:15px; line-height:1.5; color:oklch(0.5 0.005 250);">{{ p.description }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" style="padding:160px 48px; max-width:1400px; margin:0 auto;">
+    <div style="margin-bottom:56px; text-align:center;">
+      <div style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.55 0.08 240); margin-bottom:16px;">Project Gallery</div>
+      <h2 style="font-size:clamp(28px,3.5vw,42px); letter-spacing:-0.02em; font-weight:700; margin:0 0 16px;">A closer look at the work.</h2>
+      <p style="font-size:17px; color:oklch(0.5 0.005 250); max-width:520px; margin:0 auto;">Framing, finishing, and detail shots from recent commercial builds.</p>
+    </div>
+    <div style="column-count:{{ galleryColumnCount }}; column-gap:20px;">
+      <sc-for list="{{ galleryPhotos }}" as="g" hint-placeholder-count="6">
+        <div onClick="{{ g.onOpen }}" style="break-inside:avoid; margin-bottom:20px; border-radius:16px; overflow:hidden; cursor:pointer; box-shadow:0 1px 3px oklch(0.18 0.005 250 / 0.08);">
+          <img src="{{ g.photo }}" alt="Project detail" style="display:block; width:100%; height:auto; transition:transform 0.5s ease, filter 0.4s ease;" style-hover="transform:scale(1.05); filter:brightness(1.05);"/>
+        </div>
+      </sc-for>
+    </div>
+    <div style="text-align:center; margin-top:48px;">
+      <a href="DMR Gallery.dc.html" onClick="{{ goGallery }}" data-magnetic style="display:inline-block; background:oklch(0.18 0.005 250); color:oklch(0.98 0.003 90); padding:16px 32px; border-radius:100px; text-decoration:none; font-size:15px; font-weight:600; transition:background 0.25s ease;" style-hover="background:oklch(0.55 0.08 240);">View Full Gallery</a>
+    </div>
+    <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+      <div onClick="{{ closeLightbox }}" style="position:fixed; inset:0; z-index:200; background:oklch(0.05 0.005 250 / 0.94); display:flex; align-items:center; justify-content:center; padding:40px; cursor:zoom-out;">
+        <img src="{{ lightboxPhoto }}" alt="Project detail large" style="max-width:100%; max-height:100%; border-radius:8px; box-shadow:0 20px 60px oklch(0 0 0 / 0.5);"/>
+        <button onClick="{{ closeLightbox }}" style="position:absolute; top:32px; right:40px; background:none; border:none; color:oklch(0.98 0.003 90); font-size:36px; line-height:1; cursor:pointer; padding:8px;">×</button>
+      </div>
+    </sc-if>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" style="padding:160px 48px; background:oklch(0.18 0.005 250);">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div style="margin-bottom:56px; max-width:640px;">
+        <div style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.7 0.08 240); margin-bottom:16px;">What We Do</div>
+        <h2 style="font-size:clamp(28px,3.5vw,42px); letter-spacing:-0.02em; font-weight:700; margin:0; color:oklch(0.98 0.003 90);">Full-scope drywall &amp; framing services.</h2>
+      </div>
+      <div data-reveal="services" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1px; background:oklch(0.98 0.003 90 / 0.1); opacity:{{ servicesOpacity }}; transform:{{ servicesTransform }}; transition:opacity 0.9s ease, transform 0.9s ease;">
+
+        <div data-spotlight style="position:relative; overflow:hidden; background:oklch(0.18 0.005 250); padding:36px 32px; transition:background 0.3s ease;" style-hover="background:oklch(0.22 0.005 250);"><div style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity 0.4s ease; background:radial-gradient(circle 240px at var(--mx,50%) var(--my,50%), oklch(0.55 0.08 240 / 0.35), transparent 70%); z-index:-1;"></div>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="oklch(0.7 0.08 240)" stroke-width="1.5" style="margin-bottom:22px; transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1);" style-hover="transform:scale(1.15) rotate(-4deg);"><line x1="5" y1="3" x2="5" y2="21"></line><line x1="12" y1="3" x2="12" y2="21"></line><line x1="19" y1="3" x2="19" y2="21"></line><line x1="2" y1="8" x2="22" y2="8"></line><line x1="2" y1="16" x2="22" y2="16"></line></svg>
+          <div style="font-size:17px; font-weight:700; color:oklch(0.98 0.003 90); margin-bottom:8px;">Metal Framing</div>
+          <div style="font-size:14px; line-height:1.5; color:oklch(0.65 0.005 250);">Structural and cold-formed steel framing for commercial builds.</div>
+        </div>
+
+        <div data-spotlight style="position:relative; overflow:hidden; background:oklch(0.18 0.005 250); padding:36px 32px; transition:background 0.3s ease;" style-hover="background:oklch(0.22 0.005 250);"><div style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity 0.4s ease; background:radial-gradient(circle 240px at var(--mx,50%) var(--my,50%), oklch(0.55 0.08 240 / 0.35), transparent 70%); z-index:-1;"></div>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="oklch(0.7 0.08 240)" stroke-width="1.5" style="margin-bottom:22px; transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1);" style-hover="transform:scale(1.15) rotate(-4deg);"><rect x="3" y="4" width="18" height="7" rx="1"></rect><rect x="3" y="13" width="18" height="7" rx="1"></rect></svg>
+          <div style="font-size:17px; font-weight:700; color:oklch(0.98 0.003 90); margin-bottom:8px;">Drywall Installation</div>
+          <div style="font-size:14px; line-height:1.5; color:oklch(0.65 0.005 250);">Precision hanging across every wall and ceiling type.</div>
+        </div>
+
+        <div data-spotlight style="position:relative; overflow:hidden; background:oklch(0.18 0.005 250); padding:36px 32px; transition:background 0.3s ease;" style-hover="background:oklch(0.22 0.005 250);"><div style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity 0.4s ease; background:radial-gradient(circle 240px at var(--mx,50%) var(--my,50%), oklch(0.55 0.08 240 / 0.35), transparent 70%); z-index:-1;"></div>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="oklch(0.7 0.08 240)" stroke-width="1.5" style="margin-bottom:22px; transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1);" style-hover="transform:scale(1.15) rotate(-4deg);"><rect x="4" y="4" width="16" height="16" rx="1"></rect><line x1="4" y1="14" x2="20" y2="8"></line></svg>
+          <div style="font-size:17px; font-weight:700; color:oklch(0.98 0.003 90); margin-bottom:8px;">Drywall Finishing</div>
+          <div style="font-size:14px; line-height:1.5; color:oklch(0.65 0.005 250);">Level 4 and 5 finishes ready for premium paint and wallcoverings.</div>
+        </div>
+
+        <div data-spotlight style="position:relative; overflow:hidden; background:oklch(0.18 0.005 250); padding:36px 32px; transition:background 0.3s ease;" style-hover="background:oklch(0.22 0.005 250);"><div style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity 0.4s ease; background:radial-gradient(circle 240px at var(--mx,50%) var(--my,50%), oklch(0.55 0.08 240 / 0.35), transparent 70%); z-index:-1;"></div>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="oklch(0.7 0.08 240)" stroke-width="1.5" style="margin-bottom:22px; transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1);" style-hover="transform:scale(1.15) rotate(-4deg);"><path d="M12 2 4 5.5v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10v-6z"></path><path d="M12 8v6M9 11h6"></path></svg>
+          <div style="font-size:17px; font-weight:700; color:oklch(0.98 0.003 90); margin-bottom:8px;">OSHPD aka HCAI</div>
+          <div style="font-size:14px; line-height:1.5; color:oklch(0.65 0.005 250);">Specialized healthcare construction meeting California's strict safety, compliance, and inspection standards.</div>
+        </div>
+
+        <div data-spotlight style="position:relative; overflow:hidden; background:oklch(0.18 0.005 250); padding:36px 32px; transition:background 0.3s ease;" style-hover="background:oklch(0.22 0.005 250);"><div style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity 0.4s ease; background:radial-gradient(circle 240px at var(--mx,50%) var(--my,50%), oklch(0.55 0.08 240 / 0.35), transparent 70%); z-index:-1;"></div>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="oklch(0.7 0.08 240)" stroke-width="1.5" style="margin-bottom:22px; transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1);" style-hover="transform:scale(1.15) rotate(-4deg);"><rect x="8" y="2" width="8" height="20" rx="1"></rect><line x1="12" y1="2" x2="12" y2="22"></line></svg>
+          <div style="font-size:17px; font-weight:700; color:oklch(0.98 0.003 90); margin-bottom:8px;">Shaft Wall Systems</div>
+          <div style="font-size:14px; line-height:1.5; color:oklch(0.65 0.005 250);">Fire-rated shaft enclosures built to code.</div>
+        </div>
+
+        <div data-spotlight style="position:relative; overflow:hidden; background:oklch(0.18 0.005 250); padding:36px 32px; transition:background 0.3s ease;" style-hover="background:oklch(0.22 0.005 250);"><div style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity 0.4s ease; background:radial-gradient(circle 240px at var(--mx,50%) var(--my,50%), oklch(0.55 0.08 240 / 0.35), transparent 70%); z-index:-1;"></div>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="oklch(0.7 0.08 240)" stroke-width="1.5" style="margin-bottom:22px; transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1);" style-hover="transform:scale(1.15) rotate(-4deg);"><path d="M12 2 L20 6 V12 C20 17 16.5 20.5 12 22 C7.5 20.5 4 17 4 12 V6 Z"></path></svg>
+          <div style="font-size:17px; font-weight:700; color:oklch(0.98 0.003 90); margin-bottom:8px;">Fire-Rated Assemblies</div>
+          <div style="font-size:14px; line-height:1.5; color:oklch(0.65 0.005 250);">UL-listed rated wall and ceiling assemblies.</div>
+        </div>
+
+        <div data-spotlight style="position:relative; overflow:hidden; background:oklch(0.18 0.005 250); padding:36px 32px; transition:background 0.3s ease;" style-hover="background:oklch(0.22 0.005 250);"><div style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity 0.4s ease; background:radial-gradient(circle 240px at var(--mx,50%) var(--my,50%), oklch(0.55 0.08 240 / 0.35), transparent 70%); z-index:-1;"></div>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="oklch(0.7 0.08 240)" stroke-width="1.5" style="margin-bottom:22px; transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1);" style-hover="transform:scale(1.15) rotate(-4deg);"><line x1="4" y1="20" x2="16" y2="8"></line><rect x="15" y="3" width="6" height="6" rx="1" transform="rotate(45 18 6)"></rect></svg>
+          <div style="font-size:17px; font-weight:700; color:oklch(0.98 0.003 90); margin-bottom:8px;">Tenant Improvements</div>
+          <div style="font-size:14px; line-height:1.5; color:oklch(0.65 0.005 250);">Fast-turn buildouts for occupied commercial spaces.</div>
+        </div>
+
+        <div data-spotlight style="position:relative; overflow:hidden; background:oklch(0.18 0.005 250); padding:36px 32px; transition:background 0.3s ease;" style-hover="background:oklch(0.22 0.005 250);"><div style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity 0.4s ease; background:radial-gradient(circle 240px at var(--mx,50%) var(--my,50%), oklch(0.55 0.08 240 / 0.35), transparent 70%); z-index:-1;"></div>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="oklch(0.7 0.08 240)" stroke-width="1.5" style="margin-bottom:22px; transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1);" style-hover="transform:scale(1.15) rotate(-4deg);"><rect x="3" y="8" width="18" height="13" rx="1"></rect><line x1="3" y1="8" x2="12" y2="3"></line><line x1="21" y1="8" x2="12" y2="3"></line><path d="M9 21 V15 H15 V21"></path></svg>
+          <div style="font-size:17px; font-weight:700; color:oklch(0.98 0.003 90); margin-bottom:8px;">Commercial Renovations</div>
+          <div style="font-size:14px; line-height:1.5; color:oklch(0.65 0.005 250);">Phased renovation work in active buildings.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section style="padding:160px 48px; max-width:1400px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
+    <div style="border-radius:24px; height:520px; background-image:url('uploads/imgi_9_GOLD_Our-Projects-Slider-Lobby-The-June-Hotel-Reaume-Richardson-los-angeles-construction-1.jpg'); background-size:cover; background-position:center;"></div>
+    <div data-reveal="why" style="opacity:{{ whyOpacity }}; transform:{{ whyTransform }}; transition:opacity 0.9s ease, transform 0.9s ease;">
+      <div style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.55 0.08 240); margin-bottom:20px;">Why Choose DMR</div>
+      <h2 style="font-size:clamp(28px,3.5vw,40px); letter-spacing:-0.02em; font-weight:700; margin:0 0 40px; line-height:1.15;">Built for contractors who need it done right, on time.</h2>
+      <div style="display:flex; flex-direction:column; gap:28px;">
+        <sc-for list="{{ whyChoose }}" as="w" hint-placeholder-count="5">
+          <div style="display:flex; gap:20px; align-items:flex-start;">
+            <div style="width:8px; height:8px; border-radius:50%; background:oklch(0.55 0.08 240); margin-top:9px; flex-shrink:0;"></div>
+            <div>
+              <div style="font-size:17px; font-weight:700; margin-bottom:4px;">{{ w.title }}</div>
+              <div style="font-size:15px; line-height:1.5; color:oklch(0.5 0.005 250);">{{ w.description }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section style="padding:160px 48px; background:oklch(0.95 0.003 90);">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div style="margin-bottom:72px; text-align:center;">
+        <div style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.55 0.08 240); margin-bottom:16px;">Our Process</div>
+        <h2 style="font-size:clamp(28px,3.5vw,42px); letter-spacing:-0.02em; font-weight:700; margin:0;">From preconstruction to punch list.</h2>
+      </div>
+      <div data-reveal="process" style="display:grid; grid-template-columns:{{ processGridColumns }}; row-gap:{{ processRowGap }}; column-gap:8px; position:relative; opacity:{{ processOpacity }}; transform:{{ processTransform }}; transition:opacity 0.9s ease, transform 0.9s ease;">
+        <div style="display:{{ processLineDisplay }}; grid-column:1 / -1; grid-row:1;">
+          <div style="position:absolute; top:11px; left:8%; right:8%; height:2px; background:oklch(0.85 0.003 90);"></div>
+        </div>
+        <div style="display:{{ processMobileLineDisplay }}; grid-column:1 / -1; grid-row:1; position:relative;">
+          <div style="position:absolute; top:11px; left:16.5%; width:67%; height:2px; background:oklch(0.85 0.003 90);"></div>
+          <div style="position:absolute; bottom:-20px; left:calc(83.5% - 1px); width:2px; height:20px; background:oklch(0.85 0.003 90);"></div>
+          <div style="position:absolute; bottom:-20px; left:16.5%; width:67%; height:2px; background:oklch(0.85 0.003 90);"></div>
+        </div>
+        <div style="display:{{ processMobileLineDisplay }}; grid-column:1 / -1; grid-row:2; position:relative;">
+          <div style="position:absolute; top:11px; left:16.5%; width:67%; height:2px; background:oklch(0.85 0.003 90);"></div>
+          <div style="position:absolute; top:-20px; left:calc(16.5% - 1px); width:2px; height:20px; background:oklch(0.85 0.003 90);"></div>
+        </div>
+        <sc-for list="{{ processSteps }}" as="step" hint-placeholder-count="6">
+          <div style="display:flex; flex-direction:column; align-items:center; text-align:center; position:relative;">
+            <div style="width:24px; height:24px; border-radius:50%; background:oklch(0.55 0.08 240); border:4px solid oklch(0.95 0.003 90); margin-bottom:20px; z-index:1;"></div>
+            <div style="font-size:15px; font-weight:700; margin-bottom:6px;">{{ step.name }}</div>
+            <div style="font-size:13px; line-height:1.4; color:oklch(0.5 0.005 250); max-width:160px;">{{ step.description }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="padding:160px 48px; max-width:1400px; margin:0 auto;">
+    <div style="margin-bottom:56px; text-align:center;">
+      <div style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.55 0.08 240); margin-bottom:16px;">Client Feedback</div>
+      <h2 style="font-size:clamp(28px,3.5vw,42px); letter-spacing:-0.02em; font-weight:700; margin:0;">Trusted by the GCs who hire us again.</h2>
+    </div>
+    <div data-reveal="testimonials" style="opacity:{{ testimonialsOpacity }}; transition:opacity 0.9s ease; overflow:hidden; -webkit-mask-image:linear-gradient(90deg, transparent, black 8%, black 92%, transparent); mask-image:linear-gradient(90deg, transparent, black 8%, black 92%, transparent);">
+      <div style="display:flex; gap:28px; width:max-content; animation:dmr-belt 48s linear infinite;">
+        <sc-for list="{{ testimonialsBelt }}" as="t" hint-placeholder-count="16">
+          <div style="width:360px; flex-shrink:0; background:oklch(1 0 0); border-radius:20px; padding:36px 32px; box-shadow:0 1px 3px oklch(0.18 0.005 250 / 0.06); display:flex; flex-direction:column; gap:22px;">
+            <div style="font-size:16px; line-height:1.6; color:oklch(0.25 0.005 250); font-weight:400;">“{{ t.quote }}”</div>
+            <div style="display:flex; align-items:center; gap:14px; margin-top:auto;">
+              <div style="width:40px; height:40px; border-radius:50%; background-image:url('{{ t.avatar }}'); background-size:cover; background-position:center; flex-shrink:0;"></div>
+              <div>
+                <div style="font-size:14px; font-weight:700;">{{ t.name }}</div>
+                <div style="font-size:13px; color:oklch(0.5 0.005 250);">{{ t.role }}</div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:oklch(0.18 0.005 250); padding:0 {{ footerSidePadding }} 40px;">
+    <div style="max-width:1400px; margin:0 auto; padding:56px 0 64px; border-bottom:1px solid oklch(0.98 0.003 90 / 0.1);">
+      <div data-spotlight style="position:relative; overflow:hidden; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; background:oklch(1 0 0 / 0.04); border:1px solid oklch(0.98 0.003 90 / 0.1); border-radius:24px; padding:40px 44px;">
+        <div style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity 0.4s ease; background:radial-gradient(circle 300px at var(--mx,50%) var(--my,50%), oklch(0.55 0.08 240 / 0.25), transparent 70%); z-index:0;"></div>
+        <div style="position:relative; z-index:1;">
+          <div style="font-size:26px; font-weight:600; letter-spacing:-0.01em; color:oklch(0.98 0.003 90); margin-bottom:8px;">Ready to start your next project?</div>
+          <div style="font-size:15px; color:oklch(0.72 0.005 90);">Tell us about the scope — we'll follow up within one business day.</div>
+        </div>
+        <a href="Get a Quote.dc.html" onClick="{{ goGetQuote }}" data-magnetic style="position:relative; z-index:1; display:inline-flex; align-items:center; gap:10px; background:oklch(0.98 0.003 90); color:oklch(0.15 0.005 250); padding:16px 30px; border-radius:100px; text-decoration:none; font-size:13.5px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; flex-shrink:0;" style-hover="background:oklch(0.9 0.003 90);">Get a Quote →</a>
+      </div>
+    </div>
+    <div style="max-width:1400px; margin:0 auto; display:grid; grid-template-columns:{{ footerGridColumns }}; gap:{{ footerGridGap }}; padding-bottom:48px; border-bottom:1px solid oklch(0.98 0.003 90 / 0.1);">
+      <div>
+        <img src="uploads/DMRlogo.png" alt="DMR" style="height:72px; width:auto; filter:brightness(0) invert(1); margin-left:-14px;">
+        <div style="font-size:14px; line-height:1.6; color:oklch(0.6 0.005 90); max-width:280px; margin-top:4px;">Commercial framing, drywall, and finishing for contractors, developers, and institutions nationwide.</div>
+        <div style="display:flex; gap:12px; margin-top:24px;">
+          <a href="https://www.instagram.com/dmrconstructioninc/" target="_blank" rel="noopener" style="width:38px; height:38px; border-radius:50%; border:1px solid oklch(0.98 0.003 90 / 0.2); display:flex; align-items:center; justify-content:center; transition:border-color 0.3s ease, background 0.3s ease;" style-hover="border-color:oklch(0.55 0.08 240); background:oklch(0.55 0.08 240 / 0.15);" data-social data-magnetic><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="oklch(0.98 0.003 90)" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="oklch(0.98 0.003 90)" stroke="none"/></svg></a>
+          <a href="#" style="width:38px; height:38px; border-radius:50%; border:1px solid oklch(0.98 0.003 90 / 0.2); display:flex; align-items:center; justify-content:center; transition:border-color 0.3s ease, background 0.3s ease;" style-hover="border-color:oklch(0.55 0.08 240); background:oklch(0.55 0.08 240 / 0.15);" data-social data-magnetic><svg width="14" height="14" viewBox="0 0 24 24" fill="oklch(0.98 0.003 90)"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-6.9l-5.4-6.6L4.7 22H1.6l8.2-9.3L1 2h7l4.9 6.1L18.9 2zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20z"/></svg></a>
+          <a href="#" style="width:38px; height:38px; border-radius:50%; border:1px solid oklch(0.98 0.003 90 / 0.2); display:flex; align-items:center; justify-content:center; transition:border-color 0.3s ease, background 0.3s ease;" style-hover="border-color:oklch(0.55 0.08 240); background:oklch(0.55 0.08 240 / 0.15);" data-social data-magnetic><svg width="14" height="14" viewBox="0 0 24 24" fill="oklch(0.98 0.003 90)"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg></a>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="font-size:12.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:oklch(0.5 0.005 90); margin-bottom:6px;">Navigate</div>
+        <a href="#hero" style="color:oklch(0.75 0.005 90); text-decoration:none; font-size:14.5px; width:fit-content;" style-hover="color:oklch(0.98 0.003 90);">Home</a>
+        <a href="#projects" style="color:oklch(0.75 0.005 90); text-decoration:none; font-size:14.5px; width:fit-content;" style-hover="color:oklch(0.98 0.003 90);">Projects</a>
+        <a href="DMR Gallery.dc.html" onClick="{{ goGallery }}" style="color:oklch(0.75 0.005 90); text-decoration:none; font-size:14.5px; width:fit-content;" style-hover="color:oklch(0.98 0.003 90);">Gallery</a>
+        <a href="#services" style="color:oklch(0.75 0.005 90); text-decoration:none; font-size:14.5px; width:fit-content;" style-hover="color:oklch(0.98 0.003 90);">Services</a>
+        <a href="#about" style="color:oklch(0.75 0.005 90); text-decoration:none; font-size:14.5px; width:fit-content;" style-hover="color:oklch(0.98 0.003 90);">About</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="font-size:12.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:oklch(0.5 0.005 90); margin-bottom:6px;">Services</div>
+        <a href="#services" style="color:oklch(0.75 0.005 90); text-decoration:none; font-size:14.5px; width:fit-content;" style-hover="color:oklch(0.98 0.003 90);">Metal Framing</a>
+        <a href="#services" style="color:oklch(0.75 0.005 90); text-decoration:none; font-size:14.5px; width:fit-content;" style-hover="color:oklch(0.98 0.003 90);">Drywall Installation</a>
+        <a href="#services" style="color:oklch(0.75 0.005 90); text-decoration:none; font-size:14.5px; width:fit-content;" style-hover="color:oklch(0.98 0.003 90);">Fire-Rated Assemblies</a>
+        <a href="#services" style="color:oklch(0.75 0.005 90); text-decoration:none; font-size:14.5px; width:fit-content;" style-hover="color:oklch(0.98 0.003 90);">Finishing &amp; Taping</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="font-size:12.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:oklch(0.5 0.005 90); margin-bottom:6px;">Contact</div>
+        <a href="tel:+16612691899" style="color:oklch(0.75 0.005 90); text-decoration:none; font-size:14.5px; width:fit-content;" style-hover="color:oklch(0.98 0.003 90);">661-269-1899</a>
+        <a href="mailto:info@dmrdrywall.com" style="color:oklch(0.75 0.005 90); text-decoration:none; font-size:14.5px; width:fit-content;" style-hover="color:oklch(0.98 0.003 90);">info@dmrdrywall.com</a>
+        <div style="color:oklch(0.6 0.005 90); font-size:14.5px; line-height:1.5;">Los Angeles, CA</div>
+      </div>
+    </div>
+    <div style="max-width:1400px; margin:0 auto; padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:13px; color:oklch(0.5 0.005 90);">
+      <div>© 2026 DMR Commercial Drywall. All rights reserved. · DMR Construction Lic# 669187</div>
+      <div style="display:flex; gap:24px;">
+        <a href="#" style="color:oklch(0.5 0.005 90); text-decoration:none;" style-hover="color:oklch(0.98 0.003 90);">Privacy Policy</a>
+        <a href="#" style="color:oklch(0.5 0.005 90); text-decoration:none;" style-hover="color:oklch(0.98 0.003 90);">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{}}">
+class Component extends DCLogic {
+  state = { hoveredIdx: null, scrolled: false, revealed: {}, statsProgress: 0, isMobile: false, mobileMenuOpen: false, lightboxPhoto: null, navIndicator: null, scrollProgress: 0, rawScrollY: 0, cursorEnabled: false, cursorHover: false, pageTransitioning: false };
+  navPillRef = React.createRef();
+  cursorDotRef = React.createRef();
+  cursorRingRef = React.createRef();
+  componentDidMount() {
+    this._heroPhotos = ['uploads/pasted-1784574056029-0.png', 'uploads/imgi_9_740-Broadway-Adaptive-reuse-Reaume-Richardson-los-angeles-construction-3553bf8a.jpg', 'uploads/imgi_8_Framestore-Rooftop-adaptive-reuse-Reaume-Richardson-Los-Angeles-construction-bfc82455.jpg'];
+    this._heroIndex = 0;
+    this.setState({ heroIndex: 0 });
+    this._heroInterval = setInterval(() => {
+      this._heroIndex = (this._heroIndex + 1) % this._heroPhotos.length;
+      this.setState({ heroIndex: this._heroIndex });
+    }, 5000);
+    this._onScroll = () => {
+      const scrolled = window.scrollY > 60;
+      const doc = document.documentElement;
+      const progress = doc.scrollHeight > doc.clientHeight ? (window.scrollY / (doc.scrollHeight - doc.clientHeight)) * 100 : 0;
+      this.setState({ scrollProgress: progress, rawScrollY: window.scrollY });
+      if (scrolled !== this.state.scrolled) this.setState({ scrolled });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onResize = () => {
+      const isMobile = window.innerWidth <= 880;
+      const cursorEnabled = !isMobile && window.matchMedia('(pointer: fine)').matches;
+      if (isMobile !== this.state.isMobile) { this.setState({ isMobile, mobileMenuOpen: false }); this._unlockScroll(); }
+      if (cursorEnabled !== this.state.cursorEnabled) this.setState({ cursorEnabled });
+    };
+    window.addEventListener('resize', this._onResize);
+    this._onResize();
+    this._mouse = { x: -100, y: -100 };
+    this._onMouseMove = (e) => { this._mouse.x = e.clientX; this._mouse.y = e.clientY; };
+    window.addEventListener('mousemove', this._onMouseMove);
+    this._onMouseOver = (e) => {
+      const isInteractive = !!e.target.closest('a, button, [data-tilt], [data-spotlight]');
+      if (isInteractive !== this.state.cursorHover) this.setState({ cursorHover: isInteractive });
+    };
+    document.addEventListener('mouseover', this._onMouseOver);
+    this._cursorRafActive = true;
+    const cursorLoop = () => {
+      if (!this._cursorRafActive) return;
+      if (this.cursorDotRef.current) this.cursorDotRef.current.style.transform = `translate3d(${this._mouse.x - 4}px, ${this._mouse.y - 4}px, 0)`;
+      if (this.cursorRingRef.current) this.cursorRingRef.current.style.transform = `translate3d(${this._mouse.x}px, ${this._mouse.y}px, 0)`;
+      requestAnimationFrame(cursorLoop);
+    };
+    requestAnimationFrame(cursorLoop);
+    this._magnetCleanup = [];
+    this._tiltCleanup = [];
+    this._spotlightCleanup = [];
+    setTimeout(() => { this._attachInteractions(); }, 0);
+    if (window.location.hash) {
+      const scrollToHash = () => {
+        const el = document.getElementById(window.location.hash.slice(1));
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 90, behavior: 'instant' });
+      };
+      setTimeout(scrollToHash, 50);
+      setTimeout(scrollToHash, 400);
+      window.addEventListener('load', scrollToHash);
+    }
+    this._observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const key = entry.target.dataset.reveal;
+          this.setState((s) => ({ revealed: { ...s.revealed, [key]: true } }));
+          if (key === 'stats') this.animateStats();
+          this._observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    setTimeout(() => {
+      document.querySelectorAll('[data-reveal]').forEach((el) => this._observer.observe(el));
+    }, 0);
+  }
+  _attachInteractions() {
+    document.querySelectorAll('[data-magnetic]').forEach((el) => {
+      const onMove = (e) => {
+        const r = el.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) * 0.3;
+        const dy = (e.clientY - (r.top + r.height / 2)) * 0.3;
+        el.style.transform = `translate(${dx}px, ${dy}px) scale(1.04)`;
+      };
+      const onLeave = () => {
+        el.style.transition = 'transform 0.4s cubic-bezier(0.2,0.8,0.2,1)';
+        el.style.transform = '';
+        setTimeout(() => { el.style.transition = ''; }, 400);
+      };
+      el.addEventListener('mousemove', onMove);
+      el.addEventListener('mouseleave', onLeave);
+      this._magnetCleanup.push(() => { el.removeEventListener('mousemove', onMove); el.removeEventListener('mouseleave', onLeave); });
+    });
+    document.querySelectorAll('[data-tilt]').forEach((el) => {
+      const onMove = (e) => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = `translateY(-6px) rotateX(${(-py * 8).toFixed(2)}deg) rotateY(${(px * 8).toFixed(2)}deg)`;
+      };
+      const onLeave = () => { el.style.transform = ''; };
+      el.addEventListener('mousemove', onMove);
+      el.addEventListener('mouseleave', onLeave);
+      this._tiltCleanup.push(() => { el.removeEventListener('mousemove', onMove); el.removeEventListener('mouseleave', onLeave); });
+    });
+    document.querySelectorAll('[data-spotlight]').forEach((card) => {
+      const glow = card.querySelector('div');
+      if (!glow) return;
+      const onMove = (e) => {
+        const r = card.getBoundingClientRect();
+        glow.style.setProperty('--mx', ((e.clientX - r.left) / r.width) * 100 + '%');
+        glow.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
+        glow.style.opacity = '1';
+      };
+      const onLeave = () => { glow.style.opacity = '0'; };
+      card.addEventListener('mousemove', onMove);
+      card.addEventListener('mouseleave', onLeave);
+      this._spotlightCleanup.push(() => { card.removeEventListener('mousemove', onMove); card.removeEventListener('mouseleave', onLeave); });
+    });
+  }
+  componentWillUnmount() {
+    clearInterval(this._heroInterval);
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('mousemove', this._onMouseMove);
+    document.removeEventListener('mouseover', this._onMouseOver);
+    this._cursorRafActive = false;
+    if (this._observer) this._observer.disconnect();
+    (this._magnetCleanup || []).forEach((fn) => fn());
+    (this._tiltCleanup || []).forEach((fn) => fn());
+    (this._spotlightCleanup || []).forEach((fn) => fn());
+    this._unlockScroll();
+  }
+  _lockScroll() {
+    this._scrollY = window.scrollY;
+    requestAnimationFrame(() => {
+      document.body.style.cssText += 'position:fixed;top:-' + this._scrollY + 'px;left:0;right:0;width:100%;overflow:hidden;';
+    });
+  }
+  _unlockScroll() {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    if (this._scrollY != null) { window.scrollTo(0, this._scrollY); this._scrollY = null; }
+  }
+  animateStats() {
+    const start = performance.now();
+    const duration = 1300;
+    const step = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      this.setState({ statsProgress: eased });
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  renderVals() {
+    const scrolled = this.state.scrolled;
+    const revealed = this.state.revealed;
+    const reveal = (key) => ({
+      opacity: revealed[key] ? 1 : 0,
+      transform: revealed[key] ? 'translateY(0)' : 'translateY(28px)',
+    });
+    const projectsReveal = reveal('projects');
+    const servicesReveal = reveal('services');
+    const whyReveal = reveal('why');
+    const processReveal = reveal('process');
+    const testimonialsReveal = reveal('testimonials');
+    const testimonialsList = [
+      { quote: 'DMR is the first drywall sub we call for any large commercial job. They hit every deadline.', name: 'Mark Ellison', role: 'Project Executive, Ellison Construction', avatar: 'https://i.pravatar.cc/100?img=12' },
+      { quote: 'Their finish quality on our hospital tower was the best we’ve seen from a subcontractor.', name: 'Diane Cho', role: 'Owner’s Rep, St. Alden Health', avatar: 'https://i.pravatar.cc/100?img=47' },
+      { quote: 'Reliable, safe, and easy to coordinate with across a 40-suite retail buildout.', name: 'Tom Reyes', role: 'Superintendent, Union Development Group', avatar: 'https://i.pravatar.cc/100?img=52' },
+      { quote: 'Their crews showed up on time, every time, across a 220,000 sq ft school campus.', name: 'Priya Nair', role: 'Construction Manager, Northgate USD', avatar: 'https://i.pravatar.cc/100?img=45' },
+      { quote: 'We’ve used DMR on three office towers now. Consistent quality, no surprises.', name: 'James Whitfield', role: 'VP Development, Meridian Group', avatar: 'https://i.pravatar.cc/100?img=33' },
+      { quote: 'Fast, clean tenant improvement work in a fully occupied retail center.', name: 'Sara Boyd', role: 'Property Manager, Union Row', avatar: 'https://i.pravatar.cc/100?img=29' },
+      { quote: 'Their safety record and documentation made our federal review painless.', name: 'Carlos Vega', role: 'Contracting Officer, GSA', avatar: 'https://i.pravatar.cc/100?img=51' },
+      { quote: 'Best acoustic ceiling install we’ve had on a multifamily project.', name: 'Elena Marsh', role: 'GC Project Lead, Baypoint Developers', avatar: 'https://i.pravatar.cc/100?img=44' },
+    ];
+    const statsProgress = this.state.statsProgress;
+    const rawStats = [
+      { target: 33, decimals: 0, suffix: '+', label: 'Years in Business' },
+      { target: 840, decimals: 0, suffix: '+', label: 'Commercial Projects' },
+      { target: 12, decimals: 0, suffix: 'M+', label: 'Sq Ft Installed' },
+      { target: 0.8, decimals: 1, suffix: '', label: 'EMR Safety Rating' },
+      { target: 95, decimals: 0, suffix: '%', label: 'Repeat Clients' },
+    ];
+    const R = window.__resources || {};
+    const rawProjects = [
+      { name: 'David Zwirner Los Angeles', category: 'Ground-Up Construction / Art Gallery', address: '606 N. Western Avenue, Los Angeles, CA 90004', description: 'Ground-up construction of a three-story, 14,000-square-foot flagship art gallery in Melrose Hill, with six exhibition and viewing rooms, private offices, two kitchen commissaries, a rooftop entertaining area, and a monumental mahogany-and-glass entrance with an engineered sliding door for large-scale artwork installations.', photo: R.p1photo || 'uploads/imgi_15_DavidZwirner-GeneralContractor-exterior-ReaumeRichardson-Wide_AdaptiveReuse.jpg' },
+      { name: 'The Garland Building', category: 'Historic Restoration', address: '740-748 S Broadway, Los Angeles, CA', description: 'Historic restoration of an 11-story Beaux-Arts landmark in Downtown LA, blending the restored fa\u00e7ade and exposed-brick character with upgraded systems and modern creative office space.', photo: R.p2photo || 'uploads/imgi_19_Stairs2-ReaumeRichardson_AdaptiveReuse_740-1.jpg', photoAfter: R.p2after || 'uploads/imgi_18_Stairs1-ReaumeRichardson_AdaptiveReuse_740-1.jpg' },
+      { name: 'Warby Parker Abbot Kinney', category: 'Retail Build-Out', address: '1422 Abbot Kinney Boulevard, Los Angeles, CA 90291', description: 'Retail build-out transforming an Abbot Kinney storefront into Warby Parker’s first stand-alone West Coast location — a 2,700-square-foot store combining a clean, modern retail environment with a custom exterior fa\u00e7ade showcasing a mural by Los Angeles artist Geoff McFetridge.', photo: R.p3photo || 'uploads/imgi_9_WARBY_PARKER_VENICE_05_Square.jpg', photoAfter: R.p3after || 'uploads/imgi_8_WARBY_PARKER_VENICE_14.jpg' },
+      { name: 'AKA Hotel Beverly Hills', category: 'Hotel Conversion and Renovation', address: '155 N. Crescent Drive, Beverly Hills, CA 90210', description: 'Transformation of an existing apartment complex into a 115,000-square-foot luxury extended-stay hotel featuring 88 fully furnished suites, with a new second-level terrace, extensive landscaping, a 20-seat screening room, and renovations to the lobby, elevators, illuminated fa\u00e7ade, and entrance.', photo: R.p4photo || 'uploads/imgi_12_AKA-Hotel-Beverly-Hills-Lobby-Reaume-Richardson-los-angeles-construction-6a1ee41b.jpg' },
+      { name: 'Method Studios', category: 'Adaptive Reuse / Creative Production Studio', address: '3401 Exposition Boulevard, Santa Monica, CA 90404', description: 'Adaptive reuse of an existing warehouse into a state-of-the-art post-production and visual-effects facility, with a new second-floor mezzanine, screening theaters, color and effects bays, a commercial kitchen and commissary, and an IT room supporting 350 people.', photo: R.p5photo || 'uploads/imgi_14_Company3-Method-studios-screening-room-reuse-Reaume-Richardson-los-angeles-construction-7cdc0188.jpg' },
+      { name: '1 Hotel West Hollywood', category: 'Hotel Renovation / Rebranding', address: '8490 Sunset Boulevard, West Hollywood, CA 90069', description: 'Renovation and sustainable rebranding of two existing 10-story towers into a nature-inspired luxury hotel, encompassing 283 guest rooms, corridors, elevator lobbies, the pool deck, and extensive exterior landscaping using reclaimed materials and native plants.', photo: R.p6photo || 'uploads/imgi_12_Our-Projects-suit2-One-Hotel-West-Hollywood-Reaume-Richardson-los-angeles-construction.jpg' },
+    ];
+    const projectsWithHover = rawProjects.map((p, i) => ({
+      ...p,
+      hasAfter: !!p.photoAfter,
+      overlayOpacity: this.state.hoveredIdx === i ? 1 : 0,
+      onEnter: () => this.setState({ hoveredIdx: i }),
+      onLeave: () => this.setState({ hoveredIdx: null }),
+    }));
+    const navText = scrolled ? 'oklch(0.18 0.005 250)' : 'oklch(0.98 0.003 90)';
+    const galleryPaths = [
+      R.gal1 || 'uploads/imgi_9_Header.jpg',
+      R.gal2 || 'uploads/imgi_11_DavidZwirner-exteriorBlock5-ReaumeRichardson_AdaptiveReuse.jpg',
+      R.p2photo || 'uploads/imgi_19_Stairs2-ReaumeRichardson_AdaptiveReuse_740-1.jpg',
+      R.gal4 || 'uploads/imgi_14_Our-Projects-Lobby3-The-June-Hotel-Reaume-Richardson-los-angeles-construction.jpg',
+      R.gal5 || 'uploads/imgi_8_Framestore-Rooftop-adaptive-reuse-Reaume-Richardson-Los-Angeles-construction.jpg',
+      R.gal6 || 'uploads/imgi_16_Our-Projects-patio-bar-The-June-Hotel-Reaume-Richardson-los-angeles-construction.jpg',
+    ];
+    return {
+      cursorDotRef: this.cursorDotRef,
+      cursorRingRef: this.cursorRingRef,
+      cursorDisplay: this.state.cursorEnabled ? 'block' : 'none',
+      cursorRingScale: this.state.cursorHover ? 1.7 : 1,
+      cursorRingOpacity: this.state.cursorHover ? 1 : 0.6,
+      heroParallax: Math.min(this.state.rawScrollY * 0.15, 90),
+      heroPhotos: (this._heroPhotos || ['uploads/pasted-1784574056029-0.png']).map((url, i) => ({ url, opacity: i === (this.state.heroIndex || 0) ? 1 : 0 })),
+      transitionOpacity: this.state.pageTransitioning ? 1 : 0,
+      transitionPointer: this.state.pageTransitioning ? 'auto' : 'none',
+      footerSidePadding: this.state.isMobile ? '24px' : '48px',
+      footerGridColumns: this.state.isMobile ? '1fr' : '1.4fr 1fr 1fr 1fr',
+      footerGridGap: this.state.isMobile ? '36px' : '48px',
+      goGetQuote: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false, pageTransitioning: true }); this._unlockScroll(); setTimeout(() => { window.location.href = 'Get a Quote.dc.html'; }, 420); },
+      goGallery: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false, pageTransitioning: true }); this._unlockScroll(); setTimeout(() => { window.location.href = 'DMR Gallery.dc.html'; }, 420); },
+      galleryPhotos: galleryPaths.map((photo) => ({ photo, onOpen: () => { this.setState({ lightboxPhoto: photo }); document.body.style.overflow = 'hidden'; } })),
+      galleryColumnCount: this.state.isMobile ? 1 : 3,
+      lightboxOpen: !!this.state.lightboxPhoto,
+      lightboxPhoto: this.state.lightboxPhoto,
+      closeLightbox: () => { this.setState({ lightboxPhoto: null }); document.body.style.overflow = ''; },
+      navBg: scrolled ? 'oklch(0.98 0.003 90 / 0.85)' : 'transparent',
+      navText: navText,
+      navLogoFilter: scrolled ? 'none' : 'brightness(0) invert(1) drop-shadow(0 1px 4px rgba(0,0,0,0.5))',
+      navPillBg: scrolled ? 'oklch(0.18 0.005 250 / 0.05)' : 'oklch(0.98 0.003 90 / 0.08)',
+      navLinkHoverBg: scrolled ? 'oklch(0.18 0.005 250 / 0.08)' : 'oklch(0.98 0.003 90 / 0.16)',
+      navPillRef: this.navPillRef,
+      onNavHover: (e) => {
+        const pill = this.navPillRef.current;
+        if (!pill) return;
+        const pillRect = pill.getBoundingClientRect();
+        const linkRect = e.currentTarget.getBoundingClientRect();
+        this.setState({ navIndicator: { left: linkRect.left - pillRect.left, width: linkRect.width } });
+      },
+      clearNavHover: () => this.setState({ navIndicator: null }),
+      navIndicatorLeft: (this.state.navIndicator ? this.state.navIndicator.left : 0) + 'px',
+      navIndicatorWidth: (this.state.navIndicator ? this.state.navIndicator.width : 0) + 'px',
+      navIndicatorOpacity: this.state.navIndicator ? 1 : 0,
+      scrollProgress: this.state.scrollProgress,
+      hamburgerBarColor: this.state.mobileMenuOpen ? 'oklch(0.18 0.005 250)' : navText,
+      navLinksDisplay: this.state.isMobile ? 'none' : 'flex',
+      hamburgerDisplay: this.state.isMobile ? 'flex' : 'none',
+      mobileMenuOpen: this.state.mobileMenuOpen,
+      toggleMobileMenu: () => this.setState((s) => ({ mobileMenuOpen: !s.mobileMenuOpen }), () => { if (this.state.mobileMenuOpen) this._lockScroll(); else this._unlockScroll(); }),
+      closeMobileMenu: () => this.setState({ mobileMenuOpen: false }, () => { this._unlockScroll(); }),
+      barTopTransform: this.state.mobileMenuOpen ? 'translateY(7px) rotate(45deg)' : 'none',
+      barMidOpacity: this.state.mobileMenuOpen ? 0 : 1,
+      barBotTransform: this.state.mobileMenuOpen ? 'translateY(-7px) rotate(-45deg)' : 'none',
+      navPadding: scrolled ? '16px 48px' : '26px 48px',
+      navBlur: scrolled ? 'blur(16px) saturate(1.4)' : 'none',
+      navBorder: scrolled ? '1px solid oklch(0.18 0.005 250 / 0.08)' : '1px solid transparent',
+      projectsOpacity: projectsReveal.opacity,
+      projectsTransform: projectsReveal.transform,
+      servicesOpacity: servicesReveal.opacity,
+      servicesTransform: servicesReveal.transform,
+      whyOpacity: whyReveal.opacity,
+      whyTransform: whyReveal.transform,
+      processOpacity: processReveal.opacity,
+      processTransform: processReveal.transform,
+      processGridColumns: this.state.isMobile ? 'repeat(3,1fr)' : 'repeat(6,1fr)',
+      processRowGap: this.state.isMobile ? '40px' : '8px',
+      processLineDisplay: this.state.isMobile ? 'none' : 'block',
+      processMobileLineDisplay: 'none',
+      testimonialsOpacity: testimonialsReveal.opacity,
+      testimonialsTransform: testimonialsReveal.transform,
+      testimonialsBelt: [].concat(testimonialsList, testimonialsList),
+      stats: rawStats.map((s) => ({ label: s.label, value: (s.target * statsProgress).toFixed(s.decimals) + s.suffix })),
+      projects: projectsWithHover,
+      services: [
+        { name: 'Metal Framing', description: 'Structural and cold-formed steel framing for commercial builds.' },
+        { name: 'Drywall Installation', description: 'Precision hanging across every wall and ceiling type.' },
+        { name: 'Drywall Finishing', description: 'Level 4 and 5 finishes ready for premium paint and wallcoverings.' },
+        { name: 'OSHPD aka HCAI', description: 'Specialized healthcare construction meeting California\u2019s strict safety, compliance, and inspection standards.' },
+        { name: 'Shaft Wall Systems', description: 'Fire-rated shaft enclosures built to code.' },
+        { name: 'Fire-Rated Assemblies', description: 'UL-listed rated wall and ceiling assemblies.' },
+        { name: 'Tenant Improvements', description: 'Fast-turn buildouts for occupied commercial spaces.' },
+        { name: 'Commercial Renovations', description: 'Phased renovation work in active buildings.' },
+      ],
+      whyChoose: [
+        { title: 'Experienced Team', description: 'Three generations of commercial drywall expertise.' },
+        { title: 'Proven Commercial Experience', description: 'Hundreds of completed projects across every building type.' },
+        { title: 'Safety Focused', description: 'Industry-leading safety record and on-site protocols.' },
+        { title: 'Reliable Scheduling', description: 'We hit our dates, so your project stays on track.' },
+        { title: 'Quality Craftsmanship', description: 'Finish-level detail on every wall and ceiling.' },
+      ],
+      processSteps: [
+        { name: 'Preconstruction', description: 'Scope, estimating, and planning' },
+        { name: 'Coordination', description: 'Trade partner alignment' },
+        { name: 'Framing', description: 'Metal stud layout & install' },
+        { name: 'Drywall Install', description: 'Hang and rough finish' },
+        { name: 'Finishing', description: 'Tape, mud, and texture' },
+        { name: 'Completion', description: 'Punch list & walkthrough' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
