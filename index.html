@@ -26,6 +26,14 @@
     @keyframes pd-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     .pd-marquee-track { animation: pd-marquee 34s linear infinite; }
     .pd-marquee:hover .pd-marquee-track { animation-play-state: paused; }
+    .pd-social { position: relative; overflow: hidden; }
+    .pd-social::before { content: ''; position: absolute; inset: 0; background: #1F2428; transform: translateY(101%); transition: transform .5s cubic-bezier(.2,.75,.25,1); }
+    .pd-social:hover::before, .pd-social:focus-visible::before { transform: translateY(0); }
+    .pd-social > * { position: relative; transition: color .35s ease, transform .5s cubic-bezier(.2,.75,.25,1), opacity .35s ease; }
+    .pd-social:hover > *, .pd-social:focus-visible > * { color: #ffffff; }
+    .pd-social:hover svg { transform: rotate(-8deg) scale(1.12); }
+    .pd-social .pd-social-arrow { opacity: 0; transform: translateX(-8px); }
+    .pd-social:hover .pd-social-arrow { opacity: 1; transform: translateX(0); }
     .pd-gal-cell { position: relative; overflow: hidden; cursor: zoom-in; }
     .pd-gal-cell img { transition: transform 1s cubic-bezier(.16,.8,.3,1), filter .6s ease; }
     .pd-gal-cell:hover img { transform: scale(1.055); }
@@ -109,8 +117,8 @@
 
     <!-- ============ HOME ============ -->
     <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
-      <section aria-label="Hero" data-screen-label="Home / Hero" style="{{ heroStyle }}">
-        <img src="assets/photo-atrium.jpg" alt="Full-height glass atrium with dark steel framing, custom seating and layered garden views" style="{{ heroImgStyle }}">
+      <section aria-label="Hero" data-rail-label="Top" data-screen-label="Home / Hero" style="{{ heroStyle }}">
+        <img src="assets/photo-hero-dusk.jpg" alt="Modern residence at dusk: warm-lit interiors open to a pool deck, cantilevered wood-clad upper volume above" style="{{ heroImgStyle }}">
         <div style="{{ heroScrimStyle }}"></div>
         <div style="{{ heroContentStyle }}">
           <h1 style="{{ heroHeadlineStyle }}">
@@ -127,7 +135,7 @@
         </div>
       </section>
 
-      <section aria-label="Introduction" style="{{ introSectionStyle }}">
+      <section aria-label="Introduction" data-rail-label="About" style="{{ introSectionStyle }}">
         <div style="{{ introTextColStyle }}">
           <h2 style="{{ introHeadlineStyle }}">A general contractor built for architecture that refuses to compromise.</h2>
           <div style="{{ tanRule }}"></div>
@@ -135,11 +143,11 @@
           <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goAbout }}">Read About the Firm &nbsp;→</button>
         </div>
         <div style="{{ introImgColStyle }}">
-          <img ref="{{ introImgRef }}" src="assets/photo-living.jpg" alt="Double-height living room with a suspended steel stair, built-in library and gas fireplace" style="{{ introImgStyle }}">
+          <img ref="{{ introImgRef }}" src="assets/wasatch-04-living-fireplace.jpg" alt="Wasatch Residence: double-height living room with a full-height library, linear fireplace and floating oak stair" style="{{ introImgStyle }}">
         </div>
       </section>
 
-      <section aria-label="Stats" ref="{{ statsRowRef }}" style="{{ statsSection }}">
+      <section aria-label="Stats" data-rail-label="Numbers" ref="{{ statsRowRef }}" style="{{ statsSection }}">
         <sc-for list="{{ stats }}" as="stat" hint-placeholder-count="4">
           <div style="{{ stat.cardStyle }}">
             <span style="{{ statNumStyle }}">{{ stat.shown }}</span>
@@ -156,7 +164,7 @@
         </div>
       </div>
 
-      <section aria-label="Capabilities" style="{{ homeCapSection }}">
+      <section aria-label="Capabilities" data-rail-label="Capabilities" style="{{ homeCapSection }}">
         <div style="{{ homeCapHead }}">
           <div>
             <span style="{{ eyebrowStyle }}">Capabilities</span>
@@ -181,10 +189,10 @@
         </div>
       </section>
 
-      <section aria-label="Services teaser" style="{{ teaserSection }}">
+      <section aria-label="Services teaser" data-rail-label="Services" style="{{ teaserSection }}">
         <h2 ref="{{ refFor_services_teaser }}" data-wm="" style="{{ watermarkServicesTeaser }}">SERVICES</h2>
         <div style="{{ teaserRow }}">
-          <div style="{{ teaserImgCol }}"><img ref="{{ teaserServicesImgRef }}" src="assets/photo-hallway.jpg" alt="Sunlit steel-framed corridor with floor-to-ceiling glazing" style="{{ teaserServicesImg }}"></div>
+          <div style="{{ teaserImgCol }}"><img ref="{{ teaserServicesImgRef }}" src="assets/preston-02-rear-elevation.jpg" alt="Preston Residence: cantilevered roof plane over the terrace at dusk" style="{{ teaserServicesImg }}"></div>
           <div style="{{ teaserTextCol }}">
             <h3 style="{{ subHeadStyle }}">Full-Scope General Contracting, Start to Finish.</h3>
             <div style="{{ tanRule }}"></div>
@@ -194,7 +202,7 @@
         </div>
       </section>
 
-      <section aria-label="Featured projects" style="{{ teaserSection }}">
+      <section aria-label="Featured projects" data-rail-label="Projects" style="{{ teaserSection }}">
         <h2 ref="{{ refFor_projects_teaser }}" data-wm="" style="{{ watermarkProjectsTeaser }}">PROJECTS</h2>
         <sc-for list="{{ featuredProjects }}" as="p" hint-placeholder-count="0">
           <div style="{{ p.rowStyle }}">
@@ -218,30 +226,7 @@
         </sc-for>
       </section>
 
-      <section aria-label="Before and after" style="{{ baSection }}">
-        <div style="{{ svcSectionHead }}">
-          <div>
-            <span style="{{ eyebrowStyle }}">Before &amp; after</span>
-            <h3 style="{{ sectionHeadlineTight }}">Drag to see the change.</h3>
-          </div>
-          <p style="{{ svcSectionHeadNote }}">Canyon House — a compartmentalized 1970s plan opened into one continuous volume.</p>
-        </div>
-        <div style="{{ baFrame }}" onPointerDown="{{ baDown }}" onPointerMove="{{ baMove }}" onPointerUp="{{ baUp }}" onPointerLeave="{{ baUp }}">
-          <img src="assets/photo-living.jpg" alt="Canyon House after renovation" style="{{ baAfterImg }}" draggable="{{ false }}">
-          <img src="assets/photo-hallway.jpg" alt="Canyon House before renovation" style="{{ baBeforeImg }}" draggable="{{ false }}">
-          <span style="{{ baLabelBefore }}">Before</span>
-          <span style="{{ baLabelAfter }}">After</span>
-          <div style="{{ baDivider }}">
-            <div style="{{ baHandle }}">
-              <span style="{{ baHandleArrow }}">←</span>
-              <span style="{{ baHandleArrow }}">→</span>
-            </div>
-          </div>
-        </div>
-        <span style="{{ baCaption }}">Comparison photography — <span style="{{ placeholderTag }}">placeholder images</span></span>
-      </section>
-
-      <section aria-label="How we compare" style="{{ cmpSection }}">
+      <section aria-label="How we compare" data-rail-label="Compare" style="{{ cmpSection }}">
         <div style="{{ svcSectionHead }}">
           <div>
             <span style="{{ eyebrowStyle }}">The difference</span>
@@ -265,7 +250,7 @@
         </div>
       </section>
 
-      <section aria-label="Why PD Construction" style="{{ whySection }}">
+      <section aria-label="Why PD Construction" data-rail-label="Principles" style="{{ whySection }}">
         <h3 style="{{ sectionHeadlineStyle }}">Four principles, held on every job.</h3>
         <div style="{{ whyGrid }}">
           <sc-for list="{{ whyPrinciples }}" as="w" hint-placeholder-count="4">
@@ -279,22 +264,22 @@
         </div>
       </section>
 
-      <section aria-label="Residential and commercial" style="{{ splitSection }}">
+      <section aria-label="Residential and commercial" data-rail-label="Sectors" style="{{ splitSection }}">
         <div style="{{ splitCol }}">
-          <div style="{{ splitImgWrap }}"><img ref="{{ splitResidentialRef }}" src="assets/photo-hallway.jpg" alt="Sunlit steel-framed corridor with floor-to-ceiling glazing" style="{{ splitResidentialImg }}" style-hover="{{ splitResidentialImgHover }}"></div>
+          <div style="{{ splitImgWrap }}"><img ref="{{ splitResidentialRef }}" src="assets/wasatch-01-facade.jpg" alt="Wasatch Residence street elevation with its anodized aluminum screen wall" style="{{ splitResidentialImg }}" style-hover="{{ splitResidentialImgHover }}"></div>
           <span style="{{ metaLineStyle }}">Residential</span>
           <h3 style="{{ splitTitle }}">Homes built as architecture, not product.</h3>
           <p style="{{ bodyStyle }}">Custom homes, luxury renovations, architectural estates, additions, and modern interiors — built to the tolerances the design deserves.</p>
         </div>
         <div style="{{ splitCol }}">
-          <div style="{{ splitImgWrap }}"><img ref="{{ splitCommercialRef }}" src="assets/photo-atrium.jpg" alt="Glazed atrium separating a private residence's living spaces" style="{{ splitCommercialImg }}" style-hover="{{ splitCommercialImgHover }}"></div>
+          <div style="{{ splitImgWrap }}"><img ref="{{ splitCommercialRef }}" src="assets/lhuillier-01-showroom.jpg" alt="Monique Lhuillier flagship showroom with concealed perimeter lighting" style="{{ splitCommercialImg }}" style-hover="{{ splitCommercialImgHover }}"></div>
           <span style="{{ metaLineStyle }}">Commercial</span>
           <h3 style="{{ splitTitle }}">Commercial space that performs under daily use.</h3>
           <p style="{{ bodyStyle }}">Offices, hospitality, retail, mixed-use environments, tenant improvements, and modern commercial buildings, delivered on operating timelines.</p>
         </div>
       </section>
 
-      <section aria-label="Trades" style="{{ mqSection }}">
+      <section aria-label="Trades" data-rail-label="Trades" style="{{ mqSection }}">
         <div style="{{ mqViewport }}">
           <div class="pd-marquee" style="{{ mqTrack }}">
             <sc-for list="{{ mqItems }}" as="m" hint-placeholder-count="0">
@@ -306,7 +291,7 @@
         </div>
       </section>
 
-      <section aria-label="Disciplines" class="pd-marquee" style="{{ marqueeSection }}">
+      <section aria-label="Disciplines" data-rail-label="Disciplines" class="pd-marquee" style="{{ marqueeSection }}">
         <div class="pd-marquee-track" style="{{ marqueeTrack }}">
           <sc-for list="{{ marqueeItems }}" as="m" hint-placeholder-count="0">
             <span style="{{ m.style }}">{{ m.label }}</span>
@@ -314,7 +299,7 @@
         </div>
       </section>
 
-      <section aria-label="Process preview" style="{{ processPreviewSection }}">
+      <section aria-label="Process preview" data-rail-label="Process" style="{{ processPreviewSection }}">
         <div style="{{ processPreviewHead }}">
           <div>
             <span style="{{ eyebrowStyle }}">How it works</span>
@@ -337,7 +322,7 @@
         </div>
       </section>
 
-      <section aria-label="Service area" style="{{ homeAreaSection }}">
+      <section aria-label="Service area" data-rail-label="Coverage" style="{{ homeAreaSection }}">
         <div style="{{ homeAreaInner }}">
           <div style="{{ homeAreaTextCol }}">
             <span style="{{ eyebrowStyle }}">Where we build</span>
@@ -353,7 +338,7 @@
         </div>
       </section>
 
-      <section aria-label="Client testimonials" style="{{ tmSection }}">
+      <section aria-label="Client testimonials" data-rail-label="Clients" style="{{ tmSection }}">
         <div style="{{ tmHeadRow }}">
           <div style="{{ tmHeadCol }}">
             <span style="{{ eyebrowStyle }}">What clients say</span>
@@ -378,7 +363,7 @@
         </div>
       </section>
 
-      <section aria-label="Common questions" style="{{ faqSection }}">
+      <section aria-label="Common questions" data-rail-label="Questions" style="{{ faqSection }}">
         <div style="{{ faqInner }}">
           <div style="{{ faqTextCol }}">
             <span style="{{ eyebrowStyle }}">Before you call</span>
@@ -402,8 +387,8 @@
         </div>
       </section>
 
-      <section aria-label="Closing call to action" style="{{ ctaSection }}">
-        <img ref="{{ ctaImgRef }}" src="assets/photo-hallway.jpg" alt="Sunlit steel-framed corridor with floor-to-ceiling glazing" style="{{ ctaImgStyle }}">
+      <section aria-label="Closing call to action" data-rail-label="Contact" style="{{ ctaSection }}">
+        <img ref="{{ ctaImgRef }}" src="assets/wasatch-02-pool-dusk.jpg" alt="Wasatch Residence at dusk, living spaces open to the pool deck" style="{{ ctaImgStyle }}">
         <div style="{{ ctaScrimStyle }}"></div>
         <div style="{{ ctaContentStyle }}">
           <h2 style="{{ ctaHeadline }}">Let’s Build Something Exceptional.</h2>
@@ -498,14 +483,14 @@
       <section aria-label="Client testimonial" style="{{ prjQuoteBand }}">
         <div style="{{ prjQuoteInner }}">
           <span style="{{ svcEyebrowInk }}">From the design team</span>
-          <span style="{{ prjQuoteMark }}">&ldquo;</span>
+          <span style="{{ prjQuoteMark }}">“</span>
           <blockquote style="{{ prjQuoteText }}">“They held the drawings to the millimeter and the schedule to the day.”</blockquote>
           <p style="{{ prjQuoteAttr }}">Architect of Record <span style="{{ placeholderTag }}">attribution placeholder</span></p>
         </div>
       </section>
 
       <section aria-label="Projects call to action" style="{{ ctaSection }}">
-        <img ref="{{ prjCtaImgRef }}" src="assets/photo-living.jpg" alt="Double-height living room with a suspended steel stair and built-in library" style="{{ prjCtaImg }}">
+        <img ref="{{ prjCtaImgRef }}" src="assets/pardo-04-living.jpg" alt="Malibu Ranch House: sunken living room under a patterned CNC-engraved ceiling" style="{{ prjCtaImg }}">
         <div style="{{ ctaScrimStyle }}"></div>
         <div style="{{ ctaContentStyle }}">
           <h2 style="{{ ctaHeadline }}">Your Project Could Be Next.</h2>
@@ -609,7 +594,7 @@
         <h1 ref="{{ refFor_page_services }}" data-wm="" style="{{ watermarkPageServices }}">SERVICES</h1>
       </section>
       <section style="{{ pageHeaderRow }}">
-        <div style="{{ teaserImgCol }}"><img ref="{{ servicesHeroImgRef }}" src="assets/photo-hallway.jpg" alt="Sunlit steel-framed corridor with floor-to-ceiling glazing" style="{{ servicesHeroImg }}"></div>
+        <div style="{{ teaserImgCol }}"><img ref="{{ servicesHeroImgRef }}" src="assets/preston-05-kitchen.jpg" alt="Preston Residence kitchen in walnut with a marble island and slot window" style="{{ servicesHeroImg }}"></div>
         <div style="{{ teaserTextCol }}">
           <h2 style="{{ introHeadlineStyle }}">We Are a Detail-Oriented, Full-Service Contractor.</h2>
           <div style="{{ tanRule }}"></div>
@@ -694,14 +679,14 @@
 
       <section aria-label="Sectors" style="{{ svcSectorSection }}">
         <div style="{{ svcSectorCol }}">
-          <div style="{{ splitImgWrap }}"><img ref="{{ svcSectorResRef }}" src="assets/photo-living.jpg" alt="Double-height living room with a suspended steel stair and built-in library" style="{{ svcSectorResImg }}"></div>
+          <div style="{{ splitImgWrap }}"><img ref="{{ svcSectorResRef }}" src="assets/wasatch-03-living-pingpong.jpg" alt="Wasatch Residence main living volume open to the courtyard" style="{{ svcSectorResImg }}"></div>
           <span style="{{ metaLineStyle }}">Residential</span>
           <h4 style="{{ splitTitle }}">Custom homes, estates &amp; renovations</h4>
           <p style="{{ bodyStyle }}">Detail-intensive residential work where exposed structure, long glazing runs, and tight tolerances leave nowhere to hide.</p>
           <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goProjects }}">Residential Work &nbsp;→</button>
         </div>
         <div style="{{ svcSectorCol }}">
-          <div style="{{ splitImgWrap }}"><img ref="{{ svcSectorComRef }}" src="assets/photo-atrium.jpg" alt="Glazed atrium separating a private residence's living spaces" style="{{ svcSectorComImg }}"></div>
+          <div style="{{ splitImgWrap }}"><img ref="{{ svcSectorComRef }}" src="assets/wildbeast-04-exterior-day.jpg" alt="The Wild Beast at CalArts: copper-shingled drum and curving roof" style="{{ svcSectorComImg }}"></div>
           <span style="{{ metaLineStyle }}">Commercial</span>
           <h4 style="{{ splitTitle }}">Offices, hospitality, retail &amp; TI</h4>
           <p style="{{ bodyStyle }}">Buildouts and ground-up commercial work delivered against lease commencement and occupancy deadlines.</p>
@@ -728,7 +713,7 @@
       </section>
 
       <section aria-label="Services call to action" style="{{ ctaSection }}">
-        <img ref="{{ svcCtaImgRef }}" src="assets/photo-atrium.jpg" alt="Full-height glass atrium with dark steel framing" style="{{ svcCtaImg }}">
+        <img ref="{{ svcCtaImgRef }}" src="assets/wildbeast-01-open-shell.jpg" alt="The Wild Beast with its retracting panels open at dusk" style="{{ svcCtaImg }}">
         <div style="{{ ctaScrimStyle }}"></div>
         <div style="{{ ctaContentStyle }}">
           <h2 style="{{ ctaHeadline }}">Tell Us What You’re Building.</h2>
@@ -747,7 +732,7 @@
         <h1 ref="{{ refFor_page_about }}" data-wm="" style="{{ watermarkPageAbout }}">ABOUT US</h1>
       </section>
       <section style="{{ pageHeaderRow }}">
-        <div style="{{ teaserImgCol }}"><img ref="{{ aboutHeroImgRef }}" src="assets/photo-living.jpg" alt="Family room with layered lighting, custom shelving and a linear fireplace" style="{{ aboutHeroImg }}"></div>
+        <div style="{{ teaserImgCol }}"><img ref="{{ aboutHeroImgRef }}" src="assets/alma-02-dining.jpg" alt="Alma Switch House dining room open to the courtyard through sliding glass" style="{{ aboutHeroImg }}"></div>
         <div style="{{ teaserTextCol }}">
           <h2 style="{{ introHeadlineStyle }}">Built on Family Values. Defined by Modern Craftsmanship.</h2>
           <div style="{{ tanRule }}"></div>
@@ -789,12 +774,17 @@
             <span style="{{ eyebrowStyle }}">Leadership</span>
             <h3 style="{{ sectionHeadlineTight }}">Who runs your project.</h3>
           </div>
-          <p style="{{ svcSectionHeadNote }}">Names, titles, and portraits to be supplied.</p>
+          <p style="{{ svcSectionHeadNote }}">Family-owned and family-run — one field, one office, one point of accountability.</p>
         </div>
         <div style="{{ aboutTeamGrid }}">
           <sc-for list="{{ team }}" as="t" hint-placeholder-count="3">
             <div style="{{ aboutTeamCard }}">
-              <image-slot id="{{ t.slotId }}" placeholder="Portrait placeholder" style="{{ aboutTeamPhoto }}"></image-slot>
+              <sc-if value="{{ t.hasPhoto }}" hint-placeholder-val="{{ false }}">
+                <img ref="{{ t.photoRef }}" alt="{{ t.name }}, {{ t.role }}, PD Construction Inc." style="{{ t.photoStyle }}">
+              </sc-if>
+              <sc-if value="{{ t.needsSlot }}" hint-placeholder-val="{{ true }}">
+                <image-slot id="{{ t.slotId }}" placeholder="Portrait placeholder" style="{{ aboutTeamPhoto }}"></image-slot>
+              </sc-if>
               <span style="{{ metaLineStyle }}">{{ t.role }}</span>
               <h4 style="{{ aboutTeamName }}">{{ t.name }}</h4>
               <div style="{{ tanRuleThin }}"></div>
@@ -837,7 +827,7 @@
       </section>
 
       <section aria-label="About call to action" style="{{ ctaSection }}">
-        <img ref="{{ aboutCtaImgRef }}" src="assets/photo-hallway.jpg" alt="Sunlit steel-framed corridor with floor-to-ceiling glazing" style="{{ aboutCtaImg }}">
+        <img ref="{{ aboutCtaImgRef }}" src="assets/alma-05-court-glazing.jpg" alt="Alma Switch House central courtyard ringed by steel-framed glazing" style="{{ aboutCtaImg }}">
         <div style="{{ ctaScrimStyle }}"></div>
         <div style="{{ ctaContentStyle }}">
           <h2 style="{{ ctaHeadline }}">Work With the People Who Build It.</h2>
@@ -856,7 +846,7 @@
         <h1 ref="{{ refFor_page_process }}" data-wm="" style="{{ watermarkPageProcess }}">PROCESS</h1>
       </section>
       <section style="{{ pageHeaderRow }}">
-        <div style="{{ teaserImgCol }}"><img ref="{{ processHeroImgRef }}" src="assets/photo-atrium.jpg" alt="Full-height glass atrium with dark steel framing" style="{{ processHeroImg }}"></div>
+        <div style="{{ teaserImgCol }}"><img ref="{{ processHeroImgRef }}" src="assets/preston-03-deck-pergola.jpg" alt="Preston Residence: ipe deck and slatted pergola across the pool" style="{{ processHeroImg }}"></div>
         <div style="{{ teaserTextCol }}">
           <h2 style="{{ introHeadlineStyle }}">A Transparent Path From First Call to Handover.</h2>
           <div style="{{ tanRule }}"></div>
@@ -936,7 +926,7 @@
       </section>
 
       <section aria-label="Process call to action" style="{{ ctaSection }}">
-        <img ref="{{ prcCtaImgRef }}" src="assets/photo-living.jpg" alt="Double-height living room with a suspended steel stair" style="{{ prcCtaImg }}">
+        <img ref="{{ prcCtaImgRef }}" src="assets/alma-03-courtyard.jpg" alt="Alma Switch House lower terrace at dusk, living space open to the outdoor dining area" style="{{ prcCtaImg }}">
         <div style="{{ ctaScrimStyle }}"></div>
         <div style="{{ ctaContentStyle }}">
           <h2 style="{{ ctaHeadline }}">Start at Phase One.</h2>
@@ -1082,14 +1072,14 @@
             <figure class="pd-gal-cell" style="{{ gp.cellStyle }}" onClick="{{ gp.open }}">
               <img ref="{{ gp.ref }}" alt="{{ gp.alt }}" style="{{ gp.imgStyle }}">
               <span class="pd-gal-num" style="{{ galNumStyle }}">{{ gp.num }}</span>
-              <figcaption style="{{ galCapStyle }}"><span style="{{ galCapProject }}">{{ gp.project }}</span><span style="{{ galCapZoom }}">View &#8599;</span></figcaption>
+              <figcaption style="{{ galCapStyle }}"><span style="{{ galCapProject }}">{{ gp.project }}</span><span style="{{ galCapZoom }}">View ↗</span></figcaption>
             </figure>
           </sc-for>
         </div>
       </section>
       <section aria-label="Gallery call to action" style="{{ galCtaSection }}">
         <h3 style="{{ sectionHeadlineTight }}">Want this level of finish on your project?</h3>
-        <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goContact }}">Start a Conversation &nbsp;&#8594;</button>
+        <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goContact }}">Start a Conversation &nbsp;→</button>
       </section>
     </sc-if>
 
@@ -1125,13 +1115,13 @@
       <div style="{{ lbBar }}">
         <span style="{{ lbCount }}">{{ lbCountText }}</span>
         <span style="{{ lbTitle }}">{{ lbProject }}</span>
-        <button aria-label="Close viewer" style="{{ lbCloseBtn }}" style-hover="{{ lbCloseBtnHover }}" onClick="{{ lbClose }}">Close &nbsp;&#10005;</button>
+        <button aria-label="Close viewer" style="{{ lbCloseBtn }}" style-hover="{{ lbCloseBtnHover }}" onClick="{{ lbClose }}">Close &nbsp;✕</button>
       </div>
       <img ref="{{ lbImgRef }}" alt="{{ lbAlt }}" style="{{ lbImg }}" onClick="{{ lbStop }}">
       <div style="{{ lbFoot }}" onClick="{{ lbStop }}">
-        <button aria-label="Previous photograph" style="{{ lbArrow }}" style-hover="{{ lbArrowHover }}" onClick="{{ lbPrev }}">&#8592;</button>
+        <button aria-label="Previous photograph" style="{{ lbArrow }}" style-hover="{{ lbArrowHover }}" onClick="{{ lbPrev }}">←</button>
         <span style="{{ lbCaption }}">{{ lbAlt }}</span>
-        <button aria-label="Next photograph" style="{{ lbArrow }}" style-hover="{{ lbArrowHover }}" onClick="{{ lbNext }}">&#8594;</button>
+        <button aria-label="Next photograph" style="{{ lbArrow }}" style-hover="{{ lbArrowHover }}" onClick="{{ lbNext }}">→</button>
       </div>
     </div>
   </sc-if>
@@ -1144,32 +1134,44 @@
         <span>Back to top</span>
       </button>
     </div>
-    <div style="{{ footerSubscribeRow }}">
-      <input style="{{ subscribeInput }}" type="email" placeholder="Sign up for quarterly updates">
-      <button style="{{ subscribeBtn }}" style-hover="{{ subscribeBtnHover }}">Subscribe</button>
-    </div>
-    <div style="{{ footerBottom }}">
-      <div style="{{ footerIdCol }}">
+    <div style="{{ footerGrid }}">
+      <div style="{{ footerCol }}">
         <img src="assets/pd-logo.svg" alt="PD Construction Inc." style="{{ footerLogoStyle }}">
-        <div style="{{ footerFactRow }}">
-          <span style="{{ footerFact }}">CSLB Lic. #972699</span>
-          <a href="tel:+16612691899" style="{{ footerFactLink }}" style-hover="{{ footerFactLinkHover }}">661-269-1899</a>
-          <span style="{{ footerFact }}">Southern California</span>
-        </div>
+        <p style="{{ footerBlurb }}">A family-owned general contractor building architectural residential and commercial work across Southern California.</p>
       </div>
-      <div style="{{ footerSocialRow }}">
-        <a href="https://www.instagram.com/" target="_blank" rel="noreferrer noopener" aria-label="PD Construction on Instagram" style="{{ footerSocialBtn }}" style-hover="{{ footerSocialBtnHover }}">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
-          <span style="{{ footerSocialLabel }}">Instagram</span>
-        </a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer noopener" aria-label="PD Construction on LinkedIn" style="{{ footerSocialBtn }}" style-hover="{{ footerSocialBtnHover }}">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-11h4v1.5"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-          <span style="{{ footerSocialLabel }}">LinkedIn</span>
-        </a>
+      <div style="{{ footerCol }}">
+        <span style="{{ footerColLabel }}">Contact</span>
+        <a href="tel:+16612691899" style="width: 100px; height: 23px" style-hover="{{ footerBigLinkHover }}">661-269-1899</a>
+        <button style="{{ footerTextBtn }}" style-hover="{{ footerTextBtnHover }}" onClick="{{ goContact }}">Start a project &nbsp;→</button>
+      </div>
+      <div style="{{ footerCol }}">
+        <span style="{{ footerColLabel }}">Credentials</span>
+        <span style="{{ footerFact }}">CSLB Lic. #972699</span>
+        <span style="{{ footerFact }}">Licensed, bonded &amp; insured</span>
+        <span style="{{ footerFact }}">Southern California</span>
+      </div>
+      <div style="{{ footerCol }}">
+        <span style="{{ footerColLabel }}">Follow</span>
+        <div style="{{ footerSocialRow }}">
+          <a class="pd-social" href="https://www.instagram.com/" target="_blank" rel="noreferrer noopener" aria-label="PD Construction on Instagram" style="{{ footerSocialBtn }}">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+            <span style="{{ footerSocialLabel }}">Instagram</span>
+            <span class="pd-social-arrow" style="{{ footerSocialArrow }}">↗</span>
+          </a>
+          <a class="pd-social" href="https://www.linkedin.com/" target="_blank" rel="noreferrer noopener" aria-label="PD Construction on LinkedIn" style="{{ footerSocialBtn }}">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-11h4v1.5"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            <span style="{{ footerSocialLabel }}">LinkedIn</span>
+            <span class="pd-social-arrow" style="{{ footerSocialArrow }}">↗</span>
+          </a>
+        </div>
+        <div style="{{ footerSubscribeRow }}">
+          <input style="{{ subscribeInput }}" type="email" placeholder="Email for quarterly updates">
+          <button style="{{ subscribeBtn }}" style-hover="{{ subscribeBtnHover }}">Join</button>
+        </div>
       </div>
     </div>
     <div style="{{ footerLegalRow }}">
-      <span style="{{ footerFinePrint }}">&copy; 2026 PD Construction Inc. &mdash; All rights reserved</span>
+      <span style="{{ footerFinePrint }}">© 2026 PD Construction Inc. — All rights reserved</span>
       <a href="#" onClick="{{ goPrivacy }}" style="{{ footerFinePrintLink }}" style-hover="{{ footerFinePrintLinkHover }}">Privacy Policy</a>
     </div>
   </footer>
@@ -1280,7 +1282,7 @@ const PROJECTS_RAW = [
     challenge: 'A 30\u2032 \u00d7 90\u2032 lot on a hillside walk street \u2014 no vehicle frontage, strict coverage, height and open-space limits \u2014 with a courtyard plan that put structure, glazing, and waterproofing in constant contact. Three stories of steel-framed window walls around an open court demanded exact tolerances and a sequencing plan that kept the courtyard accessible as the primary work path.',
     materials: 'Custom anodized aluminum three-dimensional screen wall, thermally broken steel-framed glazing and full-height sliding glass walls, board-formed and site-cast concrete, white oak flooring, and patterned tile courtyard paving.' },
   { id: 'pacific-modern', name: 'Pacific Modern', location: 'Manhattan Beach, CA', category: 'Residential', scope: 'Ground-Up Construction', year: '2024',
-    img: 'assets/photo-hallway.jpg', imgAlt: 'Sunlit steel-framed corridor with floor-to-ceiling glazing',
+    img: null,
     summary: 'A narrow-lot ground-up build using a glazed central corridor to bring light and air through a deep floor plate.',
     story: 'On a narrow coastal lot, Pacific Modern uses a full-length glazed corridor as its organizing spine, connecting bedrooms and living spaces while pulling ocean light deep into the plan. The build required exacting window-wall installation across an unusually long run of glazing, coordinated tightly with structural steel to keep the corridor free of visual interruption.',
     challenge: 'A continuous glazed corridor across a narrow lot demanded precise steel-to-glass tolerances and sequencing to avoid deflection over the span.',
@@ -1375,9 +1377,9 @@ const MILESTONES = [
 ];
 
 const TEAM = [
-  ['[Name placeholder]', 'Principal / General Contractor', 'Owns preconstruction strategy and carries final accountability on every contract the firm signs.'],
-  ['[Name placeholder]', 'Project Executive', 'Runs budget, buyout, and trade coordination from award through closeout.'],
-  ['[Name placeholder]', 'Field Superintendent', 'On site daily \u2014 sequencing, quality control, and the person your architect calls first.']
+  ['Peter Borrego', 'Co-Owner \u2014 Field', null, 'Co-owner and the firm\u2019s presence on site. He walks the job daily, sequences the trades, and is the person owners and architects talk to in the field \u2014 decisions get made where the work is happening, not relayed back from an office.'],
+  ['Diane Reulein', 'Co-Owner \u2014 Operations & Budget', 'assets/team-diane-reulein.jpg', 'Co-owner. She runs the business side day to day: budgets and line-item tracking, buyout and contracts, billing and change orders, insurance and compliance. Every number that reaches an owner has been through her first.'],
+  ['Kristen Potter', 'Office Manager', 'assets/team-kristen-potter.jpg', 'In the office every day, keeping the job moving \u2014 subcontractor hiring and scheduling, permits and paperwork, deliveries and inspections, and the coordination between field and office that keeps the calendar honest.']
 ];
 
 const CREDENTIALS = [
@@ -1413,7 +1415,7 @@ const CADENCE = [
   'Decisions needed from you'
 ];
 
-const HOME_SECTIONS = ['Top', 'About', 'Numbers', 'Capabilities', 'Services', 'Projects', 'Before / After', 'Compare', 'Principles', 'Sectors', 'Process', 'Coverage', 'Clients', 'Questions', 'Contact'];
+const HOME_SECTIONS = ['Top', 'About', 'Numbers', 'Capabilities', 'Services', 'Projects', 'Compare', 'Principles', 'Sectors', 'Process', 'Coverage', 'Clients', 'Questions', 'Contact'];
 
 const QUOTES = [
   { text: 'They held the detail we drew. On a house this exposed, that is the entire job \u2014 and it is rarer than it should be.', name: 'Architect of record', role: 'Client name placeholder', avatar: 'https://i.pravatar.cc/160?img=13' },
@@ -1477,7 +1479,8 @@ class Component extends DCLogic {
     heroIn: typeof document === 'undefined' || document.visibilityState !== 'visible' ? true : false,
     galFilter: 'All',
     lightbox: null,
-    homeActive: 0
+    homeActive: 0,
+    railLabels: null
   };
   _refs = {};
   _revealFns = {};
@@ -1554,8 +1557,11 @@ class Component extends DCLogic {
           }
         }
         let homeActive = this.state.homeActive;
+        let railLabels = this.state.railLabels;
         if (this.state.view === 'home') {
-          const secs = document.querySelectorAll('main section[aria-label]');
+          const secs = document.querySelectorAll('main section[data-rail-label]');
+          const found = Array.prototype.map.call(secs, el => el.getAttribute('data-rail-label'));
+          if (!railLabels || railLabels.length !== found.length || railLabels.some((l, i) => l !== found[i])) railLabels = found;
           let idx = 0;
           for (let i = 0; i < secs.length; i++) {
             if (secs[i].getBoundingClientRect().top <= 140) idx = i;
@@ -1567,8 +1573,8 @@ class Component extends DCLogic {
         prcFill = Math.round(prcFill * 10) / 10;
         if (offsetsChanged || scrollPct !== this.state.scrollPct || navCompact !== this.state.navCompact ||
             prcFill !== this.state.prcFill || prcActive !== this.state.prcActive ||
-            homeActive !== this.state.homeActive) {
-          this.setState({ offsets, scrollPct, navCompact, prcFill, prcActive, homeActive });
+            homeActive !== this.state.homeActive || railLabels !== this.state.railLabels) {
+          this.setState({ offsets, scrollPct, navCompact, prcFill, prcActive, homeActive, railLabels });
         }
         this._ticking = false;
       });
@@ -2041,12 +2047,12 @@ class Component extends DCLogic {
 
       showDotNav: s.view === 'home' && !mob,
       dotNavStyle: 'position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:45;display:flex;flex-direction:column;gap:2px;align-items:flex-end',
-      dotNav: HOME_SECTIONS.map((label, i) => {
+      dotNav: (s.railLabels || HOME_SECTIONS).map((label, i) => {
         const on = s.homeActive === i;
         return {
           label,
           onClick: () => {
-            const secs = document.querySelectorAll('main section[aria-label]');
+            const secs = document.querySelectorAll('main section[data-rail-label]');
             const el = secs[i];
             if (el) window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 90, behavior: 'smooth' });
           },
@@ -2102,7 +2108,11 @@ class Component extends DCLogic {
       teaserTextCol: 'flex:1 1 380px;min-width:280px;display:flex;flex-direction:column;justify-content:center;gap:8px',
       subHeadStyle: `font-family:${SERIF};font-weight:600;font-size:22px;color:${INK};margin:0`,
 
-      featuredProjects: projects.slice(0, 4),
+      featuredProjects: (() => {
+        const ids = ['wild-beast-calarts', 'lhuillier-flagship', 'malibu-ranch-house', 'wasatch-residence'];
+        const picked = ids.map(id => projects.find(p => p.id === id)).filter(Boolean);
+        return picked.map((p, i) => ({ ...p, rowStyle: rowStyle(i) }));
+      })(),
       allProjects: projects,
       selectedProject,
 
@@ -2126,7 +2136,14 @@ class Component extends DCLogic {
       aboutTeamCard: 'display:flex;flex-direction:column;gap:6px;align-items:flex-start',
       aboutTeamPhoto: 'width:100%;aspect-ratio:3/4;margin-bottom:10px',
       aboutTeamName: `font-family:${SANS};font-weight:600;font-size:19px;color:${INK};margin:2px 0 0;letter-spacing:-0.01em`,
-      team: TEAM.map(([name, role, body], i) => ({ name, role, body, slotId: 'slot-team-' + i })),
+      team: TEAM.map(([name, role, photo, body], i) => ({
+        name, role, body,
+        slotId: 'slot-team-' + i,
+        hasPhoto: !!photo,
+        needsSlot: !photo,
+        photoRef: photo ? this.srcRef('team_' + i, photo, 'team_' + i) : null,
+        photoStyle: this.revealStyle('team_' + i, 'width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;display:block;margin-bottom:10px;background:#f0ede2')
+      })),
 
       credentials: CREDENTIALS,
       aboutCtaImgRef: this.revealRef('about_cta'),
@@ -2589,25 +2606,28 @@ class Component extends DCLogic {
       backToTopWrap: 'display:flex;justify-content:center;margin-bottom:28px',
       backToTop: `display:inline-flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;color:${TAN_DARK};font-family:${SANS};font-size:10px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;padding:0`,
       scrollTop: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
-      footerSubscribeRow: 'display:flex;gap:8px;flex-wrap:wrap;max-width:1100px;margin:0 auto 36px',
-      subscribeInput: `flex:1;min-width:200px;min-height:36px;padding:6px 10px;font-family:${SANS};font-size:12px;background:#ffffff;border:1px solid #d8d2c4;color:${INK}`,
-      subscribeBtn: `padding:6px 14px;font-family:${SANS};font-size:10px;letter-spacing:0.06em;text-transform:uppercase;background:transparent;border:1px solid ${TAN_DARK};color:${INK};cursor:pointer;transition:background 0.15s,color 0.15s`,
-      subscribeBtnHover: `padding:6px 14px;font-family:${SANS};font-size:10px;letter-spacing:0.06em;text-transform:uppercase;background:${TAN_DARK};border:1px solid ${TAN_DARK};color:${INK};cursor:pointer`,
+      footerSubscribeRow: 'display:flex;gap:8px;margin-top:6px;width:100%',
+      subscribeInput: `flex:1 1 auto;min-width:0;width:100%;min-height:38px;padding:6px 10px;font-family:${SANS};font-size:12px;background:#ffffff;border:1px solid #d8d2c4;color:${INK}`,
+      subscribeBtn: `flex:0 0 auto;padding:6px 14px;font-family:${SANS};font-size:10px;letter-spacing:0.06em;text-transform:uppercase;background:transparent;border:1px solid ${TAN_DARK};color:${INK};cursor:pointer;transition:background 0.15s,color 0.15s`,
+      subscribeBtnHover: `flex:0 0 auto;padding:6px 14px;font-family:${SANS};font-size:10px;letter-spacing:0.06em;text-transform:uppercase;background:${TAN_DARK};border:1px solid ${TAN_DARK};color:${INK};cursor:pointer`,
       footerLogoStyle: 'height:38px;width:auto;display:block',
       footerBrand: `font-family:${SERIF};font-weight:700;font-size:14px;letter-spacing:0.04em;line-height:1.2;color:${INK};text-align:left`,
       footerCenterCopy: 'flex:1;text-align:center',
       footerSep: `color:${MUTED};margin:0 4px`,
-      footerBottom: 'max-width:1100px;margin:0 auto;padding-top:26px;border-top:1px solid #e6e1d8;display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap',
-      footerIdCol: 'display:flex;flex-direction:column;align-items:flex-start;gap:14px',
-      footerFactRow: 'display:flex;align-items:center;gap:18px;flex-wrap:wrap',
-      footerFact: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${MUTED}`,
-      footerFactLink: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${INK};text-decoration:none;border-bottom:1px solid ${TAN};transition:color 0.25s ease,border-color 0.25s ease`,
-      footerFactLinkHover: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${TAN};text-decoration:none;border-bottom:1px solid ${INK}`,
-      footerSocialRow: 'display:flex;align-items:center;gap:8px;flex-wrap:wrap',
-      footerSocialBtn: `display:inline-flex;align-items:center;gap:9px;padding:11px 15px;border:1px solid #ddd7cc;color:${INK};text-decoration:none;background:transparent;transition:background 0.3s ease,color 0.3s ease,border-color 0.3s ease`,
-      footerSocialBtnHover: `display:inline-flex;align-items:center;gap:9px;padding:11px 15px;border:1px solid ${INK};color:#ffffff;background:${INK};text-decoration:none`,
+      footerGrid: `max-width:1100px;margin:0 auto;padding-top:34px;border-top:1px solid #e6e1d8;display:grid;grid-template-columns:${mob ? '1fr' : '1.4fr 0.9fr 0.9fr 1.5fr'};gap:${mob ? 36 : 40}px;align-items:start`,
+      footerCol: 'display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0',
+      footerColLabel: `font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:${TAN};margin-bottom:2px`,
+      footerBlurb: `font-family:${SERIF};font-size:14px;line-height:1.6;color:${BODY_C};margin:0;max-width:34ch;text-wrap:pretty`,
+      footerBigLink: `font-family:${SANS};font-weight:600;font-size:19px;letter-spacing:-0.01em;color:${INK};text-decoration:none;border-bottom:1px solid ${TAN};padding-bottom:2px;transition:color 0.3s ease,border-color 0.3s ease`,
+      footerBigLinkHover: `font-family:${SANS};font-weight:600;font-size:19px;letter-spacing:-0.01em;color:${TAN};text-decoration:none;border-bottom:1px solid ${INK};padding-bottom:2px`,
+      footerTextBtn: `font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:${MUTED};background:none;border:0;padding:0;cursor:pointer;transition:color 0.3s ease`,
+      footerTextBtnHover: `font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:${INK};background:none;border:0;padding:0;cursor:pointer`,
+      footerFact: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${MUTED};line-height:1.5`,
+      footerSocialRow: 'display:flex;flex-direction:column;align-items:stretch;gap:8px;width:100%',
+      footerSocialBtn: `display:inline-flex;align-items:center;gap:11px;padding:13px 16px;border:1px solid #ddd7cc;color:${INK};text-decoration:none;background:transparent`,
       footerSocialLabel: `font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase`,
-      footerLegalRow: 'max-width:1100px;margin:26px auto 0;padding-top:18px;border-top:1px solid #f0ece3;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap',
+      footerSocialArrow: `margin-left:auto;font-size:12px;color:${TAN}`,
+      footerLegalRow: 'max-width:1100px;margin:46px auto 0;padding-top:20px;border-top:1px solid #f0ece3;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap',
       footerFinePrint: `font-family:${SANS};font-size:11px;color:${MUTED};text-transform:uppercase;letter-spacing:0.06em`,
       footerFinePrintLink: `font-family:${SANS};font-size:11px;color:${MUTED};text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;border-bottom:1px solid #ddd7cc;transition:color 0.25s ease,border-color 0.25s ease`,
       footerFinePrintLinkHover: `font-family:${SANS};font-size:11px;color:${INK};text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;border-bottom:1px solid ${TAN}`,
