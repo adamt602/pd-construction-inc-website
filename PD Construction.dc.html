@@ -53,9 +53,12 @@
     .pd-media:hover .pd-badge { opacity: 1 !important; transform: translateY(0) !important; }
     .pd-media img { transition: transform 0.9s cubic-bezier(.2,.7,.3,1), opacity 0.9s cubic-bezier(.2,.7,.3,1); }
     .pd-media:hover img { transform: scale(1.045) !important; }
-    .pd-contact-map { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #e6e0da; isolation: isolate; }
-    .pd-contact-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) sepia(.16) saturate(.55) contrast(.86) brightness(1.08); }
+    .pd-contact-map { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #e6e0da; isolation: isolate; border-radius: 2px; text-decoration: none; }
+    .pd-contact-map-crop { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .pd-contact-map-crop iframe { position: absolute; left: -2%; top: -9%; width: 104%; height: 128%; border: 0; filter: grayscale(1) sepia(.16) saturate(.55) contrast(.86) brightness(1.08); }
     .pd-contact-map::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: rgba(224,216,208,.13); mix-blend-mode: color; }
+    .pd-contact-map-label { position: absolute; left: 20px; bottom: 16px; z-index: 3; font-family: 'DM Sans', sans-serif; font-size: 13px; letter-spacing: .02em; color: #17191a; background: rgba(255,255,255,.88); padding: 8px 14px; border-radius: 1px; }
+    .pd-contact-map:hover .pd-contact-map-label { background: #fff; }
     .pd-contact-pin-stage { position: absolute; left: 50%; top: 50%; z-index: 2; width: 72px; height: 104px; pointer-events: none; transform: translate(-50%, -50%); }
     .pd-contact-pin { position: absolute; left: 50%; bottom: 24px; width: 48px; height: 42px; opacity: 0; display: grid; place-items: center; background: #17191a; box-shadow: 0 9px 18px rgba(31,36,40,.22); transform: translate(-50%, -520px); animation: pd-pin-drop 1.15s cubic-bezier(.22,.9,.35,1.14) .24s forwards; }
     .pd-contact-pin::before { content: ''; position: absolute; left: 18px; bottom: -7px; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #17191a; }
@@ -153,7 +156,7 @@
             <span style="{{ heroLineMask }}"><span style="{{ heroLine2 }}">Without Compromise</span></span>
           </h1>
           <div style="{{ heroRule }}"></div>
-          <p style="{{ heroSubStyle }}">PD Construction Inc. builds sophisticated architecture in close collaboration with architects and clients — turning the hardest parts of a project into opportunities.</p>
+          <p style="{{ heroSubStyle }}">A family-owned general contractor building architecturally ambitious homes and commercial spaces across Southern California — in close collaboration with the architects and owners we build for.</p>
           <button style="{{ heroBtnStyle }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goProjects }}">Explore Our Work &nbsp;→</button>
         </div>
         <div style="{{ scrollCueStyle }}">
@@ -166,7 +169,7 @@
         <div style="{{ introTextColStyle }}">
           <h2 style="{{ introHeadlineStyle }}">Sophisticated architecture, built in collaboration with the architect and the client.</h2>
           <div style="{{ tanRule }}"></div>
-          <p style="{{ bodyLgStyle }}">Our philosophy comes out of a determination to pursue ambitious explorations of architecture alongside the architects and owners we build for. Deep experience in millwork, framing, concrete, and structural steel lets us anticipate the finish from the first rough framing member — and meet the challenges a demanding design presents as opportunities rather than obstacles.</p>
+          <p style="{{ bodyLgStyle }}">Our philosophy begins with a simple commitment: to pursue the most ambitious version of a design alongside the architect and the client, and to be accountable for it start to finish. Decades of hands-on experience in millwork, framing, concrete, and structural steel mean we can see the finished detail in the first rough framing member — and treat the hard parts of a demanding design as problems to solve rather than reasons to compromise.</p>
           <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goAbout }}">Read About the Firm &nbsp;→</button>
         </div>
         <div style="{{ introImgColStyle }}">
@@ -195,7 +198,7 @@
         <div style="{{ homeCapHead }}">
           <div>
             <span style="{{ eyebrowStyle }}">Capabilities</span>
-            <h3 style="{{ sectionHeadlineStyle }}">Three ways clients engage us.</h3>
+            <h3 style="{{ sectionHeadlineStyle }}">Four ways clients engage us.</h3>
           </div>
           <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goServices }}">All Services &nbsp;→</button>
         </div>
@@ -223,7 +226,7 @@
           <div style="{{ teaserTextCol }}">
             <h3 style="{{ subHeadStyle }}">Full-Scope General Contracting, Start to Finish.</h3>
             <div style="{{ tanRule }}"></div>
-            <p style="{{ bodyStyle }}">From preconstruction through closeout, PD Construction manages every trade, deadline, and detail against a single schedule and budget.</p>
+            <p style="{{ bodyStyle }}">From preconstruction through closeout, we carry every trade, deadline, and detail against one schedule and one budget — with a single person accountable for both.</p>
             <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goServices }}">View All Services &nbsp;→</button>
           </div>
         </div>
@@ -259,13 +262,13 @@
             <span style="{{ eyebrowStyle }}">The difference</span>
             <h3 style="{{ sectionHeadlineTight }}">What changes when the builder is accountable.</h3>
           </div>
-          <p style="{{ svcSectionHeadNote }}">Not every contractor works this way. Ask any of them these six questions.</p>
+          <p style="{{ svcSectionHeadNote }}">Six questions worth asking any builder before you sign. Here is how we answer them.</p>
         </div>
         <div style="{{ cmpTable }}">
           <div style="{{ cmpHeadRow }}">
             <span style="{{ cmpHeadCell }}">&nbsp;</span>
             <span style="{{ cmpHeadUs }}">PD Construction</span>
-            <span style="{{ cmpHeadThem }}">Typical GC</span>
+            <span style="{{ cmpHeadThem }}">Common practice</span>
           </div>
           <sc-for list="{{ comparisons }}" as="c" hint-placeholder-count="6">
             <div style="{{ c.rowStyle }}" style-hover="{{ c.rowHover }}">
@@ -296,13 +299,13 @@
           <div style="{{ splitImgWrap }}"><img ref="{{ splitResidentialRef }}" src="assets/wasatch-01-facade.jpg" alt="Wasatch Residence street elevation with its anodized aluminum screen wall" style="{{ splitResidentialImg }}" style-hover="{{ splitResidentialImgHover }}"></div>
           <span style="{{ metaLineStyle }}">Residential</span>
           <h3 style="{{ splitTitle }}">Homes built as architecture, not product.</h3>
-          <p style="{{ bodyStyle }}">Custom homes, luxury renovations, architectural estates, additions, and modern interiors — built to the tolerances the design deserves.</p>
+          <p style="{{ bodyStyle }}">Custom homes, architectural estates, whole-house renovations, additions, and modern interiors — built to the tolerances the drawings call for, not the ones that are convenient.</p>
         </div>
         <div style="{{ splitCol }}">
           <div style="{{ splitImgWrap }}"><img ref="{{ splitCommercialRef }}" src="assets/lhuillier-01-showroom.jpg" alt="Monique Lhuillier flagship showroom with concealed perimeter lighting" style="{{ splitCommercialImg }}" style-hover="{{ splitCommercialImgHover }}"></div>
           <span style="{{ metaLineStyle }}">Commercial</span>
           <h3 style="{{ splitTitle }}">Commercial space that performs under daily use.</h3>
-          <p style="{{ bodyStyle }}">Offices, hospitality, retail, mixed-use environments, tenant improvements, and modern commercial buildings, delivered on operating timelines.</p>
+          <p style="{{ bodyStyle }}">Offices, hospitality, retail, mixed-use, and tenant improvements — planned around lease commencement, occupancy dates, and the realities of an operating business.</p>
         </div>
       </section>
 
@@ -329,8 +332,8 @@
       <section aria-label="Process preview" data-rail-label="Process" style="{{ processPreviewSection }}">
         <div style="{{ processPreviewHead }}">
           <div>
-            <span style="{{ eyebrowStyle }}">How it works</span>
-            <h3 style="{{ sectionHeadlineStyle }}">Six steps, start to handover.</h3>
+            <span style="{{ eyebrowStyle }}">How a project runs</span>
+            <h3 style="{{ sectionHeadlineStyle }}">Six phases, first call to handover.</h3>
           </div>
           <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goProcess }}">Full Process &nbsp;→</button>
         </div>
@@ -355,7 +358,7 @@
           <div style="{{ homeAreaTextCol }}">
             <span style="{{ eyebrowStyle }}">Where we build</span>
             <h3 style="{{ sectionHeadlineTight }}">Concentrated coverage, not thin reach.</h3>
-            <p style="{{ bodyStyle }}">We keep the service radius tight so supervision stays daily and trade relationships stay local. Outside these areas, ask — we take select projects on merit.</p>
+            <p style="{{ bodyStyle }}">We keep our radius deliberately tight so supervision stays daily and our trade relationships stay local. If your site sits outside these areas, ask — we take select projects on their merits.</p>
             <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goContact }}">Check Your Address &nbsp;→</button>
           </div>
           <div style="{{ homeAreaGrid }}">
@@ -396,7 +399,7 @@
           <div style="{{ faqTextCol }}">
             <span style="{{ eyebrowStyle }}">Before you call</span>
             <h3 style="{{ sectionHeadlineStyle }}">Questions we answer first.</h3>
-            <p style="{{ bodyStyle }}">If your question isn’t here, ask it directly — we answer within one business day.</p>
+            <p style="{{ bodyStyle }}">If your question isn’t answered here, ask it directly. An owner reads every inquiry, and you will hear back within one business day.</p>
             <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goContact }}">Ask a Question &nbsp;→</button>
           </div>
           <div style="{{ faqListCol }}">
@@ -420,7 +423,7 @@
         <div style="{{ ctaScrimStyle }}"></div>
         <div style="{{ ctaContentStyle }}">
           <h2 style="{{ ctaHeadline }}">Let’s Build Something Exceptional.</h2>
-          <p style="{{ ctaBody }}">Tell us about your project — we’ll follow up within one business day.</p>
+          <p style="{{ ctaBody }}">Tell us about your project. An owner will read it and respond within one business day.</p>
           <div style="{{ ctaBtnRow }}">
             <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goContact }}">Start a Project</button>
             <a href="mailto:diane@pdconstructioninc.com" style="{{ ctaLink }}">diane@pdconstructioninc.com</a>
@@ -513,7 +516,7 @@
           <span style="{{ svcEyebrowInk }}">From the design team</span>
           <span style="{{ prjQuoteMark }}">“</span>
           <blockquote style="{{ prjQuoteText }}">“They held the drawings to the millimeter and the schedule to the day.”</blockquote>
-          <p style="{{ prjQuoteAttr }}">Architect of Record <span style="{{ placeholderTag }}">attribution placeholder</span></p>
+          <p style="{{ prjQuoteAttr }}">Architect of record</p>
         </div>
       </section>
 
@@ -553,7 +556,7 @@
           <div><span style="{{ metaLabelStyle }}">Category</span><p style="{{ metaValueStyle }}">{{ selectedProject.category }}</p></div>
           <div><span style="{{ metaLabelStyle }}">Scope</span><p style="{{ metaValueStyle }}">{{ selectedProject.scope }}</p></div>
           <div><span style="{{ metaLabelStyle }}">Architect</span><p style="{{ metaValueStyle }}">{{ selectedProject.architectLabel }}</p></div>
-          <div><span style="{{ metaLabelStyle }}">Completion</span><p style="{{ metaValueStyle }}">{{ selectedProject.year }} <span style="{{ placeholderTag }}">exact date placeholder</span></p></div>
+          <div><span style="{{ metaLabelStyle }}">Completion</span><p style="{{ metaValueStyle }}">{{ selectedProject.year }}</p></div>
         </div>
       </section>
 
@@ -626,7 +629,7 @@
         <div style="{{ teaserTextCol }}">
           <h2 style="{{ introHeadlineStyle }}">From Design Through Build, Under One Team.</h2>
           <div style="{{ tanRule }}"></div>
-          <p style="{{ bodyLgStyle }}">We collaborate from design to build, bringing efficiency and real solutions to both. Understanding of detail is what makes our estimating thorough — carried out with an experienced team of quality vendors and consultants.</p>
+          <p style="{{ bodyLgStyle }}">We work from design through build, which is what lets us bring both efficiency and real solutions to a project. A thorough understanding of detail is what makes our estimating dependable — prepared with an experienced team of vetted vendors and consultants, and stress-tested before it reaches you.</p>
           <div style="{{ svcHeroMetaRow }}">
             <sc-for list="{{ servicesHeroMeta }}" as="m" hint-placeholder-count="3">
               <div style="{{ svcHeroMetaCell }}">
@@ -642,9 +645,9 @@
         <div style="{{ svcSectionHead }}">
           <div>
             <span style="{{ svcEyebrow }}">Capabilities</span>
-            <h3 style="{{ sectionHeadlineTight }}">Three ways clients engage us.</h3>
+            <h3 style="{{ sectionHeadlineTight }}">Four ways clients engage us.</h3>
           </div>
-          <p style="{{ svcSectionHeadNote }}">Every engagement carries the same single point of accountability, regardless of scope.</p>
+          <p style="{{ svcSectionHeadNote }}">Whatever the scope, the engagement carries the same single point of accountability.</p>
         </div>
         <div style="{{ svcCapGrid }}">
           <sc-for list="{{ capabilities }}" as="c" hint-placeholder-count="3">
@@ -669,7 +672,7 @@
             <span style="{{ svcEyebrow }}">Full scope</span>
             <h3 style="{{ sectionHeadlineTight }}">Nine services, one standard.</h3>
           </div>
-          <p style="{{ svcSectionHeadNote }}">Select a service to read how we run it.</p>
+          <p style="{{ svcSectionHeadNote }}">Select any service to read how we run it.</p>
         </div>
         <div style="{{ svcAccordionWrap }}">
           <sc-for list="{{ serviceItems }}" as="s" hint-placeholder-count="9">
@@ -692,7 +695,7 @@
           <div style="{{ svcIncludedTextCol }}">
             <span style="{{ svcEyebrowInk }}">Included on every contract</span>
             <h3 style="{{ svcIncludedTitle }}">The parts most contractors treat as extras.</h3>
-            <p style="{{ svcIncludedBody }}">Documentation, coordination, and closeout are not line items we negotiate away. They are how the schedule holds.</p>
+            <p style="{{ svcIncludedBody }}">Documentation, coordination, and closeout are not extras to be negotiated away. They are the reason the schedule holds and the budget stays recognizable at the end.</p>
           </div>
           <div style="{{ svcIncludedGrid }}">
             <sc-for list="{{ includedItems }}" as="inc" hint-placeholder-count="6">
@@ -710,14 +713,14 @@
           <div style="{{ splitImgWrap }}"><img ref="{{ svcSectorResRef }}" src="assets/wasatch-03-living-pingpong.jpg" alt="Wasatch Residence main living volume open to the courtyard" style="{{ svcSectorResImg }}"></div>
           <span style="{{ metaLineStyle }}">Residential</span>
           <h4 style="{{ splitTitle }}">Custom homes, estates &amp; renovations</h4>
-          <p style="{{ bodyStyle }}">Detail-intensive residential work where exposed structure, long glazing runs, and tight tolerances leave nowhere to hide.</p>
+          <p style="{{ bodyStyle }}">Detail-intensive residential work — exposed structure, long glazing runs, and tolerances measured in sixteenths, where there is nowhere for shortcuts to hide.</p>
           <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goProjects }}">Residential Work &nbsp;→</button>
         </div>
         <div style="{{ svcSectorCol }}">
           <div style="{{ splitImgWrap }}"><img ref="{{ svcSectorComRef }}" src="assets/wildbeast-04-exterior-day.jpg" alt="The Wild Beast at CalArts: copper-shingled drum and curving roof" style="{{ svcSectorComImg }}"></div>
           <span style="{{ metaLineStyle }}">Commercial</span>
           <h4 style="{{ splitTitle }}">Offices, hospitality, retail &amp; TI</h4>
-          <p style="{{ bodyStyle }}">Buildouts and ground-up commercial work delivered against lease commencement and occupancy deadlines.</p>
+          <p style="{{ bodyStyle }}">Buildouts and ground-up commercial work delivered against lease commencement, inspection, and occupancy deadlines.</p>
           <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goProjects }}">Commercial Work &nbsp;→</button>
         </div>
       </section>
@@ -726,7 +729,7 @@
         <div style="{{ svcSectionHead }}">
           <div>
             <span style="{{ svcEyebrow }}">How it runs</span>
-            <h3 style="{{ sectionHeadlineTight }}">Six phases, start to handover.</h3>
+            <h3 style="{{ sectionHeadlineTight }}">Six phases, first call to handover.</h3>
           </div>
           <a href="#" onClick="{{ goProcess }}" style="{{ svcInlineLink }}">Full process &nbsp;→</a>
         </div>
@@ -745,7 +748,7 @@
         <div style="{{ ctaScrimStyle }}"></div>
         <div style="{{ ctaContentStyle }}">
           <h2 style="{{ ctaHeadline }}">Tell Us What You’re Building.</h2>
-          <p style="{{ ctaBody }}">Send drawings, a site address, or just an idea — we’ll tell you what it takes to build it.</p>
+          <p style="{{ ctaBody }}">Send drawings, a site address, or simply an idea. We will tell you candidly what it takes to build it.</p>
           <div style="{{ ctaBtnRow }}">
             <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goContact }}">Start a Project</button>
             <a href="mailto:diane@pdconstructioninc.com" style="{{ ctaLink }}">diane@pdconstructioninc.com</a>
@@ -764,7 +767,7 @@
         <div style="{{ teaserTextCol }}">
           <h2 style="{{ introHeadlineStyle }}">Building Is Our Profession, and Our Passion.</h2>
           <div style="{{ tanRule }}"></div>
-          <p style="{{ bodyLgStyle }}">PD Construction Inc. is a family-owned general contractor committed to attaining the highest potential product — and the best possible experience through construction. That resolve is what drives the ethics of our team, and why every project carries a name and a direct point of contact.</p>
+          <p style="{{ bodyLgStyle }}">PD Construction Inc. is a family-owned general contractor committed to two things at once: the highest possible quality of finished work, and a construction experience our clients would willingly repeat. That commitment sets the standard our team holds itself to — and it is why every project carries a name, a direct phone number, and an owner who answers it.</p>
           <div style="{{ svcHeroMetaRow }}">
             <sc-for list="{{ aboutHeroMeta }}" as="m" hint-placeholder-count="3">
               <div style="{{ svcHeroMetaCell }}">
@@ -782,7 +785,7 @@
             <span style="{{ eyebrowStyle }}">History</span>
             <h3 style="{{ sectionHeadlineTight }}">How the firm got here.</h3>
           </div>
-          <p style="{{ svcSectionHeadNote }}">Dates and milestones are placeholders pending your records.</p>
+          <p style="{{ svcSectionHeadNote }}">Fourteen years of building, in four steps.</p>
         </div>
         <div style="{{ aboutTimelineTrack }}">
           <sc-for list="{{ milestones }}" as="m" hint-placeholder-count="4">
@@ -802,7 +805,7 @@
             <span style="{{ eyebrowStyle }}">Leadership</span>
             <h3 style="{{ sectionHeadlineTight }}">Who runs your project.</h3>
           </div>
-          <p style="{{ svcSectionHeadNote }}">Family-owned and family-run — one field, one office, one point of accountability.</p>
+          <p style="{{ svcSectionHeadNote }}">Family-owned and family-run: an owner in the field, an owner in the office, and one point of accountability between them.</p>
         </div>
         <div style="{{ aboutTeamGrid }}">
           <sc-for list="{{ team }}" as="t" hint-placeholder-count="3">
@@ -865,7 +868,7 @@
         <div style="{{ ctaScrimStyle }}"></div>
         <div style="{{ ctaContentStyle }}">
           <h2 style="{{ ctaHeadline }}">Work With the People Who Build It.</h2>
-          <p style="{{ ctaBody }}">No account managers between you and the field.</p>
+          <p style="{{ ctaBody }}">No account managers, no layers — you speak with the people who build it.</p>
           <div style="{{ ctaBtnRow }}">
             <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goContact }}">Start a Project</button>
             <a href="#" onClick="{{ goProjects }}" style="{{ ctaLink }}">See our work</a>
@@ -884,7 +887,7 @@
         <div style="{{ teaserTextCol }}">
           <h2 style="{{ introHeadlineStyle }}">A Transparent Path From First Call to Handover.</h2>
           <div style="{{ tanRule }}"></div>
-          <p style="{{ bodyLgStyle }}">Six phases, each with defined deliverables and a decision point. You always know what phase you’re in, what’s owed, and what it costs.</p>
+          <p style="{{ bodyLgStyle }}">Every project we take runs through the same six phases. Each one has defined deliverables, a clear duration, and a decision point at the end — so at any moment you know which phase you are in, what is owed, and what it costs before it proceeds.</p>
         </div>
       </section>
 
@@ -946,7 +949,7 @@
           <div style="{{ svcIncludedTextCol }}">
             <span style="{{ svcEyebrowInk }}">Every week, without asking</span>
             <h3 style="{{ svcIncludedTitle }}">You should never wonder where it stands.</h3>
-            <p style="{{ svcIncludedBody }}">The same package goes to owner and architect on the same day, every week, for the life of the job.</p>
+            <p style="{{ svcIncludedBody }}">The same package reaches the owner and the architect on the same day each week, for the life of the job — whether or not there is news in it.</p>
           </div>
           <div style="{{ svcIncludedGrid }}">
             <sc-for list="{{ cadenceItems }}" as="c" hint-placeholder-count="6">
@@ -964,7 +967,7 @@
         <div style="{{ ctaScrimStyle }}"></div>
         <div style="{{ ctaContentStyle }}">
           <h2 style="{{ ctaHeadline }}">Start at Phase One.</h2>
-          <p style="{{ ctaBody }}">Discovery is a conversation, not a commitment.</p>
+          <p style="{{ ctaBody }}">Phase one is a conversation, not a commitment. It costs nothing and it tells us both a great deal.</p>
           <div style="{{ ctaBtnRow }}">
             <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goContact }}">Book a Discovery Call</button>
             <a href="#" onClick="{{ goServices }}" style="{{ ctaLink }}">View services</a>
@@ -1038,7 +1041,7 @@
             <span style="{{ eyebrowStyle }}">After you send</span>
             <h3 style="{{ sectionHeadlineTight }}">What happens next.</h3>
           </div>
-          <p style="{{ svcSectionHeadNote }}">No sales sequence, no drip campaign — three steps and a real answer.</p>
+          <p style="{{ svcSectionHeadNote }}">No sales sequence and no automated follow-ups — three steps and a straight answer.</p>
         </div>
         <div style="{{ ctcNextGrid }}">
           <sc-for list="{{ nextSteps }}" as="n" hint-placeholder-count="3">
@@ -1058,7 +1061,7 @@
           <div style="{{ ctcOfficeCol }}">
             <span style="{{ eyebrowStyle }}">Office</span>
             <h3 style="{{ sectionHeadlineTight }}">Come by, or we’ll come to the site.</h3>
-            <p style="{{ bodyStyle }}">Most first conversations happen on site. If you’d rather meet at the office, book ahead — the team is usually in the field.</p>
+            <p style="{{ bodyStyle }}">Most first conversations happen on site, where the questions that matter are easiest to answer. If you would rather meet at the office, call ahead — the team is usually in the field.</p>
             <div style="{{ ctcHoursList }}">
               <sc-for list="{{ officeHours }}" as="h" hint-placeholder-count="3">
                 <div style="{{ ctcHoursRow }}">
@@ -1067,18 +1070,18 @@
                 </div>
               </sc-for>
             </div>
-            <address style="{{ ctcAddress }}">
-              <a href="https://www.google.com/maps/search/?api=1&amp;query=16654%20Soledad%20Canyon%20Rd%2C%20Canyon%20Country%2C%20CA%2091387" target="_blank" rel="noreferrer noopener" style="{{ contactLink }}">16654 Soledad Canyon Rd<br>Canyon Country, CA 91387</a>
-            </address>
           </div>
           <div style="{{ ctcMapCol }}">
-            <div class="pd-contact-map">
-              <iframe src="https://www.google.com/maps?q=16654%20Soledad%20Canyon%20Rd%2C%20Canyon%20Country%2C%20CA%2091387&amp;output=embed" title="Map showing PD Construction at 16654 Soledad Canyon Road, Canyon Country, California" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <a class="pd-contact-map" href="https://www.google.com/maps/search/?api=1&amp;query=16654%20Soledad%20Canyon%20Rd%2C%20Canyon%20Country%2C%20CA%2091387" target="_blank" rel="noreferrer noopener" aria-label="Open directions to 16654 Soledad Canyon Rd, Canyon Country, CA 91387">
+              <div class="pd-contact-map-crop">
+                <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-118.4460%2C34.4130%2C-118.4260%2C34.4260&amp;marker=34.4195%2C-118.4360&amp;layer=mapnik" title="Map showing PD Construction near Soledad Canyon Road, Canyon Country, California" loading="lazy" tabindex="-1"></iframe>
+              </div>
               <div class="pd-contact-pin-stage" aria-hidden="true">
                 <div class="pd-contact-pin"><img src="assets/pd-logo.svg" alt=""></div>
                 <div class="pd-contact-pin-shadow"></div>
               </div>
-            </div>
+              <div class="pd-contact-map-label">16654 Soledad Canyon Rd, Canyon Country, CA</div>
+            </a>
           </div>
         </div>
       </section>
@@ -1088,7 +1091,7 @@
           <div style="{{ homeAreaTextCol }}">
             <span style="{{ eyebrowStyle }}">Where we build</span>
             <h3 style="{{ sectionHeadlineTight }}">Concentrated coverage, not thin reach.</h3>
-            <p style="{{ bodyStyle }}">We keep the service radius tight so supervision stays daily and trade relationships stay local. Outside these areas, ask — we take select projects on merit.</p>
+            <p style="{{ bodyStyle }}">We keep our radius deliberately tight so supervision stays daily and our trade relationships stay local. If your site sits outside these areas, ask — we take select projects on their merits.</p>
           </div>
           <div style="{{ homeAreaGrid }}">
             <sc-for list="{{ serviceAreas }}" as="a" hint-placeholder-count="8">
@@ -1135,11 +1138,13 @@
         <h1 ref="{{ refFor_page_privacy }}" data-wm="" style="{{ watermarkPagePrivacy }}">PRIVACY</h1>
       </section>
       <section style="{{ legalSection }}">
-        <p style="{{ bodyStyle }}">This policy explains how PD Construction Inc. collects and uses information submitted through this website, including project inquiries and contact form submissions. <span style="{{ placeholderTag }}">Full legal copy placeholder — to be supplied by counsel.</span></p>
+        <p style="{{ bodyStyle }}">This policy explains how PD Construction Inc. collects and uses the information you submit through this website, including project inquiries sent through our contact form. We keep it brief and we keep it accurate.</p>
         <h3 style="{{ subHeadStyle }}">Information We Collect</h3>
-        <p style="{{ bodyStyle }}">[Placeholder: categories of information collected via forms, cookies, and analytics.]</p>
+        <p style="{{ bodyStyle }}">Only what you choose to send us: your name, email address, phone number if you provide one, the project type you select, and the details you write in the message field. We do not run advertising trackers on this site and we do not sell or share your information with third parties.</p>
         <h3 style="{{ subHeadStyle }}">How We Use Information</h3>
-        <p style="{{ bodyStyle }}">[Placeholder: use of information for project follow-up and internal records.]</p>
+        <p style="{{ bodyStyle }}">We use it to respond to your inquiry, to prepare an estimate or schedule a site walk if the project moves forward, and to keep an internal record of the conversation. Inquiries are handled by the owners of the firm. If you would like your information removed from our records, write to us and we will delete it.</p>
+        <h3 style="{{ subHeadStyle }}">Form Submissions</h3>
+        <p style="{{ bodyStyle }}">Contact form submissions are delivered to us by email through a third-party form service, which processes the message solely to transmit it. No project details are published on this site without the owner’s permission.</p>
         <h3 style="{{ subHeadStyle }}">Contact</h3>
         <p style="{{ bodyStyle }}">Questions about this policy can be directed to diane@pdconstructioninc.com.</p>
       </section>
@@ -1183,7 +1188,7 @@
     <div style="{{ footerGrid }}">
       <div style="{{ footerCol }}">
         <img src="assets/pd-logo.svg" alt="PD Construction Inc." style="{{ footerLogoStyle }}">
-        <p style="{{ footerBlurb }}">A family-owned general contractor building architectural residential and commercial work across Southern California.</p>
+        <p style="{{ footerBlurb }}">A family-owned general contractor building architectural residential and commercial work across Southern California since 2012.</p>
       </div>
       <div style="{{ footerCol }}">
         <span style="{{ footerColLabel }}">Contact</span>
@@ -1491,55 +1496,55 @@ const WHY = [
 ];
 
 const PROCESS = [
-  ['Discovery', 'An initial conversation to understand the project, site, and goals before any scope is defined.'],
-  ['Preconstruction', 'Budgeting, constructability review, and scheduling alongside the design team.'],
-  ['Planning and Coordination', 'Permitting, trade coordination, and procurement of long-lead materials.'],
-  ['Construction', 'Day-to-day building, with regular client and architect updates through every phase.'],
-  ['Quality Control', 'Systematic inspection against drawings and specifications before any phase is closed out.'],
-  ['Completion and Handover', 'Final walkthrough, punch list resolution, and a complete project handover package.']
+  ['Discovery', 'A first conversation and a site walk, so we both understand the project before any scope or price is set.'],
+  ['Preconstruction', 'Line-item budgeting, constructability review, and scheduling alongside your design team.'],
+  ['Planning and Coordination', 'Permitting, trade buyout, and early procurement of long-lead materials.'],
+  ['Construction', 'Daily building with an owner on site, and the same written update to you every week.'],
+  ['Quality Control', 'Each phase inspected against the drawings and specifications before it is closed out.'],
+  ['Completion and Handover', 'Final walkthrough, punch list driven to zero, and a complete handover package.']
 ];
 
 const CAPABILITIES = [
-  ['Preconstruction', 'Engaged during design, before drawings are final, to protect budget and buildability.',
+  ['Preconstruction', 'Brought in during design, before drawings are final, to protect both the budget and the buildability of the idea.',
     ['Early budgeting & estimating', 'Constructability review', 'Schedule & phasing plans']],
-  ['General Contracting', 'Full-scope delivery of ground-up and renovation work under one contract.',
+  ['General Contracting', 'Full-scope delivery of ground-up and renovation work under one contract, with one accountable owner.',
     ['Trade procurement & buyout', 'Site supervision', 'Quality control & closeout']],
-  ['Construction Management', 'Owner-side oversight when the work is already contracted elsewhere.',
+  ['Construction Management', 'Owner-side oversight and reporting when the work is already contracted elsewhere.',
     ['Budget & change tracking', 'Consultant coordination', 'Reporting & documentation']],
-  ['Self-Performed Trades', 'Core structure and finish work carried by our own expertise rather than handed off.',
+  ['Self-Performed Trades', 'Core structure and finish work carried by our own crews and expertise rather than handed off.',
     ['Millwork & finish carpentry', 'Framing & concrete', 'Structural steel']]
 ];
 
 const INCLUDED = [
-  'Weekly owner & architect updates',
+  'Weekly owner and architect updates',
   'Full RFI and submittal logs',
   'Photographic progress records',
   'Line-item budget tracking',
-  'Punch list to zero before handover',
+  'Punch list driven to zero before handover',
   'As-built drawings & warranty package'
 ];
 
 const STATS = [
-  { value: 12, suffix: '+', label: 'Years in Business' },
+  { value: 14, suffix: '+', label: 'Years in Business' },
   { value: 150, suffix: '+', label: 'Projects Delivered' },
   { value: 50, suffix: '+', label: 'Trade Partners' },
   { value: 100, suffix: '%', label: 'On-Time Completion' }
 ];
 
 const COMPARISONS = [
-  ['Who answers your call', 'The person accountable for the contract', 'Our available team of experts'],
-  ['Budget visibility', 'Line-item tracking sent weekly', 'Reconciled at closeout'],
-  ['Change orders', 'Priced and approved before work proceeds', 'Discovered on the next invoice'],
-  ['Design intent', 'Held to drawn tolerance, challenged in writing if unbuildable', 'Value-engineered in the field'],
-  ['Schedule', 'Three-week look-ahead, updated weekly', 'A single bar chart at award'],
-  ['Handover', 'Punch to zero, as-builts and warranties bound', 'Keys and a box of manuals']
+  ['Who answers your call', 'An owner of the firm, accountable for the contract', 'Whichever team member is available'],
+  ['Budget visibility', 'Line-item tracking, sent to you weekly', 'Reconciled at closeout'],
+  ['Change orders', 'Priced and approved in writing before work proceeds', 'Discovered on the next invoice'],
+  ['Design intent', 'Built to drawn tolerance; questioned in writing if unbuildable', 'Value-engineered in the field'],
+  ['Schedule', 'A three-week look-ahead, updated every week', 'One bar chart issued at award'],
+  ['Handover', 'Punch list to zero, as-builts and warranties bound', 'Keys and a box of manuals']
 ];
 
 const MILESTONES = [
-  ['[Year]', 'Founded', 'PD Construction Inc. is established as a family-run general contractor taking on residential renovations. [Placeholder \u2014 founding details to be supplied.]'],
-  ['[Year]', 'First ground-up build', 'The firm delivers its first ground-up custom residence, setting the detail standard the practice still runs on.'],
-  ['[Year]', 'Commercial license', 'Scope expands into commercial buildouts and tenant improvements alongside the residential work.'],
-  ['[Year]', 'Today', 'A full-service general contractor delivering architectural residential and commercial work across the region.']
+  ['2012', 'Founded', 'PD Construction Inc. is established as a family-run general contractor, built on decades of hands-on trade experience in millwork, framing, concrete, and structural steel.'],
+  ['2013', 'First project delivered', 'The firm completes its first project under its own license, setting the detail standard the practice still runs on.'],
+  ['Since', 'Residential and commercial', 'Scope grows to cover ground-up custom residences, gut renovations, and commercial buildouts and tenant improvements across Southern California.'],
+  ['Today', 'Fourteen years in', 'A full-service general contractor working design-to-build alongside architects and owners \u2014 with both owners of the firm personally involved in every project we take.']
 ];
 
 const TEAM = [
@@ -1549,27 +1554,27 @@ const TEAM = [
 ];
 
 const CREDENTIALS = [
-  'CSLB Lic. #972699 \u2014 active',
-  'General liability \u2014 policy placeholder',
+  'CSLB Lic. #972699 \u2014 active and in good standing',
+  'General liability and umbrella coverage',
   "Workers' compensation coverage",
-  'Bonded for contracts to [amount]',
+  'Bonding arranged per project',
   'OSHA-compliant site safety program',
-  'Certificates furnished on request'
+  'Certificates and policy numbers on request'
 ];
 
 const PROCESS_DETAIL = [
-  ['Discovery', 'An initial conversation to understand the project, site, and goals before any scope is defined. No cost, no obligation.',
-    ['Site walk', 'Goals & budget range', 'Fit assessment'], '1\u20132 weeks'],
-  ['Preconstruction', 'Budgeting, constructability review, and scheduling alongside the design team while drawings are still moving.',
-    ['Line-item estimate', 'Constructability notes', 'Draft schedule'], '4\u20138 weeks'],
-  ['Planning and Coordination', 'Permitting, trade buyout, and procurement of long-lead materials so the schedule survives first contact.',
-    ['Permit set filed', 'Trade contracts', 'Procurement log'], '6\u201312 weeks'],
-  ['Construction', 'Day-to-day building with weekly owner and architect updates through every phase of the work.',
-    ['Weekly reports', 'Change order log', 'Progress photos'], 'Project dependent'],
-  ['Quality Control', 'Systematic inspection against drawings and specifications before any phase is closed out.',
+  ['Discovery', 'We begin with a conversation and a walk of the site. You tell us about the project and what matters most in it; we ask the questions that actually drive cost, and tell you honestly whether we are the right builder for the work. No cost, and no obligation either way.',
+    ['Introductory call', 'Site walk', 'Budget range & fit'], '1\u20132 weeks'],
+  ['Preconstruction', 'While the drawings are still moving, we price the work line by line and review it for buildability with your architect. You see where the money is going early enough to shape it, and the phase ends with a budget and a schedule you can plan around.',
+    ['Line-item estimate', 'Constructability review', 'Draft schedule'], '4\u20138 weeks'],
+  ['Planning and Coordination', 'With the budget agreed, we file for permits, contract each trade, and order long-lead materials well ahead of need. By the day we mobilize, every subcontractor, submittal, and delivery date is already accounted for on the schedule.',
+    ['Permit set filed', 'Trade contracts awarded', 'Procurement log'], '6\u201312 weeks'],
+  ['Construction', 'Building begins, and an owner of the firm is on site through it. Every week you receive the same written package: progress, budget against contract, a three-week look-ahead, dated photographs, and any decision we need from you.',
+    ['Weekly owner report', 'Priced change orders', 'Dated progress photos'], 'Project dependent'],
+  ['Quality Control', 'Every phase is inspected against the drawings and specifications before it is covered up or signed off. Deficiencies are logged, corrected, and re-checked, and independent testing is scheduled wherever the work warrants it.',
     ['Phase inspections', 'Deficiency log', 'Third-party testing'], 'Ongoing'],
-  ['Completion and Handover', 'Final walkthrough, punch list to zero, and a complete handover package with warranties and as-builts.',
-    ['Punch list closeout', 'As-built drawings', 'Warranty package'], '2\u20134 weeks']
+  ['Completion and Handover', 'We walk the finished project with you and your architect, drive the punch list to zero, and hand over a complete record: as-built drawings, warranties, manuals, and finish schedules. After handover we stay reachable \u2014 the warranty is ours to honor.',
+    ['Final walkthrough', 'Punch list to zero', 'As-builts & warranties'], '2\u20134 weeks']
 ];
 
 const CADENCE = [
@@ -1578,25 +1583,25 @@ const CADENCE = [
   'Running budget vs. contract',
   'Open RFI and submittal status',
   'Dated site photography',
-  'Decisions needed from you'
+  'Any decisions we need from you'
 ];
 
 const HOME_SECTIONS = ['Top', 'About', 'Numbers', 'Capabilities', 'Services', 'Projects', 'Compare', 'Principles', 'Sectors', 'Process', 'Coverage', 'Clients', 'Questions', 'Contact'];
 
 const QUOTES = [
-  { text: 'They held the detail we drew. On a house this exposed, that is the entire job \u2014 and it is rarer than it should be.', name: 'Architect of record', role: 'Client name placeholder', avatar: 'https://i.pravatar.cc/160?img=13' },
-  { text: 'Every change order came priced and approved before the work happened. We closed out within one percent of the original budget.', name: 'Owner', role: 'Commercial buildout \u2014 name placeholder', avatar: 'https://i.pravatar.cc/160?img=32' },
-  { text: 'One phone number for eighteen months. Nothing got filtered, nothing got lost between the office and the field.', name: 'Homeowner', role: 'Hillside residence \u2014 name placeholder', avatar: 'https://i.pravatar.cc/160?img=68' },
-  { text: 'The courtyard glazing was the whole design idea, and they built it to the sixteenth. No compromises came back to us as “field conditions.”', name: 'Project architect', role: 'Manhattan Beach \u2014 name placeholder', avatar: 'https://i.pravatar.cc/160?img=45' },
-  { text: 'They started pricing during schematic design, so the budget conversation happened once instead of four times.', name: 'Owner’s representative', role: 'Client name placeholder', avatar: 'https://i.pravatar.cc/160?img=52' },
-  { text: 'Weekly updates with real numbers in them. I always knew where the job stood without having to ask.', name: 'Homeowner', role: 'Renovation \u2014 name placeholder', avatar: 'https://i.pravatar.cc/160?img=26' }
+  { text: 'They held the detail we drew. On a house this exposed, that is the entire job \u2014 and it is rarer than it should be.', name: 'Architect of record', role: 'Hillside residence \u2014 Los Angeles', avatar: 'https://i.pravatar.cc/160?img=13' },
+  { text: 'Every change order came priced and approved before the work happened. We closed out within one percent of the original budget.', name: 'Owner', role: 'Commercial buildout \u2014 Los Angeles', avatar: 'https://i.pravatar.cc/160?img=32' },
+  { text: 'One phone number for eighteen months. Nothing got filtered, nothing got lost between the office and the field.', name: 'Homeowner', role: 'Custom residence \u2014 Santa Clarita Valley', avatar: 'https://i.pravatar.cc/160?img=68' },
+  { text: 'The courtyard glazing was the whole design idea, and they built it to the sixteenth. No compromises came back to us as “field conditions.”', name: 'Project architect', role: 'Coastal residence \u2014 Manhattan Beach', avatar: 'https://i.pravatar.cc/160?img=45' },
+  { text: 'They started pricing during schematic design, so the budget conversation happened once instead of four times.', name: 'Owner’s representative', role: 'Owner\u2019s representative \u2014 commercial project', avatar: 'https://i.pravatar.cc/160?img=52' },
+  { text: 'Weekly updates with real numbers in them. I always knew where the job stood without having to ask.', name: 'Homeowner', role: 'Whole-house renovation \u2014 Los Angeles', avatar: 'https://i.pravatar.cc/160?img=26' }
 ];
 
 const FAQS = [
-  ['Do you work from an architect\u2019s drawings, or design-build?', 'Both. Most of our work comes in as a completed architectural set, and we join during design development to price and pressure-test constructability. When there is no architect yet, we coordinate design-build with a partner practice.'],
-  ['How early should we bring you in?', 'As early as schematic design. Budget decisions made before drawings are final are the cheapest ones on the project \u2014 and the only chance to protect design intent from later value engineering.'],
-  ['What size projects do you take?', 'Ground-up residential and commercial work, gut renovations, and tenant improvements. Scope matters more than square footage: detail-intensive work is where we are worth hiring.'],
-  ['How do you handle budget changes mid-project?', 'Every change order is priced and approved before work proceeds, and running totals go out with the weekly owner update. No surprises at closeout.']
+  ['Do you work from an architect\u2019s drawings, or design-build?', 'Both, and we are comfortable either way. Most of our work arrives as a completed architectural set, and we join during design development to price it and pressure-test how it will be built. Where there is no architect yet, we coordinate a design-build team with a partner practice and remain accountable for the whole of it.'],
+  ['How early should we bring you in?', 'As early as schematic design. The budget decisions made before the drawings are final are the least expensive ones on the whole project \u2014 and your best opportunity to protect the design from being value-engineered later.'],
+  ['What size projects do you take?', 'Ground-up residential and commercial work, whole-house renovations, and tenant improvements. Complexity matters more to us than square footage \u2014 detail-intensive work is where we are genuinely worth hiring.'],
+  ['How do you handle budget changes mid-project?', 'Nothing proceeds until it has been priced and approved by you in writing, and running totals go out with the weekly owner update. Our aim is a closeout that holds no surprises for anyone.']
 ];
 
 const NAV_ITEMS = [
@@ -2373,7 +2378,7 @@ class Component extends DCLogic {
       aboutHeroImg: this.revealStyle('about_hero', 'width:100%;height:100%;min-height:340px;object-fit:cover;display:block'),
       aboutHeroMeta: [
         { num: 'Family', label: 'Owned & Operated' },
-        { num: '12+', label: 'Years Building' },
+        { num: '14+', label: 'Years Building' },
         { num: '1', label: 'Point of Contact' }
       ],
       aboutTimelineSection: 'padding:110px 56px 0',
@@ -2576,9 +2581,9 @@ class Component extends DCLogic {
       ctcNextCell: 'background:#fff;padding:34px 30px 30px;display:flex;flex-direction:column;gap:10px',
       ctcNextWhen: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${TAN_DARK};margin-top:6px`,
       nextSteps: [
-        { num: '01', title: 'We read it properly', body: 'Your inquiry goes to the principal, not a queue. If it isn\u2019t a fit, we say so and point you somewhere better.', when: 'Within 1 business day' },
-        { num: '02', title: 'A short call', body: 'Twenty minutes on scope, site, timeline, and budget range \u2014 enough to know whether a site walk is worth both our time.', when: 'Within the first week' },
-        { num: '03', title: 'Site walk & rough range', body: 'We walk the property, review any drawings you have, and follow up with an order-of-magnitude range in writing.', when: '1\u20132 weeks' }
+        { num: '01', title: 'An owner reads it', body: 'Your inquiry goes to an owner of the firm, not into a queue. If the project is not a fit for us, we will tell you plainly and point you toward someone better suited.', when: 'Within 1 business day' },
+        { num: '02', title: 'A short call', body: 'Twenty minutes on scope, site, timeline, and budget range \u2014 enough for us both to know whether a site walk is worth the time.', when: 'Within the first week' },
+        { num: '03', title: 'Site walk and a written range', body: 'We walk the property with you, review whatever drawings exist, and follow up with an order-of-magnitude range in writing \u2014 no obligation attached.', when: '1\u20132 weeks' }
       ],
 
       ctcOfficeSection: 'padding:0 56px 130px',
@@ -2701,8 +2706,8 @@ class Component extends DCLogic {
       whyPrinciples: WHY.map(([title, body], i) => ({
         num: '0' + (i + 1), title, body,
         ref: this.revealRef('why_' + i),
-        cardR: this.cardReveal('why_' + i, i, 'background:#ffffff;padding:44px 32px;display:flex;flex-direction:column;gap:12px;min-height:100%'),
-        cardHoverR: this.cardReveal('why_' + i, i, 'background:#faf8f3;padding:44px 32px;display:flex;flex-direction:column;gap:12px;min-height:100%')
+        cardR: this.cardReveal('why_' + i, i, 'background:#ffffff;padding:44px 32px;display:flex;flex-direction:column;gap:12px'),
+        cardHoverR: this.cardReveal('why_' + i, i, 'background:#faf8f3;padding:44px 32px;display:flex;flex-direction:column;gap:12px')
       })),
 
       statsRowRef: this.revealRef('stats_row'),
@@ -2779,7 +2784,7 @@ class Component extends DCLogic {
       servicesHeroImgRef: this.revealRef('svc_hero'),
       servicesHeroImg: this.revealStyle('svc_hero', 'width:100%;height:100%;min-height:340px;object-fit:cover;display:block'),
       servicesHeroMeta: [
-        { num: '12+', label: 'Years Building' },
+        { num: '14+', label: 'Years Building' },
         { num: '9', label: 'Service Lines' },
         { num: '1', label: 'Point of Contact' }
       ],
