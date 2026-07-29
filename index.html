@@ -53,80 +53,71 @@
     .pd-media:hover .pd-badge { opacity: 1 !important; transform: translateY(0) !important; }
     .pd-media img { transition: transform 0.9s cubic-bezier(.2,.7,.3,1), opacity 0.9s cubic-bezier(.2,.7,.3,1); }
     .pd-media:hover img { transform: scale(1.045) !important; }
-    .pd-contact-map { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: #e6e1d8; isolation: isolate; }
-    .pd-contact-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) contrast(.9) brightness(1.04); }
-    .pd-contact-map::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: rgba(168,135,90,.06); mix-blend-mode: multiply; }
-    .pd-contact-pin-stage { position: absolute; left: 50%; top: 50%; z-index: 2; width: 96px; height: 130px; pointer-events: none; transform: translate(-50%, -50%); }
+    .pd-contact-map { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #e6e0da; isolation: isolate; }
+    .pd-contact-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) sepia(.16) saturate(.55) contrast(.86) brightness(1.08); }
+    .pd-contact-map::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: rgba(224,216,208,.13); mix-blend-mode: color; }
+    .pd-contact-pin-stage { position: absolute; left: 50%; top: 50%; z-index: 2; width: 72px; height: 104px; pointer-events: none; transform: translate(-50%, -50%); }
     .pd-contact-pin {
       position: absolute;
       left: 50%;
-      bottom: 27px;
-      width: 72px;
-      height: 72px;
+      bottom: 24px;
+      width: 48px;
+      height: 42px;
       opacity: 0;
-      border-radius: 50% 50% 50% 0;
-      background: #a8875a;
-      box-shadow: 0 12px 22px rgba(31,36,40,.28);
-      transform: translate(-50%, -520px) rotate(-45deg);
-      animation: pd-pin-drop 1.25s cubic-bezier(.22,.9,.35,1.14) .28s forwards;
+      display: grid;
+      place-items: center;
+      background: #17191a;
+      box-shadow: 0 9px 18px rgba(31,36,40,.22);
+      transform: translate(-50%, -520px);
+      animation: pd-pin-drop 1.15s cubic-bezier(.22,.9,.35,1.14) .24s forwards;
     }
-    .pd-contact-pin::after {
+    .pd-contact-pin::before {
       content: '';
       position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 20px;
-      height: 20px;
-      border: 6px solid #ffffff;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
+      left: 18px;
+      bottom: -7px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 8px solid #17191a;
+    }
+    .pd-contact-pin img {
+      width: 34px;
+      height: auto;
+      display: block;
+      filter: grayscale(1) brightness(0) invert(1);
     }
     .pd-contact-pin-shadow {
       position: absolute;
       left: 50%;
-      bottom: 11px;
-      width: 48px;
-      height: 13px;
+      bottom: 9px;
+      width: 34px;
+      height: 9px;
       opacity: 0;
       border-radius: 50%;
-      background: rgba(31,36,40,.34);
-      filter: blur(4px);
+      background: rgba(31,36,40,.25);
+      filter: blur(3px);
       transform: translateX(-50%) scale(.2);
-      animation: pd-pin-shadow 1.25s ease-out .28s forwards;
+      animation: pd-pin-shadow 1.15s ease-out .24s forwards;
     }
-    .pd-map-address {
-      position: absolute;
-      left: 20px;
-      right: 20px;
-      bottom: 20px;
-      z-index: 3;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 14px 16px;
-      background: rgba(31,36,40,.94);
-      color: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 11px;
-      line-height: 1.45;
-      letter-spacing: .04em;
-    }
-    .pd-map-address a { flex: 0 0 auto; color: #c9a877; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
-    .pd-map-address a:hover { color: #ffffff; }
     @keyframes pd-pin-drop {
-      0% { opacity: 0; transform: translate(-50%, -520px) rotate(-52deg); }
-      57% { opacity: 1; transform: translate(-50%, 0) rotate(-45deg) scale(1); }
-      70% { transform: translate(-50%, -40px) rotate(-45deg) scale(.94,1.08); }
-      82% { transform: translate(-50%, -4px) rotate(-45deg) scale(1.08,.92); }
-      91% { transform: translate(-50%, -18px) rotate(-45deg); }
-      100% { opacity: 1; transform: translate(-50%, 0) rotate(-45deg); }
+      0% { opacity: 0; transform: translate(-50%, -520px) rotate(-4deg); }
+      58% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      72% { transform: translate(-50%, -30px) scale(.97,1.04); }
+      84% { transform: translate(-50%, -3px) scale(1.04,.96); }
+      92% { transform: translate(-50%, -12px); }
+      100% { opacity: 1; transform: translate(-50%, 0); }
     }
     @keyframes pd-pin-shadow {
       0%, 45% { opacity: 0; transform: translateX(-50%) scale(.2); }
       58% { opacity: .42; transform: translateX(-50%) scale(1.25); }
       72% { opacity: .1; transform: translateX(-50%) scale(.6); }
       100% { opacity: .28; transform: translateX(-50%) scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pd-contact-pin { opacity: 1; transform: translate(-50%, 0); }
+      .pd-contact-pin-shadow { opacity: .28; transform: translateX(-50%) scale(1); }
     }
     img, image-slot { max-width: 100%; }
     h1, h2, h3, h4, h5, p, span, a, li, button { overflow-wrap: break-word; }
@@ -144,9 +135,7 @@
     @media (max-width: 700px) {
       main > section, footer, nav { padding-left: 22px !important; padding-right: 22px !important; }
       main h1, main h2, main h3, main h4 { overflow-wrap: break-word; }
-      .pd-contact-map { aspect-ratio: 1 / 1; }
-      .pd-contact-pin-stage { transform: translate(-50%, -50%) scale(.82); }
-      .pd-map-address { left: 12px; right: 12px; bottom: 12px; align-items: flex-start; flex-direction: column; gap: 8px; }
+      .pd-contact-map { aspect-ratio: 4 / 3; }
     }
   </style>
 </helmet>
@@ -1128,12 +1117,10 @@
                 referrerpolicy="no-referrer-when-downgrade"
               ></iframe>
               <div class="pd-contact-pin-stage" aria-hidden="true">
-                <div class="pd-contact-pin"></div>
+                <div class="pd-contact-pin">
+                  <img src="assets/pd-logo.svg" alt="">
+                </div>
                 <div class="pd-contact-pin-shadow"></div>
-              </div>
-              <div class="pd-map-address">
-                <span>16654 Soledad Canyon Rd<br>Canyon Country, CA 91387</span>
-                <a href="https://www.google.com/maps/dir/?api=1&amp;destination=16654%20Soledad%20Canyon%20Rd%2C%20Canyon%20Country%2C%20CA%2091387" target="_blank" rel="noreferrer noopener">Directions ↗</a>
               </div>
             </div>
           </div>
