@@ -25,7 +25,7 @@
     @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
     @keyframes pd-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     .pd-marquee-track { animation: pd-marquee 34s linear infinite; }
-    .pd-marquee:hover .pd-marquee-track { animation-play-state: paused; }
+    .pd-marquee:hover .pd-marquee-track, .pd-marquee-wrap:hover .pd-marquee-track { animation-play-state: paused; }
     .pd-social { position: relative; overflow: hidden; }
     .pd-social::before { content: ''; position: absolute; inset: 0; background: #1F2428; transform: translateY(101%); transition: transform .5s cubic-bezier(.2,.75,.25,1); }
     .pd-social:hover::before, .pd-social:focus-visible::before { transform: translateY(0); }
@@ -57,50 +57,10 @@
     .pd-contact-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) sepia(.16) saturate(.55) contrast(.86) brightness(1.08); }
     .pd-contact-map::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: rgba(224,216,208,.13); mix-blend-mode: color; }
     .pd-contact-pin-stage { position: absolute; left: 50%; top: 50%; z-index: 2; width: 72px; height: 104px; pointer-events: none; transform: translate(-50%, -50%); }
-    .pd-contact-pin {
-      position: absolute;
-      left: 50%;
-      bottom: 24px;
-      width: 48px;
-      height: 42px;
-      opacity: 0;
-      display: grid;
-      place-items: center;
-      background: #17191a;
-      box-shadow: 0 9px 18px rgba(31,36,40,.22);
-      transform: translate(-50%, -520px);
-      animation: pd-pin-drop 1.15s cubic-bezier(.22,.9,.35,1.14) .24s forwards;
-    }
-    .pd-contact-pin::before {
-      content: '';
-      position: absolute;
-      left: 18px;
-      bottom: -7px;
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 8px solid #17191a;
-    }
-    .pd-contact-pin img {
-      width: 34px;
-      height: auto;
-      display: block;
-      filter: grayscale(1) brightness(0) invert(1);
-    }
-    .pd-contact-pin-shadow {
-      position: absolute;
-      left: 50%;
-      bottom: 9px;
-      width: 34px;
-      height: 9px;
-      opacity: 0;
-      border-radius: 50%;
-      background: rgba(31,36,40,.25);
-      filter: blur(3px);
-      transform: translateX(-50%) scale(.2);
-      animation: pd-pin-shadow 1.15s ease-out .24s forwards;
-    }
+    .pd-contact-pin { position: absolute; left: 50%; bottom: 24px; width: 48px; height: 42px; opacity: 0; display: grid; place-items: center; background: #17191a; box-shadow: 0 9px 18px rgba(31,36,40,.22); transform: translate(-50%, -520px); animation: pd-pin-drop 1.15s cubic-bezier(.22,.9,.35,1.14) .24s forwards; }
+    .pd-contact-pin::before { content: ''; position: absolute; left: 18px; bottom: -7px; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #17191a; }
+    .pd-contact-pin img { width: 34px; height: auto; display: block; filter: grayscale(1) brightness(0) invert(1); }
+    .pd-contact-pin-shadow { position: absolute; left: 50%; bottom: 9px; width: 34px; height: 9px; opacity: 0; border-radius: 50%; background: rgba(31,36,40,.25); filter: blur(3px); transform: translateX(-50%) scale(.2); animation: pd-pin-shadow 1.15s ease-out .24s forwards; }
     @keyframes pd-pin-drop {
       0% { opacity: 0; transform: translate(-50%, -520px) rotate(-4deg); }
       58% { opacity: 1; transform: translate(-50%, 0) scale(1); }
@@ -135,7 +95,6 @@
     @media (max-width: 700px) {
       main > section, footer, nav { padding-left: 22px !important; padding-right: 22px !important; }
       main h1, main h2, main h3, main h4 { overflow-wrap: break-word; }
-      .pd-contact-map { aspect-ratio: 4 / 3; }
     }
   </style>
 </helmet>
@@ -348,8 +307,8 @@
       </section>
 
       <section aria-label="Trades" data-rail-label="Trades" style="{{ mqSection }}">
-        <div style="{{ mqViewport }}">
-          <div class="pd-marquee" style="{{ mqTrack }}">
+        <div class="pd-marquee-wrap" style="{{ mqViewport }}">
+          <div class="pd-marquee-track" style="{{ mqTrack }}">
             <sc-for list="{{ mqItems }}" as="m" hint-placeholder-count="0">
               <span style="{{ m.style }}">{{ m.label }}</span>
             </sc-for>
@@ -1110,16 +1069,9 @@
           </div>
           <div style="{{ ctcMapCol }}">
             <div class="pd-contact-map">
-              <iframe
-                src="https://www.google.com/maps?q=16654%20Soledad%20Canyon%20Rd%2C%20Canyon%20Country%2C%20CA%2091387&amp;output=embed"
-                title="Map showing PD Construction at 16654 Soledad Canyon Road, Canyon Country, California"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+              <iframe src="https://www.google.com/maps?q=16654%20Soledad%20Canyon%20Rd%2C%20Canyon%20Country%2C%20CA%2091387&amp;output=embed" title="Map showing PD Construction at 16654 Soledad Canyon Road, Canyon Country, California" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               <div class="pd-contact-pin-stage" aria-hidden="true">
-                <div class="pd-contact-pin">
-                  <img src="assets/pd-logo.svg" alt="">
-                </div>
+                <div class="pd-contact-pin"><img src="assets/pd-logo.svg" alt=""></div>
                 <div class="pd-contact-pin-shadow"></div>
               </div>
             </div>
@@ -2105,8 +2057,9 @@ class Component extends DCLogic {
       return out.filter(x => (seen[x.url] ? false : (seen[x.url] = true)));
     };
     const allPhotos = buildPhotos(false);
+    const galPhotosAll = buildPhotos(true);
     const galFilterActive = s.galFilter || 'All';
-    const galPhotos = galFilterActive === 'All' ? buildPhotos(true) : allPhotos.filter(x => x.project === galFilterActive);
+    const galPhotos = galFilterActive === 'All' ? galPhotosAll : allPhotos.filter(x => x.project === galFilterActive);
     const lbPhoto = s.lightbox === null ? null : galPhotos[s.lightbox];
 
     const navLinks = NAV_ITEMS.map(([label, fn]) => {
@@ -2171,7 +2124,7 @@ class Component extends DCLogic {
         const base = `display:inline-flex;align-items:center;gap:8px;font-family:${SANS};font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:11px 17px;cursor:pointer;transition:background 0.3s ease,color 0.3s ease,border-color 0.3s ease`;
         return defs.map(label => {
           const on = active === label;
-          const count = label === 'All' ? allPhotos.length : allPhotos.filter(x => x.project === label).length;
+          const count = label === 'All' ? galPhotosAll.length : allPhotos.filter(x => x.project === label).length;
           return {
             label, count,
             onClick: () => this.setState({ galFilter: label, lightbox: null }),
@@ -2525,8 +2478,8 @@ class Component extends DCLogic {
       ctcOfficeInner: 'display:flex;gap:72px;flex-wrap:wrap;align-items:flex-start;border-top:1px solid #e6e1d8;padding-top:56px',
       ctcOfficeCol: 'flex:1 1 360px;min-width:280px;display:flex;flex-direction:column;gap:12px;align-items:flex-start',
       ctcMapCol: 'flex:1 1 420px;min-width:300px',
+      ctcAddress: `font-family:${SERIF};font-style:normal;font-size:15px;line-height:1.6;color:${INK};margin-top:18px`,
       ctcMapSlot: 'width:100%;aspect-ratio:4/3',
-      ctcAddress: `font-style:normal;font-family:${SERIF};font-size:15px;line-height:1.6;margin:10px 0 0`,
       ctcHoursList: 'display:flex;flex-direction:column;width:100%;max-width:380px;margin-top:8px;border-top:1px solid #e6e1d8',
       ctcHoursRow: 'display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid #e6e1d8',
       ctcHoursDay: `font-family:${SANS};font-size:13px;color:${INK}`,
