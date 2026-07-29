@@ -53,6 +53,81 @@
     .pd-media:hover .pd-badge { opacity: 1 !important; transform: translateY(0) !important; }
     .pd-media img { transition: transform 0.9s cubic-bezier(.2,.7,.3,1), opacity 0.9s cubic-bezier(.2,.7,.3,1); }
     .pd-media:hover img { transform: scale(1.045) !important; }
+    .pd-contact-map { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: #e6e1d8; isolation: isolate; }
+    .pd-contact-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) contrast(.9) brightness(1.04); }
+    .pd-contact-map::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: rgba(168,135,90,.06); mix-blend-mode: multiply; }
+    .pd-contact-pin-stage { position: absolute; left: 50%; top: 50%; z-index: 2; width: 96px; height: 130px; pointer-events: none; transform: translate(-50%, -50%); }
+    .pd-contact-pin {
+      position: absolute;
+      left: 50%;
+      bottom: 27px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+      border-radius: 50% 50% 50% 0;
+      background: #a8875a;
+      box-shadow: 0 12px 22px rgba(31,36,40,.28);
+      transform: translate(-50%, -520px) rotate(-45deg);
+      animation: pd-pin-drop 1.25s cubic-bezier(.22,.9,.35,1.14) .28s forwards;
+    }
+    .pd-contact-pin::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      border: 6px solid #ffffff;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .pd-contact-pin-shadow {
+      position: absolute;
+      left: 50%;
+      bottom: 11px;
+      width: 48px;
+      height: 13px;
+      opacity: 0;
+      border-radius: 50%;
+      background: rgba(31,36,40,.34);
+      filter: blur(4px);
+      transform: translateX(-50%) scale(.2);
+      animation: pd-pin-shadow 1.25s ease-out .28s forwards;
+    }
+    .pd-map-address {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 16px;
+      background: rgba(31,36,40,.94);
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      line-height: 1.45;
+      letter-spacing: .04em;
+    }
+    .pd-map-address a { flex: 0 0 auto; color: #c9a877; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+    .pd-map-address a:hover { color: #ffffff; }
+    @keyframes pd-pin-drop {
+      0% { opacity: 0; transform: translate(-50%, -520px) rotate(-52deg); }
+      57% { opacity: 1; transform: translate(-50%, 0) rotate(-45deg) scale(1); }
+      70% { transform: translate(-50%, -40px) rotate(-45deg) scale(.94,1.08); }
+      82% { transform: translate(-50%, -4px) rotate(-45deg) scale(1.08,.92); }
+      91% { transform: translate(-50%, -18px) rotate(-45deg); }
+      100% { opacity: 1; transform: translate(-50%, 0) rotate(-45deg); }
+    }
+    @keyframes pd-pin-shadow {
+      0%, 45% { opacity: 0; transform: translateX(-50%) scale(.2); }
+      58% { opacity: .42; transform: translateX(-50%) scale(1.25); }
+      72% { opacity: .1; transform: translateX(-50%) scale(.6); }
+      100% { opacity: .28; transform: translateX(-50%) scale(1); }
+    }
     img, image-slot { max-width: 100%; }
     h1, h2, h3, h4, h5, p, span, a, li, button { overflow-wrap: break-word; }
     @media (max-width: 760px) {
@@ -60,6 +135,7 @@
       main section > section, main section section { padding-left: 0 !important; padding-right: 0 !important; }
       [data-wm] { font-size: clamp(30px, 12vw, 54px) !important; margin-bottom: -18px !important; -webkit-text-stroke-width: 1px !important; }
       main [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+      main [data-prc-segs] { grid-template-columns: repeat(6, 1fr) !important; }
       main [style*="gap:72px"], main [style*="gap:64px"] { gap: 34px !important; }
       main [style*="margin-bottom:90px"], main [style*="margin-bottom:80px"] { margin-bottom: 46px !important; }
       main section { padding-bottom: 62px !important; }
@@ -68,6 +144,9 @@
     @media (max-width: 700px) {
       main > section, footer, nav { padding-left: 22px !important; padding-right: 22px !important; }
       main h1, main h2, main h3, main h4 { overflow-wrap: break-word; }
+      .pd-contact-map { aspect-ratio: 1 / 1; }
+      .pd-contact-pin-stage { transform: translate(-50%, -50%) scale(.82); }
+      .pd-map-address { left: 12px; right: 12px; bottom: 12px; align-items: flex-start; flex-direction: column; gap: 8px; }
     }
   </style>
 </helmet>
@@ -76,7 +155,7 @@
 
   <nav style="{{ navStyle }}">
     <div style="{{ scrollProgressStyle }}"></div>
-    <button aria-label="PD Construction Inc. — home" style="{{ brandBtnStyle }}" onClick="{{ goHome }}"><img src="assets/pd-logo.svg" alt="PD Construction Inc." style="width: 128px; height: 61px"></button>
+    <button aria-label="PD Construction Inc. — home" style="{{ brandBtnStyle }}" onClick="{{ goHome }}"><img src="assets/pd-logo.svg" alt="PD Construction Inc." style="width: 179px; height: 74px"></button>
     <sc-if value="{{ showDesktopNav }}" hint-placeholder-val="{{ true }}">
       <div style="{{ navLinksWrapStyle }}">
         <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="6">
@@ -126,7 +205,7 @@
             <span style="{{ heroLineMask }}"><span style="{{ heroLine2 }}">Without Compromise</span></span>
           </h1>
           <div style="{{ heroRule }}"></div>
-          <p style="{{ heroSubStyle }}">PD Construction Inc. delivers exceptional residential and commercial environments through precision, craftsmanship, and uncompromising attention to detail.</p>
+          <p style="{{ heroSubStyle }}">PD Construction Inc. builds sophisticated architecture in close collaboration with architects and clients — turning the hardest parts of a project into opportunities.</p>
           <button style="{{ heroBtnStyle }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goProjects }}">Explore Our Work &nbsp;→</button>
         </div>
         <div style="{{ scrollCueStyle }}">
@@ -137,9 +216,9 @@
 
       <section aria-label="Introduction" data-rail-label="About" style="{{ introSectionStyle }}">
         <div style="{{ introTextColStyle }}">
-          <h2 style="{{ introHeadlineStyle }}">A general contractor built for architecture that refuses to compromise.</h2>
+          <h2 style="{{ introHeadlineStyle }}">Sophisticated architecture, built in collaboration with the architect and the client.</h2>
           <div style="{{ tanRule }}"></div>
-          <p style="{{ bodyLgStyle }}">PD Construction Inc. builds high-end residential and commercial environments defined by ultra-modern architecture and exacting craftsmanship. We work in close partnership with architects, designers, and owners — translating ambitious drawings into precise, livable buildings.</p>
+          <p style="{{ bodyLgStyle }}">Our philosophy comes out of a determination to pursue ambitious explorations of architecture alongside the architects and owners we build for. Deep experience in millwork, framing, concrete, and structural steel lets us anticipate the finish from the first rough framing member — and meet the challenges a demanding design presents as opportunities rather than obstacles.</p>
           <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ goAbout }}">Read About the Firm &nbsp;→</button>
         </div>
         <div style="{{ introImgColStyle }}">
@@ -192,7 +271,7 @@
       <section aria-label="Services teaser" data-rail-label="Services" style="{{ teaserSection }}">
         <h2 ref="{{ refFor_services_teaser }}" data-wm="" style="{{ watermarkServicesTeaser }}">SERVICES</h2>
         <div style="{{ teaserRow }}">
-          <div style="{{ teaserImgCol }}"><img ref="{{ teaserServicesImgRef }}" src="assets/preston-02-rear-elevation.jpg" alt="Preston Residence: cantilevered roof plane over the terrace at dusk" style="{{ teaserServicesImg }}"></div>
+          <div style="{{ teaserImgCol }}"><img ref="{{ teaserServicesImgRef }}" src="assets/wasatch-02-pool-dusk.jpg" alt="Wasatch Residence at dusk: living spaces open to the pool deck" style="{{ teaserServicesImg }}"></div>
           <div style="{{ teaserTextCol }}">
             <h3 style="{{ subHeadStyle }}">Full-Scope General Contracting, Start to Finish.</h3>
             <div style="{{ tanRule }}"></div>
@@ -312,7 +391,8 @@
           <div style="{{ processTrackGrid }}">
             <sc-for list="{{ homeProcessCells }}" as="step" hint-placeholder-count="6">
               <div ref="{{ step.ref }}" style="{{ step.cardR }}">
-                <div style="{{ processDot }}"></div>
+                <div style="{{ step.dot }}"></div>
+                <div style="{{ step.tick }}"></div>
                 <span style="{{ processDotNum }}">{{ step.num }}</span>
                 <h4 style="{{ processDotTitle }}">{{ step.title }}</h4>
                 <span style="{{ homeProcessDur }}">{{ step.duration }}</span>
@@ -395,7 +475,7 @@
           <p style="{{ ctaBody }}">Tell us about your project — we’ll follow up within one business day.</p>
           <div style="{{ ctaBtnRow }}">
             <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goContact }}">Start a Project</button>
-            <a href="mailto:info@pdconstruction.example" style="{{ ctaLink }}">info@pdconstruction.example <span style="{{ placeholderTag }}">placeholder</span></a>
+            <a href="mailto:diane@pdconstructioninc.com" style="{{ ctaLink }}">diane@pdconstructioninc.com</a>
           </div>
         </div>
       </section>
@@ -497,7 +577,7 @@
           <p style="{{ ctaBody }}">Send drawings or a site address and we’ll tell you what it takes to build it.</p>
           <div style="{{ ctaBtnRow }}">
             <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goContact }}">Start a Project</button>
-            <a href="mailto:info@pdconstruction.example" style="{{ ctaLink }}">info@pdconstruction.example <span style="{{ placeholderTag }}">placeholder</span></a>
+            <a href="mailto:diane@pdconstructioninc.com" style="{{ ctaLink }}">diane@pdconstructioninc.com</a>
           </div>
         </div>
       </section>
@@ -594,11 +674,11 @@
         <h1 ref="{{ refFor_page_services }}" data-wm="" style="{{ watermarkPageServices }}">SERVICES</h1>
       </section>
       <section style="{{ pageHeaderRow }}">
-        <div style="{{ teaserImgCol }}"><img ref="{{ servicesHeroImgRef }}" src="assets/preston-05-kitchen.jpg" alt="Preston Residence kitchen in walnut with a marble island and slot window" style="{{ servicesHeroImg }}"></div>
+        <div style="{{ teaserImgCol }}"><img ref="{{ servicesHeroImgRef }}" src="assets/wasatch-05-kitchen.jpg" alt="Wasatch Residence kitchen in white oak and honed dark stone" style="{{ servicesHeroImg }}"></div>
         <div style="{{ teaserTextCol }}">
-          <h2 style="{{ introHeadlineStyle }}">We Are a Detail-Oriented, Full-Service Contractor.</h2>
+          <h2 style="{{ introHeadlineStyle }}">From Design Through Build, Under One Team.</h2>
           <div style="{{ tanRule }}"></div>
-          <p style="{{ bodyLgStyle }}">From preconstruction through management, delivery, and beyond, PD Construction oversees every element of your building experience — so design intent survives contact with the field.</p>
+          <p style="{{ bodyLgStyle }}">We collaborate from design to build, bringing efficiency and real solutions to both. Understanding of detail is what makes our estimating thorough — carried out with an experienced team of quality vendors and consultants.</p>
           <div style="{{ svcHeroMetaRow }}">
             <sc-for list="{{ servicesHeroMeta }}" as="m" hint-placeholder-count="3">
               <div style="{{ svcHeroMetaCell }}">
@@ -720,7 +800,7 @@
           <p style="{{ ctaBody }}">Send drawings, a site address, or just an idea — we’ll tell you what it takes to build it.</p>
           <div style="{{ ctaBtnRow }}">
             <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ goContact }}">Start a Project</button>
-            <a href="mailto:info@pdconstruction.example" style="{{ ctaLink }}">info@pdconstruction.example <span style="{{ placeholderTag }}">placeholder</span></a>
+            <a href="mailto:diane@pdconstructioninc.com" style="{{ ctaLink }}">diane@pdconstructioninc.com</a>
           </div>
         </div>
       </section>
@@ -734,9 +814,9 @@
       <section style="{{ pageHeaderRow }}">
         <div style="{{ teaserImgCol }}"><img ref="{{ aboutHeroImgRef }}" src="assets/alma-02-dining.jpg" alt="Alma Switch House dining room open to the courtyard through sliding glass" style="{{ aboutHeroImg }}"></div>
         <div style="{{ teaserTextCol }}">
-          <h2 style="{{ introHeadlineStyle }}">Built on Family Values. Defined by Modern Craftsmanship.</h2>
+          <h2 style="{{ introHeadlineStyle }}">Building Is Our Profession, and Our Passion.</h2>
           <div style="{{ tanRule }}"></div>
-          <p style="{{ bodyLgStyle }}">PD Construction Inc. is a family-owned general contractor combining personal accountability with professional construction management. Every project carries a name and a direct point of contact — not a call center.</p>
+          <p style="{{ bodyLgStyle }}">PD Construction Inc. is a family-owned general contractor committed to attaining the highest potential product — and the best possible experience through construction. That resolve is what drives the ethics of our team, and why every project carries a name and a direct point of contact.</p>
           <div style="{{ svcHeroMetaRow }}">
             <sc-for list="{{ aboutHeroMeta }}" as="m" hint-placeholder-count="3">
               <div style="{{ svcHeroMetaCell }}">
@@ -789,6 +869,12 @@
               <h4 style="{{ aboutTeamName }}">{{ t.name }}</h4>
               <div style="{{ tanRuleThin }}"></div>
               <p style="{{ bodyStyle }}">{{ t.body }}</p>
+              <sc-if value="{{ t.hasContact }}" hint-placeholder-val="{{ false }}">
+                <div style="{{ aboutTeamContact }}">
+                  <a href="{{ t.emailHref }}" style="{{ aboutTeamContactLink }}" style-hover="{{ aboutTeamContactLinkHover }}">{{ t.email }}</a>
+                  <a href="{{ t.phoneHref }}" style="{{ aboutTeamContactLink }}" style-hover="{{ aboutTeamContactLinkHover }}">{{ t.phone }}</a>
+                </div>
+              </sc-if>
             </div>
           </sc-for>
         </div>
@@ -846,7 +932,7 @@
         <h1 ref="{{ refFor_page_process }}" data-wm="" style="{{ watermarkPageProcess }}">PROCESS</h1>
       </section>
       <section style="{{ pageHeaderRow }}">
-        <div style="{{ teaserImgCol }}"><img ref="{{ processHeroImgRef }}" src="assets/preston-03-deck-pergola.jpg" alt="Preston Residence: ipe deck and slatted pergola across the pool" style="{{ processHeroImg }}"></div>
+        <div style="{{ teaserImgCol }}"><img ref="{{ processHeroImgRef }}" src="assets/alma-04-terrace.jpg" alt="Alma Switch House: upper terrace looking out over the neighborhood" style="{{ processHeroImg }}"></div>
         <div style="{{ teaserTextCol }}">
           <h2 style="{{ introHeadlineStyle }}">A Transparent Path From First Call to Handover.</h2>
           <div style="{{ tanRule }}"></div>
@@ -864,7 +950,7 @@
           <div style="{{ prcTrackerBarBg }}">
             <div style="{{ prcTrackerBarFill }}"></div>
           </div>
-          <div style="{{ prcTrackerSegs }}">
+          <div data-prc-segs="" style="{{ prcTrackerSegs }}">
             <sc-for list="{{ prcSegments }}" as="seg" hint-placeholder-count="6">
               <button style="{{ seg.style }}" style-hover="{{ seg.hover }}" onClick="{{ seg.onClick }}">
                 <span style="{{ seg.numStyle }}">{{ seg.num }}</span>
@@ -946,8 +1032,8 @@
       </section>
       <section style="{{ contactSection }}">
         <div style="{{ contactInfoCol }}">
-          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Email</span><p style="{{ metaValueStyle }}">info@pdconstruction.example <span style="{{ placeholderTag }}">placeholder</span></p></div>
-          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Phone</span><p style="{{ metaValueStyle }}"><a href="tel:+16612691899" style="{{ contactLink }}">661-269-1899</a></p></div>
+          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Email</span><p style="{{ metaValueStyle }}"><a href="mailto:diane@pdconstructioninc.com" style="{{ contactLink }}">diane@pdconstructioninc.com</a></p></div>
+          <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Office</span><p style="{{ metaValueStyle }}"><a href="tel:+16612691899" style="{{ contactLink }}">661.269.1899</a></p></div>
           <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Service Area</span><p style="{{ metaValueStyle }}">Southern California</p></div>
           <div style="{{ contactInfoRow }}"><span style="{{ metaLabelStyle }}">Contractor License</span><p style="{{ metaValueStyle }}">CSLB Lic. #972699</p></div>
         </div>
@@ -1029,10 +1115,27 @@
                 </div>
               </sc-for>
             </div>
-            <span style="{{ placeholderTag }}">Address &amp; hours placeholder</span>
+            <address style="{{ ctcAddress }}">
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=16654%20Soledad%20Canyon%20Rd%2C%20Canyon%20Country%2C%20CA%2091387" target="_blank" rel="noreferrer noopener" style="{{ contactLink }}">16654 Soledad Canyon Rd<br>Canyon Country, CA 91387</a>
+            </address>
           </div>
           <div style="{{ ctcMapCol }}">
-            <image-slot id="slot-contact-map" placeholder="Map or office photo placeholder" style="{{ ctcMapSlot }}"></image-slot>
+            <div class="pd-contact-map">
+              <iframe
+                src="https://www.google.com/maps?q=16654%20Soledad%20Canyon%20Rd%2C%20Canyon%20Country%2C%20CA%2091387&amp;output=embed"
+                title="Map showing PD Construction at 16654 Soledad Canyon Road, Canyon Country, California"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+              <div class="pd-contact-pin-stage" aria-hidden="true">
+                <div class="pd-contact-pin"></div>
+                <div class="pd-contact-pin-shadow"></div>
+              </div>
+              <div class="pd-map-address">
+                <span>16654 Soledad Canyon Rd<br>Canyon Country, CA 91387</span>
+                <a href="https://www.google.com/maps/dir/?api=1&amp;destination=16654%20Soledad%20Canyon%20Rd%2C%20Canyon%20Country%2C%20CA%2091387" target="_blank" rel="noreferrer noopener">Directions ↗</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1059,7 +1162,7 @@
         <h1 ref="{{ refFor_page_gallery }}" data-wm="" style="{{ watermarkPageGallery }}">GALLERY</h1>
       </section>
       <section aria-label="Gallery intro" style="{{ galIntroSection }}">
-        <p style="{{ pageLede }}">Every photograph from our built work, in one place. Filter by project, or open any frame full screen.</p>
+        <p style="{{ pageLede }}">A selection from every project. Filter by a project to see its full set, or open any frame full screen.</p>
         <div style="{{ galFilterRow }}">
           <sc-for list="{{ galFilters }}" as="gf" hint-placeholder-count="4">
             <button style="{{ gf.style }}" style-hover="{{ gf.styleHover }}" onClick="{{ gf.onClick }}">{{ gf.label }}<span style="{{ gf.countStyle }}">{{ gf.count }}</span></button>
@@ -1095,7 +1198,7 @@
         <h3 style="{{ subHeadStyle }}">How We Use Information</h3>
         <p style="{{ bodyStyle }}">[Placeholder: use of information for project follow-up and internal records.]</p>
         <h3 style="{{ subHeadStyle }}">Contact</h3>
-        <p style="{{ bodyStyle }}">Questions about this policy can be directed to info@pdconstruction.example <span style="{{ placeholderTag }}">placeholder</span>.</p>
+        <p style="{{ bodyStyle }}">Questions about this policy can be directed to diane@pdconstructioninc.com.</p>
       </section>
     </sc-if>
 
@@ -1197,6 +1300,20 @@ const PROJECTS_RAW = [
     story3: 'The exterior is clad in copper-hued shingles and set into the berm flanking the entry drive, so the pavilion reads as part of the landform rather than an object dropped on it. Inside, shaped acoustic panels carry point and linear sources within the ceiling assembly, lighting the stage without breaking the surface that shapes the sound.',
     challenge: 'Structure, acoustics, and moving parts were one problem, not three. The curved soundboard volume doubles as the primary structure, so acoustic geometry drove steel fabrication and erection tolerances; the servo-operated clerestory and the full-width retracting panels required precise framing, alignment and commissioning against acoustic performance criteria; and the whole pavilion had to be set into an existing berm alongside a live campus entry drive, keeping the drive and adjacent buildings in service.',
     materials: 'Copper-hued shingle cladding, curved structural steel and glue-laminated framing, shaped plywood acoustic panels with integrated lighting, servo-operated glazed clerestory panes, monumental retracting panel assemblies, and poured concrete stage and amphitheater steps.' },
+  { id: 'coop-editorial', name: 'Coop Editorial', location: 'Santa Monica, CA', category: 'Commercial', scope: 'Tenant Improvement', year: '2005',
+    img: 'assets/coop-02-lounge.png', imgAlt: 'Coop Editorial: the carved fir wall running the length of the lounge, with the amber resin screen and blue conference volume beyond',
+    gallery: [
+      ['assets/coop-01-corridor.png', 'The main circulation spine: carved wood on one side, glass-walled rooms and poured floor on the other', 'wide'],
+      ['assets/coop-03-wood-wall.png', 'The full length of the milled fir wall, its surface drawn out into a slow wave', 'wide'],
+      ['assets/coop-04-blue-conference.png', 'Conference volume in translucent blue, framed in board-formed concrete, with the amber room beyond', 'tall'],
+      ['assets/coop-05-wood-edge-detail.png', 'Edge detail: the carved profile turning the corner against a cove-lit reveal', 'tall']
+    ],
+    summary: 'A 4,700 sf post-production facility set inside a 1963 Frank Gehry commercial building \u2014 built around a hand-milled fir wall that runs the length of the plan and a set of translucent color volumes.',
+    story: 'Coop Editorial is a full-service post-production house \u2014 offline and online editing, film transfer, visual and audio effects \u2014 and it needed a home with the calm of a gallery and the guts of a machine room. The site made that interesting: a 1963 Frank Gehry commercial structure in downtown Santa Monica, with its own logic already in place.',
+    story2: 'The design keeps the existing shell honest and inserts new work as objects within it. A single fir wall runs the length of the plan, milled so the surface swells and recedes like fabric caught mid-motion \u2014 the piece the whole interior orients around. Opposite it sit the working rooms as translucent volumes in blue and amber, framed in board-formed concrete, so light carries color across the poured floor as the day moves.',
+    story3: 'Nothing here came out of a catalog. The wall was drawn, sequenced, milled and hung as a set of matched panels whose profile had to continue unbroken across every joint, including where it turns a corner and meets glass. Cove lighting was built into the reveals so the carving reads as depth rather than shadow. Editing suites carry acoustic isolation and equipment loads without a visible seam in any of it.',
+    challenge: 'Everything about the job was one-off. Curved millwork had to be shop-milled and field-fit so the wave line ran true across dozens of panel joints; the color volumes needed dead-flat glass and resin panels held in concrete-framed openings with no tolerance to hide behind; and it all had to happen inside an existing Gehry structure whose framing and slab were not square, while the suites got the acoustics and power a post house depends on.',
+    materials: 'Hand-milled clear fir wall panels with integrated cove lighting, board-formed concrete frames, translucent blue and amber resin and glass partitions, acoustic isolation assemblies for edit suites, and poured, sealed concrete floors.' },
   { id: 'lhuillier-flagship', name: 'Monique Lhuillier Flagship', location: 'Los Angeles, CA', category: 'Commercial', scope: 'Retail Buildout', year: '2006',
     architect: 'Montalba Architects',
     img: 'assets/lhuillier-01-showroom.jpg', imgAlt: 'Main showroom with a raised oak display plinth, limestone floor, bronzed millwork bays and a crystal pendant',
@@ -1227,25 +1344,121 @@ const PROJECTS_RAW = [
     story3: 'The plan holds a primary suite at one end, two guest rooms at the other, a kitchen and dining zone, and the sunken living room. Perforated door and window panels with glass inserts do the work of both light fixtures and walls \u2014 they had to hang dead flat and stay flat, since any twist shows immediately in the pattern and in the light they cast. Late afternoon is when the house pays that off.',
     challenge: 'Fabrication tolerance was the whole job. Hundreds of CNC-machined panels had to align pattern-to-pattern across planes that were never square in the original structure, backlit perforated doors had to stay perfectly flat, and a continuous hand-laid tile field had to run through a sunken floor level \u2014 all delivered on a remote ranch site with a long haul road, no margin for on-site refabrication, and the existing envelope and footprint held exactly as found.',
     materials: 'CNC-engraved and perforated plywood wall, ceiling, door and shutter panels with glass inserts; hand-laid glazed ceramic tile floors and bath surfaces; lacquered millwork; prefab wood shingle cladding; laser-cut wood, plastic and aluminum pendant fixtures; CNC-inlaid custom furniture.' },
-  { id: 'preston-residence', name: 'Preston Residence', location: 'Venice, CA', category: 'Residential', scope: 'Ground-Up Custom Residence', year: '2020',
-    architect: 'Montalba Architects',
-    img: 'assets/preston-01-pool.jpg', imgAlt: 'Preston Residence from the pool deck: deep steel-edged roof planes over ipe decking, lawn and full-height sliding glass',
-    gallery: [
-      ['assets/preston-02-rear-elevation.jpg', 'Rear elevation at dusk: cantilevered roof plane over the terrace, concrete-block base and planted upper ledges', 'wide'],
-      ['assets/preston-03-deck-pergola.jpg', 'Ipe deck and slatted pergola looking back across the pool to the main volume'],
-      ['assets/preston-04-dining.jpg', 'Dining room under a wood-clad ceiling, polished concrete floor and a glass wall to the garden'],
-      ['assets/preston-05-kitchen.jpg', 'Kitchen in walnut with a marble island and a slot window onto the side garden', 'wide'],
-      ['assets/preston-06-bath.jpg', 'Primary bath in white stone with louvered glazing and a freestanding tub', 'tall'],
-      ['assets/preston-07-stair-court.jpg', 'Stair landing glazed on two sides onto the courtyard tree', 'tall'],
-      ['assets/preston-08-bedroom.jpg', 'Primary bedroom opening through a full-height slider to a terrace above the pool'],
-      ['assets/preston-09-study.jpg', 'Study with built-in walnut desk and shelving between two glazed walls']
+  { id: 'westridge-residence', name: 'Westridge Residence', location: 'Los Angeles, CA', category: 'Residential', scope: 'Ground-Up Custom Residence', year: '2024',
+    featured: [
+      'assets/westridge-68-canyon-elevation-dusk.jpg', 'assets/westridge-82-canyon-sunset-elevation.jpg',
+      'assets/westridge-01-entry-screen.jpg', 'assets/westridge-51-entry-golden.jpg', 'assets/westridge-64-street-dusk.jpg',
+      'assets/westridge-03-deck-court.jpg', 'assets/westridge-40-deck-living.jpg', 'assets/westridge-43-deck-lounge.jpg',
+      'assets/westridge-47-court-tree-kitchen.jpg', 'assets/westridge-85-court-sunset.jpg',
+      'assets/westridge-72-court-night.jpg', 'assets/westridge-74-court-night-tree.jpg',
+      'assets/westridge-11-living-fireplace.jpg', 'assets/westridge-14-living-open-plan.jpg', 'assets/westridge-88-living-sunset.jpg',
+      'assets/westridge-86-dining-sunset.jpg', 'assets/westridge-17-dining-millwork.jpg',
+      'assets/westridge-19-kitchen-island.jpg', 'assets/westridge-20-kitchen-marble.jpg', 'assets/westridge-21-kitchen-range.jpg',
+      'assets/westridge-91-stair-orange.jpg', 'assets/westridge-49-stair-glazed.jpg',
+      'assets/westridge-56-primary-open.jpg', 'assets/westridge-87-bedroom-sunset.jpg', 'assets/westridge-26-bedroom-wardrobe.jpg',
+      'assets/westridge-58-primary-bath-tubs.jpg', 'assets/westridge-36-bath-blue-tub.jpg',
+      'assets/westridge-92-spa-sunset.jpg', 'assets/westridge-81-sunburst.jpg'
     ],
-    summary: 'A two-story Venice residence built outward from its gardens \u2014 three outdoor rooms at different scales, a concrete-block base anchoring the upper volume, and nearly every interior room opening directly to air.',
-    story: 'The Preston Residence was built from the outside in. Three gardens \u2014 each a different size and doing a different job \u2014 set the plan, and nearly every interior room opens onto one of them, so the house is used outdoors as much as in for most of the year.',
-    story2: 'Concrete-block walls anchor those gardens and carry the visual weight between floors, letting the long horizontal roof planes above read as light. Getting that to hold in construction meant treating the block, the steel roof edges, and the glazing as one assembly: the fascia lines had to stay dead straight across cantilevers, and the sliders had to disappear fully into the walls so the opening reads as absence rather than a door.',
-    story3: 'Inside, the material palette stays short and warm \u2014 wood-clad ceilings, walnut millwork, polished concrete floors, stone in the wet rooms. Upstairs the primary suite opens through a full-height slider onto a terrace over the pool, and the stair landing is glazed on two sides around an existing courtyard tree that was protected in place through the entire build.',
-    challenge: 'Deep cantilevered roof planes with no visible sag, concrete-block walls that read as a single monolithic mass, and pocketing sliders that had to vanish into finished walls \u2014 all coordinated with pool, deck, and three garden levels on a tight Venice lot, with the existing courtyard tree protected in place throughout.',
-    materials: 'Concrete block, steel-edged roof planes with wood soffits, thermally broken steel-framed sliders, ipe decking and pergola, walnut millwork, polished concrete floors, and marble counters and bath surfaces.' },
+    img: 'assets/westridge-69-aerial-dusk.jpg', imgAlt: 'Westridge Residence at dusk from across the canyon: two lit levels of glass and wood cantilevered on steel above the hillside',
+    gallery: [
+      ['assets/westridge-68-canyon-elevation-dusk.jpg', 'The house from the canyon at dusk: living level over the lower suite, carried on steel columns down the slope', 'wide'],
+      ['assets/westridge-70-canyon-structure-dusk.jpg', 'Canyon elevation showing the structure plainly \u2014 steel columns and caissons stepping down to the hillside below the decks', 'wide'],
+      ['assets/westridge-71-canyon-wide-dusk.jpg', 'The house in its canyon at dusk, lit rooms reading through the treeline', 'wide'],
+      ['assets/westridge-82-canyon-sunset-elevation.jpg', 'Canyon elevation at sunset, decks stacked over the steel columns and cut slope'],
+      ['assets/westridge-83-canyon-two-levels.jpg', 'Both levels lit at last light, the long deck running the width of the house', 'wide'],
+      ['assets/westridge-84-canyon-angle.jpg', 'Angled view from the canyon: house set into the hillside among the neighbors', 'wide'],
+      ['assets/westridge-02-entry-open.jpg', 'Entry: pivoting vertical wood screen open onto the deck, with a canyon view straight through the house'],
+      ['assets/westridge-01-entry-screen.jpg', 'Street elevation: vertical wood screen wall under a slim roof plane, brick paving and drought planting', 'wide'],
+      ['assets/westridge-50-street-carport.jpg', 'Street frontage: metal-panel garage volume with a slatted wood door, screen wall and planting beyond', 'wide'],
+      ['assets/westridge-52-street-long.jpg', 'The full street elevation under the preserved oak, low and screened along the sidewalk', 'wide'],
+      ['assets/westridge-51-entry-golden.jpg', 'Entry screen at golden hour, pivot door open to the canyon view through the house'],
+      ['assets/westridge-64-street-dusk.jpg', 'Street elevation at dusk, the entry lit behind the wood screen beneath the oak', 'wide'],
+      ['assets/westridge-65-street-dusk-oak.jpg', 'Dusk from up the street: screen wall, garage volume and the preserved oak', 'wide'],
+      ['assets/westridge-66-garage-dusk.jpg', 'Garage and screen wall lit along the sidewalk at last light'],
+      ['assets/westridge-03-deck-court.jpg', 'Deck courtyard built around a mature tree, with a built-in bench along the screened wall'],
+      ['assets/westridge-10-deck-dining.jpg', 'Covered deck between the dining room and the study, sliding glass walls open on both sides', 'wide'],
+      ['assets/westridge-05-court-tree.jpg', 'Stepped deck around the preserved tree, looking through the study\u2019s full-height opening'],
+      ['assets/westridge-04-deck-steps.jpg', 'Deck steps up to the study\u2019s sliding glass wall, wood screen and metal railing detail', 'tall'],
+      ['assets/westridge-06-study.jpg', 'Study with corner glazing onto the canyon and a second opening to the deck'],
+      ['assets/westridge-11-living-fireplace.jpg', 'Living room anchored by a floor-to-ceiling brick fireplace, glass wall sliding open to the deck court', 'wide'],
+      ['assets/westridge-13-living-view.jpg', 'Living room corner glazing over the canyon, with the brick hearth to the right'],
+      ['assets/westridge-12-living-hearth.jpg', 'Brick hearth volume seen along the living room, wide-plank oak floors throughout', 'tall'],
+      ['assets/westridge-14-living-open-plan.jpg', 'Open plan looking from the living room through dining to the kitchen, canyon views on the right', 'wide'],
+      ['assets/westridge-15-living-to-kitchen.jpg', 'Sunken living area with built-in seating, stepping up past the wood screen wall to the kitchen'],
+      ['assets/westridge-16-dining-deck.jpg', 'Dining area with the sliding glass wall fully open to the view deck'],
+      ['assets/westridge-17-dining-millwork.jpg', 'Dining under a linear fixture between full-height custom millwork and the kitchen', 'wide'],
+      ['assets/westridge-18-dining-island.jpg', 'Dining table set against the wood-paneled core, with the island and entry beyond'],
+      ['assets/westridge-19-kitchen-island.jpg', 'Kitchen with waterfall-edge marble island, integrated appliances and a skylight above'],
+      ['assets/westridge-20-kitchen-marble.jpg', 'Kitchen detail: bookmatched marble backsplash and counters against custom wood cabinetry', 'tall'],
+      ['assets/westridge-21-kitchen-range.jpg', 'Range wall in marble with an integrated hood and a view window over the prep counter'],
+      ['assets/westridge-22-kitchen-island-view.jpg', 'Kitchen island looking back through dining to the living room and hearth', 'wide'],
+      ['assets/westridge-23-dining-hearth.jpg', 'From the island across the dining table to the hearth and the glazed deck court'],
+      ['assets/westridge-24-bedroom-view.jpg', 'Bedroom opening to a sliding glass wall over the canyon and distant hills', 'wide'],
+      ['assets/westridge-25-bedroom-suite.jpg', 'Bedroom suite with view seating, ensuite beyond and a sliding panel to the main living spaces'],
+      ['assets/westridge-26-bedroom-wardrobe.jpg', 'Bedroom with full-height custom wardrobe wall and sheer-curtained glazing', 'tall'],
+      ['assets/westridge-30-bedroom-millwork.jpg', 'Custom bedroom storage detail: pale wood fronts with slim inset pulls'],
+      ['assets/westridge-31-hall-millwork.jpg', 'Hall past a full-height wood core into a built-in workspace niche', 'wide'],
+      ['assets/westridge-32-bedroom-desk.jpg', 'Bedroom with integrated wood desk run and the corridor beyond'],
+      ['assets/westridge-33-bedroom-vanity.jpg', 'Bedroom seating corner opposite the built-in vanity and dressing area'],
+      ['assets/westridge-34-bedroom-guest.jpg', 'Guest bedroom with a slot window, upholstered headboard wall and reading corner', 'wide'],
+      ['assets/westridge-56-primary-open.jpg', 'Primary suite with the glass wall fully open to a deck cantilevered into the canopy', 'wide'],
+      ['assets/westridge-55-primary-steel.jpg', 'Primary suite along its exposed steel frame, ensuite and deck beyond the sliding glass'],
+      ['assets/westridge-54-primary-deck.jpg', 'Primary bedroom opening onto the ipe deck, painted steel bracing to the hillside', 'wide'],
+      ['assets/westridge-53-primary-stair.jpg', 'Primary suite beside the glazed stair, treads lit against the cut hillside', 'tall'],
+      ['assets/westridge-38-family-skylight.jpg', 'Family room under a linear skylight, opening to the corridor and the hillside window'],
+      ['assets/westridge-39-family-glazing.jpg', 'Family room glazed corner onto the tree canopy and the wood-screened deck', 'wide'],
+      ['assets/westridge-40-deck-living.jpg', 'From the covered deck through the open glass wall to the hearth and dining table', 'wide'],
+      ['assets/westridge-41-deck-walkway.jpg', 'Deck walkway along the wood-clad elevation, metal railing open to the canyon', 'wide'],
+      ['assets/westridge-42-deck-kitchen.jpg', 'Kitchen sliding fully open to the view deck and its outdoor seating'],
+      ['assets/westridge-43-deck-lounge.jpg', 'Deck lounge above the treetops, looking across the canyon to the hills', 'wide'],
+      ['assets/westridge-46-court-glazing.jpg', 'Exterior corner: wood screen, metal panel and glazing framed by the preserved tree', 'tall'],
+      ['assets/westridge-47-court-tree-kitchen.jpg', 'Across the deck court past the tree trunk into the kitchen and dining room'],
+      ['assets/westridge-48-court-figure.jpg', 'Deck court in use, the house reading as rooms around the tree'],
+      ['assets/westridge-49-stair-glazed.jpg', 'Open stair with wood treads against a saturated wall, glazed to the hillside at every riser', 'tall'],
+      ['assets/westridge-44-canyon-view.jpg', 'The view the house is built for: wooded canyon out to the distant skyline', 'wide'],
+      ['assets/westridge-45-skyline-view.jpg', 'Panoramic canyon and skyline outlook from the upper deck', 'wide'],
+      ['assets/westridge-07-lounge.jpg', 'Lounge with built-in seating, poured floor and framed views into the trees', 'wide'],
+      ['assets/westridge-08-primary-bath.jpg', 'Primary bath: floating vanities, honed stone counters and a skylit shower beyond', 'tall'],
+      ['assets/westridge-09-bath-shower.jpg', 'Frameless glass shower and soaking tub set into vertical gray tile under a skylight'],
+      ['assets/westridge-28-bath-view.jpg', 'Ensuite bath with a built-in tub set into concrete beneath a corner of view glazing', 'wide'],
+      ['assets/westridge-27-bath-tub.jpg', 'Bath vanity in pale wood and honed concrete, with towel niche and the tub beyond'],
+      ['assets/westridge-29-bath-shower-tile.jpg', 'Shower detail: patterned white marble tile behind frameless glass', 'tall'],
+      ['assets/westridge-35-bath-blue-vanity.jpg', 'Bath with double floating vanities in dark millwork against a blue and bronze tile wall', 'wide'],
+      ['assets/westridge-36-bath-blue-tub.jpg', 'Soaking tub set into stone beneath a full wall of blue and bronze glazed tile', 'tall'],
+      ['assets/westridge-37-bath-blue-shower.jpg', 'Wet room: glass-partitioned shower and tub sharing the tiled wall'],
+      ['assets/westridge-58-primary-bath-tubs.jpg', 'Primary bath: long vanity in pale wood with a freestanding tub glazed on three sides', 'wide'],
+      ['assets/westridge-59-bath-tub-deck.jpg', 'Freestanding tub set against glass, deck and hillside stair beyond', 'tall'],
+      ['assets/westridge-57-bath-deck-walk.jpg', 'Deck along the primary bath, steel columns and railing above the canyon'],
+      ['assets/westridge-60-shower-stone.jpg', 'Curbless shower in large-format stone with a linear drain and plaster walls', 'tall'],
+      ['assets/westridge-61-closet.jpg', 'Walk-in closet: white oak frames around adjustable shelving and drawer banks', 'tall'],
+      ['assets/westridge-62-spa-dusk.jpg', 'Spa set flush into the deck at dusk, skyline beyond the railing', 'wide'],
+      ['assets/westridge-63-spa-deck.jpg', 'Spa deck under the steel frame, sliding walls open to the bath and outdoor shower'],
+      ['assets/westridge-85-court-sunset.jpg', 'Deck court at sunset, the tree between the study and the lit dining room', 'wide'],
+      ['assets/westridge-86-dining-sunset.jpg', 'Dining and living at sunset, glass wall open to the deck and the skyline beyond', 'wide'],
+      ['assets/westridge-88-living-sunset.jpg', 'Living room at sunset, brick hearth and wood core lit warm through the open plan', 'wide'],
+      ['assets/westridge-90-living-open-sunset.jpg', 'Living and kitchen at golden hour with both glass walls slid open', 'wide'],
+      ['assets/westridge-89-living-deck-sunset.jpg', 'From the deck into the living room at last light, the plan open end to end'],
+      ['assets/westridge-87-bedroom-sunset.jpg', 'Bedroom at sunset: sliding glass onto the deck, ensuite and living spaces beyond', 'wide'],
+      ['assets/westridge-91-stair-orange.jpg', 'Stair volume looking up: saturated walls against the brick chimney and a skylit slot', 'tall'],
+      ['assets/westridge-92-spa-sunset.jpg', 'Spa deck at sunset, the sun setting behind the skyline under the steel frame', 'wide'],
+      ['assets/westridge-72-court-night.jpg', 'Deck court after dark: warm-lit slat walls, stepped benches and the study glowing beyond', 'wide'],
+      ['assets/westridge-73-court-night-screen.jpg', 'Night at the entry court, wood screens lit from above and the gate open to the drive'],
+      ['assets/westridge-74-court-night-tree.jpg', 'The preserved tree in the lit court at blue hour, kitchen and dining visible through glass', 'wide'],
+      ['assets/westridge-75-spa-night.jpg', 'Spa deck at night, city lights along the horizon under the steel frame', 'wide'],
+      ['assets/westridge-67-skyline-dusk.jpg', 'Dusk over the canyon to the Westside and downtown skyline', 'wide'],
+      ['assets/westridge-81-sunburst.jpg', 'Sun breaking over the ridge from the deck, canyon canopy below', 'wide'],
+      ['assets/westridge-80-sunset-wide.jpg', 'Sunset behind the skyline, seen across the canyon from the deck', 'wide'],
+      ['assets/westridge-79-sunset-skyline.jpg', 'Downtown and Century City ranged along the horizon at sunset', 'wide'],
+      ['assets/westridge-78-sunset-canyon.jpg', 'Late color over the canyon, the neighborhood settling into the trees', 'wide'],
+      ['assets/westridge-77-skyline-blue-hour.jpg', 'Blue hour: a thin band of orange behind the skyline from the view deck', 'wide'],
+      ['assets/westridge-76-skyline-night.jpg', 'Night over the canyon: neighborhood lights and the downtown skyline beyond', 'wide']
+    ],
+    summary: 'A contemporary hillside residence constructed around mature trees and panoramic canyon views. Custom wood screens, expansive glazing, elevated decks, refined millwork, and carefully executed stone and tile create a warm modern home with an effortless indoor-outdoor connection.',
+    story: 'Perched above a wooded canyon, the Westridge Residence is a site-responsive contemporary home that opens toward sweeping hillside and distant skyline views. The architecture was carefully constructed around mature trees, allowing the landscape to become part of the home\u2019s courtyards, walkways, windows, and daily experience.',
+    story2: 'A restrained exterior palette of dark metal, warm wood, and expansive glass gives the residence a distinctly modern character. Vertical wood screens provide privacy and filtered light, while cantilevered rooflines, elevated decks, and finely detailed metal railings extend the home across its sloping site. Inside, the kitchen, dining, and living spaces flow together beneath a bright, uninterrupted ceiling plane \u2014 custom wood cabinetry, integrated appliances, waterfall-edge stone, wide-plank floors, and a sculptural brick fireplace bring warmth and texture to the open interior, and oversized sliding glass walls disappear to connect the main living area with a generous covered deck.',
+    story3: 'Private spaces are equally considered, with custom built-ins, view-facing bedrooms, integrated work areas, and spa-like bathrooms. Distinctive tile installations, frameless glass showers, soaking tubs, skylights, and carefully framed windows give each room its own identity while maintaining a cohesive material language throughout the home.',
+    challenge: 'As general contractor, we coordinated the residence\u2019s complex hillside structure, extensive glazing, custom millwork, exterior wood screens, elevated decking, metalwork, stone, tile, and architectural finishes \u2014 with mature trees preserved and integrated throughout construction. Precise execution across these interconnected systems resulted in a home that feels both refined and deeply rooted in its natural setting.',
+    materials: 'Dark metal cladding and architectural metal railings, vertical wood screens, expansive sliding-glass wall systems, custom cabinetry with integrated appliances, waterfall-edge stone island and backsplash, wide-plank wood floors, floor-to-ceiling brick fireplace, blue and gray tile, skylights and clerestory windows.' },
   { id: 'wasatch-residence', name: 'Wasatch Residence', location: 'Los Angeles, CA', category: 'Residential', scope: 'Ground-Up Custom Residence', year: '2023',
     architect: 'Minarc',
     img: 'assets/wasatch-01-facade.jpg', imgAlt: 'Street elevation of the Wasatch Residence: slatted wood volume cantilevered over glass, with the exterior stair crossing the facade',
@@ -1281,30 +1494,6 @@ const PROJECTS_RAW = [
     story3: 'From the central entry courtyard, the entire space from the small walk-street garden to the living spaces above can be seen \u2014 the first clue to the home\u2019s connection between inside and out. Sliding glass doors throughout tie the main rooms together for entertaining, letting the owners host without feeling overburdened, and children can play outdoors under supervision from the rooms surrounding the courtyard. A custom anodized aluminum three-dimensional screen wall on the east side gives the courtyard privacy from the busy street while making the facade shimmer as people pass; in bright light it goes soft and silver in seconds, bending light and casting shadow as the day moves. These passive strategies alone make the building more than 40% more efficient than California Title 24 and a conventionally designed structure of the same size.',
     challenge: 'A 30\u2032 \u00d7 90\u2032 lot on a hillside walk street \u2014 no vehicle frontage, strict coverage, height and open-space limits \u2014 with a courtyard plan that put structure, glazing, and waterproofing in constant contact. Three stories of steel-framed window walls around an open court demanded exact tolerances and a sequencing plan that kept the courtyard accessible as the primary work path.',
     materials: 'Custom anodized aluminum three-dimensional screen wall, thermally broken steel-framed glazing and full-height sliding glass walls, board-formed and site-cast concrete, white oak flooring, and patterned tile courtyard paving.' },
-  { id: 'pacific-modern', name: 'Pacific Modern', location: 'Manhattan Beach, CA', category: 'Residential', scope: 'Ground-Up Construction', year: '2024',
-    img: null,
-    summary: 'A narrow-lot ground-up build using a glazed central corridor to bring light and air through a deep floor plate.',
-    story: 'On a narrow coastal lot, Pacific Modern uses a full-length glazed corridor as its organizing spine, connecting bedrooms and living spaces while pulling ocean light deep into the plan. The build required exacting window-wall installation across an unusually long run of glazing, coordinated tightly with structural steel to keep the corridor free of visual interruption.',
-    challenge: 'A continuous glazed corridor across a narrow lot demanded precise steel-to-glass tolerances and sequencing to avoid deflection over the span.',
-    materials: 'Thermally broken steel glazing systems, polished concrete flooring, and integrated linear lighting.' },
-  { id: 'atelier-offices', name: 'Atelier Offices', location: 'Culver City, CA', category: 'Commercial', scope: 'Commercial Buildout', year: '2023',
-    img: null,
-    summary: 'A full interior buildout for a design studio, built around exposed structure and flexible open-plan work areas.',
-    story: 'Atelier Offices converted a raw industrial shell into a working studio for a design practice. The buildout kept structure and ductwork exposed, layering in acoustic treatment, daylight-responsive lighting, and modular work zones that can be reconfigured as the studio grows.',
-    challenge: 'Coordinating new MEP systems within an exposed-ceiling design required close sequencing with the architect to keep runs visually intentional rather than incidental.',
-    materials: 'Exposed structural steel, acoustic ceiling baffles, polished concrete, and powder-coated steel partitions.' },
-  { id: 'westside-commercial', name: 'Westside Commercial', location: 'Santa Monica, CA', category: 'Commercial', scope: 'Tenant Improvement', year: '2022',
-    img: null,
-    summary: 'A ground-floor retail and office tenant improvement completed on an accelerated schedule ahead of a lease deadline.',
-    story: 'Westside Commercial required a full tenant improvement \u2014 new storefront glazing, MEP upgrades, and finish-out \u2014 completed against a fixed lease commencement date. Preconstruction planning and long-lead procurement were front-loaded to protect the schedule once permits released.',
-    challenge: 'A fixed lease start date left no schedule float; long-lead materials were procured during permitting to protect the construction window.',
-    materials: 'Aluminum storefront glazing, epoxy flooring, and exposed lighting track.' },
-  { id: 'courtyard-residence', name: 'The Courtyard Residence', location: 'Pasadena, CA', category: 'Residential', scope: 'Architectural Estate', year: '2025',
-    img: null,
-    summary: 'A large-scale estate build organized around a central courtyard, currently in construction.',
-    story: 'The Courtyard Residence is an architectural estate built around a central courtyard that anchors the main house, guest quarters, and pool pavilion. The project is being delivered in coordinated phases to manage the scale of sitework, structure, and landscape construction concurrently.',
-    challenge: 'Coordinating structure, landscape, and pool construction concurrently around a shared courtyard required a carefully sequenced phasing plan across trades.',
-    materials: 'Cast stone cladding, steel-framed pocket doors, and site-cast concrete water features.' }
 ];
 
 const SERVICES = [
@@ -1315,15 +1504,16 @@ const SERVICES = [
   ['Major Renovations', 'Structural, systems, and finish renovations that reshape existing buildings without compromising what\u2019s retained.'],
   ['Construction Management', 'Trade coordination, scheduling, and budget oversight carried by a single point of accountability.'],
   ['Design-Build Coordination', 'Close collaboration with architects and designers to keep design intent intact through construction.'],
+  ['Millwork, Framing, Concrete & Structural Steel', 'Core trades we know first-hand, so rough construction is built with the finished detail already in mind.'],
   ['Tenant Improvements', 'Interior buildouts for commercial tenants, sequenced against lease and occupancy deadlines.'],
   ['Project Planning & Cost Control', 'Ongoing budget tracking and value engineering to keep projects on schedule and on target.']
 ];
 
 const WHY = [
-  ['Precision', 'Drawings are followed to the tolerance they were drawn at \u2014 not approximated in the field.'],
-  ['Craftsmanship', 'Trade partners are selected for finish-level work, not just speed.'],
-  ['Communication', 'Clients and architects get direct, regular updates \u2014 not filtered through layers of management.'],
-  ['Accountability', 'One point of contact owns the project from preconstruction through handover.']
+  ['Collaboration', 'We build with the architect and the client, not around them \u2014 involved from design through build.'],
+  ['Craft in Our Own Hands', 'Millwork, framing, concrete, and structural steel expertise in house, so rough work anticipates the finish.'],
+  ['Challenges as Opportunities', 'Experience and flexibility turn the hard conditions of a project into better solutions.'],
+  ['Detail and Estimating', 'Thorough estimating built on an understanding of detail, with a vetted team of vendors and consultants.']
 ];
 
 const PROCESS = [
@@ -1341,7 +1531,9 @@ const CAPABILITIES = [
   ['General Contracting', 'Full-scope delivery of ground-up and renovation work under one contract.',
     ['Trade procurement & buyout', 'Site supervision', 'Quality control & closeout']],
   ['Construction Management', 'Owner-side oversight when the work is already contracted elsewhere.',
-    ['Budget & change tracking', 'Consultant coordination', 'Reporting & documentation']]
+    ['Budget & change tracking', 'Consultant coordination', 'Reporting & documentation']],
+  ['Self-Performed Trades', 'Core structure and finish work carried by our own expertise rather than handed off.',
+    ['Millwork & finish carpentry', 'Framing & concrete', 'Structural steel']]
 ];
 
 const INCLUDED = [
@@ -1361,7 +1553,7 @@ const STATS = [
 ];
 
 const COMPARISONS = [
-  ['Who answers your call', 'The person accountable for the contract', 'Whoever is free at the office'],
+  ['Who answers your call', 'The person accountable for the contract', 'Our available team of experts'],
   ['Budget visibility', 'Line-item tracking sent weekly', 'Reconciled at closeout'],
   ['Change orders', 'Priced and approved before work proceeds', 'Discovered on the next invoice'],
   ['Design intent', 'Held to drawn tolerance, challenged in writing if unbuildable', 'Value-engineered in the field'],
@@ -1377,9 +1569,9 @@ const MILESTONES = [
 ];
 
 const TEAM = [
-  ['Peter Borrego', 'Co-Owner \u2014 Field', null, 'Co-owner and the firm\u2019s presence on site. He walks the job daily, sequences the trades, and is the person owners and architects talk to in the field \u2014 decisions get made where the work is happening, not relayed back from an office.'],
-  ['Diane Reulein', 'Co-Owner \u2014 Operations & Budget', 'assets/team-diane-reulein.jpg', 'Co-owner. She runs the business side day to day: budgets and line-item tracking, buyout and contracts, billing and change orders, insurance and compliance. Every number that reaches an owner has been through her first.'],
-  ['Kristen Potter', 'Office Manager', 'assets/team-kristen-potter.jpg', 'In the office every day, keeping the job moving \u2014 subcontractor hiring and scheduling, permits and paperwork, deliveries and inspections, and the coordination between field and office that keeps the calendar honest.']
+  ['Peter Borrego', 'Co-Owner \u2014 Field', 'peter@pdconstructioninc.com', '310.864.9371', null, 'Co-owner and the firm\u2019s presence on site. He walks the job daily, sequences the trades, and is the person owners and architects talk to in the field \u2014 decisions get made where the work is happening, not relayed back from an office.'],
+  ['Diane Reulein', 'Co-Owner \u2014 Operations & Budget', 'diane@pdconstructioninc.com', '661.269.1899', 'assets/team-diane-reulein.jpg', 'Co-owner. She runs the business side day to day: budgets and line-item tracking, buyout and contracts, billing and change orders, insurance and compliance. Every number that reaches an owner has been through her first.'],
+  ['Kristen Potter', 'Office Manager', null, null, 'assets/team-kristen-potter.jpg', 'In the office every day, keeping the job moving \u2014 subcontractor hiring and scheduling, permits and paperwork, deliveries and inspections, and the coordination between field and office that keeps the calendar honest.']
 ];
 
 const CREDENTIALS = [
@@ -1595,10 +1787,7 @@ class Component extends DCLogic {
           const key = entry.target.__revealKey;
           this._io.unobserve(entry.target);
           this.setState(s => ({ revealed: { ...s.revealed, [key]: true } }));
-          if (key === 'stats_row') this.startCount('stats');
-          if (key === 'svc_hero') this.startCount('svcmeta');
-          if (key === 'about_hero') this.startCount('aboutmeta');
-          if (key === 'prj_stats') this.startCount('prjstats');
+          this.onRevealed(key);
         }
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
@@ -1775,12 +1964,26 @@ class Component extends DCLogic {
     if (!list.length) return;
     this.setState(s => ({ lightbox: ((s.lightbox + d) % list.length + list.length) % list.length }));
   }
+  static trimSet(p, rows) {
+    const MAX = 30;
+    if (rows.length <= MAX) return rows;
+    if (p.featured && p.featured.length) {
+      const keep = {};
+      if (p.img) keep[p.img] = true;
+      p.featured.forEach(u => { keep[u] = true; });
+      const picked = rows.filter(r => keep[r.url]);
+      if (picked.length) return picked.slice(0, MAX);
+    }
+    return rows.slice(0, MAX);
+  }
   galleryList() {
     const filter = this.state.galFilter || 'All';
     const all = [];
     PROJECTS_RAW.forEach(p => {
-      if (p.img) all.push({ url: p.img, alt: p.imgAlt, project: p.name });
-      (p.gallery || []).forEach(([url, alt]) => all.push({ url, alt, project: p.name }));
+      const rows = [];
+      if (p.img) rows.push({ url: p.img, alt: p.imgAlt, project: p.name });
+      (p.gallery || []).forEach(([url, alt]) => rows.push({ url, alt, project: p.name }));
+      all.push.apply(all, filter === 'All' ? Component.trimSet(p, rows) : rows);
     });
     const seen = {};
     const unique = all.filter(x => (seen[x.url] ? false : (seen[x.url] = true)));
@@ -1903,17 +2106,20 @@ class Component extends DCLogic {
     selectedProject.goPrev = () => this.navigate('project', prevP.id);
     selectedProject.goNext = () => this.navigate('project', nextP.id);
 
-    const allPhotos = (() => {
+    const buildPhotos = (trim) => {
       const out = [];
       PROJECTS_RAW.forEach(p => {
-        if (p.img) out.push({ url: p.img, alt: p.imgAlt, project: p.name });
-        (p.gallery || []).forEach(([url, alt]) => out.push({ url, alt, project: p.name }));
+        const rows = [];
+        if (p.img) rows.push({ url: p.img, alt: p.imgAlt, project: p.name });
+        (p.gallery || []).forEach(([url, alt]) => rows.push({ url, alt, project: p.name }));
+        out.push.apply(out, trim ? Component.trimSet(p, rows) : rows);
       });
       const seen = {};
       return out.filter(x => (seen[x.url] ? false : (seen[x.url] = true)));
-    })();
+    };
+    const allPhotos = buildPhotos(false);
     const galFilterActive = s.galFilter || 'All';
-    const galPhotos = galFilterActive === 'All' ? allPhotos : allPhotos.filter(x => x.project === galFilterActive);
+    const galPhotos = galFilterActive === 'All' ? buildPhotos(true) : allPhotos.filter(x => x.project === galFilterActive);
     const lbPhoto = s.lightbox === null ? null : galPhotos[s.lightbox];
 
     const navLinks = NAV_ITEMS.map(([label, fn]) => {
@@ -2066,9 +2272,9 @@ class Component extends DCLogic {
       heroStyle: 'position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center',
       heroImgStyle: `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(${s.heroIn ? 1 : 1.09});transition:transform 2.4s cubic-bezier(.16,.8,.3,1)`,
       heroScrimStyle: 'position:absolute;inset:0;background:linear-gradient(0deg, rgba(20,20,20,0.32) 0%, rgba(20,20,20,0.08) 40%, rgba(20,20,20,0.22) 100%)',
-      heroContentStyle: 'position:relative;width:100%;padding:0 56px;box-sizing:border-box',
-      heroHeadlineStyle: `font-family:${SANS};font-weight:700;font-size:clamp(30px,5vw,82px);line-height:1.05;text-transform:uppercase;color:#ffffff;margin:0;display:flex;flex-direction:column`,
-      heroLineMask: 'display:block;overflow:hidden;white-space:nowrap',
+      heroContentStyle: `position:relative;width:100%;padding:0 ${mob ? '22px' : '56px'};box-sizing:border-box`,
+      heroHeadlineStyle: `font-family:${SANS};font-weight:700;font-size:${mob ? 'clamp(26px,8.4vw,40px)' : 'clamp(30px,5vw,82px)'};line-height:1.06;text-transform:uppercase;color:#ffffff;margin:0;display:flex;flex-direction:column`,
+      heroLineMask: `display:block;overflow:hidden;white-space:${mob ? 'normal' : 'nowrap'}`,
       heroLine1: `display:block;transform:translateY(${s.heroIn ? '0' : '105%'});transition:transform 1s cubic-bezier(.16,.85,.3,1) 120ms`,
       heroLine2: `display:block;transform:translateY(${s.heroIn ? '0' : '105%'});transition:transform 1s cubic-bezier(.16,.85,.3,1) 260ms`,
       heroRule: `width:100%;height:1px;background:rgba(255,255,255,0.75);margin:26px 0;transform:scaleX(${s.heroIn ? 1 : 0});transform-origin:left center;transition:transform 1.1s cubic-bezier(.16,.85,.3,1) 420ms`,
@@ -2136,8 +2342,15 @@ class Component extends DCLogic {
       aboutTeamCard: 'display:flex;flex-direction:column;gap:6px;align-items:flex-start',
       aboutTeamPhoto: 'width:100%;aspect-ratio:3/4;margin-bottom:10px',
       aboutTeamName: `font-family:${SANS};font-weight:600;font-size:19px;color:${INK};margin:2px 0 0;letter-spacing:-0.01em`,
-      team: TEAM.map(([name, role, photo, body], i) => ({
+      aboutTeamContact: 'display:flex;flex-direction:column;gap:4px;margin-top:12px;padding-top:12px;border-top:1px solid #e6e1d8;align-self:stretch',
+      aboutTeamContactLink: `font-family:${SANS};font-size:12px;letter-spacing:0.02em;color:${TAN_DARK};text-decoration:none;transition:color 0.2s ease`,
+      aboutTeamContactLinkHover: `font-family:${SANS};font-size:12px;letter-spacing:0.02em;color:${INK};text-decoration:none;transition:color 0.2s ease`,
+      team: TEAM.map(([name, role, email, phone, photo, body], i) => ({
         name, role, body,
+        email: email || '', phone: phone || '',
+        emailHref: email ? 'mailto:' + email : '#',
+        phoneHref: phone ? 'tel:+1' + phone.replace(/\D/g, '') : '#',
+        hasContact: !!(email || phone),
         slotId: 'slot-team-' + i,
         hasPhoto: !!photo,
         needsSlot: !photo,
@@ -2152,9 +2365,9 @@ class Component extends DCLogic {
       processHeroImgRef: this.revealRef('prc_hero'),
       processHeroImg: this.revealStyle('prc_hero', 'width:100%;height:100%;min-height:340px;object-fit:cover;display:block'),
       prcRailRef: this.refFor('prc_rail'),
-      prcFlowWrap: `position:relative;padding-left:${mob ? 0 : '96px'}`,
-      prcRailTrack: `position:absolute;left:33px;top:14px;bottom:14px;width:2px;background:#eae5db;display:${mob ? 'none' : 'block'}`,
-      prcRailFill: `position:absolute;left:33px;top:14px;width:2px;height:calc((100% - 28px) * ${(s.prcFill / 100).toFixed(4)});background:linear-gradient(180deg, ${TAN} 0%, ${TAN_DARK} 100%);display:${mob ? 'none' : 'block'};transition:height 0.15s linear`,
+      prcFlowWrap: `position:relative;padding-left:${mob ? '42px' : '96px'}`,
+      prcRailTrack: `position:absolute;left:${mob ? 11 : 33}px;top:14px;bottom:14px;width:2px;background:#eae5db;display:block`,
+      prcRailFill: `position:absolute;left:${mob ? 11 : 33}px;top:14px;width:2px;height:calc((100% - 28px) * ${(s.prcFill / 100).toFixed(4)});background:linear-gradient(180deg, ${TAN} 0%, ${TAN_DARK} 100%);display:${mob ? 'none' : 'block'};transition:height 0.15s linear`,
 
       prcTrackerWrap: `position:sticky;top:${s.navCompact ? 58 : 74}px;z-index:40;background:rgba(255,255,255,0.93);backdrop-filter:blur(10px);border-top:1px solid #e6e1d8;border-bottom:1px solid #e6e1d8;margin-bottom:8px;transition:top 0.35s cubic-bezier(.2,.7,.3,1)`,
       prcTrackerInner: `padding:${mob ? '14px 22px' : '18px 56px'};display:flex;flex-direction:column;gap:12px;max-width:1440px;margin:0 auto`,
@@ -2164,23 +2377,29 @@ class Component extends DCLogic {
       prcTrackerPct: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;color:${MUTED};margin-left:auto`,
       prcTrackerBarBg: 'position:relative;width:100%;height:2px;background:#eae5db',
       prcTrackerBarFill: `position:absolute;left:0;top:0;height:2px;width:${s.prcFill}%;background:${TAN_DARK};transition:width 0.15s linear`,
-      prcTrackerSegs: `display:${mob ? 'none' : 'grid'};grid-template-columns:repeat(6,1fr);gap:1px;background:#eae5db;border:1px solid #eae5db;margin-top:2px`,
+      prcTrackerSegs: `display:grid;grid-template-columns:repeat(6,1fr);gap:${mob ? 4 : 1}px;background:${mob ? 'transparent' : '#eae5db'};border:${mob ? '0' : '1px solid #eae5db'};margin-top:${mob ? 8 : 2}px`,
       prcActiveLabel: '0' + (Math.max(0, s.prcActive) + 1),
       prcActiveName: PROCESS_DETAIL[Math.max(0, s.prcActive)][0],
       prcFillLabel: Math.round(s.prcFill) + '% complete',
       prcSegments: PROCESS_DETAIL.map(([title], i) => {
         const done = i < s.prcActive, on = i === s.prcActive;
-        const base = 'padding:10px 12px;display:flex;flex-direction:column;gap:4px;border:0;cursor:pointer;text-align:left;min-width:0;transition:background 0.3s ease';
+        const base = mob
+          ? `padding:0;height:3px;display:block;border:0;cursor:pointer;min-width:0;transition:background 0.35s ease,transform 0.35s cubic-bezier(.2,.7,.3,1);transform-origin:left center`
+          : 'padding:10px 12px;display:flex;flex-direction:column;gap:4px;border:0;cursor:pointer;text-align:left;min-width:0;transition:background 0.3s ease';
         return {
           num: '0' + (i + 1), title,
           onClick: () => {
             const el = this._refs['prcphase_' + i];
             if (el) window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 200, behavior: 'smooth' });
           },
-          style: `${base};background:${on ? '#faf6ee' : '#fff'}`,
-          hover: `${base};background:#faf6ee`,
-          numStyle: `font-family:${SANS};font-size:9px;font-weight:700;letter-spacing:0.14em;color:${on || done ? TAN_DARK : '#c2beb6'}`,
-          nameStyle: `font-family:${SANS};font-size:11px;font-weight:${on ? 600 : 500};color:${on ? INK : done ? BODY_C : MUTED};white-space:nowrap;overflow:hidden;text-overflow:ellipsis`
+          style: mob
+            ? `${base};background:${done ? TAN : on ? TAN_DARK : '#e6e1d8'};transform:scaleY(${on ? 1.9 : 1})`
+            : `${base};background:${on ? '#faf6ee' : '#fff'}`,
+          hover: mob
+            ? `${base};background:${done || on ? TAN_DARK : '#d8d2c6'};transform:scaleY(1.9)`
+            : `${base};background:#faf6ee`,
+          numStyle: `font-family:${SANS};font-size:9px;font-weight:700;letter-spacing:0.14em;color:${on || done ? TAN_DARK : '#c2beb6'};display:${mob ? 'none' : 'block'}`,
+          nameStyle: `font-family:${SANS};font-size:11px;font-weight:${on ? 600 : 500};color:${on ? INK : done ? BODY_C : MUTED};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:${mob ? 'none' : 'block'}`
         };
       }),
 
@@ -2194,9 +2413,9 @@ class Component extends DCLogic {
             this._refs['prcphase_' + i] = el;
             this.revealRef(key)(el);
           },
-          rowStyle: `position:relative;display:flex;gap:${mob ? '18px' : '28px'};padding:${mob ? '26px 0' : '40px 0'};opacity:${on ? 1 : 0};transform:translateY(${on ? '0' : '30px'});transition:opacity 0.7s cubic-bezier(.2,.7,.3,1),transform 0.8s cubic-bezier(.2,.7,.3,1)`,
-          dotOuter: `position:absolute;left:${mob ? -1 : -78}px;top:${mob ? -8 : 44}px;width:30px;height:30px;border-radius:50%;background:#fff;border:2px solid ${done ? TAN_DARK : '#e0dbd1'};display:${mob ? 'none' : 'flex'};align-items:center;justify-content:center;transition:border-color 0.4s ease,transform 0.4s cubic-bezier(.2,.7,.3,1);transform:scale(${i === s.prcActive ? 1.15 : 1})`,
-          dotInner: `width:${done ? 10 : 6}px;height:${done ? 10 : 6}px;border-radius:50%;background:${done ? TAN_DARK : '#e0dbd1'};transition:all 0.4s ease`,
+          rowStyle: `position:relative;display:flex;gap:${mob ? '14px' : '28px'};padding:${mob ? '22px 0 22px 0' : '40px 0'};opacity:${on ? 1 : 0};transform:translateY(${on ? '0' : '30px'});transition:opacity 0.7s cubic-bezier(.2,.7,.3,1),transform 0.8s cubic-bezier(.2,.7,.3,1)`,
+          dotOuter: `position:absolute;left:${mob ? -42 : -78}px;top:${mob ? 22 : 44}px;width:${mob ? 24 : 30}px;height:${mob ? 24 : 30}px;border-radius:50%;background:#fff;border:2px solid ${done ? TAN_DARK : '#e0dbd1'};display:flex;align-items:center;justify-content:center;transition:border-color 0.4s ease,transform 0.4s cubic-bezier(.2,.7,.3,1);transform:scale(${i === s.prcActive ? 1.18 : 1});box-shadow:${i === s.prcActive ? '0 0 0 5px rgba(168,135,90,0.16)' : 'none'}`,
+          dotInner: `width:${done ? (mob ? 8 : 10) : 6}px;height:${done ? (mob ? 8 : 10) : 6}px;border-radius:50%;background:${done ? TAN_DARK : '#e0dbd1'};transition:all 0.4s ease`,
           numStyle: `font-family:${SANS};font-weight:700;font-size:${mob ? '22px' : '30px'};color:${done ? TAN_DARK : '#d6d1c7'};letter-spacing:-0.02em;line-height:1;flex:0 0 auto;transition:color 0.4s ease`,
           bodyColStyle: 'display:flex;flex-direction:column;gap:10px;flex:1;min-width:0',
           headRow: 'display:flex;align-items:center;gap:14px;flex-wrap:wrap',
@@ -2259,8 +2478,8 @@ class Component extends DCLogic {
           style: `font-family:${SANS};font-weight:600;font-size:${mob ? '17px' : '25px'};letter-spacing:-0.01em;text-transform:uppercase;color:${i % 3 === 1 ? TAN : 'transparent'};-webkit-text-stroke:${i % 3 === 1 ? '0' : '1px ' + TAN};padding:0 26px;white-space:nowrap`
         }));
       })(),
-      mqFadeL: 'position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,0) 100%);pointer-events:none',
-      mqFadeR: 'position:absolute;right:0;top:0;bottom:0;width:120px;background:linear-gradient(270deg,#fff 0%,rgba(255,255,255,0) 100%);pointer-events:none',
+      mqFadeL: `position:absolute;left:0;top:0;bottom:0;width:${mob ? '32px' : '120px'};background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,0) 100%);pointer-events:none`,
+      mqFadeR: `position:absolute;right:0;top:0;bottom:0;width:${mob ? '32px' : '120px'};background:linear-gradient(270deg,#fff 0%,rgba(255,255,255,0) 100%);pointer-events:none`,
 
       marqueeSection: `position:relative;overflow:hidden;border-top:1px solid #e6e1d8;border-bottom:1px solid #e6e1d8;padding:${mob ? '22px' : '30px'} 0;margin-bottom:130px;background:#faf8f4`,
       marqueeTrack: 'display:flex;align-items:center;gap:0;width:max-content;will-change:transform',
@@ -2276,7 +2495,14 @@ class Component extends DCLogic {
       processPreviewSection: 'padding:0 56px 130px',
       processPreviewHead: 'display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:56px',
       processTrackWrap: 'position:relative;padding-top:8px',
-      processTrackLine: `position:absolute;left:0;right:0;top:14px;height:2px;background:linear-gradient(90deg,#eae5db 0%,#eae5db 100%);transform:scaleX(${s.revealed['hproc_0'] ? 1 : 0});transform-origin:left center;transition:transform 1.1s cubic-bezier(.2,.7,.3,1) 120ms;display:${mob ? 'none' : 'block'}`,
+      processTrackLine: mob
+        ? (() => {
+            let done = 0;
+            for (let i = 0; i < 6; i++) if (s.revealed['hproc_' + i]) done = i + 1;
+            const pct = (done / 6) * 100;
+            return `position:absolute;left:5px;top:16px;bottom:24px;width:2px;background:linear-gradient(180deg,${TAN_DARK} 0%,${TAN} ${pct}%,#eae5db ${pct}%,#eae5db 100%);transition:background 0.9s cubic-bezier(.2,.7,.3,1)`;
+          })()
+        : `position:absolute;left:0;right:0;top:14px;height:2px;background:linear-gradient(90deg,#eae5db 0%,#eae5db 100%);transform:scaleX(${s.revealed['hproc_0'] ? 1 : 0});transform-origin:left center;transition:transform 1.1s cubic-bezier(.2,.7,.3,1) 120ms;display:${mob ? 'none' : 'block'}`,
       processTrackGrid: `display:grid;grid-template-columns:repeat(${mob ? 1 : 6},1fr);gap:${mob ? '26px' : '20px'}`,
       processDot: `width:12px;height:12px;border-radius:50%;background:${TAN};position:relative;z-index:2;margin-bottom:16px;box-shadow:0 0 0 5px #fff`,
       processDotNum: `font-family:${SANS};font-weight:700;font-size:11px;letter-spacing:0.14em;color:${TAN_DARK}`,
@@ -2287,7 +2513,13 @@ class Component extends DCLogic {
         return {
           num: '0' + (i + 1), title, duration,
           ref: this.revealRef('hproc_' + i),
-          cardR: `display:flex;flex-direction:column;gap:6px;position:relative;min-width:0;opacity:${on ? 1 : 0};transform:translateY(${on ? '0' : '-22px'});transition:opacity 0.5s ease ${d}ms,transform 0.72s cubic-bezier(.34,1.56,.5,1) ${d}ms`
+          dot: mob
+            ? `position:absolute;left:-25px;top:4px;width:12px;height:12px;border-radius:50%;background:${on ? TAN_DARK : '#e0dbd1'};box-shadow:0 0 0 5px #fff${on ? ', 0 0 0 9px rgba(168,135,90,0.16)' : ''};transform:scale(${on ? 1 : 0.55});transition:transform 0.55s cubic-bezier(.2,.7,.3,1) ${d}ms,background 0.5s ease ${d}ms,box-shadow 0.6s ease ${d + 120}ms;z-index:2`
+            : `width:12px;height:12px;border-radius:50%;background:${TAN};position:relative;z-index:2;margin-bottom:16px;box-shadow:0 0 0 5px #fff`,
+          tick: mob
+            ? `position:absolute;left:-13px;top:9px;height:1px;width:${on ? 13 : 0}px;background:${TAN};transition:width 0.5s cubic-bezier(.2,.7,.3,1) ${d + 140}ms`
+            : 'display:none',
+          cardR: `display:flex;flex-direction:column;gap:6px;position:relative;min-width:0;padding-left:${mob ? '30px' : 0};opacity:${on ? 1 : 0};transform:translateY(${on ? '0' : '-22px'});transition:opacity 0.5s ease ${d}ms,transform 0.72s cubic-bezier(.34,1.56,.5,1) ${d}ms`
         };
       }),
       homeProcessDur: `font-family:${SANS};font-size:11px;letter-spacing:0.04em;color:${MUTED};margin-top:6px;display:block`,
@@ -2307,6 +2539,7 @@ class Component extends DCLogic {
       ctcOfficeCol: 'flex:1 1 360px;min-width:280px;display:flex;flex-direction:column;gap:12px;align-items:flex-start',
       ctcMapCol: 'flex:1 1 420px;min-width:300px',
       ctcMapSlot: 'width:100%;aspect-ratio:4/3',
+      ctcAddress: `font-style:normal;font-family:${SERIF};font-size:15px;line-height:1.6;margin:10px 0 0`,
       ctcHoursList: 'display:flex;flex-direction:column;width:100%;max-width:380px;margin-top:8px;border-top:1px solid #e6e1d8',
       ctcHoursRow: 'display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid #e6e1d8',
       ctcHoursDay: `font-family:${SANS};font-size:13px;color:${INK}`,
@@ -2439,8 +2672,8 @@ class Component extends DCLogic {
         };
       }),
       statsSection: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));border-top:1px solid #e6e1d8;border-bottom:1px solid #e6e1d8;margin:0 0 150px',
-      statCard: 'padding:44px 20px;text-align:center;border-left:1px solid #e6e1d8;display:flex;flex-direction:column;gap:6px;min-width:0',
-      statNumStyle: `font-family:${SANS};font-weight:700;font-size:clamp(26px,3.6vw,46px);color:${INK};font-variant-numeric:tabular-nums;line-height:1`,
+      statCard: `padding:${mob ? '32px 16px' : '44px 20px'};text-align:center;border-left:1px solid #e6e1d8;display:flex;flex-direction:column;gap:6px;min-width:0`,
+      statNumStyle: `font-family:${SANS};font-weight:700;font-size:${mob ? 'clamp(38px,11vw,52px)' : 'clamp(26px,3.6vw,46px)'};color:${INK};font-variant-numeric:tabular-nums;line-height:1`,
       statLabelStyle: `font-family:${SANS};font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:${MUTED}`,
       eyebrowStyle: `font-family:${SANS};font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:${TAN_DARK};display:block;margin-bottom:10px`,
 
