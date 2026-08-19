@@ -481,7 +481,7 @@
           <div style="{{ prjFeatureOverlay }}">
             <span style="{{ prjFeatureTag }}">Featured</span>
             <h3 style="{{ prjFeatureTitle }}">{{ featureProject.name }}</h3>
-            <p style="{{ prjFeatureMeta }}">{{ featureProject.location }} &nbsp;·&nbsp; {{ featureProject.scope }} &nbsp;·&nbsp; {{ featureProject.year }}</p>
+            <p style="{{ prjFeatureMeta }}">{{ featureProject.location }} &nbsp;·&nbsp; {{ featureProject.scope }}<sc-if value="{{ featureProject.year }}" hint-placeholder-val="{{ true }}"> &nbsp;·&nbsp; {{ featureProject.year }}</sc-if></p>
             <button style="{{ outlineBtnLight }}" style-hover="{{ outlineBtnLightHover }}" onClick="{{ featureProject.view }}">View Project &nbsp;→</button>
           </div>
         </div>
@@ -517,7 +517,7 @@
               <div style="{{ prjSpecRow }}">
                 <div style="{{ prjSpecCell }}"><span style="{{ metaLabelStyle }}">Type</span><span style="{{ prjSpecVal }}">{{ p.category }}</span></div>
                 <div style="{{ prjSpecCell }}"><span style="{{ metaLabelStyle }}">Scope</span><span style="{{ prjSpecVal }}">{{ p.scope }}</span></div>
-                <div style="{{ prjSpecCell }}"><span style="{{ metaLabelStyle }}">Year</span><span style="{{ prjSpecVal }}">{{ p.year }}</span></div>
+                <sc-if value="{{ p.year }}" hint-placeholder-val="{{ true }}"><div style="{{ prjSpecCell }}"><span style="{{ metaLabelStyle }}">Year</span><span style="{{ prjSpecVal }}">{{ p.year }}</span></div></sc-if>
               </div>
               <p style="{{ bodyStyle }}">{{ p.summary }}</p>
               <button style="{{ outlineBtnDark }}" style-hover="{{ outlineBtnDarkHover }}" onClick="{{ p.view }}">View Project &nbsp;→</button>
@@ -571,7 +571,7 @@
           <div><span style="{{ metaLabelStyle }}">Category</span><p style="{{ metaValueStyle }}">{{ selectedProject.category }}</p></div>
           <div><span style="{{ metaLabelStyle }}">Scope</span><p style="{{ metaValueStyle }}">{{ selectedProject.scope }}</p></div>
           <div><span style="{{ metaLabelStyle }}">Architect</span><p style="{{ metaValueStyle }}">{{ selectedProject.architectLabel }}</p></div>
-          <div><span style="{{ metaLabelStyle }}">Completion</span><p style="{{ metaValueStyle }}">{{ selectedProject.year }}</p></div>
+          <sc-if value="{{ selectedProject.year }}" hint-placeholder-val="{{ true }}"><div><span style="{{ metaLabelStyle }}">Completion</span><p style="{{ metaValueStyle }}">{{ selectedProject.year }}</p></div></sc-if>
         </div>
       </section>
 
@@ -581,6 +581,14 @@
         <sc-for list="{{ selectedProject.paragraphs }}" as="para" hint-placeholder-count="1">
           <p style="{{ detailParaStyle }}">{{ para.text }}</p>
         </sc-for>
+      </section>
+
+      <section aria-label="Project film" style="{{ detailVideoSection }}">
+        <sc-if value="{{ selectedProject.videoId }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ detailVideoFrame }}">
+            <iframe src="https://www.youtube.com/embed/{{ selectedProject.videoId }}" title="{{ selectedProject.name }}" style="{{ detailVideoIframe }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </sc-if>
       </section>
 
       <section aria-label="Gallery" style="{{ gallerySection }}">
@@ -1523,7 +1531,83 @@ const PROJECTS_RAW = [
     story2: 'One of the property\u2019s most distinctive elements is the detached hillside structure positioned near the edge of the canyon \u2014 a rectangular volume that projects over the steep terrain, appearing as a dark box suspended above the hillside. Inside, the architecture turns notably lighter: white walls, continuous ceilings, large-format glazing, and warm wood flooring let the landscape become the dominant visual element. The pool forms the center of the outdoor program, with wood decking linking it to lounge spaces, garden paths, and a freestanding dining pavilion whose single dark column and cantilevered canopy shelter the outdoor table.',
     story3: 'At night, the relationship between architecture and landscape changes completely. Rather than flooding the property with light, the lighting design selectively illuminates trees, planting beds, pathways, walls, stairs, rock faces, decks, and gathering areas, so the black building surfaces largely disappear into the canyon after dark \u2014 leaving illuminated landscape and outdoor rooms suspended against the surrounding hills.',
     challenge: 'The Nichols Canyon setting made the site itself one of the most significant construction challenges \u2014 steep slopes, exposed rock, mature vegetation, narrow access conditions, and substantial changes in elevation required careful coordination between the buildings, structural work, exterior improvements, drainage, retaining conditions, and landscaping. The detached hillside structure was especially demanding: positioned directly against the slope and projecting toward the canyon, it required structural solutions capable of creating a simple rectangular exterior despite the irregular terrain beneath it, while concealing that complexity behind clean, minimal detailing. Long runs of horizontal cladding, flush corners, dark window frames, and large areas of near floor-to-ceiling glazing left little tolerance for inconsistent alignment, and narrow site passages were transformed into intentional architectural spaces using dark walls, raised planters, landscape lighting, and a distinctive blue walking surface.',
-    materials: 'Dark horizontal exterior cladding, black architectural metalwork, large-format glazing, sliding glass doors, warm wood flooring, polished concrete flooring, broad wood decks and terraces, swimming pool, raised outdoor lounge terrace, detached hillside studio structure, cantilevered building volume, custom outdoor dining pavilion with integrated lighting and radiant heating, deep roof overhangs, recessed and selective landscape lighting, architectural fencing, custom site walls and planters, hillside retaining conditions, mature specimen trees, flowering perennial gardens, ornamental grasses, and extensive indoor-outdoor living spaces.' },
+    materials: 'Dark horizontal exterior cladding, black architectural metalwork, large-format glazing, sliding glass doors, warm wood flooring, polished concrete flooring, broad wood decks and terraces, and hillside landscape and retaining work.' },
+  { id: 'preston-residence', name: 'Preston Residence', location: 'Venice, Los Angeles, CA', category: 'Residential', scope: 'Ground-Up Custom Residence and Detached Accessory Dwelling Unit', year: '2016',
+    architect: 'OBERMEYER Architecture',
+    img: 'assets/preston-01-bocce-dusk.jpg', imgAlt: 'Preston Residence at dusk: dark-clad two-story volume glowing behind a patterned-tile bocce court, pool and lit interior beyond',
+    gallery: [
+      ['assets/preston-02-bocce-day.jpg', 'The bocce court by day, framed in black-and-white geometric tile, looking straight through open sliding glass to the pool and living room', 'wide'],
+      ['assets/preston-03-pool-day.jpg', 'Long, narrow pool by day beside the dark-clad residence, reinforcing the central axis of the property', 'wide'],
+      ['assets/preston-04-pool-dusk.jpg', 'The pool and rear yard at dusk from above: lounge chairs on the lawn, wood decking, and the lit living room beyond', 'wide'],
+      ['assets/preston-05-pool-deck-east.jpg', 'Wood decking wrapping the pool, connecting the main residence, guest house and outdoor living areas', 'wide'],
+      ['assets/preston-06-pool-balcony-elevation.jpg', 'Dark horizontal cladding and cantilevered upper volumes stacked above the pool and deck', 'tall'],
+      ['assets/preston-07-living-dining-pool-day.jpg', 'Living and dining spaces opening on two sides through floor-to-ceiling sliding glass to the pool deck', 'wide'],
+      ['assets/preston-08-living-dining-pool-dusk.jpg', 'Sliding glass walls open at dusk, dissolving the boundary between the dining room and the pool terrace', 'wide'],
+      ['assets/preston-09-living-room-dusk.jpg', 'The main living room after dark, a sculptural pendant fixture patterning light across the ceiling'],
+      ['assets/preston-10-kitchen-day.jpg', 'Kitchen and dining area: full-height wood cabinetry, a stone-topped island, and a round dining table', 'wide'],
+      ['assets/preston-11-kitchen-elevation-night.jpg', 'Kitchen at night: dark lower cabinetry and stone backsplash against warm wood millwork', 'tall'],
+      ['assets/preston-12-sculpture-lounge.jpg', 'Media and lounge area with built-in shelving, deep upholstered seating and a rotating art wall', 'wide'],
+      ['assets/preston-13-stairs-day.jpg', 'Floating wood-and-glass stair rising beside built-in storage, polished concrete below'],
+      ['assets/preston-14-stairs-skylight.jpg', 'A skylit stairwell corridor upstairs, a pendant fixture suspended beneath the glazed roof', 'tall'],
+      ['assets/preston-15-upstairs-hall.jpg', 'Upstairs hallway in wide-plank wood flooring, lined with sheer roller shades and a runner'],
+      ['assets/preston-16-primary-nook.jpg', 'A quiet reading nook off the primary suite, opening to a private night terrace'],
+      ['assets/preston-17-primary-bath.jpg', 'Primary bathroom: frameless glass shower, freestanding tub and a book-matched stone feature wall', 'tall'],
+      ['assets/preston-18-guest-bedroom.jpg', 'A minimal guest bedroom with custom wood wardrobe walls and large windows'],
+      ['assets/preston-19-guesthouse-living.jpg', 'The detached guest house living area, continuing the residence\u2019s material language in miniature'],
+      ['assets/preston-20-guesthouse-bedroom.jpg', 'Guest house bedroom, kept as minimal and light-filled as the main residence', 'tall']
+    ],
+    summary: 'A contemporary ground-up home in Venice organized around a central courtyard and pool, built as a design-build collaboration between OBERMEYER Architecture and Peter Borrego of PD Construction.',
+    story: 'The Preston Residence is a contemporary custom home in Venice built around a direct relationship between architecture, landscape, and outdoor living. Designed by OBERMEYER Architecture and completed in 2016, the project includes approximately 5,000 square feet of primary living space together with a detached 900-square-foot accessory dwelling unit, credited by the architect as a design-build collaboration with Peter Borrego of PD Construction. The residence is organized around a long central courtyard and swimming pool that function as the visual and social center of the property, with large sliding glass walls opening entire rooms to the wood decks and pool so the boundaries between interior and exterior nearly disappear.',
+    story2: 'The exterior is composed of intersecting contemporary volumes finished in dark horizontal wood cladding and smooth cementitious surfaces, with tall vertical windows, deep cantilevers, and large expanses of glazing breaking down the mass of the two-story structure. Inside, full-height wood cabinetry, a stone-topped kitchen island, polished concrete flooring on the ground level, and lighter wood flooring upstairs carry the same restrained material palette into the private rooms.',
+    story3: 'A detached accessory dwelling unit sits at the opposite end of the pool and continues the architectural language of the main residence, with large openings connecting its living area directly to the pool deck. The long, narrow pool is treated as an architectural element rather than a landscape feature, reinforcing the axis of the property, while a black-and-white geometric tile border gives it a distinctive identity that continues around a dedicated bocce court at the front of the home.',
+    challenge: 'Large portions of the ground floor were designed to visually disappear into the landscape, with oversized sliding door systems requiring close coordination between structure, waterproofing, glazing, flooring and exterior decking. The residence, detached ADU, pool, decks, lawn and bocce court all occupy a relatively narrow property and had to function as one coordinated composition, with the pool\u2019s strong central axis demanding precise alignment between its shell, perimeter tile, decking and finished floor elevations. Long uninterrupted runs of horizontal dark cladding left little room to hide inconsistencies at corners, openings and cantilevers, and interior work \u2014 full-height cabinetry, large stone slabs, a book-matched stone feature wall \u2014 depended on multiple trades aligning precisely with one another.',
+    materials: 'Dark horizontal wood exterior cladding, smooth cementitious exterior finishes, large-format floor-to-ceiling glazing, oversized sliding glass wall systems, cantilevered upper volumes, polished concrete flooring, wide-plank wood flooring, custom natural wood cabinetry and millwork, a large stone kitchen island, frameless glass shower enclosure, freestanding soaking tub, book-matched stone bathroom feature wall, a long-format swimming pool with geometric black-and-white tile, extensive wood decking, a bocce court, and a detached 900-square-foot accessory dwelling unit.' },
+  { id: 'palos-verdes-residence', name: 'Palos Verdes Residence', location: 'Palos Verdes Estates, CA', category: 'Residential', scope: 'High-End Residential Renovation and Exterior Improvements', year: '',
+    architect: 'Peter Borrego',
+    img: 'assets/palosverdes-01-aerial-dusk-corner.jpg', imgAlt: 'The renovated 1954 Mid-Century residence at dusk on its corner lot, sculpted gardens and landscape lighting leading to the entry gate',
+    gallery: [
+      ['assets/palosverdes-02-pavilion-dusk.jpg', 'The raised garden pavilion at dusk, framed by decorative red panels and exposed wood construction', 'wide'],
+      ['assets/palosverdes-03-entry-hall.jpg', 'Entry hallway with a textured white door opening onto polished concrete, exposed brick, and a console beneath a black-and-white photograph'],
+      ['assets/palosverdes-04-living-vaulted-dusk.jpg', 'The main living room at dusk: a vaulted open-beamed ceiling, white-painted brick fireplace, and glass walls open to the garden', 'wide'],
+      ['assets/palosverdes-05-living-pool-view.jpg', 'Living room glazing looking straight through to the pool terrace and golf course views beyond', 'wide'],
+      ['assets/palosverdes-06-living-console.jpg', 'Living room console beneath a large black-and-white photograph, polished concrete floor continuing to the fireplace'],
+      ['assets/palosverdes-07-hall-stained-glass.jpg', 'Interior hallway framing a pair of art-glass entry doors in wood paneling', 'tall'],
+      ['assets/palosverdes-08-pool-pergola-dusk.jpg', 'Pool terrace at dusk with an open pergola, lounge seating, and landscape lighting along the fence line', 'wide'],
+      ['assets/palosverdes-09-patio-dining.jpg', 'Covered breezeway between the dining room and the courtyard, art-glass doors reflected in the glazing'],
+      ['assets/palosverdes-10-courtyard-dusk.jpg', 'The central brick-paved courtyard at dusk, built-in seating wrapping the corner beneath the original brick chimney', 'wide'],
+      ['assets/palosverdes-11-courtyard-night.jpg', 'Courtyard seating at night, sliding glass doors opening to the bedroom, kitchen, and living room around it', 'wide'],
+      ['assets/palosverdes-12-pool-twilight-fence.jpg', 'The pool and spa at blue hour, masonry paving and a covered lounge structure along the back fence', 'wide'],
+      ['assets/palosverdes-13-pool-dusk-palms.jpg', 'Pool terrace at dusk beneath mature palms, the residence\u2019s glazed wall glowing alongside'],
+      ['assets/palosverdes-14-garden-path-gate.jpg', 'Stone garden path at dusk past a circular red gate motif, sculpted trees lit from below'],
+      ['assets/palosverdes-15-pavilion-dusk-close.jpg', 'The pavilion seating area up close, decorative red panels and bonsai plantings along the stone path', 'tall'],
+      ['assets/palosverdes-16-pool-night.jpg', 'Pool terrace after dark, lit palms and wall sconces framing the illuminated water'],
+      ['assets/palosverdes-17-living-wave-mural.jpg', 'Living room at night, a large-format ocean photograph lit above the brick fireplace', 'wide'],
+      ['assets/palosverdes-18-aerial-golf-course.jpg', 'Aerial view at dusk showing the property\u2019s position beside Palos Verdes Golf Club', 'wide'],
+      ['assets/palosverdes-19-aerial-night-property.jpg', 'Night aerial of the full property: main house, pavilion, gardens, and illuminated pool', 'wide'],
+      ['assets/palosverdes-20-pool-terrace.jpg', 'The pool terrace, masonry paving and covered structure at the far end of the yard']
+    ],
+    summary: 'A renovation of a 1954 Mid-Century Modern home in Palos Verdes Estates that refreshes the interiors and gives the property a more cohesive indoor-outdoor identity while preserving the character of the original single-story residence.',
+    story: 'The Palos Verdes Residence is a renovation of a 1954 Mid-Century Modern home positioned on a large corner property in Palos Verdes Estates, with three bedrooms, multiple outdoor entertaining areas, a swimming pool, and views toward the surrounding landscape and Palos Verdes Golf Club. The project focused on preserving the character of the original single-story residence while refreshing the interiors, improving the connection to the landscape, and giving the property a more cohesive indoor-outdoor identity. Low rooflines, broad overhangs, open-beamed ceilings, brick fireplaces, and extensive glazing retain the architectural language of the original house, used as the foundation for a cleaner and more contemporary interior.',
+    story2: 'The main living room demonstrates that approach particularly well: a vaulted ceiling with an exposed central beam preserves the scale of the original room, while large glass walls bring in views of the gardens and pool, and the existing white-painted brick fireplace remains a major architectural feature against a restrained palette of polished concrete, white walls, and built-in shelving. A continuous polished concrete floor unifies the renovated living spaces, with recessed lighting and simplified finishes giving the interior a cleaner appearance while keeping the masonry fireplaces and exposed ceiling structure visible.',
+    story3: 'The residence is organized around several distinct exterior environments: a central brick-paved courtyard forms an intimate outdoor living room enclosed by the surrounding wings of the house, while elsewhere the landscape takes on a more formal Asian-inspired character, with stone pathways moving through gardens of sculpted trees, bonsai-style plantings, and river rock, and decorative red panels and circular motifs carried through the gates, fencing, and a raised garden pavilion. A separate pool terrace on the opposite side of the residence includes an integrated spa, masonry paving, lounge areas, and a covered outdoor structure, with landscape lighting connecting all of the property\u2019s gathering areas after dark.',
+    challenge: 'The primary challenge was modernizing a mid-century residence without stripping away the architectural characteristics that made the original home distinctive \u2014 existing rooflines, open-beamed ceilings, masonry fireplaces, courtyard geometry, and large areas of glazing all had to absorb new finishes, lighting, mechanical systems, and exterior upgrades without feeling disconnected from the original structure. Working within the existing single-story footprint required coordinating updated doors and windows with original framing and masonry, and running polished concrete floors and recessed lighting through rooms whose exposed structure remained part of the finished design. The property\u2019s several distinct landscape zones \u2014 courtyard, front gardens, raised pavilion, stone paths, and pool terrace \u2014 needed to feel connected while retaining their individual character, and construction had to work around mature trees, palms, and established plantings while introducing new lighting, paving, fencing, and drainage.',
+    materials: 'Existing mid-century single-story structure, open-beamed vaulted ceilings, painted masonry fireplaces, polished concrete flooring, large-format glazing, sliding glass doors, recessed LED lighting, built-in shelving, refreshed interior finishes, stone and marble surfaces, a landscaped internal courtyard, original brick paving, a swimming pool and integrated spa, masonry pool terrace, covered outdoor seating area, a raised garden pavilion, custom decorative wood panels, Asian-inspired gates and screens, stone garden paths, river rock, mature specimen trees, palms, sculpted shrubs, bonsai-style plantings, integrated landscape lighting, architectural wall lighting, privacy fencing, and a paved driveway with attached two-car garage.' },
+  { id: 'carne-y-arena', name: 'CARNE y ARENA', location: 'Los Angeles County Museum of Art, Los Angeles, CA', category: 'Cultural', scope: 'Immersive Exhibition Build-Out and Specialty Installation', year: '2017',
+    architect: 'Alejandro G. I\u00f1\u00e1rritu (Creator and Director)',
+    videoId: 'ZAl7pwMVs04',
+    img: 'assets/carnearena-02-vr-silhouette.jpeg', imgAlt: 'A visitor in VR equipment, backlit by streaking light inside the darkened primary immersive chamber',
+    gallery: [
+      ['assets/carnearena-05-heart-map-key-art.jpeg', 'Key art for the installation: an illuminated heart overlaid with a map of the U.S.\u2013Mexico border crossing, suspended over a desert landscape', 'wide'],
+      ['assets/carnearena-01-director-portrait.jpeg', 'Alejandro G. I\u00f1\u00e1rritu, the installation\u2019s creator and director'],
+      ['assets/carnearena-04-behind-the-scenes.jpeg', 'I\u00f1\u00e1rritu on set with the VR tracking rig and production crew during development', 'tall'],
+      ['assets/carnearena-03-inarritu-cannes.jpeg', 'I\u00f1\u00e1rritu at the project\u2019s Cannes Film Festival presentation']
+    ],
+    summary: 'An immersive, mixed physical-and-virtual-reality installation created by Alejandro G. I\u00f1\u00e1rritu at LACMA, built as a sequence of controlled environments rather than a conventional gallery exhibition.',
+    story: 'CARNE y ARENA, subtitled Virtually present, Physically invisible, transformed a series of spaces at the Los Angeles County Museum of Art into a highly controlled physical and virtual environment created by Academy Award-winning filmmaker Alejandro G. I\u00f1\u00e1rritu. Unlike a conventional gallery exhibition, it was conceived as a complete sensory journey: architecture, temperature, light, sound, physical materials, environmental effects, artifacts, projection, video, and virtual reality were coordinated so that visitors experienced the work with their entire bodies rather than viewing it from a distance. The installation began inside a stark holding room modeled after cold temporary detention spaces used along the border, furnished with a steel bench and scattered with shoes and personal objects recovered from migrants\u2019 journeys across the Sonoran Desert.',
+    story2: 'From there, visitors moved individually and barefoot into the project\u2019s primary immersive chamber, its floor covered in earth, sand, and loose stones, with a section of actual border barrier forming part of the physical environment. Inside, visitors were fitted with virtual reality equipment for an approximately seven-minute experience developed by I\u00f1\u00e1rritu and cinematographer Emmanuel Lubezki in collaboration with ILMxLAB, where environmental effects in the physical room \u2014 air movement, temperature, sound, darkness, and ground texture \u2014 worked together with the virtual imagery to let visitors physically move through the room while experiencing the simulated desert.',
+    story3: 'After the virtual experience, visitors passed through another controlled transition space into a narrow concluding gallery, where video portraits of the real migrants and individuals who informed the project were recessed into the walls at eye level, shifting the scale of the experience from the desert back to an intimate face-to-face encounter. CARNE y ARENA was exhibited at LACMA from 2017 to 2018 following presentations at the Cannes Film Festival and Fondazione Prada in Milan, and later received a Special Achievement Academy Award.',
+    challenge: 'The visitor experienced the installation alone through several sequential environments, making circulation and timing fundamental to the construction, with doors, holding areas, equipment spaces, and transition zones arranged so each stage remained isolated from the next. Participants moved barefoot through the primary VR chamber while wearing equipment that blocked their view of the actual room, requiring a controlled walking surface that still reproduced desert terrain through soil, sand, and stone. VR tracking equipment, computing infrastructure, power, sound, lighting, and environmental controls all had to function reliably while staying outside the visitor\u2019s perception, and lighting relied on darkness and concealed sources where any leakage between spaces could undermine the sequence. The concluding portrait gallery required video displays recessed deeply into the walls, with framing, power, data, ventilation, and equipment access integrated around them while maintaining clean finished openings, and acoustic separation was maintained throughout so each stage stayed psychologically isolated from the ones before and after it.',
+    materials: 'Custom exhibition partitions and enclosures, a controlled holding room, steel seating, recovered migrant shoes and personal artifacts, an earth-and-sand floor assembly, loose stone and desert surface materials, an actual border barrier element, a large-scale VR environment, integrated tracking and computing equipment, concealed electrical and data infrastructure, environmental temperature control, air movement effects, directional and concealed lighting, controlled dark spaces, acoustic separation, sequential visitor circulation, specialty doors and transitions, recessed video portrait displays, equipment access spaces, integrated audiovisual systems, and custom museum exhibition finishes.' },
 ];
 
 const SERVICES = [
@@ -2161,7 +2245,7 @@ class Component extends DCLogic {
     const rowStyle = (i) => `display:flex;flex-direction:${i % 2 === 1 ? 'row-reverse' : 'row'};gap:56px;align-items:stretch;margin-bottom:80px;flex-wrap:wrap`;
     const projects = PROJECTS_RAW.map((p, i) => ({
       ...p,
-      year: p.year || '[Year \u2014 placeholder]',
+      year: p.year || '',
       hasPhoto: !!p.img,
       needsPlaceholder: !p.img,
       slotId: 'slot-' + p.id,
@@ -2185,7 +2269,7 @@ class Component extends DCLogic {
 
     const featureProject = projects[0];
     const activeFilter = s.projectFilter || 'All';
-    const filterDefs = ['All', 'Residential', 'Commercial'];
+    const filterDefs = ['All', 'Residential', 'Commercial', 'Cultural'];
     const filters = filterDefs.map(label => {
       const on = activeFilter === label;
       const count = label === 'All' ? projects.length : projects.filter(p => p.category === label).length;
@@ -2222,7 +2306,7 @@ class Component extends DCLogic {
     selectedProject.heroImgRef = this.srcRef('detail_hero_' + selectedProject.id, selectedProject.img);
     selectedProject.galleryImgRef = this.srcRef('detail_gal_' + selectedProject.id, selectedProject.img);
     selectedProject.architectLabel = selectedProject.architect || '[Architect of record \u2014 placeholder]';
-    selectedProject.year = selectedProject.year || '[Year \u2014 placeholder]';
+
     selectedProject.paragraphs = [selectedProject.story, selectedProject.story2, selectedProject.story3]
       .filter(Boolean).map(text => ({ text }));
     const gal = selectedProject.gallery || [];
@@ -2584,7 +2668,7 @@ class Component extends DCLogic {
       baLabelAfter: `position:absolute;top:18px;right:18px;z-index:3;font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${INK};background:${TAN};padding:7px 12px;pointer-events:none;opacity:${s.baPct < 88 ? 1 : 0};transition:opacity 0.25s ease`,
       baDivider: `position:absolute;top:0;bottom:0;left:${s.baPct}%;width:2px;background:${TAN};z-index:4;pointer-events:none;display:flex;align-items:center;justify-content:center;transition:${(s.baDragging || s.baAuto) ? 'none' : 'left 0.5s ease-out'}`,
       baHandle: `width:${s.baDragging ? 56 : 48}px;height:${s.baDragging ? 56 : 48}px;background:${TAN};display:flex;align-items:center;justify-content:center;gap:5px;flex:0 0 auto;transition:width 0.2s ease,height 0.2s ease;box-shadow:0 6px 20px -8px rgba(20,20,20,0.6);pointer-events:none`,
-      baHandleHit: `width:${mob ? 76 : 56}px;height:${mob ? 76 : 56}px;display:flex;align-items:center;justify-content:center;pointer-events:auto;touch-action:none;cursor:${s.baDragging ? 'grabbing' : 'grab'}`,
+      baHandleHit: `width:${mob ? 76 : 56}px;height:${mob ? 76 : 56}px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;pointer-events:auto;touch-action:none;cursor:${s.baDragging ? 'grabbing' : 'grab'}`,
       baHandleArrow: `font-family:${SANS};font-size:13px;color:${INK};line-height:1`,
       baCaption: `display:block;font-family:${SANS};font-size:11px;letter-spacing:0.04em;color:${MUTED};margin-top:14px`,
       baFrameRef: this.revealRef('ba_frame'),
@@ -2858,6 +2942,9 @@ class Component extends DCLogic {
       contactLink: `color:${INK};text-decoration:none;border-bottom:1px solid ${TAN}`,
       detailStorySection: 'padding:24px 56px 72px;max-width:960px',
       detailParaStyle: `font-family:${SERIF};font-size:17px;line-height:1.62;color:${BODY_C};margin:0 0 20px;text-wrap:pretty`,
+      detailVideoSection: 'padding:0 56px 72px',
+      detailVideoFrame: 'position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#000',
+      detailVideoIframe: 'position:absolute;inset:0;width:100%;height:100%;border:0;display:block',
       gallerySection: 'padding:0 56px 72px',
       galleryGrid: `display:grid;grid-template-columns:${s.isNarrow ? '1fr' : '1fr 1fr'};gap:4px`,
       galleryImgWide: `grid-column:${s.isNarrow ? 'auto' : '1/3'};width:100%;aspect-ratio:16/9;object-fit:cover;display:block`,
