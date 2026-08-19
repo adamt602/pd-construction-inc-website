@@ -425,7 +425,7 @@
           <img src="assets/letwika-after-finished.jpg" alt="The finished Nichols Canyon residence: dark-clad hillside addition, pool, and garden" style="{{ baAfterImg }}" draggable="false">
           <img src="assets/letwika-before-construction.jpg" alt="The same site mid-construction, with temporary fencing, rough grading, and retaining forms" style="{{ baBeforeImg }}" draggable="false">
           <div style="{{ baDivider }}">
-            <div style="{{ baHandle }}" data-ba-handle="true"><span style="{{ baHandleArrow }}">◂</span><span style="{{ baHandleArrow }}">▸</span></div>
+            <div style="{{ baHandleHit }}" data-ba-handle="true"><div style="{{ baHandle }}"><span style="{{ baHandleArrow }}">◂</span><span style="{{ baHandleArrow }}">▸</span></div></div>
           </div>
           <span style="{{ baLabelBefore }}">Before</span>
           <span style="{{ baLabelAfter }}">After</span>
@@ -2583,7 +2583,8 @@ class Component extends DCLogic {
       baLabelBefore: `position:absolute;top:18px;left:18px;z-index:3;font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#fff;background:rgba(20,20,20,0.6);padding:7px 12px;pointer-events:none;opacity:${s.baPct > 12 ? 1 : 0};transition:opacity 0.25s ease`,
       baLabelAfter: `position:absolute;top:18px;right:18px;z-index:3;font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${INK};background:${TAN};padding:7px 12px;pointer-events:none;opacity:${s.baPct < 88 ? 1 : 0};transition:opacity 0.25s ease`,
       baDivider: `position:absolute;top:0;bottom:0;left:${s.baPct}%;width:2px;background:${TAN};z-index:4;pointer-events:none;display:flex;align-items:center;justify-content:center;transition:${(s.baDragging || s.baAuto) ? 'none' : 'left 0.5s ease-out'}`,
-      baHandle: `width:${s.baDragging ? 56 : 48}px;height:${s.baDragging ? 56 : 48}px;background:${TAN};display:flex;align-items:center;justify-content:center;gap:5px;flex:0 0 auto;transition:width 0.2s ease,height 0.2s ease;box-shadow:0 6px 20px -8px rgba(20,20,20,0.6);pointer-events:auto;cursor:${s.baDragging ? 'grabbing' : 'grab'}`,
+      baHandle: `width:${s.baDragging ? 56 : 48}px;height:${s.baDragging ? 56 : 48}px;background:${TAN};display:flex;align-items:center;justify-content:center;gap:5px;flex:0 0 auto;transition:width 0.2s ease,height 0.2s ease;box-shadow:0 6px 20px -8px rgba(20,20,20,0.6);pointer-events:none`,
+      baHandleHit: `width:${mob ? 76 : 56}px;height:${mob ? 76 : 56}px;display:flex;align-items:center;justify-content:center;pointer-events:auto;touch-action:none;cursor:${s.baDragging ? 'grabbing' : 'grab'}`,
       baHandleArrow: `font-family:${SANS};font-size:13px;color:${INK};line-height:1`,
       baCaption: `display:block;font-family:${SANS};font-size:11px;letter-spacing:0.04em;color:${MUTED};margin-top:14px`,
       baFrameRef: this.revealRef('ba_frame'),
