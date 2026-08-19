@@ -422,10 +422,10 @@
         <span style="{{ svcEyebrowInk }}">See The Difference</span>
         <h2 style="{{ sectionHeadlineStyle }}">From rough grading to a finished hillside retreat.</h2>
         <div ref="{{ baFrameRef }}" style="{{ baFrame }}" style-focus="{{ baFrameFocus }}" onPointerDown="{{ baDown }}" onPointerMove="{{ baMove }}" onPointerUp="{{ baUp }}" onPointerLeave="{{ baUp }}" onPointerCancel="{{ baUp }}" role="slider" aria-label="Drag to compare the before and after photos" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ baPctRounded }}" tabIndex="0" onKeyDown="{{ baKeyDown }}">
-          <img src="assets/letwika-after-finished.jpg" alt="The finished Nichols Canyon residence: dark-clad hillside addition, pool, and garden" style="{{ baAfterImg }}">
-          <img src="assets/letwika-before-construction.jpg" alt="The same site mid-construction, with temporary fencing, rough grading, and retaining forms" style="{{ baBeforeImg }}">
+          <img src="assets/letwika-after-finished.jpg" alt="The finished Nichols Canyon residence: dark-clad hillside addition, pool, and garden" style="{{ baAfterImg }}" draggable="false">
+          <img src="assets/letwika-before-construction.jpg" alt="The same site mid-construction, with temporary fencing, rough grading, and retaining forms" style="{{ baBeforeImg }}" draggable="false">
           <div style="{{ baDivider }}">
-            <div style="{{ baHandle }}"><span style="{{ baHandleArrow }}">◂</span><span style="{{ baHandleArrow }}">▸</span></div>
+            <div style="{{ baHandle }}" data-ba-handle="true"><span style="{{ baHandleArrow }}">◂</span><span style="{{ baHandleArrow }}">▸</span></div>
           </div>
           <span style="{{ baLabelBefore }}">Before</span>
           <span style="{{ baLabelAfter }}">After</span>
@@ -2060,7 +2060,7 @@ class Component extends DCLogic {
     };
     this._baAutoRAF = requestAnimationFrame(tick);
   }
-  baDown(e) { this._baUserMoved = true; this.baStopAuto(); try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {} this.setState({ baDragging: true }); this.baSet(e); }
+  baDown(e) { if (this.state.isMobile && !e.target.closest('[data-ba-handle]')) return; this._baUserMoved = true; this.baStopAuto(); try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {} this.setState({ baDragging: true }); this.baSet(e); }
   baMove(e) { if (this.state.baDragging) this.baSet(e); }
   baUp() { if (this.state.baDragging) this.setState({ baDragging: false }); }
   baKeyDown(e) {
@@ -2576,14 +2576,14 @@ class Component extends DCLogic {
       prcCtaImg: this.revealStyle('prc_cta', 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover'),
 
       baSection: `padding:0 ${mob ? '20px' : '56px'} ${mob ? '90px' : '130px'}`,
-      baFrame: `position:relative;width:100%;aspect-ratio:${mob ? '4/5' : '16/9'};min-height:${mob ? '360px' : '300px'};overflow:hidden;background:#f2efe9;cursor:${s.baDragging ? 'grabbing' : 'ew-resize'};touch-action:none;user-select:none;margin-top:18px`,
+      baFrame: `position:relative;width:100%;aspect-ratio:${mob ? '4/5' : '16/9'};min-height:${mob ? '360px' : '300px'};overflow:hidden;background:#f2efe9;touch-action:none;user-select:none;cursor:${s.baDragging ? 'grabbing' : 'ew-resize'};touch-action:none;user-select:none;margin-top:18px`,
       baFrameFocus: `outline:2px solid ${TAN_DARK};outline-offset:2px`,
       baAfterImg: 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block',
       baBeforeImg: `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;clip-path:inset(0 ${100 - s.baPct}% 0 0);filter:grayscale(0.85) contrast(0.95);transition:${(s.baDragging || s.baAuto) ? 'none' : 'clip-path 0.5s ease-out'}`,
       baLabelBefore: `position:absolute;top:18px;left:18px;z-index:3;font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#fff;background:rgba(20,20,20,0.6);padding:7px 12px;pointer-events:none;opacity:${s.baPct > 12 ? 1 : 0};transition:opacity 0.25s ease`,
       baLabelAfter: `position:absolute;top:18px;right:18px;z-index:3;font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${INK};background:${TAN};padding:7px 12px;pointer-events:none;opacity:${s.baPct < 88 ? 1 : 0};transition:opacity 0.25s ease`,
       baDivider: `position:absolute;top:0;bottom:0;left:${s.baPct}%;width:2px;background:${TAN};z-index:4;pointer-events:none;display:flex;align-items:center;justify-content:center;transition:${(s.baDragging || s.baAuto) ? 'none' : 'left 0.5s ease-out'}`,
-      baHandle: `width:${s.baDragging ? 56 : 48}px;height:${s.baDragging ? 56 : 48}px;background:${TAN};display:flex;align-items:center;justify-content:center;gap:5px;flex:0 0 auto;transition:width 0.2s ease,height 0.2s ease;box-shadow:0 6px 20px -8px rgba(20,20,20,0.6)`,
+      baHandle: `width:${s.baDragging ? 56 : 48}px;height:${s.baDragging ? 56 : 48}px;background:${TAN};display:flex;align-items:center;justify-content:center;gap:5px;flex:0 0 auto;transition:width 0.2s ease,height 0.2s ease;box-shadow:0 6px 20px -8px rgba(20,20,20,0.6);pointer-events:auto;cursor:${s.baDragging ? 'grabbing' : 'grab'}`,
       baHandleArrow: `font-family:${SANS};font-size:13px;color:${INK};line-height:1`,
       baCaption: `display:block;font-family:${SANS};font-size:11px;letter-spacing:0.04em;color:${MUTED};margin-top:14px`,
       baFrameRef: this.revealRef('ba_frame'),
