@@ -583,14 +583,6 @@
         </sc-for>
       </section>
 
-      <section aria-label="Project film" style="{{ detailVideoSection }}">
-        <sc-if value="{{ selectedProject.videoId }}" hint-placeholder-val="{{ false }}">
-          <div style="{{ detailVideoFrame }}">
-            <iframe src="https://www.youtube.com/embed/{{ selectedProject.videoId }}" title="{{ selectedProject.name }}" style="{{ detailVideoIframe }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-        </sc-if>
-      </section>
-
       <section aria-label="Gallery" style="{{ gallerySection }}">
         <sc-if value="{{ selectedProject.hasGallery }}" hint-placeholder-val="{{ false }}">
           <div style="{{ galleryGrid }}">
@@ -633,6 +625,19 @@
           <div><span style="{{ metaLabelStyle }}">Before</span><image-slot id="{{ selectedProject.slotBeforeId }}" placeholder="Before photo placeholder" style="{{ beforeAfterImg }}"></image-slot></div>
           <div><span style="{{ metaLabelStyle }}">After</span><image-slot id="{{ selectedProject.slotAfterId }}" placeholder="After photo placeholder" style="{{ beforeAfterImg }}"></image-slot></div>
         </div>
+      </section>
+
+      <section aria-label="Project film" style="{{ detailVideoSection }}">
+        <sc-if value="{{ selectedProject.hasVideoId }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ detailVideoFrame }}">
+            <iframe src="https://www.youtube.com/embed/{{ selectedProject.videoId }}" title="{{ selectedProject.name }}" style="{{ detailVideoIframe }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </sc-if>
+        <sc-if value="{{ selectedProject.hasVideoSrc }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ detailVideoFramePortrait }}">
+            <video src="{{ selectedProject.videoSrc }}" style="{{ detailVideoIframePortrait }}" controls="{{ true }}" playsinline="{{ true }}" preload="metadata"></video>
+          </div>
+        </sc-if>
       </section>
 
       <section style="{{ detailNavSection }}">
@@ -1608,6 +1613,21 @@ const PROJECTS_RAW = [
     story3: 'After the virtual experience, visitors passed through another controlled transition space into a narrow concluding gallery, where video portraits of the real migrants and individuals who informed the project were recessed into the walls at eye level, shifting the scale of the experience from the desert back to an intimate face-to-face encounter. CARNE y ARENA was exhibited at LACMA from 2017 to 2018 following presentations at the Cannes Film Festival and Fondazione Prada in Milan, and later received a Special Achievement Academy Award.',
     challenge: 'The visitor experienced the installation alone through several sequential environments, making circulation and timing fundamental to the construction, with doors, holding areas, equipment spaces, and transition zones arranged so each stage remained isolated from the next. Participants moved barefoot through the primary VR chamber while wearing equipment that blocked their view of the actual room, requiring a controlled walking surface that still reproduced desert terrain through soil, sand, and stone. VR tracking equipment, computing infrastructure, power, sound, lighting, and environmental controls all had to function reliably while staying outside the visitor\u2019s perception, and lighting relied on darkness and concealed sources where any leakage between spaces could undermine the sequence. The concluding portrait gallery required video displays recessed deeply into the walls, with framing, power, data, ventilation, and equipment access integrated around them while maintaining clean finished openings, and acoustic separation was maintained throughout so each stage stayed psychologically isolated from the ones before and after it.',
     materials: 'Custom exhibition partitions and enclosures, a controlled holding room, steel seating, recovered migrant shoes and personal artifacts, an earth-and-sand floor assembly, loose stone and desert surface materials, an actual border barrier element, a large-scale VR environment, integrated tracking and computing equipment, concealed electrical and data infrastructure, environmental temperature control, air movement effects, directional and concealed lighting, controlled dark spaces, acoustic separation, sequential visitor circulation, specialty doors and transitions, recessed video portrait displays, equipment access spaces, integrated audiovisual systems, and custom museum exhibition finishes.' },
+  { id: 'house-that-america-built', name: 'The House That America Built', location: 'Los Angeles County Museum of Art, Los Angeles, CA', category: 'Cultural', scope: 'Museum Exhibition Fabrication and Specialty Installation', year: '2017',
+    architect: 'Daniel Joseph Martinez (Artist)',
+    videoSrc: 'assets/houseamerica-05-video.mp4',
+    img: 'assets/houseamerica-01-exterior-split.jpg', imgAlt: 'The full-scale cabin sculpture, its yellow-and-orange exterior physically split down the center, installed in a LACMA gallery',
+    gallery: [
+      ['assets/houseamerica-03-exterior-gallery.jpg', 'The cabin viewed from another angle, its camouflage-patterned lower wall and pastel-toned window openings visible alongside neighboring gallery works', 'wide'],
+      ['assets/houseamerica-02-artist-portrait.jpg', 'Artist Daniel Joseph Martinez kneeling before the installation'],
+      ['assets/houseamerica-04-transport.jpg', 'The wrapped structure in transit by flatbed truck en route to installation', 'wide']
+    ],
+    summary: 'A full-scale sculptural recreation of Theodore Kaczynski\u2019s cabin by artist Daniel Joseph Martinez, fabricated for LACMA\u2019s 2017 exhibition Home \u2014 So Different, So Appealing.',
+    story: 'The House That America Built is a full-scale sculptural installation by Los Angeles artist Daniel Joseph Martinez, created for the exhibition Home \u2014 So Different, So Appealing at the Los Angeles County Museum of Art in 2017. The work recreates the small Montana cabin occupied by Theodore Kaczynski, better known as the Unabomber, but deliberately transforms the familiar structure through color, fragmentation, and art-historical references. Martinez originally developed the work in 2004 and produced a new iteration for LACMA\u2019s 2017 exhibition, identified as The House That America Built, 2004\u20132017, a to-scale recreation of Kaczynski\u2019s cabin.',
+    story2: 'Rather than presenting the cabin as a neutral architectural replica, Martinez uses the structure as both an object and an argument about American identity. The simple gabled building is painted in an intentionally bright palette drawn from a spring-2017 consumer paint line, its cheerful language set against the cabin\u2019s association with isolation and domestic terrorism. A dramatic split through the center of the structure references Gordon Matta-Clark\u2019s 1974 work Splitting, in which a suburban house was physically cut apart, while a camouflage pattern applied across part of the exterior references Andy Warhol\u2019s interest in camouflage imagery. Installed within LACMA\u2019s gallery as a freestanding structure surrounded by open museum space, the cabin operates at architectural scale, giving the work a bodily presence that drawings, photographs, or models could not achieve.',
+    story3: 'The project was included in Home \u2014 So Different, So Appealing, presented at LACMA from June 11 through October 15, 2017 as part of Pacific Standard Time: LA/LA, an exhibition examining ideas of home and domestic space through the work of artists connected to Latin America and Latino communities in the United States.',
+    challenge: 'Constructing the piece required fabricating an artwork that needed to read convincingly as architecture while remaining suitable for installation inside a museum. Because the work reproduces the cabin at full scale, the framing, roof geometry, wall dimensions, openings, and exterior detailing had to create the immediate impression of an actual small residence, while conventional residential construction methods had to be adapted around gallery access, floor loading, installation sequencing, structural stability, life-safety requirements, and protection of surrounding museum finishes. The deliberate split running through the cabin introduced a major structural challenge: a conventional small house relies on continuous walls, roof framing, and sheathing for stability, but here the building needed to appear physically separated while each portion remained independently stable and precisely aligned with the other, with roof planes, fascia, trim, exterior wall panels, and floor assemblies terminating cleanly at the split. Finish work demanded graphic precision \u2014 bright color-blocked bands, contrasting trim, and camouflage imagery all had to be applied across architectural surfaces without losing visual clarity \u2014 and because visitors could walk fully around the structure, there was no back side where unfinished construction could be concealed, making clean detailing essential on every elevation. Museum installation added a further layer of coordination: components had to be fabricated, transported, brought into the gallery, assembled, finished, inspected, and positioned without damaging the artwork or surrounding exhibition space, with temporary structural connections kept visually discreet so the completed piece could stand as an autonomous sculptural object.',
+    materials: 'Full-scale wood-framed cabin construction, pitched roof assembly, exterior siding, painted architectural trim, custom wall panels, full-height structural separation through the building, yellow and orange color-blocked exterior finishes, contrasting blue-green trim, camouflage-pattern artwork, simulated residential window and shutter elements, museum-grade temporary structural support, concealed connections, freestanding gallery installation, custom fabrication, specialty finish work, transportation and assembly coordination, and temporary exhibition construction.' },
 ];
 
 const SERVICES = [
@@ -2248,6 +2268,8 @@ class Component extends DCLogic {
       year: p.year || '',
       hasPhoto: !!p.img,
       needsPlaceholder: !p.img,
+      hasVideoId: !!p.videoId,
+      hasVideoSrc: !!p.videoSrc,
       slotId: 'slot-' + p.id,
       slotHeroId: 'slot-hero-' + p.id,
       slotGalleryId: 'slot-gallery-' + p.id,
@@ -2944,7 +2966,9 @@ class Component extends DCLogic {
       detailParaStyle: `font-family:${SERIF};font-size:17px;line-height:1.62;color:${BODY_C};margin:0 0 20px;text-wrap:pretty`,
       detailVideoSection: 'padding:0 56px 72px',
       detailVideoFrame: 'position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#000',
-      detailVideoIframe: 'position:absolute;inset:0;width:100%;height:100%;border:0;display:block',
+      detailVideoIframe: 'position:absolute;inset:0;width:100%;height:100%;border:0;display:block;object-fit:cover',
+      detailVideoFramePortrait: `position:relative;width:${mob ? '100%' : '420px'};max-width:100%;margin:0 auto;aspect-ratio:9/16;background:#000`,
+      detailVideoIframePortrait: 'position:absolute;inset:0;width:100%;height:100%;border:0;display:block;object-fit:contain',
       gallerySection: 'padding:0 56px 72px',
       galleryGrid: `display:grid;grid-template-columns:${s.isNarrow ? '1fr' : '1fr 1fr'};gap:4px`,
       galleryImgWide: `grid-column:${s.isNarrow ? 'auto' : '1/3'};width:100%;aspect-ratio:16/9;object-fit:cover;display:block`,
