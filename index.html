@@ -241,7 +241,7 @@
             <div class="pd-media" style="{{ p.mediaColStyle }}" onClick="{{ p.view }}">
               <span class="pd-badge" style="{{ p.viewBadge }}">View Project &nbsp;→</span>
               <sc-if value="{{ p.hasPhoto }}" hint-placeholder-val="{{ false }}">
-                <img ref="{{ p.imgRef }}" alt="{{ p.imgAlt }}" style="{{ p.mediaStyle }}">
+                <img ref="{{ p.imgRef }}" alt="{{ p.imgAlt }}" style="{{ p.mediaStyle }}" loading="lazy">
               </sc-if>
               <sc-if value="{{ p.needsPlaceholder }}" hint-placeholder-val="{{ false }}">
                 <image-slot id="{{ p.slotId }}" placeholder="Project photography placeholder" style="{{ p.mediaSlotStyle }}"></image-slot>
@@ -504,7 +504,7 @@
           <div style="{{ p.rowStyle }}">
             <div ref="{{ p.magRef }}" style="{{ p.frameStyle }}" onClick="{{ p.view }}">
               <sc-if value="{{ p.hasPhoto }}" hint-placeholder-val="{{ false }}">
-                <img ref="{{ p.imgRef }}" alt="{{ p.imgAlt }}" style="{{ p.mediaStyle }}">
+                <img ref="{{ p.imgRef }}" alt="{{ p.imgAlt }}" style="{{ p.mediaStyle }}" loading="lazy">
               </sc-if>
               <sc-if value="{{ p.needsPlaceholder }}" hint-placeholder-val="{{ false }}">
                 <image-slot id="{{ p.slotId }}" placeholder="Project photography placeholder" style="{{ p.mediaSlotStyle }}"></image-slot>
@@ -589,7 +589,7 @@
         <sc-if value="{{ selectedProject.hasGallery }}" hint-placeholder-val="{{ false }}">
           <div style="{{ galleryGrid }}">
             <sc-for list="{{ selectedProject.galleryItems }}" as="g" hint-placeholder-count="0">
-              <img ref="{{ g.ref }}" alt="{{ g.alt }}" style="{{ g.style }}">
+              <img ref="{{ g.ref }}" alt="{{ g.alt }}" style="{{ g.style }}" loading="lazy">
             </sc-for>
           </div>
         </sc-if>
@@ -797,7 +797,7 @@
         <div style="{{ teaserTextCol }}">
           <h2 style="{{ introHeadlineStyle }}">We Build Like It’s Our Own Home</h2>
           <div style="{{ tanRule }}"></div>
-          <p style="{{ bodyLgStyle }}">PD Construction Inc. is a family-owned general contractor committed to two things at once: the highest possible quality of finished work, and a building experience you’d happily go through again. That’s the standard we hold ourselves to — and it’s why every project comes with a name, a direct phone number, and an owner who actually answers it.</p>
+          <p style="{{ bodyLgStyle }}">PD Construction Inc. is a licensed general contractor committed to two things at once: the highest possible quality of finished work, and a building experience you’d happily go through again. That’s the standard we hold ourselves to — and it’s why every project comes with a name, a direct phone number, and an owner who actually answers it.</p>
           <div style="{{ svcHeroMetaRow }}">
             <sc-for list="{{ aboutHeroMeta }}" as="m" hint-placeholder-count="3">
               <div style="{{ svcHeroMetaCell }}">
@@ -835,7 +835,7 @@
             <span style="{{ eyebrowStyle }}">Leadership</span>
             <h3 style="{{ sectionHeadlineTight }}">Who runs your project.</h3>
           </div>
-          <p style="{{ svcSectionHeadNote }}">Family-owned and family-run — an owner on your job site every day, and an owner keeping your budget honest in the office.</p>
+          <p style="{{ svcSectionHeadNote }}">Principal-led on every project — an owner on your job site every day, and an owner keeping your budget honest in the office.</p>
         </div>
         <div style="{{ aboutTeamGrid }}">
           <sc-for list="{{ team }}" as="t" hint-placeholder-count="3">
@@ -1218,7 +1218,7 @@
     <div style="{{ footerGrid }}">
       <div style="{{ footerCol }}">
         <img src="assets/pd-logo.svg" alt="PD Construction Inc." style="{{ footerLogoStyle }}">
-        <p style="{{ footerBlurb }}">A family-owned general contractor turning ambitious visions into homes and spaces we're proud to have built, across Southern California since 2012.</p>
+        <p style="{{ footerBlurb }}">A licensed general contractor turning ambitious visions into homes and spaces we're proud to have built, across Southern California since 2012.</p>
       </div>
       <div style="{{ footerCol }}">
         <span style="{{ footerColLabel }}">Contact</span>
@@ -1298,7 +1298,8 @@ const HERO_IMAGES = [
   { src: 'assets/hero-cycle-02-westridge.jpg', alt: 'Westridge Residence exterior by day: a sculptural white and dark-metal volume with a landscaped terrace' },
   { src: 'assets/hero-cycle-03-preston-dusk.jpg', alt: 'A residence courtyard at dusk, glass walls open to a lit pool and living room beyond' }
 ];
-const PROJECTS_RAW = [
+if (typeof PROJECTS_RAW === 'undefined') {
+  window.PROJECTS_RAW = [
   { id: 'wild-beast-calarts', name: 'The Wild Beast, CalArts', location: 'Valencia, CA', category: 'Commercial', scope: 'Performance Pavilion', year: '2009',
     architect: 'Hodgetts + Fung',
     img: 'assets/wildbeast-01-open-shell.jpg', imgAlt: 'The Wild Beast at dusk with its retracting panels fully open, lit acoustic ceiling above a piano on the stage floor',
@@ -1610,7 +1611,7 @@ const PROJECTS_RAW = [
     img: 'assets/alanvoo-02-house-night.jpg', imgAlt: 'The rear addition at dusk: a sculptural magenta, pink and orange upper volume cantilevered over glass-walled living spaces',
     gallery: [
       ['assets/alanvoo-03-living-room.jpg', 'Ground-floor living area beneath the sculptural addition, angled steel braces crossing the glazed volume', 'wide'],
-      ['assets/alanvoo-01-family-kitchen.jpg', 'The family gathered around the monolithic white kitchen island, flush cabinetry and integrated refrigeration beyond', 'wide'],
+      ['assets/alanvoo-01-family-kitchen.jpg', 'A gathering around the monolithic white kitchen island, flush cabinetry and integrated refrigeration beyond', 'wide'],
       ['assets/alanvoo-04-stairs-motion.jpg', 'A figure in motion on the floating stair, skylights above washing the stairwell in daylight', 'tall'],
       ['assets/alanvoo-02-house-night.jpg', 'Rear elevation at dusk: the magenta and orange addition floating above glass-enclosed rooms and a landscaped garden']
     ],
@@ -1666,7 +1667,8 @@ const PROJECTS_RAW = [
     story3: 'The platform geometry was developed directly from objects represented in the exhibition: a sculptural Greta Magnusson Grossman lampshade was enlarged into both an architectural opening and a platform profile, the organic outline of Alvar Aalto\u2019s Savoy vase became the footprint for another furniture display, and blue zigzag forms derived from an Eliel and Loja Saarinen tapestry informed the geometry and color of another section\u2019s furniture. Large-scale textiles also became architectural elements, with black-and-white Marimekko fabrics suspended overhead in long vertical sheets, transforming printed patterns into spatial dividers inspired by archival photographs of the Design Research store in Cambridge, Massachusetts. A coral-colored room-like display creates an especially strong architectural moment, isolating a group of furniture and lighting within a simplified domestic interior, and the exhibition ran at LACMA from October 9, 2022 through February 5, 2023.',
     challenge: 'The primary challenge was giving architectural coherence to an exhibition containing more than 175 objects that varied dramatically in scale, material, age, fragility, and method of display, from small jewelry and glass pieces to chairs, tables, lighting, textiles, furniture ensembles, and large hanging works. Rather than a single standardized display system, the exhibition uses a family of related architectural elements \u2014 repeated cylindrical bases, thick platforms, wood panels, strong color fields, vitrines, and vertical posts \u2014 that establish consistency while still letting each section respond to its specific objects. The custom platforms required close coordination between structural capacity and visual lightness, since many support valuable furniture and museum cases while appearing to rest on repeated painted cylinders rather than conventional casework, and the unusual object-derived platform footprints \u2014 curved edges, irregular profiles, offset levels \u2014 increased fabrication complexity, since their intentionally simple, graphic forms would make any inconsistency in curves, joints, paint transitions, or alignment especially visible. The suspended Marimekko textile installations needed to hang cleanly and safely while coordinating with the existing museum ceiling, lighting tracks, and mechanical systems, and the natural birch paneling and exposed wood columns required exceptionally clean panel seams, fasteners, grain direction, and transitions to painted surfaces, all while meeting museum conservation requirements for sensitive historic textiles, furniture, ceramics, glass, and metalwork, and remaining fully reversible as temporary exhibition construction.',
     materials: 'Custom exhibition platforms, painted Sonotube cylindrical supports, birch plywood wall panels, exposed wood columns and peeler logs, saturated color-blocked wall finishes, coral, orange, pink, yellow, deep blue and pale green display structures, irregular object-inspired platform geometries, custom vitrines, protective glazing, freestanding exhibition walls, suspended Marimekko textiles, specialty ceiling suspension systems, custom object mounts, furniture display plinths, room-scale exhibition environments, integrated interpretive graphics, track lighting, museum-grade object lighting, concealed structural connections, custom casework, temporary exhibition framing, and specialty museum finishes.' },
-];
+  ];
+}
 
 const SERVICES = [
   ['Preconstruction', 'We put real numbers behind your design early — so you know exactly what your vision costs before you fall in love with something we can\u2019t deliver.'],
@@ -1704,7 +1706,7 @@ const CAPABILITIES = [
     ['Every trade hired and managed for you', 'An owner on site, watching the work', 'Nothing signed off until it\u2019s right']],
   ['Construction Management', 'Owner-side oversight and reporting when the work is already contracted elsewhere.',
     ['Your budget, tracked and protected', 'Every consultant kept in sync', 'A clear record of every decision']],
-  ['Hands-On Craftsmanship', 'The most critical structural and finish work is carried by our own crews — not handed off to strangers — so quality control never leaves the family.',
+  ['Hands-On Craftsmanship', 'The most critical structural and finish work is carried by our own crews — not handed off to subcontractors — so quality control never leaves our hands.',
     ['The structure that holds it all up, done right', 'The finish work you\u2019ll actually touch and see', 'Fewer hands on your project, more accountability']]
 ];
 
@@ -1734,7 +1736,7 @@ const COMPARISONS = [
 ];
 
 const MILESTONES = [
-  ['2012', 'Founded', 'PD Construction Inc. is established as a family-run general contractor, built on decades of hands-on building experience and an obsession with getting the details right.'],
+  ['2012', 'Founded', 'PD Construction Inc. is established as a licensed general contractor, built on decades of hands-on building experience and an obsession with getting the details right.'],
   ['2013', 'First project delivered', 'The firm completes its first project under its own license, setting the detail standard the practice still runs on.'],
   ['Since', 'Residential and commercial', 'Scope grows to cover ground-up custom residences, gut renovations, and commercial buildouts and tenant improvements across Southern California.'],
   ['Today', 'Fourteen years in', 'A full-service general contractor working design-to-build alongside architects and owners \u2014 with both owners of the firm personally involved in every project we take.']
@@ -2117,12 +2119,12 @@ class Component extends DCLogic {
   }
 
   navigate(view, id) {
-    if (view === this.state.view && !id) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    if (view === this.state.view && !id) { window.scrollTo(0, 0); return; }
+    window.scrollTo(0, 0);
     document.body.style.overflow = '';
     this.setState({ mobileMenuOpen: false, pageIn: false, lightbox: null });
     clearTimeout(this._navT);
     this._navT = setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'auto' });
       this.setState(s => ({
         view, pageIn: true,
         selectedProjectId: id || s.selectedProjectId,
@@ -2357,7 +2359,7 @@ class Component extends DCLogic {
       imgRef: this.srcRef('prjlist_' + p.id, p.img, 'prjlist_' + p.id),
       magRef: this.magRef('prjmag_' + p.id),
       capStyle: `position:absolute;z-index:5;pointer-events:none;transform:translate(-50%,-50%);opacity:0;transition:opacity 0.3s ease;background:${TAN};color:${INK};font-family:${SANS};font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;padding:12px 14px;border-radius:50%;width:74px;height:74px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2`,
-      mediaStyle: this.revealStyle('prjlist_' + p.id, 'width:100%;aspect-ratio:4/3;object-fit:cover;display:block') + ';transition:transform 0.5s cubic-bezier(.2,.7,.3,1),opacity 0.9s cubic-bezier(.2,.7,.3,1)',
+      mediaStyle: this.revealStyle('prjlist_' + p.id, 'width:100%;aspect-ratio:4/3;object-fit:cover;display:block;max-width:100%') + ';transition:transform 0.5s cubic-bezier(.2,.7,.3,1),opacity 0.9s cubic-bezier(.2,.7,.3,1)',
       textColStyle: 'flex:1 1 380px;min-width:280px;display:flex;flex-direction:column;justify-content:center;gap:6px;align-items:flex-start'
     }));
 
@@ -2385,7 +2387,7 @@ class Component extends DCLogic {
       return {
         alt,
         ref: this.srcRef(key, url, key),
-        style: this.revealStyle(key, `${box};width:100%;object-fit:cover;display:block`)
+        style: this.revealStyle(key, `${box};width:100%;object-fit:cover;display:block;max-width:100%`)
       };
     });
     selectedProject.goPrev = () => this.navigate('project', prevP.id);
@@ -2614,7 +2616,7 @@ class Component extends DCLogic {
       aboutHeroImgRef: this.revealRef('about_hero'),
       aboutHeroImg: this.revealStyle('about_hero', 'width:100%;height:100%;min-height:340px;object-fit:cover;display:block'),
       aboutHeroMeta: [
-        { num: 'Family', label: 'Owned & Operated' },
+        { num: 'Owner', label: 'Led & Operated' },
         { num: '14+', label: 'Years Building' },
         { num: '1', label: 'Point of Contact' }
       ],
@@ -2735,7 +2737,7 @@ class Component extends DCLogic {
       baLabelAfter: `position:absolute;top:18px;right:18px;z-index:3;font-family:${SANS};font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${INK};background:${TAN};padding:7px 12px;pointer-events:none;opacity:${s.baPct < 88 ? 1 : 0};transition:opacity 0.25s ease`,
       baDivider: `position:absolute;top:0;bottom:0;left:${s.baPct}%;width:2px;background:${TAN};z-index:4;pointer-events:none;display:flex;align-items:center;justify-content:center;transition:${(s.baDragging || s.baAuto) ? 'none' : 'left 0.5s ease-out'}`,
       baHandle: `width:${s.baDragging ? 56 : 48}px;height:${s.baDragging ? 56 : 48}px;background:${TAN};display:flex;align-items:center;justify-content:center;gap:5px;flex:0 0 auto;transition:width 0.2s ease,height 0.2s ease;box-shadow:0 6px 20px -8px rgba(20,20,20,0.6);pointer-events:none`,
-      baHandleHit: `width:${mob ? 76 : 56}px;height:${mob ? 76 : 56}px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;pointer-events:${mob ? 'none' : 'auto'};touch-action:none;cursor:${s.baDragging ? 'grabbing' : 'grab'}`,
+      baHandleHit: `width:${mob ? 76 : 56}px;height:${mob ? 76 : 56}px;flex:0 0 auto;display:${mob ? 'none' : 'flex'};align-items:center;justify-content:center;pointer-events:${mob ? 'none' : 'auto'};touch-action:none;cursor:${s.baDragging ? 'grabbing' : 'grab'}`,
       baHandleArrow: `font-family:${SANS};font-size:13px;color:${INK};line-height:1`,
       baCaption: `display:block;font-family:${SANS};font-size:11px;letter-spacing:0.04em;color:${MUTED};margin-top:14px`,
       baFrameRef: this.revealRef('ba_frame'),
